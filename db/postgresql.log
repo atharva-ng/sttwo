@@ -1,0 +1,198 @@
+2024-08-12 09:40:45.163 IST [72417] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-08-12 09:40:45.165 IST [72417] LOG:  listening on IPv6 address "::1", port 5432
+2024-08-12 09:40:45.165 IST [72417] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-08-12 09:40:45.166 IST [72417] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-08-12 09:40:45.167 IST [72420] LOG:  database system was shut down at 2024-08-12 09:40:44 IST
+2024-08-12 09:40:45.169 IST [72417] LOG:  database system is ready to accept connections
+2024-08-12 09:45:45.156 IST [72418] LOG:  checkpoint starting: time
+2024-08-12 09:47:17.612 IST [72470] ERROR:  value too long for type character varying(10)
+2024-08-12 09:47:17.612 IST [72470] STATEMENT:  INSERT INTO roomsize (size) VALUES ('1RK'), ('1BHK'), ('2BHK’),(‘3BHK’),(‘4BHK’),(‘5BHK’),(‘6BHK’),(‘7BHK');
+2024-08-12 09:49:03.554 IST [72418] LOG:  checkpoint complete: wrote 1945 buffers (11.9%); 1 WAL file(s) added, 0 removed, 0 recycled; write=198.379 s, sync=0.012 s, total=198.399 s; sync files=651, longest=0.001 s, average=0.001 s; distance=8971 kB, estimate=8971 kB
+2024-08-12 10:15:26.889 IST [84102] FATAL:  role "adminHandler" does not exist
+2024-08-12 10:17:22.872 IST [84839] FATAL:  role "adminHandler" does not exist
+2024-08-12 10:18:40.935 IST [85413] ERROR:  relation "roomsizes" does not exist at character 15
+2024-08-12 10:18:40.935 IST [85413] STATEMENT:  SELECT * FROM roomsizes
+2024-08-12 10:19:28.432 IST [72470] ERROR:  relation "roomsizes" does not exist at character 15
+2024-08-12 10:19:28.432 IST [72470] STATEMENT:  select * from roomsizes;
+2024-08-12 10:19:44.154 IST [85851] ERROR:  relation "roomsize" does not exist at character 15
+2024-08-12 10:19:44.154 IST [85851] STATEMENT:  SELECT * FROM roomsize
+2024-08-12 10:20:01.627 IST [86010] ERROR:  relation "roomsize" does not exist at character 15
+2024-08-12 10:20:01.627 IST [86010] STATEMENT:  SELECT * FROM roomsize;
+2024-08-12 10:20:24.794 IST [72418] LOG:  checkpoint starting: time
+2024-08-12 10:20:25.721 IST [72418] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.921 s, sync=0.002 s, total=0.928 s; sync files=8, longest=0.001 s, average=0.001 s; distance=11 kB, estimate=8075 kB
+2024-08-12 10:24:59.332 IST [72470] ERROR:  relation "schema_name.roomsize" does not exist at character 15
+2024-08-12 10:24:59.332 IST [72470] STATEMENT:  SELECT * FROM schema_name.roomsize;
+2024-08-12 10:25:05.511 IST [72470] ERROR:  relation "sttwo.roomsize" does not exist at character 15
+2024-08-12 10:25:05.511 IST [72470] STATEMENT:  SELECT * FROM sttwo.roomsize;
+2024-08-12 10:25:31.169 IST [87506] ERROR:  relation "roomsize" does not exist at character 15
+2024-08-12 10:25:31.169 IST [87506] STATEMENT:  select * from roomsize;
+2024-08-12 10:25:47.704 IST [87506] ERROR:  relation "roomsize" does not exist at character 15
+2024-08-12 10:25:47.704 IST [87506] STATEMENT:  select * from roomsize;
+2024-08-12 10:26:40.271 IST [88081] ERROR:  relation "roomsize" does not exist at character 15
+2024-08-12 10:26:40.271 IST [88081] STATEMENT:  SELECT * FROM roomsize;
+2024-08-12 10:27:00.429 IST [88297] ERROR:  relation "roomsize" does not exist at character 15
+2024-08-12 10:27:00.429 IST [88297] STATEMENT:  SELECT * FROM roomsize;
+2024-08-12 10:27:30.416 IST [88580] ERROR:  permission denied for table roomsize
+2024-08-12 10:27:30.416 IST [88580] STATEMENT:  SELECT * FROM roomsize;
+2024-08-12 14:05:22.921 IST [87822] ERROR:  syntax error at or near "CREATE" at character 95
+2024-08-12 14:05:22.921 IST [87822] STATEMENT:  CREATE TABLE maintenance_heads (
+	    id SERIAL PRIMARY KEY,
+	    heads VARCHAR(100) NOT NULL
+	)
+	CREATE TABLE maintenance_heads (
+	    id SERIAL PRIMARY KEY,
+	    heads VARCHAR(100) NOT NULL
+	);
+2024-08-12 14:05:59.473 IST [87822] ERROR:  syntax error at or near "CREATE" at character 85
+2024-08-12 14:05:59.473 IST [87822] STATEMENT:  CREATE TABLE maintenance_heads (id SERIAL PRIMARY KEY, heads VARCHAR(100) NOT NULL)
+	CREATE TABLE maintenance_heads (id SERIAL PRIMARY KEY, heads VARCHAR(100) NOT NULL);
+2024-08-12 14:07:49.246 IST [72418] LOG:  checkpoint starting: time
+2024-08-12 14:07:53.351 IST [72418] LOG:  checkpoint complete: wrote 41 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.098 s, sync=0.003 s, total=4.105 s; sync files=37, longest=0.001 s, average=0.001 s; distance=136 kB, estimate=7281 kB
+2024-08-12 14:08:38.180 IST [87822] ERROR:  column "head" of relation "maintenance_heads" does not exist at character 31
+2024-08-12 14:08:38.180 IST [87822] STATEMENT:  INSERT INTO maintenance_heads(head) values ('Electric Charges');
+2024-08-12 14:10:54.190 IST [87822] ERROR:  duplicate key value violates unique constraint "unique_heads"
+2024-08-12 14:10:54.190 IST [87822] DETAIL:  Key (heads)=(Education & Training Fund) already exists.
+2024-08-12 14:10:54.190 IST [87822] STATEMENT:  INSERT INTO maintenance_heads(heads) values ('Education & Training Fund');
+2024-08-12 14:12:49.351 IST [72418] LOG:  checkpoint starting: time
+2024-08-12 14:12:52.024 IST [72418] LOG:  checkpoint complete: wrote 27 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.666 s, sync=0.003 s, total=2.674 s; sync files=26, longest=0.001 s, average=0.001 s; distance=90 kB, estimate=6562 kB
+2024-08-12 14:14:58.424 IST [35639] ERROR:  relation "maintainanceheads" does not exist at character 15
+2024-08-12 14:14:58.424 IST [35639] STATEMENT:  SELECT * FROM maintainanceheads;
+2024-08-12 14:15:21.537 IST [35836] ERROR:  relation "maintainance_heads" does not exist at character 15
+2024-08-12 14:15:21.537 IST [35836] STATEMENT:  SELECT * FROM maintainance_heads;
+2024-08-12 14:15:52.805 IST [36087] ERROR:  relation "maintainance_heads" does not exist at character 15
+2024-08-12 14:15:52.805 IST [36087] STATEMENT:  SELECT * FROM maintainance_heads;
+2024-08-12 14:46:15.783 IST [72417] LOG:  received fast shutdown request
+2024-08-12 14:46:15.783 IST [72417] LOG:  aborting any active transactions
+2024-08-12 14:46:15.784 IST [72470] FATAL:  terminating connection due to administrator command
+2024-08-12 14:46:15.786 IST [72417] LOG:  background worker "logical replication launcher" (PID 72423) exited with exit code 1
+2024-08-12 14:46:15.787 IST [72418] LOG:  shutting down
+2024-08-12 14:46:15.787 IST [72418] LOG:  checkpoint starting: shutdown immediate
+2024-08-12 14:46:15.788 IST [72418] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=1, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=5906 kB
+2024-08-12 14:46:15.791 IST [72417] LOG:  database system is shut down
+2024-08-12 14:46:36.834 IST [48154] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-08-12 14:46:36.836 IST [48154] LOG:  listening on IPv6 address "::1", port 5432
+2024-08-12 14:46:36.836 IST [48154] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-08-12 14:46:36.836 IST [48154] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-08-12 14:46:36.839 IST [48157] LOG:  database system was shut down at 2024-08-12 14:46:15 IST
+2024-08-12 14:46:36.844 IST [48154] LOG:  database system is ready to accept connections
+2024-08-12 16:54:19.783 IST [48154] LOG:  received fast shutdown request
+2024-08-12 16:54:19.783 IST [48154] LOG:  aborting any active transactions
+2024-08-12 16:54:19.785 IST [48154] LOG:  background worker "logical replication launcher" (PID 48160) exited with exit code 1
+2024-08-12 16:54:19.785 IST [48155] LOG:  shutting down
+2024-08-12 16:54:19.785 IST [48155] LOG:  checkpoint starting: shutdown immediate
+2024-08-12 16:54:19.787 IST [48155] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-08-12 16:54:19.789 IST [48154] LOG:  database system is shut down
+2024-08-12 16:54:20.949 IST [48743] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-08-12 16:54:20.951 IST [48743] LOG:  listening on IPv6 address "::1", port 5432
+2024-08-12 16:54:20.951 IST [48743] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-08-12 16:54:20.951 IST [48743] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-08-12 16:54:20.954 IST [48746] LOG:  database system was shut down at 2024-08-12 16:54:19 IST
+2024-08-12 16:54:20.956 IST [48743] LOG:  database system is ready to accept connections
+2024-08-12 16:59:20.950 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 16:59:20.960 IST [48744] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.010 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-08-12 17:49:20.995 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 17:49:22.959 IST [48744] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.956 s, sync=0.003 s, total=1.965 s; sync files=16, longest=0.001 s, average=0.001 s; distance=87 kB, estimate=87 kB
+2024-08-12 17:54:20.960 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 17:54:25.164 IST [48744] LOG:  checkpoint complete: wrote 42 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.194 s, sync=0.005 s, total=4.205 s; sync files=38, longest=0.002 s, average=0.001 s; distance=173 kB, estimate=173 kB
+2024-08-12 17:59:20.179 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 17:59:20.999 IST [48744] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.816 s, sync=0.002 s, total=0.821 s; sync files=7, longest=0.002 s, average=0.001 s; distance=21 kB, estimate=158 kB
+2024-08-12 18:04:42.642 IST [75566] ERROR:  relation "society" does not exist at character 13
+2024-08-12 18:04:42.642 IST [75566] STATEMENT:  INSERT INTO society VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+2024-08-12 18:05:23.860 IST [75878] ERROR:  relation "society" does not exist at character 13
+2024-08-12 18:05:23.860 IST [75878] STATEMENT:  INSERT INTO society VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+2024-08-12 18:05:58.671 IST [76106] ERROR:  INSERT has more expressions than target columns at character 76
+2024-08-12 18:05:58.671 IST [76106] STATEMENT:  INSERT INTO societydetails VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+2024-08-12 18:06:21.633 IST [76258] ERROR:  INSERT has more expressions than target columns at character 76
+2024-08-12 18:06:21.633 IST [76258] STATEMENT:  INSERT INTO societydetails VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+2024-08-12 18:06:36.410 IST [76393] ERROR:  INSERT has more expressions than target columns at character 76
+2024-08-12 18:06:36.410 IST [76393] STATEMENT:  INSERT INTO societydetails VALUES(DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+2024-08-12 18:06:51.019 IST [76498] ERROR:  INSERT has more expressions than target columns at character 71
+2024-08-12 18:06:51.019 IST [76498] STATEMENT:  INSERT INTO societydetails VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+2024-08-12 18:09:21.005 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 18:09:21.418 IST [48744] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.003 s, total=0.413 s; sync files=5, longest=0.002 s, average=0.001 s; distance=15 kB, estimate=143 kB
+2024-08-12 18:09:30.292 IST [77540] ERROR:  invalid input syntax for type uuid: "name"
+2024-08-12 18:09:30.292 IST [77540] CONTEXT:  unnamed portal parameter $1 = '...'
+2024-08-12 18:09:30.292 IST [77540] STATEMENT:  INSERT INTO societydetails VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);
+2024-08-12 18:14:21.419 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 18:14:21.728 IST [48744] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.306 s, sync=0.002 s, total=0.310 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=129 kB
+2024-08-12 20:33:38.248 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 20:33:38.458 IST [48744] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.203 s, sync=0.002 s, total=0.210 s; sync files=3, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=116 kB
+2024-08-12 20:38:38.460 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 20:38:38.674 IST [48744] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.204 s, sync=0.002 s, total=0.214 s; sync files=3, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=105 kB
+2024-08-12 20:53:38.681 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 20:53:38.894 IST [48744] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.204 s, sync=0.002 s, total=0.213 s; sync files=3, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=94 kB
+2024-08-12 20:57:03.923 IST [69257] ERROR:  syntax error at or near "3" at character 1
+2024-08-12 20:57:03.923 IST [69257] STATEMENT:  3
+	SELECT * FROM societydetails 
+	;
+2024-08-12 20:58:38.896 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 20:58:39.413 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.512 s, sync=0.002 s, total=0.517 s; sync files=5, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=85 kB
+2024-08-12 21:04:43.001 IST [69257] ERROR:  relation "your_table_name" does not exist at character 54
+2024-08-12 21:04:43.001 IST [69257] STATEMENT:  SELECT conname 
+	FROM pg_constraint 
+	WHERE conrelid = 'your_table_name'::regclass 
+	  AND conname LIKE '%uuid%';
+2024-08-12 21:05:43.137 IST [69257] ERROR:  column "uuid" of relation "societydetails" does not exist
+2024-08-12 21:05:43.137 IST [69257] STATEMENT:  ALTER TABLE societydetails ALTER COLUMN uuid DROP DEFAULT;
+2024-08-12 21:08:38.419 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 21:08:38.733 IST [48744] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.002 s, total=0.314 s; sync files=4, longest=0.001 s, average=0.001 s; distance=16 kB, estimate=78 kB
+2024-08-12 21:08:48.190 IST [69257] ERROR:  syntax error at or near "table" at character 34
+2024-08-12 21:08:48.190 IST [69257] STATEMENT:  ALTER TABLE your_table_name
+	drop table societydetails 
+	;
+2024-08-12 21:09:16.159 IST [69257] ERROR:  cannot drop table societydetails because other objects depend on it
+2024-08-12 21:09:16.159 IST [69257] DETAIL:  constraint societypasswords_id_fkey on table societypasswords depends on table societydetails
+2024-08-12 21:09:16.159 IST [69257] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2024-08-12 21:09:16.159 IST [69257] STATEMENT:  DROP TABLE societydetails;
+2024-08-12 21:09:41.407 IST [98836] ERROR:  relation "societydetails" does not exist at character 13
+2024-08-12 21:09:41.407 IST [98836] STATEMENT:  INSERT INTO societydetails VALUES(DEFAULT,$1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;
+2024-08-12 21:11:25.448 IST [99540] ERROR:  INSERT has more expressions than target columns at character 75
+2024-08-12 21:11:25.448 IST [99540] STATEMENT:  INSERT INTO societydetails VALUES(DEFAULT,$1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;
+2024-08-12 21:13:38.736 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 21:13:43.133 IST [48744] LOG:  checkpoint complete: wrote 44 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.389 s, sync=0.005 s, total=4.397 s; sync files=40, longest=0.001 s, average=0.001 s; distance=208 kB, estimate=208 kB
+2024-08-12 21:17:38.268 IST [69257] ERROR:  relation "table_name" does not exist
+2024-08-12 21:17:38.268 IST [69257] STATEMENT:  ALTER TABLE table_name ALTER COLUMN address SET NOT NULL, ALTER COLUMN city SET NOT NULL, ALTER COLUMN state SET NOT NULL, ALTER COLUMN postalcode SET NOT NULL, ALTER COLUMN establishmentdate SET NOT NULL, ALTER COLUMN registrationnumber SET NOT NULL, ALTER COLUMN phonenumber SET NOT NULL;
+2024-08-12 21:18:38.135 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 21:18:39.372 IST [48744] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.229 s, sync=0.002 s, total=1.237 s; sync files=10, longest=0.001 s, average=0.001 s; distance=19 kB, estimate=189 kB
+2024-08-12 21:52:13.728 IST [48744] LOG:  checkpoint starting: time
+2024-08-12 21:52:14.258 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.517 s, sync=0.006 s, total=0.530 s; sync files=6, longest=0.004 s, average=0.001 s; distance=1 kB, estimate=170 kB
+2024-08-13 16:21:03.122 IST [15144] ERROR:  column "emailaddress" does not exist at character 37
+2024-08-13 16:21:03.122 IST [15144] STATEMENT:  SELECT id FROM societydetails WHERE emailAddress = $1;
+2024-08-13 16:21:32.007 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 16:21:32.524 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.518 s; sync files=6, longest=0.002 s, average=0.001 s; distance=3 kB, estimate=153 kB
+2024-08-13 16:21:50.560 IST [15462] ERROR:  bind message supplies 8 parameters, but prepared statement "" requires 9
+2024-08-13 16:21:50.560 IST [15462] STATEMENT:  INSERT INTO societydetails VALUES(DEFAULT,$1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;
+2024-08-13 16:26:32.524 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 16:26:33.067 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.521 s, sync=0.005 s, total=0.544 s; sync files=6, longest=0.003 s, average=0.001 s; distance=2 kB, estimate=138 kB
+2024-08-13 17:27:55.798 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 17:27:56.314 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=125 kB
+2024-08-13 19:17:55.619 IST [69257] ERROR:  column "emailaddress" does not exist at character 45
+2024-08-13 19:17:55.619 IST [69257] STATEMENT:  SELECT id FROM societydetails WHERE email = emailAddress@gmail.com;
+2024-08-13 19:18:09.567 IST [69257] ERROR:  column "emailAddress@gmail.com" does not exist at character 45
+2024-08-13 19:18:09.567 IST [69257] STATEMENT:  SELECT id FROM societydetails WHERE email = "emailAddress@gmail.com";
+2024-08-13 19:19:29.870 IST [61870] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:19:29.870 IST [61870] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:20:06.598 IST [62139] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:20:06.598 IST [62139] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:20:30.019 IST [62315] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:20:30.019 IST [62315] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:20:38.259 IST [62410] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:20:38.259 IST [62410] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:22:28.319 IST [63143] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:22:28.319 IST [63143] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:22:50.272 IST [63360] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:22:50.272 IST [63360] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:22:59.701 IST [63438] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:22:59.701 IST [63438] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:24:39.307 IST [64097] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:24:39.307 IST [64097] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:25:02.860 IST [64295] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:25:02.860 IST [64295] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 19:25:37.331 IST [64583] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-08-13 19:25:37.331 IST [64583] STATEMENT:  SELECT id FROM societydetails WHERE email = '$1';
+2024-08-13 20:34:31.559 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 20:34:31.974 IST [48744] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.002 s, total=0.415 s; sync files=5, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=112 kB
+2024-08-13 20:39:31.976 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 20:39:32.492 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.510 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=102 kB
+2024-08-13 20:53:48.920 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 20:53:49.441 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.510 s, sync=0.005 s, total=0.521 s; sync files=6, longest=0.004 s, average=0.001 s; distance=6 kB, estimate=92 kB
