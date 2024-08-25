@@ -25,16 +25,7 @@ const getMaintenanceHeadsQuery=async ()=>{
 
 const postSocietyDetailsQuery=async (societyDetails)=>{
   try{
-    const result = await pool.query('SELECT id FROM societydetails WHERE email = $1;', [societyDetails.emailAddress]);
-    if(result.rows.length>0){
-      throw new HttpError("Email already exists", 422);
-    }
-  }catch(err){
-    throw err;
-  }
-  try{
-    const result = await pool.query('INSERT INTO societydetails VALUES(DEFAULT,$1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;', [
-      societyDetails.name,
+    const res= await pool.query('CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);', [societyDetails.name,
       societyDetails.emailAddress,
       societyDetails.address,
       societyDetails.city,
@@ -43,23 +34,29 @@ const postSocietyDetailsQuery=async (societyDetails)=>{
       societyDetails.dateOfEstablishment,
       societyDetails.registrationNumber,
       societyDetails.phoneNumber,
-    ]);
-    id=result.rows[0].id;
+      null]);
+    
+    newId= res.rows[0].new_id;
+    if(newId===null){
+      throw new HttpError("Email already exists", 422);
+    }else{
+      const hashedPassword = await hashPassword(societyDetails.password);
 
-    const hashedPassword = await hashPassword(societyDetails.password);
-    console.log(societyDetails.password);
-    console.log(hashedPassword);
-    
-    await pool.query('INSERT INTO societypasswords VALUES($1, $2);', [
-      id,
-      hashedPassword
-    ]);
-    
+      try{
+        const result = await pool.query('CALL insertpassword($1, $2, $3);', [
+          newId,
+          hashedPassword,
+          null
+        ]);
+        console.log(result);
+      }catch(err){
+        throw new HttpError("Failed to save the password.", 500);
+      }
+    }
   }catch(err){
     if(err instanceof HttpError){
       throw err;
     }else{
-      console.log(err);
       throw new HttpError("Something went wrong", 500);
     }
   }

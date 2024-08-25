@@ -5,11 +5,11 @@ const {verifyPassword} = require("./passwords");
 
 const loginQuery=async (email, password)=>{
   try{
-    const result = await pool.query("SELECT id FROM societydetails WHERE email = $1;", [email]);
+    const result = await pool.query("CALL getemailsocietylogin($1,$2);", [email,null]);
     if(result.rows.length==0){
       throw new HttpError("Invalid credentials", 401);
     }
-    const hashedPassword = await pool.query('SELECT password FROM societypasswords WHERE id = $1;', [result.rows[0].id]);
+    const hashedPassword = await pool.query('SELECT password FROM societypasswords WHERE id = $1;', [result.rows[0].idout]);
     hashedPasswordExtracted=hashedPassword.rows[0].password;
     const bool= await verifyPassword(password, hashedPasswordExtracted);
     return bool;

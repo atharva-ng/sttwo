@@ -13,7 +13,6 @@ const societyLogin=async (req,res,next)=>{
   }
 
   const {email, password} = req.body;
-  console.log(password);
 
   try{
     const isValid = await loginQuery(email, password);

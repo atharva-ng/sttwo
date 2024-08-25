@@ -38,12 +38,13 @@ const Form =()=>{
       body: JSON.stringify(formData),
     }).then(async response=>{
       const responseData=await response.json();
-      console.log(responseData.errors);
-      if (!responseData.ok) {
+      console.log(responseData);
+      if (!response.ok) {
         throw new Error(`Unexpected Error: ${responseData}`);
       }
       window.location.reload();
     }).catch(error => {
+      console.log(error);
       console.error("There was a problem with the fetch operation:", error);
     })
   };

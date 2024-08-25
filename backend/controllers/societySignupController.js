@@ -16,7 +16,7 @@ const getSignupSociety = async (req,res,next) => {
 }
 
 const postSignupSociety = async (req,res,next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const errors= validationResult(req);
   
   if(!errors.isEmpty()){
@@ -40,7 +40,6 @@ const postSignupSociety = async (req,res,next) => {
     "numberOfWings":numberOfWings,
     "registrationNumber":registrationNumber
   }
-  console.log(societyDetails);
   try{
     await postSocietyDetailsQuery(societyDetails);
   }catch(err){

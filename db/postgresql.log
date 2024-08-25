@@ -1242,3 +1242,1636 @@
 	    RAISE NOTICE 'Inserted user with ID: %', new_id;
 	END $$;
 	
+2024-08-25 11:06:55.478 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 11:06:56.704 IST [63703] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.218 s, sync=0.003 s, total=1.227 s; sync files=13, longest=0.001 s, average=0.001 s; distance=47 kB, estimate=115 kB
+2024-08-25 12:57:18.989 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 12:57:19.611 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.616 s, sync=0.002 s, total=0.623 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=104 kB
+2024-08-25 12:57:27.105 IST [65971] ERROR:  syntax error at or near "ls" at character 1
+2024-08-25 12:57:27.105 IST [65971] STATEMENT:  ls
+	select * from societydetails;
+2024-08-25 13:02:18.612 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 13:02:19.246 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.627 s, sync=0.001 s, total=0.634 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=95 kB
+2024-08-25 13:11:35.427 IST [84492] ERROR:  procedure insertsociety(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 13:11:35.427 IST [84492] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 13:11:35.427 IST [84492] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9);
+2024-08-25 13:11:56.223 IST [84598] ERROR:  procedure insertsociety(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 13:11:56.223 IST [84598] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 13:11:56.223 IST [84598] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9);
+2024-08-25 13:12:18.251 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 13:12:18.871 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.613 s, sync=0.002 s, total=0.620 s; sync files=7, longest=0.001 s, average=0.001 s; distance=10 kB, estimate=86 kB
+2024-08-25 13:24:25.977 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 13:24:25.977 IST [63801] STATEMENT:  EXPLAIN VERBOSE create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 13:24:34.459 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 13:24:34.459 IST [63801] STATEMENT:  EXPLAIN VERBOSE create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 13:27:18.883 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 13:27:19.912 IST [63703] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.023 s, sync=0.001 s, total=1.030 s; sync files=8, longest=0.001 s, average=0.001 s; distance=40 kB, estimate=82 kB
+2024-08-25 14:13:48.219 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 14:13:49.757 IST [63703] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.532 s, sync=0.002 s, total=1.538 s; sync files=11, longest=0.001 s, average=0.001 s; distance=41 kB, estimate=77 kB
+2024-08-25 14:20:54.061 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 14:20:54.061 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    SELECT jsonb_agg(record)
+	    INTO result
+	    FROM (SELECT * FROM roomsizes) AS record;
+	END;
+	$$;
+	
+	
+	-- create OR REPLACE PROCEDURE insertsociety(
+	--     _name VARCHAR,
+	--     _email VARCHAR,
+	--     _address VARCHAR,
+	--     _city VARCHAR,
+	--     _state VARCHAR,
+	--     _postalcode VARCHAR,
+	--     _establishmentdate DATE,
+	--     _registrationnumber VARCHAR,
+	--     _phonenumber VARCHAR,
+	--     out new_id int
+	-- )LANGUAGE plpgsql
+	-- AS $$
+	-- DECLARE 
+	--     new_id int;
+	--     old_id int;
+	-- BEGIN
+	--     SELECT COUNT(1) 
+	--     INTO old_id 
+	--     FROM societydetails 
+	--     WHERE email = _email; 
+	--     
+	--     IF old_id = 0 THEN 
+	--     
+	--         INSERT INTO societydetails(
+	--             id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	--         ) VALUES (
+	--             default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	--         ) RETURNING id INTO new_id;
+	--     ELSE
+	--         RAISE NOTICE 'Email already exists';
+	--         new_id := NULL;
+	--     END IF;
+	-- END;
+	-- $$;
+	-- 
+2024-08-25 14:21:38.856 IST [63801] ERROR:  column "result" does not exist at character 448
+2024-08-25 14:21:38.856 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	CALL select_all_entries(result);
+	SELECT result;  
+	
+2024-08-25 14:23:35.918 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 14:23:35.918 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    SELECT jsonb_agg(record)
+	    INTO result
+	    FROM (SELECT * FROM roomsizes) AS record;
+	END;
+	$$;
+	
+	
+	-- create OR REPLACE PROCEDURE insertsociety(
+	--     _name VARCHAR,
+	--     _email VARCHAR,
+	--     _address VARCHAR,
+	--     _city VARCHAR,
+	--     _state VARCHAR,
+	--     _postalcode VARCHAR,
+	--     _establishmentdate DATE,
+	--     _registrationnumber VARCHAR,
+	--     _phonenumber VARCHAR,
+	--     out new_id int
+	-- )LANGUAGE plpgsql
+	-- AS $$
+	-- DECLARE 
+	--     new_id int;
+	--     old_id int;
+	-- BEGIN
+	--     SELECT COUNT(1) 
+	--     INTO old_id 
+	--     FROM societydetails 
+	--     WHERE email = _email; 
+	--     
+	--     IF old_id = 0 THEN 
+	--     
+	--         INSERT INTO societydetails(
+	--             id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	--         ) VALUES (
+	--             default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	--         ) RETURNING id INTO new_id;
+	--     ELSE
+	--         RAISE NOTICE 'Email already exists';
+	--         new_id := NULL;
+	--     END IF;
+	-- END;
+	-- $$;
+	-- 
+2024-08-25 14:23:42.611 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 14:23:42.611 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    SELECT jsonb_agg(record)
+	    INTO result
+	    FROM (SELECT * FROM roomsizes) AS record;
+	END;
+	$$;
+	
+	
+	-- create OR REPLACE PROCEDURE insertsociety(
+	--     _name VARCHAR,
+	--     _email VARCHAR,
+	--     _address VARCHAR,
+	--     _city VARCHAR,
+	--     _state VARCHAR,
+	--     _postalcode VARCHAR,
+	--     _establishmentdate DATE,
+	--     _registrationnumber VARCHAR,
+	--     _phonenumber VARCHAR,
+	--     out new_id int
+	-- )LANGUAGE plpgsql
+	-- AS $$
+	-- DECLARE 
+	--     new_id int;
+	--     old_id int;
+	-- BEGIN
+	--     SELECT COUNT(1) 
+	--     INTO old_id 
+	--     FROM societydetails 
+	--     WHERE email = _email; 
+	--     
+	--     IF old_id = 0 THEN 
+	--     
+	--         INSERT INTO societydetails(
+	--             id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	--         ) VALUES (
+	--             default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	--         ) RETURNING id INTO new_id;
+	--     ELSE
+	--         RAISE NOTICE 'Email already exists';
+	--         new_id := NULL;
+	--     END IF;
+	-- END;
+	-- $$;
+	-- 
+2024-08-25 14:23:48.761 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 14:23:49.712 IST [63801] ERROR:  column "result" does not exist at character 448
+2024-08-25 14:23:49.712 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	CALL select_all_entries(result);
+	SELECT result;  
+	
+2024-08-25 14:23:50.002 IST [63703] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.230 s, sync=0.001 s, total=1.242 s; sync files=10, longest=0.001 s, average=0.001 s; distance=43 kB, estimate=74 kB
+2024-08-25 17:44:41.640 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 17:44:41.640 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    SELECT jsonb_agg(size)
+	    INTO result
+	    FROM (SELECT * FROM roomsizes) AS record;
+	END;
+	$$;
+	
+	
+	-- create OR REPLACE PROCEDURE insertsociety(
+	--     _name VARCHAR,
+	--     _email VARCHAR,
+	--     _address VARCHAR,
+	--     _city VARCHAR,
+	--     _state VARCHAR,
+	--     _postalcode VARCHAR,
+	--     _establishmentdate DATE,
+	--     _registrationnumber VARCHAR,
+	--     _phonenumber VARCHAR,
+	--     out new_id int
+	-- )LANGUAGE plpgsql
+	-- AS $$
+	-- DECLARE 
+	--     new_id int;
+	--     old_id int;
+	-- BEGIN
+	--     SELECT COUNT(1) 
+	--     INTO old_id 
+	--     FROM societydetails 
+	--     WHERE email = _email; 
+	--     
+	--     IF old_id = 0 THEN 
+	--     
+	--         INSERT INTO societydetails(
+	--             id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	--         ) VALUES (
+	--             default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	--         ) RETURNING id INTO new_id;
+	--     ELSE
+	--         RAISE NOTICE 'Email already exists';
+	--         new_id := NULL;
+	--     END IF;
+	-- END;
+	-- $$;
+	-- 
+2024-08-25 17:44:45.265 IST [63801] ERROR:  column "result" does not exist at character 448
+2024-08-25 17:44:45.265 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	CALL select_all_entries(result);
+	SELECT result;  
+	
+2024-08-25 17:44:56.492 IST [63801] ERROR:  column "size" does not exist at character 448
+2024-08-25 17:44:56.492 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	CALL select_all_entries(size);
+	SELECT result;  
+	
+2024-08-25 17:45:19.965 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 17:45:19.965 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    SELECT jsonb_agg(size)
+	    INTO result
+	    FROM (SELECT * FROM roomsize) AS record;
+	END;
+	$$;
+	
+	
+	-- create OR REPLACE PROCEDURE insertsociety(
+	--     _name VARCHAR,
+	--     _email VARCHAR,
+	--     _address VARCHAR,
+	--     _city VARCHAR,
+	--     _state VARCHAR,
+	--     _postalcode VARCHAR,
+	--     _establishmentdate DATE,
+	--     _registrationnumber VARCHAR,
+	--     _phonenumber VARCHAR,
+	--     out new_id int
+	-- )LANGUAGE plpgsql
+	-- AS $$
+	-- DECLARE 
+	--     new_id int;
+	--     old_id int;
+	-- BEGIN
+	--     SELECT COUNT(1) 
+	--     INTO old_id 
+	--     FROM societydetails 
+	--     WHERE email = _email; 
+	--     
+	--     IF old_id = 0 THEN 
+	--     
+	--         INSERT INTO societydetails(
+	--             id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	--         ) VALUES (
+	--             default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	--         ) RETURNING id INTO new_id;
+	--     ELSE
+	--         RAISE NOTICE 'Email already exists';
+	--         new_id := NULL;
+	--     END IF;
+	-- END;
+	-- $$;
+	-- 
+2024-08-25 17:45:26.347 IST [63801] ERROR:  column "size" does not exist at character 448
+2024-08-25 17:45:26.347 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	CALL select_all_entries(size);
+	SELECT result;  
+	
+2024-08-25 17:47:18.302 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 17:47:18.723 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.414 s, sync=0.002 s, total=0.421 s; sync files=5, longest=0.001 s, average=0.001 s; distance=17 kB, estimate=68 kB
+2024-08-25 18:11:18.493 IST [63801] ERROR:  syntax error at or near "OR" at character 244
+2024-08-25 18:11:18.493 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	-- LANGUAGE plpgsql
+	-- AS $$
+	-- BEGIN
+	--     SELECT jsonb_agg(size)
+	--     INTO result
+	--     FROM (SELECT * FROM roomsize) AS record;
+	-- END;
+	-- $$;
+	
+	
+	create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 18:12:18.727 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 18:12:19.139 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.001 s, total=0.413 s; sync files=5, longest=0.001 s, average=0.001 s; distance=18 kB, estimate=63 kB
+2024-08-25 18:12:56.214 IST [63801] ERROR:  syntax error at or near "OR" at character 244
+2024-08-25 18:12:56.214 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	-- LANGUAGE plpgsql
+	-- AS $$
+	-- BEGIN
+	--     SELECT jsonb_agg(size)
+	--     INTO result
+	--     FROM (SELECT * FROM roomsize) AS record;
+	-- END;
+	-- $$;
+	
+	
+	create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	        select new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select new_id;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 18:13:18.720 IST [63801] ERROR:  syntax error at or near "print" at character 1043
+2024-08-25 18:13:18.720 IST [63801] STATEMENT:  -- CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	-- LANGUAGE plpgsql
+	-- AS $$
+	-- BEGIN
+	--     SELECT jsonb_agg(size)
+	--     INTO result
+	--     FROM (SELECT * FROM roomsize) AS record;
+	-- END;
+	-- $$;
+	
+	
+	create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	        print 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        print 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 18:13:36.342 IST [63801] ERROR:  syntax error at or near "OR" at character 244
+2024-08-25 18:13:36.342 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE select_all_entries(OUT result JSONB)
+	-- LANGUAGE plpgsql
+	-- AS $$
+	-- BEGIN
+	--     SELECT jsonb_agg(size)
+	--     INTO result
+	--     FROM (SELECT * FROM roomsize) AS record;
+	-- END;
+	-- $$;
+	
+	
+	create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	        select 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 18:13:42.114 IST [63801] ERROR:  column "new_id" does not exist at character 132
+2024-08-25 18:13:42.114 IST [63801] STATEMENT:  call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:16:27.080 IST [63801] ERROR:  column "new_id" does not exist at character 142
+2024-08-25 18:16:27.080 IST [63801] STATEMENT:  SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920', new_id);
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:16:41.168 IST [63801] ERROR:  function insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 15
+2024-08-25 18:16:41.168 IST [63801] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 18:16:41.168 IST [63801] STATEMENT:  SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	-- DO $$
+	-- DECLARE
+	--     new_id INT;
+	-- BEGIN
+	--     
+	--     CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	--     RAISE NOTICE 'Inserted user with ID: %', new_id;
+	-- END $$;
+	-- 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:17:11.564 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 18:17:11.564 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 18:17:11.564 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 23 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 18:17:11.564 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	-- 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:17:18.140 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 18:17:18.668 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.512 s, sync=0.002 s, total=0.529 s; sync files=6, longest=0.002 s, average=0.001 s; distance=22 kB, estimate=59 kB
+2024-08-25 18:17:19.345 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 18:17:19.345 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 18:17:19.345 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 23 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 18:17:19.345 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	-- 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:17:32.553 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 18:17:32.553 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 18:17:32.553 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 23 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 18:17:32.553 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	-- 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:18:05.027 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 18:18:05.027 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 18:18:05.027 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 23 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 18:18:05.027 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:18:32.147 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 18:18:32.147 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 18:18:32.147 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 23 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 18:18:32.147 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	 
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:20:54.795 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 18:20:54.795 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 18:20:54.795 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 23 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 18:20:54.795 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    select new_id;
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 18:21:44.186 IST [63801] ERROR:  RETURN cannot have a parameter in function returning void at character 419
+2024-08-25 18:21:44.186 IST [63801] STATEMENT:  -- SELECT * from insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    select new_id;
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	    return new_id;
+	END $$;
+	
+	
+	-- CALL select_all_entries(size);
+	-- SELECT result;  
+	
+2024-08-25 19:15:42.718 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-25 19:15:42.718 IST [63801] STATEMENT:  EXPLAIN VERBOSE  create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	        select 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 19:19:37.845 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 19:19:38.263 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.410 s, sync=0.003 s, total=0.419 s; sync files=5, longest=0.002 s, average=0.001 s; distance=19 kB, estimate=55 kB
+2024-08-25 19:24:18.238 IST [63801] ERROR:  prepared statement "insertsociety" does not exist
+2024-08-25 19:24:18.238 IST [63801] STATEMENT:  EXECUTE insertsociety("atharva", "atharva@gmail.com", "unxiwn", "mumbai", "state", "400012", "10-10-2002","jenjenwdnd","8879806920");
+2024-08-25 19:24:30.804 IST [63801] ERROR:  column "atharva" does not exist at character 20
+2024-08-25 19:24:30.804 IST [63801] STATEMENT:  call insertsociety("atharva", "atharva@gmail.com", "unxiwn", "mumbai", "state", "400012", "10-10-2002","jenjenwdnd","8879806920");
+2024-08-25 19:25:07.164 IST [63801] ERROR:  column "unxiwn" does not exist at character 52
+2024-08-25 19:25:07.164 IST [63801] STATEMENT:  call insertsociety('atharva', 'atharva@gmail.com', "unxiwn", "mumbai", "state", "400012", "10-10-2002","jenjenwdnd","8879806920");
+2024-08-25 19:25:39.861 IST [63801] ERROR:  procedure insertsociety(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 19:25:39.861 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 19:25:39.861 IST [63801] STATEMENT:  call insertsociety('atharva', 'atharva@gmail.com', 'unxiwn', 'mumbai', 'state', '400012', '10-10-2002','jenjenwdnd','8879806920');
+2024-08-25 19:25:50.353 IST [63801] ERROR:  column "new_id" does not exist at character 130
+2024-08-25 19:25:50.353 IST [63801] STATEMENT:  call insertsociety('atharva', 'atharva@gmail.com', 'unxiwn', 'mumbai', 'state', '400012', '10-10-2002','jenjenwdnd','8879806920',new_id);
+2024-08-25 19:26:00.519 IST [63801] ERROR:  invalid input syntax for type integer: "new_id" at character 130
+2024-08-25 19:26:00.519 IST [63801] STATEMENT:  call insertsociety('atharva', 'atharva@gmail.com', 'unxiwn', 'mumbai', 'state', '400012', '10-10-2002','jenjenwdnd','8879806920','new_id');
+2024-08-25 19:27:41.848 IST [63801] ERROR:  syntax error at or near "\" at character 1
+2024-08-25 19:27:41.848 IST [63801] STATEMENT:  \set society_id 0;
+	call insertsociety('atharva', 'atharva@gmail.com', 'unxiwn', 'mumbai', 'state', '400012', '10-10-2002','jenjenwdnd','8879806920',);
+	\echo :society_id
+2024-08-25 19:29:00.986 IST [63801] ERROR:  cannot change whether a procedure has output parameters
+2024-08-25 19:29:00.986 IST [63801] HINT:  Use DROP PROCEDURE insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) first.
+2024-08-25 19:29:00.986 IST [63801] STATEMENT:   CREATE OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        select new_id;
+	        
+	        select 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 19:29:16.252 IST [63801] ERROR:  syntax error at or near "drop" at character 18
+2024-08-25 19:29:16.252 IST [63801] STATEMENT:  EXPLAIN VERBOSE  drop PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	);
+	
+2024-08-25 19:29:27.451 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-25 19:29:27.451 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        select new_id;
+	        
+	        select 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 19:29:37.266 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 19:29:37.705 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 19:29:37.705 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 19:29:37.705 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 18 at SQL statement
+2024-08-25 19:29:37.705 IST [63801] STATEMENT:  call insertsociety('atharva', 'atharva@gmail.com', 'unxiwn', 'mumbai', 'state', '400012', '10-10-2002','jenjenwdnd','8879806920');
+2024-08-25 19:29:38.227 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.950 s, sync=0.003 s, total=0.961 s; sync files=10, longest=0.002 s, average=0.001 s; distance=36 kB, estimate=53 kB
+2024-08-25 19:39:58.089 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-25 19:39:58.089 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	--         select new_id;
+	        
+	        select 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 19:40:00.908 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-25 19:40:00.908 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	--         select new_id;
+	        
+	        select 1;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        select 2;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 19:40:03.924 IST [63801] ERROR:  query has no destination for result data
+2024-08-25 19:40:03.924 IST [63801] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-08-25 19:40:03.924 IST [63801] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 20 at SQL statement
+2024-08-25 19:40:03.924 IST [63801] STATEMENT:  call insertsociety('atharva', 'atharva@gmail.com', 'unxiwn', 'mumbai', 'state', '400012', '10-10-2002','jenjenwdnd','8879806920');
+2024-08-25 19:44:37.228 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 19:44:38.059 IST [63703] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.819 s, sync=0.007 s, total=0.832 s; sync files=9, longest=0.003 s, average=0.001 s; distance=30 kB, estimate=51 kB
+2024-08-25 20:16:18.450 IST [63801] ERROR:  syntax error at or near "OUT" at character 261
+2024-08-25 20:16:18.450 IST [63801] STATEMENT:   CREATE OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	        
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 20:16:30.402 IST [63801] ERROR:  syntax error at or near "OUT" at character 248
+2024-08-25 20:16:30.402 IST [63801] STATEMENT:   drop PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	    OUT new_id INT
+	)
+2024-08-25 20:16:37.061 IST [63801] ERROR:  syntax error at or near "drop" at character 18
+2024-08-25 20:16:37.061 IST [63801] STATEMENT:  EXPLAIN VERBOSE  drop PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	)
+2024-08-25 20:16:41.082 IST [63801] ERROR:  procedure insertsociety(character varying, character varying, character varying, character varying, character varying, character varying, date, character varying, character varying) does not exist
+2024-08-25 20:16:41.082 IST [63801] STATEMENT:   drop PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	--     OUT new_id INT
+	);
+2024-08-25 20:17:07.893 IST [63801] ERROR:  syntax error at or near "OUT" at character 261
+2024-08-25 20:17:07.893 IST [63801] STATEMENT:   CREATE or REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 20:17:13.259 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 20:17:13.259 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id = 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	        
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	        
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 20:19:59.278 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 20:20:00.612 IST [63703] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.321 s, sync=0.005 s, total=1.334 s; sync files=14, longest=0.001 s, average=0.001 s; distance=48 kB, estimate=51 kB
+2024-08-25 20:41:03.097 IST [63801] ERROR:  syntax error at end of input at character 1117
+2024-08-25 20:41:03.097 IST [63801] STATEMENT:   CREATE or REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM societydetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO societydetails(
+	                id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	            ) VALUES (
+	                default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            RAISE EXCEPTION 'Email already exists';
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	END;
+	$$;
+	
+2024-08-25 20:41:18.606 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 20:41:18.606 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM societydetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO societydetails(
+	                id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	            ) VALUES (
+	                default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            RAISE EXCEPTION 'Email already exists';
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-25 20:41:38.946 IST [14921] ERROR:  An error occurred: Email already exists
+2024-08-25 20:41:38.946 IST [14921] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:41:38.946 IST [14921] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:42:08.886 IST [15079] ERROR:  An error occurred: Email already exists
+2024-08-25 20:42:08.886 IST [15079] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:42:08.886 IST [15079] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:42:17.939 IST [15136] ERROR:  An error occurred: Email already exists
+2024-08-25 20:42:17.939 IST [15136] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:42:17.939 IST [15136] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:42:30.853 IST [15238] ERROR:  An error occurred: Email already exists
+2024-08-25 20:42:30.853 IST [15238] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:42:30.853 IST [15238] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:42:42.763 IST [15318] ERROR:  An error occurred: Email already exists
+2024-08-25 20:42:42.763 IST [15318] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:42:42.763 IST [15318] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:42:51.025 IST [15399] ERROR:  An error occurred: Email already exists
+2024-08-25 20:42:51.025 IST [15399] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:42:51.025 IST [15399] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:44:59.626 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 20:45:00.150 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.515 s, sync=0.004 s, total=0.524 s; sync files=6, longest=0.002 s, average=0.001 s; distance=20 kB, estimate=48 kB
+2024-08-25 20:45:57.572 IST [16047] ERROR:  An error occurred: Email already exists
+2024-08-25 20:45:57.572 IST [16047] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:45:57.572 IST [16047] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:46:26.786 IST [16188] ERROR:  An error occurred: Email already exists
+2024-08-25 20:46:26.786 IST [16188] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:46:26.786 IST [16188] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:46:32.705 IST [16242] ERROR:  An error occurred: Email already exists
+2024-08-25 20:46:32.705 IST [16242] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:46:32.705 IST [16242] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:46:56.208 IST [16455] ERROR:  An error occurred: Email already exists
+2024-08-25 20:46:56.208 IST [16455] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:46:56.208 IST [16455] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:47:20.922 IST [16517] ERROR:  An error occurred: Email already exists
+2024-08-25 20:47:20.922 IST [16517] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:47:20.922 IST [16517] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:47:43.016 IST [16678] ERROR:  An error occurred: Email already exists
+2024-08-25 20:47:43.016 IST [16678] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:47:43.016 IST [16678] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:48:01.980 IST [16818] ERROR:  An error occurred: Email already exists
+2024-08-25 20:48:01.980 IST [16818] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:48:01.980 IST [16818] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:49:59.149 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 20:49:59.571 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.415 s, sync=0.002 s, total=0.422 s; sync files=5, longest=0.001 s, average=0.001 s; distance=8 kB, estimate=44 kB
+2024-08-25 20:51:03.070 IST [17511] ERROR:  An error occurred: Email already exists
+2024-08-25 20:51:03.070 IST [17511] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:51:03.070 IST [17511] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:51:35.599 IST [17661] ERROR:  An error occurred: Email already exists
+2024-08-25 20:51:35.599 IST [17661] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:51:35.599 IST [17661] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:52:18.425 IST [17894] ERROR:  An error occurred: Email already exists
+2024-08-25 20:52:18.425 IST [17894] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:52:18.425 IST [17894] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:52:32.450 IST [18000] ERROR:  An error occurred: Email already exists
+2024-08-25 20:52:32.450 IST [18000] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:52:32.450 IST [18000] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:55:33.531 IST [18889] ERROR:  An error occurred: Email already exists
+2024-08-25 20:55:33.531 IST [18889] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:55:33.531 IST [18889] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:55:56.636 IST [19054] ERROR:  An error occurred: Email already exists
+2024-08-25 20:55:56.636 IST [19054] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:55:56.636 IST [19054] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:56:10.287 IST [19183] ERROR:  An error occurred: Email already exists
+2024-08-25 20:56:10.287 IST [19183] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:56:10.287 IST [19183] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:56:19.441 IST [19258] ERROR:  An error occurred: Email already exists
+2024-08-25 20:56:19.441 IST [19258] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:56:19.441 IST [19258] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:56:48.235 IST [19357] ERROR:  An error occurred: Email already exists
+2024-08-25 20:56:48.235 IST [19357] CONTEXT:  PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 26 at RAISE
+2024-08-25 20:56:48.235 IST [19357] STATEMENT:  CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);
+2024-08-25 20:56:57.632 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 20:56:57.632 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM societydetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO societydetails(
+	                id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	            ) VALUES (
+	                default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-25 20:59:59.589 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 21:00:00.419 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.821 s, sync=0.003 s, total=0.830 s; sync files=9, longest=0.002 s, average=0.001 s; distance=31 kB, estimate=42 kB
+2024-08-25 21:56:04.670 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 21:56:04.670 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertpassword(
+	    _id int,
+	    _password VARCHAR,
+	    OUT success INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN        
+	        INSERT INTO societypasswords(
+	            id, password
+	            )VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            success := NULL;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+2024-08-25 21:56:19.906 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 21:56:20.825 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.915 s, sync=0.002 s, total=0.920 s; sync files=10, longest=0.002 s, average=0.001 s; distance=39 kB, estimate=42 kB
+2024-08-25 22:01:17.193 IST [65971] ERROR:  syntax error at or near "ls" at character 1
+2024-08-25 22:01:17.193 IST [65971] STATEMENT:  ls
+	select * from societydetails;
+2024-08-25 22:01:19.825 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 22:01:20.238 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.002 s, total=0.414 s; sync files=5, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=39 kB
+2024-08-25 22:01:22.979 IST [65971] ERROR:  syntax error at or near "ls" at character 1
+2024-08-25 22:01:22.979 IST [65971] STATEMENT:  ls
+	select * from societydetails;
+2024-08-25 22:02:01.646 IST [65971] ERROR:  syntax error at or near "select" at character 40
+2024-08-25 22:02:01.646 IST [65971] STATEMENT:  delete from societydetails where id>17
+	select * from societydetails;
+2024-08-25 22:02:09.104 IST [65971] ERROR:  syntax error at or near "select" at character 40
+2024-08-25 22:02:09.104 IST [65971] STATEMENT:  delete from societydetails where id>17
+	select * from societydetails;
+2024-08-25 22:03:36.927 IST [63801] ERROR:  procedure insertpassword(integer, unknown) does not exist at character 6
+2024-08-25 22:03:36.927 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 22:03:36.927 IST [63801] STATEMENT:  call insertpassword(1, 'atharva@gmail.com');
+2024-08-25 22:03:42.284 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 22:03:42.284 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertpassword(
+	    _id int,
+	    _password VARCHAR,
+	    OUT success INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN        
+	        INSERT INTO societypasswords(
+	            id, password
+	            )VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            success := NULL;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+2024-08-25 22:03:49.861 IST [63801] ERROR:  procedure insertpassword(integer, unknown) does not exist at character 6
+2024-08-25 22:03:49.861 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 22:03:49.861 IST [63801] STATEMENT:  call insertpassword(1, 'atharva@gmail.com');
+2024-08-25 22:03:59.102 IST [63801] ERROR:  procedure insertpassword(unknown, unknown) does not exist at character 6
+2024-08-25 22:03:59.102 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 22:03:59.102 IST [63801] STATEMENT:  call insertpassword('1', 'atharva@gmail.com');
+2024-08-25 22:06:19.238 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 22:06:20.273 IST [63703] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.031 s, sync=0.002 s, total=1.036 s; sync files=9, longest=0.001 s, average=0.001 s; distance=35 kB, estimate=38 kB
+2024-08-25 22:06:43.541 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 22:06:43.541 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertpassword(
+	    _id int,
+	    _password VARCHAR,
+	    OUT success INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        success := 0;
+	        INSERT INTO societypasswords(
+	            id, password
+	            )VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	        
+	        IF success IS NOT NULL THEN
+	            success := 1;
+	        END IF;
+	    EXCEPTION
+	        WHEN unique_violation THEN
+	        RAISE NOTICE 'A duplicate entry was attempted for id %', _id;
+	        success := -1;
+	    WHEN OTHERS THEN
+	        RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	        success := -2;
+	    END;
+	END;
+	$$;
+	
+2024-08-25 22:07:20.435 IST [63801] ERROR:  An error occurred: insert or update on table "societypasswords" violates foreign key constraint "societypasswords_id_fkey"
+2024-08-25 22:07:20.435 IST [63801] CONTEXT:  PL/pgSQL function insertpassword(integer,character varying) line 19 at RAISE
+	SQL statement "CALL insertpassword(1, 'your_password_here', result)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 22:07:20.435 IST [63801] STATEMENT:  DO $$
+	DECLARE
+	    result INT;
+	BEGIN
+	    -- Call the procedure
+	    CALL insertpassword(1, 'your_password_here', result);
+	    
+	    -- Check the result
+	    RAISE NOTICE 'Result: %', result;
+	END $$;
+2024-08-25 22:08:06.471 IST [63801] ERROR:  syntax error at or near "procedure" at character 50
+2024-08-25 22:08:06.471 IST [63801] STATEMENT:  DO $$
+	DECLARE
+	    result INT;
+	BEGIN
+	    Call the procedure
+	    CALL insertpassword(50, 'your_password_here', result);
+	    
+	    Check the result
+	    RAISE NOTICE 'Result: %', result;
+	END $$;
+2024-08-25 22:08:31.691 IST [63801] ERROR:  syntax error at or near "DO" at character 17
+2024-08-25 22:08:31.691 IST [63801] STATEMENT:  EXPLAIN VERBOSE DO $$
+	DECLARE
+	    result INT;
+	BEGIN
+	    CALL insertpassword(50, 'your_password_here', result);
+	    
+	    RAISE NOTICE 'Result: %', result;
+	END $$;
+2024-08-25 22:25:26.717 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 22:25:28.157 IST [63703] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.430 s, sync=0.004 s, total=1.440 s; sync files=15, longest=0.002 s, average=0.001 s; distance=52 kB, estimate=52 kB
+2024-08-25 22:30:26.160 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 22:30:26.780 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.611 s, sync=0.002 s, total=0.620 s; sync files=7, longest=0.002 s, average=0.001 s; distance=13 kB, estimate=49 kB
+2024-08-25 22:31:40.413 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 22:31:40.413 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE getemailsocietylogin(
+	    _email VARCHAR,
+	    OUT id INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        SELECT id FROM societydetails WHERE email = _email;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            id := null;
+	        END;
+	END;
+	$$;
+	
+2024-08-25 22:33:16.223 IST [27562] ERROR:  An error occurred: column reference "id" is ambiguous
+2024-08-25 22:33:16.223 IST [27562] CONTEXT:  PL/pgSQL function getemailsocietylogin(character varying) line 7 at RAISE
+2024-08-25 22:33:16.223 IST [27562] STATEMENT:  CALL getemailsocietylogin($1,$2);
+2024-08-25 22:33:58.114 IST [27762] ERROR:  An error occurred: column reference "id" is ambiguous
+2024-08-25 22:33:58.114 IST [27762] CONTEXT:  PL/pgSQL function getemailsocietylogin(character varying) line 7 at RAISE
+2024-08-25 22:33:58.114 IST [27762] STATEMENT:  CALL getemailsocietylogin($1,$2);
+2024-08-25 22:34:32.564 IST [27937] ERROR:  An error occurred: column reference "id" is ambiguous
+2024-08-25 22:34:32.564 IST [27937] CONTEXT:  PL/pgSQL function getemailsocietylogin(character varying) line 7 at RAISE
+2024-08-25 22:34:32.564 IST [27937] STATEMENT:  CALL getemailsocietylogin($1,$2);
+2024-08-25 22:35:26.781 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 22:35:28.312 IST [63703] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.523 s, sync=0.003 s, total=1.531 s; sync files=16, longest=0.002 s, average=0.001 s; distance=50 kB, estimate=50 kB
+2024-08-25 22:35:55.147 IST [63801] ERROR:  cannot change return type of existing function
+2024-08-25 22:35:55.147 IST [63801] DETAIL:  Row type defined by OUT parameters is different.
+2024-08-25 22:35:55.147 IST [63801] HINT:  Use DROP PROCEDURE getemailsocietylogin(character varying) first.
+2024-08-25 22:35:55.147 IST [63801] STATEMENT:   CREATE or REPLACE PROCEDURE getemailsocietylogin(
+	    _email VARCHAR,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        SELECT id 
+	        INTO idout
+	        FROM societydetails WHERE email = _email;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+	
+2024-08-25 22:36:11.251 IST [63801] ERROR:  syntax error at or near "drop" at character 18
+2024-08-25 22:36:11.251 IST [63801] STATEMENT:  EXPLAIN VERBOSE  drop PROCEDURE getemailsocietylogin(
+	    _email VARCHAR,
+	    OUT idout INT
+	)
+	
+2024-08-25 22:36:16.300 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-25 22:36:16.300 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE getemailsocietylogin(
+	    _email VARCHAR,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        SELECT id 
+	        INTO idout
+	        FROM societydetails WHERE email = _email;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+	
