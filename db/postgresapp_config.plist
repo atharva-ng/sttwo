@@ -15,6 +15,7 @@
 	<key>recently_started_on_macos_versions</key>
 	<array>
 		<string>14.5.0</string>
+		<string>14.6.1</string>
 	</array>
 	<key>recently_started_postgresql_versions</key>
 	<array>

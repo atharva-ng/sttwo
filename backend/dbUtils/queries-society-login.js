@@ -12,7 +12,6 @@ const loginQuery=async (email, password)=>{
     const hashedPassword = await pool.query('SELECT password FROM societypasswords WHERE id = $1;', [result.rows[0].id]);
     hashedPasswordExtracted=hashedPassword.rows[0].password;
     const bool= await verifyPassword(password, hashedPasswordExtracted);
-    console.log(bool);
     return bool;
   }catch(err){
     throw err;
@@ -20,8 +19,3 @@ const loginQuery=async (email, password)=>{
 };
 
 module.exports = { loginQuery };
-
-
-// password123
-// $2b$10$9gPLTINJMdLxeYtEIPcxlu/x8CXl0zpc3DqJUYkzVcU3JWr4yog2i
-// $2b$10$9gPLTINJMdLxeYtEIPcxlu&#x2F;x8CXl0zpc3DqJUYkzVcU3JWr4yog2i

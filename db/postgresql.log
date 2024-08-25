@@ -196,3 +196,1049 @@
 2024-08-13 20:39:32.492 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.510 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=102 kB
 2024-08-13 20:53:48.920 IST [48744] LOG:  checkpoint starting: time
 2024-08-13 20:53:49.441 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.510 s, sync=0.005 s, total=0.521 s; sync files=6, longest=0.004 s, average=0.001 s; distance=6 kB, estimate=92 kB
+2024-08-13 21:08:48.398 IST [48744] LOG:  checkpoint starting: time
+2024-08-13 21:08:48.929 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.517 s, sync=0.010 s, total=0.531 s; sync files=6, longest=0.008 s, average=0.002 s; distance=4 kB, estimate=83 kB
+2024-08-18 06:55:50.372 IST [48744] LOG:  checkpoint starting: time
+2024-08-18 06:55:50.884 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.507 s, sync=0.002 s, total=0.513 s; sync files=6, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=75 kB
+2024-08-18 17:51:43.815 IST [48744] LOG:  checkpoint starting: time
+2024-08-18 17:51:44.329 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.507 s, sync=0.002 s, total=0.514 s; sync files=6, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=68 kB
+2024-08-18 18:01:43.331 IST [48744] LOG:  checkpoint starting: time
+2024-08-18 18:01:43.842 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.508 s, sync=0.001 s, total=0.512 s; sync files=6, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=62 kB
+2024-08-18 18:06:43.824 IST [48744] LOG:  checkpoint starting: time
+2024-08-18 18:06:44.340 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.509 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=56 kB
+2024-08-18 20:14:08.753 IST [48744] LOG:  checkpoint starting: time
+2024-08-18 20:14:09.277 IST [48744] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.512 s, sync=0.002 s, total=0.524 s; sync files=6, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=51 kB
+2024-08-19 22:43:56.995 IST [48743] LOG:  received smart shutdown request
+2024-08-19 22:43:57.004 IST [48743] LOG:  background worker "logical replication launcher" (PID 48749) exited with exit code 1
+2024-08-19 22:43:57.005 IST [48744] LOG:  shutting down
+2024-08-19 22:43:57.007 IST [48744] LOG:  checkpoint starting: shutdown immediate
+2024-08-19 22:43:57.018 IST [48744] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.013 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=46 kB
+2024-08-19 22:43:57.030 IST [48743] LOG:  database system is shut down
+2024-08-20 11:58:48.020 IST [14093] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-08-20 11:58:48.021 IST [14093] LOG:  listening on IPv6 address "::1", port 5432
+2024-08-20 11:58:48.022 IST [14093] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-08-20 11:58:48.022 IST [14093] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-08-20 11:58:48.024 IST [14096] LOG:  database system was shut down at 2024-08-19 22:43:57 IST
+2024-08-20 11:58:48.029 IST [14093] LOG:  database system is ready to accept connections
+2024-08-20 12:03:48.028 IST [14094] LOG:  checkpoint starting: time
+2024-08-20 12:03:48.551 IST [14094] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.514 s, sync=0.002 s, total=0.526 s; sync files=7, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=6 kB
+2024-08-20 12:18:48.565 IST [14094] LOG:  checkpoint starting: time
+2024-08-20 12:18:49.085 IST [14094] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.521 s; sync files=6, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=6 kB
+2024-08-24 20:50:25.198 IST [14093] LOG:  received fast shutdown request
+2024-08-24 20:50:25.199 IST [14093] LOG:  aborting any active transactions
+2024-08-24 20:50:25.200 IST [63614] FATAL:  terminating connection due to administrator command
+2024-08-24 20:50:25.200 IST [14129] FATAL:  terminating connection due to administrator command
+2024-08-24 20:50:25.200 IST [63639] FATAL:  terminating connection due to administrator command
+2024-08-24 20:50:25.200 IST [63598] FATAL:  terminating connection due to administrator command
+2024-08-24 20:50:25.201 IST [14093] LOG:  background worker "logical replication launcher" (PID 14099) exited with exit code 1
+2024-08-24 20:50:25.203 IST [14094] LOG:  shutting down
+2024-08-24 20:50:25.203 IST [14094] LOG:  checkpoint starting: shutdown immediate
+2024-08-24 20:50:25.206 IST [14094] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=6 kB
+2024-08-24 20:50:25.209 IST [14093] LOG:  database system is shut down
+2024-08-24 20:50:26.279 IST [63702] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-08-24 20:50:26.281 IST [63702] LOG:  listening on IPv6 address "::1", port 5432
+2024-08-24 20:50:26.281 IST [63702] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-08-24 20:50:26.281 IST [63702] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-08-24 20:50:26.285 IST [63705] LOG:  database system was shut down at 2024-08-24 20:50:25 IST
+2024-08-24 20:50:26.289 IST [63702] LOG:  database system is ready to accept connections
+2024-08-24 20:55:26.285 IST [63703] LOG:  checkpoint starting: time
+2024-08-24 20:55:26.295 IST [63703] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.010 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-08-24 20:57:04.731 IST [63801] ERROR:  syntax error at or near "'name'" at character 29
+2024-08-24 20:57:04.731 IST [63801] STATEMENT:  CREATE PROCEDURE insertUser('name', email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber)
+	LANGUAGE 'plpgsql'
+	as $$
+	
+	begin 
+	
+	INSERT INTO societydetails VALUES(DEFAULT,$1, $2, $3, $4, $5, $6, $7, $8, $9);
+	
+	COMMIT;
+	
+	end;
+	$$
+	
+2024-08-24 20:57:23.131 IST [63801] ERROR:  type email does not exist
+2024-08-24 20:57:23.131 IST [63801] STATEMENT:  CREATE PROCEDURE insertUser("name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber)
+	LANGUAGE 'plpgsql'
+	as $$
+	
+	begin 
+	
+	INSERT INTO societydetails VALUES(DEFAULT,$1, $2, $3, $4, $5, $6, $7, $8, $9);
+	
+	COMMIT;
+	
+	end;
+	$$
+	
+2024-08-24 20:59:11.447 IST [63801] ERROR:  syntax error at or near "PROCEDURE" at character 24
+2024-08-24 20:59:11.447 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    );
+	END;
+	$$;
+	
+2024-08-24 21:00:26.296 IST [63703] LOG:  checkpoint starting: time
+2024-08-24 21:00:27.642 IST [63703] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.332 s, sync=0.003 s, total=1.347 s; sync files=12, longest=0.002 s, average=0.001 s; distance=39 kB, estimate=39 kB
+2024-08-24 21:01:29.184 IST [63801] ERROR:  syntax error at or near "call" at character 17
+2024-08-24 21:01:29.184 IST [63801] STATEMENT:  EXPLAIN VERBOSE call insertUser('atharghadiva', 'abcd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920')
+2024-08-24 21:04:27.699 IST [63801] ERROR:  function "insertuser" already exists with same argument types
+2024-08-24 21:04:27.699 IST [63801] STATEMENT:  CREATE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	    return new_id;
+	END;
+	$$;
+	
+2024-08-24 21:05:25.342 IST [63801] ERROR:  RETURN cannot have a parameter in a procedure at character 633
+2024-08-24 21:05:25.342 IST [63801] STATEMENT:  CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	    return new_id;
+	END;
+	$$;
+	
+2024-08-24 21:05:26.610 IST [63703] LOG:  checkpoint starting: time
+2024-08-24 21:05:27.865 IST [63703] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.238 s, sync=0.012 s, total=1.255 s; sync files=12, longest=0.008 s, average=0.001 s; distance=50 kB, estimate=50 kB
+2024-08-24 21:05:40.313 IST [63801] ERROR:  RETURN cannot have a parameter in a procedure at character 633
+2024-08-24 21:05:40.313 IST [63801] STATEMENT:  CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	    RETURN new_id;
+	END;
+	$$;
+	
+2024-08-24 21:06:40.260 IST [63801] ERROR:  cannot change whether a procedure has output parameters
+2024-08-24 21:06:40.260 IST [63801] HINT:  Use DROP PROCEDURE insertuser(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) first.
+2024-08-24 21:06:40.260 IST [63801] STATEMENT:  CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:07:32.163 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 262
+2024-08-24 21:07:32.163 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:07:43.569 IST [63801] ERROR:  syntax error at or near ")" at character 261
+2024-08-24 21:07:43.569 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT,
+	)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:08:08.553 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 262
+2024-08-24 21:08:08.553 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)
+	LANGUAGE 'plpgsql'
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:08:34.526 IST [63801] ERROR:  syntax error at or near ")" at character 241
+2024-08-24 21:08:34.526 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	)
+	LANGUAGE 'plpgsql'
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:08:43.533 IST [63801] ERROR:  syntax error at or near ")" at character 241
+2024-08-24 21:08:43.533 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:08:47.456 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 242
+2024-08-24 21:08:47.456 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:08:55.718 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 242
+2024-08-24 21:08:55.718 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE 'plpgsql'
+	AS $$
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-24 21:10:25.406 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 242
+2024-08-24 21:10:25.406 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	    RETURN new_id;
+	END;
+	$$;
+	
+2024-08-24 21:10:26.863 IST [63703] LOG:  checkpoint starting: time
+2024-08-24 21:10:28.016 IST [63703] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.149 s, sync=0.002 s, total=1.154 s; sync files=9, longest=0.002 s, average=0.001 s; distance=47 kB, estimate=50 kB
+2024-08-24 21:10:32.244 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 243
+2024-08-24 21:10:32.244 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	) 
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	    RETURN new_id;
+	END;
+	$$;
+	
+2024-08-25 10:29:39.393 IST [63801] ERROR:  RETURN cannot have a parameter in a procedure at character 633
+2024-08-25 10:29:39.393 IST [63801] STATEMENT:  CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	    RETURN new_id;
+	END;
+	$$;
+	
+2024-08-25 10:29:51.387 IST [63801] ERROR:  syntax error at or near "or" at character 24
+2024-08-25 10:29:51.387 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:29:59.642 IST [63801] ERROR:  syntax error at or near "LANGUAGE" at character 242
+2024-08-25 10:29:59.642 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	)
+	LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:30:30.137 IST [63801] ERROR:  syntax error at or near "drop" at character 17
+2024-08-25 10:30:30.137 IST [63801] STATEMENT:  EXPLAIN VERBOSE drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	);
+	
+2024-08-25 10:30:32.867 IST [63801] ERROR:  procedure insertuser(character varying, character varying, character varying, character varying, character varying, character varying, date, character varying, character varying) does not exist
+2024-08-25 10:30:32.867 IST [63801] STATEMENT:  drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR
+	);
+	
+2024-08-25 10:31:55.980 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 10:31:56.982 IST [63801] ERROR:  syntax error at or near "or" at character 24
+2024-08-25 10:31:56.982 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:31:57.115 IST [63703] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.127 s, sync=0.004 s, total=1.136 s; sync files=10, longest=0.002 s, average=0.001 s; distance=51 kB, estimate=51 kB
+2024-08-25 10:32:00.295 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:32:00.295 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:32:00.295 IST [63801] STATEMENT:  call insertUser('atharghadiva', 'abcdd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920')
+2024-08-25 10:32:10.460 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:32:10.460 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:32:10.460 IST [63801] STATEMENT:  call insertUser('atharghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920')
+2024-08-25 10:32:22.831 IST [63801] ERROR:  syntax error at or near "or" at character 24
+2024-08-25 10:32:22.831 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:32:33.703 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:32:33.703 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:32:33.703 IST [63801] STATEMENT:  call insertUser('atharghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+2024-08-25 10:32:37.421 IST [63801] ERROR:  syntax error at or near "or" at character 24
+2024-08-25 10:32:37.421 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, name, email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:32:52.026 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:32:52.026 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:32:52.026 IST [63801] STATEMENT:  call insertUser('atharghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+2024-08-25 10:33:09.522 IST [63801] ERROR:  syntax error at or near "or" at character 24
+2024-08-25 10:33:09.522 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE or REPLACE PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:33:12.172 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:33:12.172 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:33:12.172 IST [63801] STATEMENT:  call insertUser('atharghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+2024-08-25 10:33:22.764 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:33:22.764 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:33:22.764 IST [63801] STATEMENT:  call insertUser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+2024-08-25 10:33:49.929 IST [63801] ERROR:  syntax error at or near "drop" at character 17
+2024-08-25 10:33:49.929 IST [63801] STATEMENT:  EXPLAIN VERBOSE drop PROCEDURE insertUser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	);
+	
+2024-08-25 10:34:04.881 IST [63801] ERROR:  syntax error at or near "PROCEDURE" at character 24
+2024-08-25 10:34:04.881 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE PROCEDURE insertuser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:34:11.008 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:34:11.008 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:34:11.008 IST [63801] STATEMENT:  call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920');
+2024-08-25 10:35:06.677 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:35:06.677 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:35:06.677 IST [63801] STATEMENT:  call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920')
+2024-08-25 10:35:37.191 IST [63801] ERROR:  column "athardghadiva" does not exist at character 17
+2024-08-25 10:35:37.191 IST [63801] STATEMENT:  call insertuser("athardghadiva", 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920')
+2024-08-25 10:35:44.880 IST [63801] ERROR:  procedure insertuser(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-25 10:35:44.880 IST [63801] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-25 10:35:44.880 IST [63801] STATEMENT:  call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920')
+2024-08-25 10:36:55.143 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 10:36:56.073 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.918 s, sync=0.003 s, total=0.931 s; sync files=10, longest=0.002 s, average=0.001 s; distance=40 kB, estimate=50 kB
+2024-08-25 10:37:36.625 IST [63801] ERROR:  column "new_id" does not exist at character 132
+2024-08-25 10:37:36.625 IST [63801] STATEMENT:  call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+2024-08-25 10:38:12.149 IST [63801] ERROR:  column "new_id" does not exist at character 132
+2024-08-25 10:38:12.149 IST [63801] STATEMENT:  call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    CALL insertUser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 10:38:17.763 IST [63801] ERROR:  syntax error at or near "DO" at character 161
+2024-08-25 10:38:17.763 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    CALL insertUser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 10:38:33.463 IST [63801] ERROR:  syntax error at or near "DO" at character 161
+2024-08-25 10:38:33.463 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    CALL insertUser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 10:41:55.074 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 10:41:55.386 IST [63703] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.001 s, total=0.313 s; sync files=4, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=45 kB
+2024-08-25 10:41:58.057 IST [65971] ERROR:  syntax error at or near "TABLE" at character 37
+2024-08-25 10:41:58.057 IST [65971] STATEMENT:  ALTER TABLE maintenance_heads
+	ALTER TABLE societydetails ADD CONSTRAINT uniqueemail UNIQUE(email);
+2024-08-25 10:43:13.308 IST [63801] ERROR:  duplicate key value violates unique constraint "uniqueemail"
+2024-08-25 10:43:13.308 IST [63801] DETAIL:  Key (email)=(abcddd@guw.com) already exists.
+2024-08-25 10:43:13.308 IST [63801] CONTEXT:  SQL statement "INSERT INTO societydetails(
+	        id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id"
+	PL/pgSQL function insertuser(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 5 at SQL statement
+	SQL statement "CALL insertUser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 5 at CALL
+2024-08-25 10:43:13.308 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    CALL insertUser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 10:43:27.969 IST [63801] ERROR:  syntax error at or near "DO" at character 161
+2024-08-25 10:43:27.969 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    CALL insertUser('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 10:43:29.100 IST [63801] ERROR:  duplicate key value violates unique constraint "uniqueemail"
+2024-08-25 10:43:29.100 IST [63801] DETAIL:  Key (email)=(abcdddd@guw.com) already exists.
+2024-08-25 10:43:29.100 IST [63801] CONTEXT:  SQL statement "INSERT INTO societydetails(
+	        id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id"
+	PL/pgSQL function insertuser(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 5 at SQL statement
+	SQL statement "CALL insertUser('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 5 at CALL
+2024-08-25 10:43:29.100 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    CALL insertUser('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 10:44:39.397 IST [63801] ERROR:  syntax error at or near "drop" at character 17
+2024-08-25 10:44:39.397 IST [63801] STATEMENT:  EXPLAIN VERBOSE drop PROCEDURE insertuser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	);
+	
+2024-08-25 10:44:41.000 IST [63801] ERROR:  procedure insertuser(character varying, character varying, character varying, character varying, character varying, character varying, date, character varying, character varying) does not exist
+2024-08-25 10:44:41.000 IST [63801] STATEMENT:  drop PROCEDURE insertuser(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	);
+	
+2024-08-25 10:45:00.978 IST [63801] ERROR:  syntax error at or near "PROCEDURE" at character 24
+2024-08-25 10:45:00.978 IST [63801] STATEMENT:  EXPLAIN VERBOSE create PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	BEGIN
+	    INSERT INTO societydetails(
+	        id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id INTO new_id;
+	END;
+	$$;
+	
+2024-08-25 10:46:55.387 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 10:46:58.463 IST [63703] LOG:  checkpoint complete: wrote 31 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.068 s, sync=0.004 s, total=3.077 s; sync files=30, longest=0.002 s, average=0.001 s; distance=122 kB, estimate=122 kB
+2024-08-25 11:02:54.186 IST [63801] ERROR:  duplicate key value violates unique constraint "uniqueemail"
+2024-08-25 11:02:54.186 IST [63801] DETAIL:  Key (email)=(abcdddd@guw.com) already exists.
+2024-08-25 11:02:54.186 IST [63801] CONTEXT:  SQL statement "INSERT INTO societydetails(
+	        id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	    ) VALUES (
+	        default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	    ) RETURNING id"
+	PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 5 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 11:02:54.186 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
+2024-08-25 11:02:59.461 IST [63801] ERROR:  function "insertsociety" already exists with same argument types
+2024-08-25 11:02:59.461 IST [63801] STATEMENT:  create PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id > 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists'
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 11:03:11.256 IST [63801] ERROR:  syntax error at or near "END" at character 864
+2024-08-25 11:03:11.256 IST [63801] STATEMENT:  create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	) LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id > 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists'
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 11:03:36.049 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-25 11:03:36.049 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	);
+	
+2024-08-25 11:03:44.735 IST [63801] ERROR:  syntax error at or near "END" at character 863
+2024-08-25 11:03:44.735 IST [63801] STATEMENT:  create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id > 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists'
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 11:04:47.217 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-25 11:04:47.217 IST [63801] STATEMENT:  EXPLAIN VERBOSE create OR REPLACE PROCEDURE insertsociety(
+	    _name VARCHAR,
+	    _email VARCHAR,
+	    _address VARCHAR,
+	    _city VARCHAR,
+	    _state VARCHAR,
+	    _postalcode VARCHAR,
+	    _establishmentdate DATE,
+	    _registrationnumber VARCHAR,
+	    _phonenumber VARCHAR,
+	    out new_id int
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    new_id int;
+	    old_id int;
+	BEGIN
+	    SELECT COUNT(1) 
+	    INTO old_id 
+	    FROM societydetails 
+	    WHERE email = _email; 
+	    
+	    IF old_id > 0 THEN 
+	    
+	        INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id INTO new_id;
+	    ELSE
+	        RAISE NOTICE 'Email already exists';
+	        new_id := NULL;
+	    END IF;
+	END;
+	$$;
+	
+2024-08-25 11:04:52.087 IST [63801] ERROR:  duplicate key value violates unique constraint "uniqueemail"
+2024-08-25 11:04:52.087 IST [63801] DETAIL:  Key (email)=(abcdddd@guw.com) already exists.
+2024-08-25 11:04:52.087 IST [63801] CONTEXT:  SQL statement "INSERT INTO societydetails(
+	            id, "name", email, address, city, state, postalcode, establishmentdate, registrationnumber, phonenumber
+	        ) VALUES (
+	            default, _name, _email, _address, _city, _state, _postalcode, _establishmentdate, _registrationnumber, _phonenumber
+	        ) RETURNING id"
+	PL/pgSQL function insertsociety(character varying,character varying,character varying,character varying,character varying,character varying,date,character varying,character varying) line 13 at SQL statement
+	SQL statement "CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id)"
+	PL/pgSQL function inline_code_block line 6 at CALL
+2024-08-25 11:04:52.087 IST [63801] STATEMENT:  -- call insertuser('athardghadiva', 'abcddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	
+	DO $$
+	DECLARE
+	    new_id INT;
+	BEGIN
+	    
+	    CALL insertsociety('athardghadiva', 'abcdddd@guw.com','jdbkqjnd', 'jbcqwn', 'ncjwnc', '400012', '2024-08-11', 'nwefncfn', '8879806920',new_id);
+	    RAISE NOTICE 'Inserted user with ID: %', new_id;
+	END $$;
+	
