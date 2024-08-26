@@ -4,6 +4,7 @@ const {loginQuery} = require("../dbUtils/queries-society-login");
 const { validationResult } = require("express-validator");
 
 const societyLogin=async (req,res,next)=>{
+  console.log(req);
   const errors= validationResult(req);
   
   if(!errors.isEmpty()){
@@ -12,10 +13,10 @@ const societyLogin=async (req,res,next)=>{
     return next(error);
   }
 
-  const {email, password} = req.body;
+  const {emailAddress, password} = req.body;
 
   try{
-    const isValid = await loginQuery(email, password);
+    const isValid = await loginQuery(emailAddress, password);
     if(!isValid){
       throw new HttpError("Invalid credentials", 401);
     }

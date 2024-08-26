@@ -2875,3 +2875,5 @@
 	END;
 	$$;
 	
+2024-08-25 22:40:26.314 IST [63703] LOG:  checkpoint starting: time
+2024-08-25 22:40:27.844 IST [63703] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.524 s, sync=0.003 s, total=1.531 s; sync files=16, longest=0.001 s, average=0.001 s; distance=52 kB, estimate=52 kB
