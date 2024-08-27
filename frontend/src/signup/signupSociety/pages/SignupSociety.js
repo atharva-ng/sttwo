@@ -2,7 +2,6 @@ import React from "react";
 import "./SignupSociety.css";
 
 import Form from "../components/Form";
-import Footer from "../../../shared/components/Footer";
 
 const SignupSociety = () => {
 

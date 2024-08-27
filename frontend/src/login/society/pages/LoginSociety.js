@@ -12,8 +12,6 @@ const LoginSociety = () => {
       </header>
 
       <Form />
-
-      
     </div>
   );
 };

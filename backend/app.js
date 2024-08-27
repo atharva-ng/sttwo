@@ -3,8 +3,12 @@ const bodyParser = require ("body-parser");
 
 const HttpError = require("./models/http-error");
 
+const checkAuth = require("./middlewares/tokenAuth")
+
 const societySignup = require('./routes/societySignup');
 const societyLogin = require('./routes/societyLogin');
+const ownerSignup = require('./routes/ownerSignup');
+const ownerLogin = require("./routes/ownerLogin");
 
 const app = express();
 
@@ -23,6 +27,10 @@ app.use((req, res, next) => {
 app.use('/api/signup/society',societySignup);
 
 app.use('/api/login/society',societyLogin);
+
+app.use('/api/signup/owner',ownerSignup);
+
+app.use('/api/login/owner',ownerLogin);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

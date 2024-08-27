@@ -7,8 +7,10 @@ import Login from './login/pages/Login';
 import NavbarLogin from './shared/components/navbar/NavbarLogin';
 import NavbarSignup from './shared/components/navbar/NavbarSignup';
 import LoginSociety from './login/society/pages/LoginSociety';
+import LoginOwner from './login/owner/pages/LoginOwner';
 import Signup from './signup/signup/pages/Signup';
 import SignupSociety from './signup/signupSociety/pages/SignupSociety';
+import SignupOwner from './signup/signupOwner/pages/SignupOwner'
 import WingInformation from './signup/signupSociety/pages/WingInformation'; // Import the new component
 
 
@@ -38,13 +40,13 @@ function App() {
           <LoginSociety />
         </Route>
         <Route path='/login/login-owner' exact>
-          <Homepage />
+          <LoginOwner />
         </Route>
         <Route path='/signup' exact>
           <Signup />
         </Route>
         <Route path='/signup/signup-owner' exact>
-          <Homepage />
+          <SignupOwner />
         </Route>
         <Route path='/signup/signup-society' exact>
           <SignupSociety />

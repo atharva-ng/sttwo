@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+
 const Form =()=>{
 
   // State variables to store the form data
@@ -33,7 +34,6 @@ const Form =()=>{
       if (!response.ok) {
         throw new Error(`Unexpected Error: ${responseData}`);
       }
-      // window.location.reload();
     }).catch(error => {
       console.log(error);
       console.error("There was a problem with the fetch operation:", error);

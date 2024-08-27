@@ -2877,3 +2877,513 @@
 	
 2024-08-25 22:40:26.314 IST [63703] LOG:  checkpoint starting: time
 2024-08-25 22:40:27.844 IST [63703] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.524 s, sync=0.003 s, total=1.531 s; sync files=16, longest=0.001 s, average=0.001 s; distance=52 kB, estimate=52 kB
+2024-08-26 19:43:01.889 IST [63703] LOG:  checkpoint starting: time
+2024-08-26 19:43:02.514 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.616 s, sync=0.003 s, total=0.625 s; sync files=7, longest=0.002 s, average=0.001 s; distance=14 kB, estimate=48 kB
+2024-08-26 22:14:33.212 IST [63703] LOG:  checkpoint starting: time
+2024-08-26 22:14:37.132 IST [63703] LOG:  checkpoint complete: wrote 39 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.915 s, sync=0.003 s, total=3.921 s; sync files=38, longest=0.002 s, average=0.001 s; distance=171 kB, estimate=171 kB
+2024-08-26 22:19:33.134 IST [63703] LOG:  checkpoint starting: time
+2024-08-26 22:19:34.464 IST [63703] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.326 s, sync=0.001 s, total=1.331 s; sync files=7, longest=0.001 s, average=0.001 s; distance=47 kB, estimate=159 kB
+2024-08-27 12:16:59.938 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 12:17:00.156 IST [63703] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.208 s, sync=0.002 s, total=0.219 s; sync files=2, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=144 kB
+2024-08-27 17:30:19.317 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 17:30:23.803 IST [63703] LOG:  checkpoint complete: wrote 44 buffers (0.3%); 0 WAL file(s) added, 0 removed, 1 recycled; write=4.471 s, sync=0.008 s, total=4.487 s; sync files=40, longest=0.002 s, average=0.001 s; distance=206 kB, estimate=206 kB
+2024-08-27 17:40:19.809 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 17:40:22.482 IST [63703] LOG:  checkpoint complete: wrote 27 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.665 s, sync=0.004 s, total=2.674 s; sync files=25, longest=0.002 s, average=0.001 s; distance=133 kB, estimate=199 kB
+2024-08-27 17:40:50.257 IST [63801] ERROR:  syntax error at or near "or" at character 25
+2024-08-27 17:40:50.257 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertOwner(
+	    _firstName VARCHAR,
+	    _lastName VARCHAR,
+	    _email VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM ownerdetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO societydetails(
+	                "firstName", "lastName", email, phonenumber
+	            ) VALUES (
+	                _firstName, _lastName, _email, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-27 17:45:19.454 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 17:45:20.379 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.919 s, sync=0.002 s, total=0.926 s; sync files=10, longest=0.001 s, average=0.001 s; distance=40 kB, estimate=183 kB
+2024-08-27 17:54:59.809 IST [65971] ERROR:  syntax error at or near "TABLE" at character 34
+2024-08-27 17:54:59.809 IST [65971] STATEMENT:  ALTER TABLE ownerpassword RENAME TABLE TO ownerpasswords;
+2024-08-27 17:55:19.394 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 17:55:20.532 IST [63703] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.131 s, sync=0.003 s, total=1.141 s; sync files=12, longest=0.002 s, average=0.001 s; distance=52 kB, estimate=170 kB
+2024-08-27 17:55:32.491 IST [63801] ERROR:  missing "THEN" at end of SQL expression at character 378
+2024-08-27 17:55:32.491 IST [63801] STATEMENT:   CREATE OR REPLACE PROCEDURE insertpassword(
+	    _id INT,
+	    _password VARCHAR,
+	    _choice int,
+	    OUT success INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        success := 0;
+	        IF _choice = 1
+	            INSERT INTO societypasswords(
+	                id, password
+	                )VALUES (
+	                _id, _password
+	            ) RETURNING id INTO success;
+	        ELSE IF _choice = 2
+	            INSERT INTO ownerpasswords(
+	                id, password
+	                )VALUES (
+	                _id, _password
+	            ) RETURNING id INTO success;
+	        END IF;
+	        
+	        IF success IS NOT NULL THEN
+	            success := 1;
+	        END IF;
+	    EXCEPTION
+	        WHEN unique_violation THEN
+	            RAISE NOTICE 'A duplicate entry was attempted for id %', _id;
+	            success := -1;
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            success := -2;
+	        END;
+	END;
+	$$;
+	
+2024-08-27 17:56:30.199 IST [63801] ERROR:  syntax error at or near "EXCEPTION" at character 692
+2024-08-27 17:56:30.199 IST [63801] STATEMENT:   CREATE OR REPLACE PROCEDURE insertpassword(
+	    _id INT,
+	    _password VARCHAR,
+	    _choice int,
+	    OUT success INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        success := 0;
+	        IF _choice = 1 THEN
+	            INSERT INTO societypasswords(
+	                id, password
+	                )VALUES (
+	                _id, _password
+	            ) RETURNING id INTO success;
+	        ELSE IF _choice = 2 THEN
+	            INSERT INTO ownerpasswords(
+	                id, password
+	                )VALUES (
+	                _id, _password
+	            ) RETURNING id INTO success;
+	        END IF;
+	        
+	        IF success IS NOT NULL THEN
+	            success := 1;
+	        END IF;
+	    EXCEPTION
+	        WHEN unique_violation THEN
+	            RAISE NOTICE 'A duplicate entry was attempted for id %', _id;
+	            success := -1;
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            success := -2;
+	        END;
+	END;
+	$$;
+	
+2024-08-27 17:58:14.857 IST [63801] ERROR:  syntax error at or near "EXCEPTION" at character 701
+2024-08-27 17:58:14.857 IST [63801] STATEMENT:   CREATE OR REPLACE PROCEDURE insertpassword(
+	    _id INT,
+	    _password VARCHAR,
+	    _choice int,
+	    OUT success INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN       
+	        success := 0;
+	        IF _choice = 1 THEN
+	            INSERT INTO societypasswords(
+	                id, password
+	                )VALUES (
+	                _id, _password
+	            ) RETURNING id INTO success;
+	        ELSE IF _choice = 2 THEN
+	            INSERT INTO ownerpasswords(
+	                id, password
+	                )VALUES (
+	                _id, _password
+	            ) RETURNING id INTO success;
+	        END IF;
+	        
+	        IF success IS NOT NULL THEN
+	            success := 1;
+	        END IF;
+	        
+	    EXCEPTION
+	        WHEN unique_violation THEN
+	            RAISE NOTICE 'A duplicate entry was attempted for id %', _id;
+	            success := -1;
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            success := -2;
+	        END;
+	END;
+	$$;
+	
+2024-08-27 17:59:23.069 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-27 17:59:23.069 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE insertpassword(
+	    _id INT,
+	    _password VARCHAR,
+	    _choice INT,
+	    OUT success INT
+	) LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    success := 0;
+	
+	    IF _choice = 1 THEN
+	        INSERT INTO societypasswords (
+	            id, password
+	        ) VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	
+	    ELSIF _choice = 2 THEN
+	        INSERT INTO ownerpasswords (
+	            id, password
+	        ) VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	
+	    END IF;
+	
+	    IF success IS NOT NULL THEN
+	        success := 1;
+	    END IF;
+	
+	EXCEPTION
+	    WHEN unique_violation THEN
+	        RAISE NOTICE 'A duplicate entry was attempted for id %', _id;
+	        success := -1;
+	
+	    WHEN OTHERS THEN
+	        RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	        success := -2; 
+	
+	END;
+	$$;
+	
+2024-08-27 17:59:27.893 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-27 17:59:27.893 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE insertpassword(
+	    _id INT,
+	    _password VARCHAR,
+	    _choice INT,
+	    OUT success INT
+	) LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    success := 0;
+	
+	    IF _choice = 1 THEN
+	        INSERT INTO societypasswords (
+	            id, password
+	        ) VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	
+	    ELSIF _choice = 2 THEN
+	        INSERT INTO ownerpasswords (
+	            id, password
+	        ) VALUES (
+	            _id, _password
+	        ) RETURNING id INTO success;
+	
+	    END IF;
+	
+	    IF success IS NOT NULL THEN
+	        success := 1;
+	    END IF;
+	
+	EXCEPTION
+	    WHEN unique_violation THEN
+	        RAISE NOTICE 'A duplicate entry was attempted for id %', _id;
+	        success := -1;
+	
+	    WHEN OTHERS THEN
+	        RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	        success := -2; 
+	
+	END;
+	$$;
+	
+2024-08-27 18:00:19.533 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 18:00:21.502 IST [63703] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.962 s, sync=0.003 s, total=1.969 s; sync files=18, longest=0.002 s, average=0.001 s; distance=95 kB, estimate=162 kB
+2024-08-27 18:10:02.226 IST [35089] ERROR:  An error occurred: column "firstName" of relation "societydetails" does not exist
+2024-08-27 18:10:02.226 IST [35089] CONTEXT:  PL/pgSQL function insertowner(character varying,character varying,character varying,character varying) line 25 at RAISE
+2024-08-27 18:10:02.226 IST [35089] STATEMENT:  CALL insertOwner($1,$2,$3,$4,$5);
+2024-08-27 18:10:17.963 IST [35189] ERROR:  An error occurred: column "firstName" of relation "societydetails" does not exist
+2024-08-27 18:10:17.963 IST [35189] CONTEXT:  PL/pgSQL function insertowner(character varying,character varying,character varying,character varying) line 25 at RAISE
+2024-08-27 18:10:17.963 IST [35189] STATEMENT:  CALL insertOwner($1,$2,$3,$4,$5);
+2024-08-27 18:10:19.531 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 18:10:19.649 IST [63703] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.106 s, sync=0.001 s, total=0.120 s; sync files=1, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=146 kB
+2024-08-27 18:10:30.819 IST [35318] ERROR:  An error occurred: column "firstName" of relation "societydetails" does not exist
+2024-08-27 18:10:30.819 IST [35318] CONTEXT:  PL/pgSQL function insertowner(character varying,character varying,character varying,character varying) line 25 at RAISE
+2024-08-27 18:10:30.819 IST [35318] STATEMENT:  CALL insertOwner($1,$2,$3,$4,$5);
+2024-08-27 18:11:08.194 IST [35575] ERROR:  An error occurred: column "firstName" of relation "societydetails" does not exist
+2024-08-27 18:11:08.194 IST [35575] CONTEXT:  PL/pgSQL function insertowner(character varying,character varying,character varying,character varying) line 25 at RAISE
+2024-08-27 18:11:08.194 IST [35575] STATEMENT:  CALL insertOwner($1,$2,$3,$4,$5);
+2024-08-27 18:11:22.745 IST [35667] ERROR:  An error occurred: column "firstName" of relation "societydetails" does not exist
+2024-08-27 18:11:22.745 IST [35667] CONTEXT:  PL/pgSQL function insertowner(character varying,character varying,character varying,character varying) line 25 at RAISE
+2024-08-27 18:11:22.745 IST [35667] STATEMENT:  CALL insertOwner($1,$2,$3,$4,$5);
+2024-08-27 18:12:13.224 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-27 18:12:13.224 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertOwner(
+	    _firstName VARCHAR,
+	    _lastName VARCHAR,
+	    _email VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM ownerdetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO ownerdetails(
+	                "firstName", "lastName", email, phonenumber
+	            ) VALUES (
+	                _firstName, _lastName, _email, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-27 18:12:17.220 IST [35849] ERROR:  An error occurred: column "firstName" of relation "ownerdetails" does not exist
+2024-08-27 18:12:17.220 IST [35849] CONTEXT:  PL/pgSQL function insertowner(character varying,character varying,character varying,character varying) line 25 at RAISE
+2024-08-27 18:12:17.220 IST [35849] STATEMENT:  CALL insertOwner($1,$2,$3,$4,$5);
+2024-08-27 18:12:37.063 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-27 18:12:37.063 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertOwner(
+	    _firstName VARCHAR,
+	    _lastName VARCHAR,
+	    _email VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM ownerdetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO ownerdetails(
+	                "firstName", "lastName", email, phonenumber
+	            ) VALUES (
+	                _firstName, _lastName, _email, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-27 18:12:59.305 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-27 18:12:59.305 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertOwner(
+	    _firstName VARCHAR,
+	    _lastName VARCHAR,
+	    _email VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM ownerdetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO ownerdetails(
+	                firstName, lastName, email, phonenumber
+	            ) VALUES (
+	                _firstName, _lastName, _email, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-27 18:13:00.747 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-27 18:13:00.747 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertOwner(
+	    _firstName VARCHAR,
+	    _lastName VARCHAR,
+	    _email VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM ownerdetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO ownerdetails(
+	                firstName, lastName, email, phonenumber
+	            ) VALUES (
+	                _firstName, _lastName, _email, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-27 18:13:01.225 IST [63801] ERROR:  syntax error at or near "OR" at character 25
+2024-08-27 18:13:01.225 IST [63801] STATEMENT:  EXPLAIN VERBOSE  CREATE OR REPLACE PROCEDURE insertOwner(
+	    _firstName VARCHAR,
+	    _lastName VARCHAR,
+	    _email VARCHAR,
+	    _phonenumber VARCHAR,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	DECLARE 
+	    old_id int;
+	BEGIN
+	    BEGIN
+	        SELECT COUNT(1) 
+	        INTO old_id 
+	        FROM ownerdetails 
+	        WHERE email = _email; 
+	        
+	        IF old_id = 0 THEN 
+	        
+	            INSERT INTO ownerdetails(
+	                firstName, lastName, email, phonenumber
+	            ) VALUES (
+	                _firstName, _lastName, _email, _phonenumber
+	            ) RETURNING id INTO new_id;
+	            
+	        ELSE
+	            new_id := NULL;
+	            
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-08-27 18:15:19.652 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 18:15:21.608 IST [63703] LOG:  checkpoint complete: wrote 21 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.947 s, sync=0.003 s, total=1.957 s; sync files=17, longest=0.001 s, average=0.001 s; distance=29 kB, estimate=135 kB
+2024-08-27 18:19:44.998 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-27 18:19:44.998 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP PROCEDURE getemailsocietylogin(
+	    _email VARCHAR,
+	    OUT idout INT
+	);
+2024-08-27 18:20:19.613 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 18:20:19.932 IST [63703] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.309 s, sync=0.005 s, total=0.320 s; sync files=4, longest=0.004 s, average=0.002 s; distance=14 kB, estimate=123 kB
+2024-08-27 18:21:47.524 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-27 18:21:47.524 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE getemaillogin(
+	    _email VARCHAR,
+	    _choice int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        IF _choice = 1 THEN
+	            SELECT id 
+	            INTO idout
+	            FROM societydetails WHERE email = _email;
+	        ELSEIF _choice =2 THEN
+	            SELECT id
+	            INTO idout
+	            FROM ownerdetails WHERE email = _email;
+	        END IF;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-27 18:25:19.942 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 18:25:20.866 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.921 s, sync=0.001 s, total=0.925 s; sync files=10, longest=0.001 s, average=0.001 s; distance=39 kB, estimate=114 kB
+2024-08-27 18:40:19.876 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 18:40:20.516 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.624 s, sync=0.002 s, total=0.641 s; sync files=7, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=103 kB

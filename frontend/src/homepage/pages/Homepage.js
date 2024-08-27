@@ -1,7 +1,5 @@
 import React from "react";
 
-import Footer from "../../shared/components/Footer";
-
 const Homepage= ()=>{
 
   return (

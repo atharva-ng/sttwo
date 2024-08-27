@@ -1,0 +1,109 @@
+.signup-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 2px solid #000;
+  }
+  
+  .header .brand {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .header .profile {
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  .form-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .form-container h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    margin-right: 10px;
+  }
+  
+  .form-group input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-group input:last-child {
+    margin-right: 0;
+  }
+  
+  .next-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  
+  .footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+  }
+  
+  .footer-logo img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .footer-column {
+    margin-right: 20px;
+  }
+  
+  .footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .footer-column p {
+    margin: 5px 0;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
