@@ -22,7 +22,7 @@ const Form =()=>{
   const handleNext = async (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5007/api/login/owner", {
+    fetch("http://localhost:5007/api/auth/login/owner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

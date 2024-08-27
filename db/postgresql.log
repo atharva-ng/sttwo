@@ -3387,3 +3387,9 @@
 2024-08-27 18:25:20.866 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.921 s, sync=0.001 s, total=0.925 s; sync files=10, longest=0.001 s, average=0.001 s; distance=39 kB, estimate=114 kB
 2024-08-27 18:40:19.876 IST [63703] LOG:  checkpoint starting: time
 2024-08-27 18:40:20.516 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.624 s, sync=0.002 s, total=0.641 s; sync files=7, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=103 kB
+2024-08-27 20:31:46.942 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 20:31:48.069 IST [63703] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.122 s, sync=0.002 s, total=1.127 s; sync files=12, longest=0.001 s, average=0.001 s; distance=16 kB, estimate=94 kB
+2024-08-27 20:36:46.072 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 20:36:46.692 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.616 s, sync=0.002 s, total=0.620 s; sync files=7, longest=0.001 s, average=0.001 s; distance=8 kB, estimate=86 kB
+2024-08-27 20:41:46.693 IST [63703] LOG:  checkpoint starting: time
+2024-08-27 20:41:47.205 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.508 s, sync=0.002 s, total=0.513 s; sync files=6, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=77 kB
