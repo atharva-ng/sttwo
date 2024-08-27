@@ -30,7 +30,7 @@ function App() {
     <>
       <HeaderComponent />   
       <Switch>
-        <Route path='/' exact>
+        <Route path='/' exact> 
           <Homepage />
         </Route>
         <Route path='/login' exact>
