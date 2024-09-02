@@ -3393,3 +3393,2126 @@
 2024-08-27 20:36:46.692 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.616 s, sync=0.002 s, total=0.620 s; sync files=7, longest=0.001 s, average=0.001 s; distance=8 kB, estimate=86 kB
 2024-08-27 20:41:46.693 IST [63703] LOG:  checkpoint starting: time
 2024-08-27 20:41:47.205 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.508 s, sync=0.002 s, total=0.513 s; sync files=6, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=77 kB
+2024-08-28 03:43:25.311 IST [63703] LOG:  checkpoint starting: time
+2024-08-28 03:43:26.438 IST [63703] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.122 s, sync=0.002 s, total=1.127 s; sync files=12, longest=0.001 s, average=0.001 s; distance=10 kB, estimate=70 kB
+2024-08-29 12:42:52.242 IST [63801] ERROR:  "new_id" is not a known variable at character 359
+2024-08-29 12:42:52.242 IST [63801] STATEMENT:  CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID VARCHAR,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 12:43:00.953 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 12:43:00.953 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID VARCHAR,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 12:45:42.926 IST [53972] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 12:45:42.926 IST [53972] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 12:45:42.926 IST [53972] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 12:46:28.154 IST [63703] LOG:  checkpoint starting: time
+2024-08-29 12:46:29.098 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.934 s, sync=0.003 s, total=0.945 s; sync files=10, longest=0.002 s, average=0.001 s; distance=42 kB, estimate=68 kB
+2024-08-29 12:46:31.645 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 12:46:31.645 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID VARCHAR,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 12:46:58.671 IST [54638] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 12:46:58.671 IST [54638] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 12:46:58.671 IST [54638] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 12:47:58.389 IST [55115] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 12:47:58.389 IST [55115] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 12:47:58.389 IST [55115] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 12:48:34.404 IST [55239] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 12:48:34.404 IST [55239] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 12:48:34.404 IST [55239] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 12:48:57.589 IST [55930] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 12:48:57.589 IST [55930] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 12:48:57.589 IST [55930] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 12:49:52.579 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 12:49:52.579 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 12:49:56.744 IST [56565] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 12:49:56.744 IST [56565] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 12:49:56.744 IST [56565] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 18:15:15.725 IST [63703] LOG:  checkpoint starting: time
+2024-08-29 18:15:16.644 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.916 s, sync=0.002 s, total=0.919 s; sync files=10, longest=0.001 s, average=0.001 s; distance=44 kB, estimate=65 kB
+2024-08-29 18:16:27.547 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:16:27.547 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:17:15.283 IST [57425] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 18:17:15.283 IST [57425] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 18:17:15.283 IST [57425] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 18:18:50.429 IST [58395] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 18:18:50.429 IST [58395] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 18:18:50.429 IST [58395] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 18:19:19.533 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:19:19.533 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:19:19.831 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:19:19.831 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:19:20.101 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:19:20.101 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:19:20.363 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:19:20.363 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:19:20.834 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:19:20.834 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:20:15.641 IST [63703] LOG:  checkpoint starting: time
+2024-08-29 18:20:16.063 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.414 s, sync=0.004 s, total=0.423 s; sync files=5, longest=0.002 s, average=0.001 s; distance=31 kB, estimate=62 kB
+2024-08-29 18:20:24.704 IST [63801] ERROR:  syntax error at or near "PROCEDURE" at character 8
+2024-08-29 18:20:24.704 IST [63801] STATEMENT:  Delete PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:20:50.617 IST [63801] ERROR:  syntax error at or near "drop" at character 17
+2024-08-29 18:20:50.617 IST [63801] STATEMENT:  EXPLAIN VERBOSE drop PROCEDURE saveWing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:20:57.479 IST [58891] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 18:20:57.479 IST [58891] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 18:20:57.479 IST [58891] STATEMENT:  CALL saveWing($1,$2,$3,$4);
+2024-08-29 18:21:34.070 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:34.070 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:35.082 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:35.082 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:35.247 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:35.247 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:35.399 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:35.399 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:36.010 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:36.010 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:36.225 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:36.225 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:36.508 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:21:36.508 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id , "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:21:40.614 IST [59139] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 18:21:40.614 IST [59139] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 18:21:40.614 IST [59139] STATEMENT:  CALL savewing($1,$2,$3,$4);
+2024-08-29 18:37:23.526 IST [63801] ERROR:  syntax error at or near "drop" at character 17
+2024-08-29 18:37:23.526 IST [63801] STATEMENT:  EXPLAIN VERBOSE drop PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:37:24.931 IST [63801] ERROR:  procedure savewing(integer, character varying, integer) does not exist
+2024-08-29 18:37:24.931 IST [63801] STATEMENT:  drop PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:37:25.100 IST [63801] ERROR:  procedure savewing(integer, character varying, integer) does not exist
+2024-08-29 18:37:25.100 IST [63801] STATEMENT:  drop PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:37:25.453 IST [63801] ERROR:  procedure savewing(integer, character varying, integer) does not exist
+2024-08-29 18:37:25.453 IST [63801] STATEMENT:  drop PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:37:25.710 IST [63801] ERROR:  procedure savewing(integer, character varying, integer) does not exist
+2024-08-29 18:37:25.710 IST [63801] STATEMENT:  drop PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:37:25.930 IST [63801] ERROR:  procedure savewing(integer, character varying, integer) does not exist
+2024-08-29 18:37:25.930 IST [63801] STATEMENT:  drop PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	);
+2024-08-29 18:37:35.162 IST [60057] ERROR:  An error occurred: column "society_id" is of type integer but expression is of type character varying
+2024-08-29 18:37:35.162 IST [60057] CONTEXT:  PL/pgSQL function savewing(character varying,character varying,integer) line 11 at RAISE
+2024-08-29 18:37:35.162 IST [60057] STATEMENT:  CALL savewing($1,$2,$3,$4);
+2024-08-29 18:39:12.365 IST [63703] LOG:  checkpoint starting: time
+2024-08-29 18:39:13.291 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.919 s, sync=0.003 s, total=0.927 s; sync files=10, longest=0.002 s, average=0.001 s; distance=49 kB, estimate=60 kB
+2024-08-29 18:39:58.662 IST [63801] ERROR:  could not find a function named "savewing"
+2024-08-29 18:39:58.662 IST [63801] STATEMENT:  drop FUNCTION savewing;
+2024-08-29 18:40:04.689 IST [63801] ERROR:  syntax error at or near "drop" at character 17
+2024-08-29 18:40:04.689 IST [63801] STATEMENT:  EXPLAIN VERBOSE drop PROCEDURE savewing;
+2024-08-29 18:40:09.579 IST [60602] ERROR:  procedure savewing(unknown, unknown, unknown, unknown) does not exist at character 6
+2024-08-29 18:40:09.579 IST [60602] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-08-29 18:40:09.579 IST [60602] STATEMENT:  CALL savewing($1,$2,$3,$4);
+2024-08-29 18:40:22.725 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-29 18:40:22.725 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE savewing(
+	    _societyID INT,
+	    _name VARCHAR,
+	    _flatsPerFloor int,
+	    OUT idout INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN    
+	        INSERT INTO wingdetails(
+	                society_id, "name", flats_per_floor
+	            ) VALUES (
+	                _societyID, _name, _flatsPerFloor
+	            ) RETURNING id INTO idout;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            idout := null;
+	        END;
+	END;
+	$$;
+2024-08-29 18:41:37.617 IST [65971] ERROR:  syntax error at or near "*" at character 8
+2024-08-29 18:41:37.617 IST [65971] STATEMENT:  delete * from wingdetails where id=1;
+2024-08-29 18:44:12.289 IST [63703] LOG:  checkpoint starting: time
+2024-08-29 18:44:13.818 IST [63703] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.525 s, sync=0.003 s, total=1.529 s; sync files=15, longest=0.001 s, average=0.001 s; distance=49 kB, estimate=59 kB
+2024-08-29 18:49:12.815 IST [63703] LOG:  checkpoint starting: time
+2024-08-29 18:49:13.229 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.001 s, total=0.415 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=54 kB
+2024-08-30 11:59:27.771 IST [63801] ERROR:  syntax error at or near "OR" at character 86
+2024-08-30 11:59:27.771 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- { roomNumber: 101, roomSize: 2, maintainanceAmount: 5000 }
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::record, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+	    LOOP
+	        INSERT INTO roomdetails(roomNumber, roomSize, maintainanceAmount)
+	        VALUES (data.roomNumber, data.roomSize, data.maintainanceAmount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 12:00:14.851 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-30 12:00:14.851 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP procedure saverooms;
+2024-08-30 12:00:17.392 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 12:00:17.392 IST [63801] STATEMENT:  DROP procedure saverooms;
+2024-08-30 12:02:03.801 IST [63801] ERROR:  syntax error at or near "OR" at character 86
+2024-08-30 12:02:03.801 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- { roomNumber: 101, roomSize: 2, maintainanceAmount: 5000 }
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT, wingId int)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::record, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (wingId, data.roomSize, data.roomNumber, data.maintainanceAmount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 12:02:11.322 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 12:02:12.254 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.919 s, sync=0.003 s, total=0.932 s; sync files=10, longest=0.001 s, average=0.001 s; distance=45 kB, estimate=53 kB
+2024-08-30 12:02:22.993 IST [79089] ERROR:  function json_populate_recordset(record, text) does not exist at character 15
+2024-08-30 12:02:22.993 IST [79089] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 12:02:22.993 IST [79089] QUERY:  SELECT * FROM json_populate_recordset(NULL::record, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+2024-08-30 12:02:22.993 IST [79089] CONTEXT:  PL/pgSQL function saverooms(text,integer) line 5 at FOR over SELECT rows
+2024-08-30 12:02:22.993 IST [79089] STATEMENT:  CALL saverooms($1,$2);
+2024-08-30 12:03:08.003 IST [79674] ERROR:  function json_populate_recordset(record, text) does not exist at character 15
+2024-08-30 12:03:08.003 IST [79674] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 12:03:08.003 IST [79674] QUERY:  SELECT * FROM json_populate_recordset(NULL::record, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+2024-08-30 12:03:08.003 IST [79674] CONTEXT:  PL/pgSQL function saverooms(text,integer) line 5 at FOR over SELECT rows
+2024-08-30 12:03:08.003 IST [79674] STATEMENT:  CALL saverooms($1,$2);
+2024-08-30 12:03:54.090 IST [65971] ERROR:  syntax error at or near "*" at character 8
+2024-08-30 12:03:54.090 IST [65971] STATEMENT:  delete * from wingdetails;
+2024-08-30 12:04:16.640 IST [65971] ERROR:  syntax error at or near "*" at character 8
+2024-08-30 12:04:16.640 IST [65971] STATEMENT:  delete * from wingdetails where society_id =52;
+2024-08-30 12:07:11.304 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 12:07:11.816 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.509 s, sync=0.002 s, total=0.512 s; sync files=6, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=48 kB
+2024-08-30 12:51:26.163 IST [63801] ERROR:  syntax error at or near "OR" at character 86
+2024-08-30 12:51:26.163 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- { roomNumber: 101, roomSize: 2, maintainanceAmount: 5000 }
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT, wingId int)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::record, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (wingId, data.roomSize, data.roomNumber, data.maintainanceAmount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 12:52:39.883 IST [63801] ERROR:  syntax error at or near "OR" at character 86
+2024-08-30 12:52:39.883 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- { roomNumber: 101, roomSize: 2, maintainanceAmount: 5000 }
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT, wingId int)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (wingId, data.roomSize, data.roomNumber, data.maintainanceAmount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 12:53:03.564 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 12:53:04.387 IST [63703] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.817 s, sync=0.002 s, total=0.824 s; sync files=6, longest=0.001 s, average=0.001 s; distance=32 kB, estimate=46 kB
+2024-08-30 12:53:14.063 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-30 12:53:14.063 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP  PROCEDURE saverooms;
+2024-08-30 12:53:15.070 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 12:53:15.070 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms;
+2024-08-30 12:53:22.170 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 12:53:22.170 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT, wingId int)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (wingId, data.roomSize, data.roomNumber, data.maintainanceAmount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 12:53:36.937 IST [89030] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 12:53:36.937 IST [89030] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 12:53:36.937 IST [89030] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	        AS (roomNumber INT, roomSize INT, maintainanceAmount INT)
+2024-08-30 12:53:36.937 IST [89030] CONTEXT:  PL/pgSQL function saverooms(text,integer) line 5 at FOR over SELECT rows
+2024-08-30 12:53:36.937 IST [89030] STATEMENT:  CALL saverooms($1,$2);
+2024-08-30 12:58:03.359 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 12:58:04.695 IST [63703] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.329 s, sync=0.005 s, total=1.337 s; sync files=14, longest=0.002 s, average=0.001 s; distance=45 kB, estimate=46 kB
+2024-08-30 13:08:03.697 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 13:08:04.124 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.414 s, sync=0.009 s, total=0.428 s; sync files=5, longest=0.006 s, average=0.002 s; distance=4 kB, estimate=42 kB
+2024-08-30 13:13:03.124 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 13:13:03.536 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.002 s, total=0.412 s; sync files=5, longest=0.002 s, average=0.001 s; distance=6 kB, estimate=38 kB
+2024-08-30 13:16:33.635 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 13:16:33.635 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT
+	        wingId as wing_id,
+	        roomSize as room_size_id,
+	        roomNumber as room_no,
+	        maintainanceAmount as amount
+	        FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 13:16:33.867 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 13:16:33.867 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT
+	        wingId as wing_id,
+	        roomSize as room_size_id,
+	        roomNumber as room_no,
+	        maintainanceAmount as amount
+	        FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 13:16:33.999 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 13:16:33.999 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT
+	        wingId as wing_id,
+	        roomSize as room_size_id,
+	        roomNumber as room_no,
+	        maintainanceAmount as amount
+	        FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 13:16:34.149 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 13:16:34.149 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT
+	        wingId as wing_id,
+	        roomSize as room_size_id,
+	        roomNumber as room_no,
+	        maintainanceAmount as amount
+	        FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 13:16:47.388 IST [94665] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 150
+2024-08-30 13:16:47.388 IST [94665] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 13:16:47.388 IST [94665] QUERY:  SELECT
+	        wingId as wing_id,
+	        roomSize as room_size_id,
+	        roomNumber as room_no,
+	        maintainanceAmount as amount
+	        FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 13:16:47.388 IST [94665] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 13:16:47.388 IST [94665] STATEMENT:  CALL saverooms($1);
+2024-08-30 13:18:03.549 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 13:18:04.887 IST [63703] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.331 s, sync=0.004 s, total=1.338 s; sync files=14, longest=0.002 s, average=0.001 s; distance=50 kB, estimate=50 kB
+2024-08-30 13:19:51.753 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:51.753 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:52.604 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:52.604 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:52.761 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:52.761 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:53.018 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:53.018 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:53.156 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:53.156 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:53.322 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:53.322 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:53.474 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:19:53.474 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:19:55.030 IST [63801] ERROR:  procedure name "saverooms" is not unique
+2024-08-30 13:19:55.030 IST [63801] HINT:  Specify the argument list to select the procedure unambiguously.
+2024-08-30 13:19:55.030 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms;
+2024-08-30 13:19:55.953 IST [63801] ERROR:  procedure name "saverooms" is not unique
+2024-08-30 13:19:55.953 IST [63801] HINT:  Specify the argument list to select the procedure unambiguously.
+2024-08-30 13:19:55.953 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms;
+2024-08-30 13:19:56.572 IST [63801] ERROR:  procedure name "saverooms" is not unique
+2024-08-30 13:19:56.572 IST [63801] HINT:  Specify the argument list to select the procedure unambiguously.
+2024-08-30 13:19:56.572 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms;
+2024-08-30 13:20:04.851 IST [63801] ERROR:  procedure name "saverooms" is not unique
+2024-08-30 13:20:04.851 IST [63801] HINT:  Specify the argument list to select the procedure unambiguously.
+2024-08-30 13:20:04.851 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms;
+2024-08-30 13:20:29.916 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-30 13:20:29.916 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP  PROCEDURE saverooms(json_data TEXT);
+2024-08-30 13:20:41.981 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-30 13:20:41.981 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP  PROCEDURE saverooms(json_data TEXT, wingid int);
+2024-08-30 13:20:42.869 IST [63801] ERROR:  procedure saverooms(text, integer) does not exist
+2024-08-30 13:20:42.869 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms(json_data TEXT, wingid int);
+2024-08-30 13:20:49.539 IST [63801] ERROR:  syntax error at or near "OR" at character 611
+2024-08-30 13:20:49.539 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--     data roomdetails%ROWTYPE;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT
+	--         wingId as wing_id,
+	--         roomSize as room_size_id,
+	--         roomNumber as room_no,
+	--         maintainanceAmount as amount
+	--         FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data RECORD;  -- Use a RECORD type for flexibility
+	BEGIN
+	    FOR data IN 
+	        SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+	    LOOP
+	        INSERT INTO roomdetails (wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	 
+2024-08-30 13:21:24.581 IST [95608] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 22
+2024-08-30 13:21:24.581 IST [95608] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 13:21:24.581 IST [95608] QUERY:  SELECT 
+	            (json_populate_recordset(NULL::roomdetails, json_data)).*
+2024-08-30 13:21:24.581 IST [95608] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 13:21:24.581 IST [95608] STATEMENT:  CALL saverooms($1);
+2024-08-30 14:04:41.079 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 14:04:42.426 IST [63703] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.341 s, sync=0.003 s, total=1.348 s; sync files=14, longest=0.001 s, average=0.001 s; distance=53 kB, estimate=53 kB
+2024-08-30 14:10:34.112 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 14:10:34.112 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 14:10:35.089 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 14:10:35.089 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 14:10:35.271 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 14:10:35.271 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 14:10:37.179 IST [63801] ERROR:  procedure saverooms(text, integer) does not exist
+2024-08-30 14:10:37.179 IST [63801] STATEMENT:  DROP  PROCEDURE saverooms(json_data TEXT, wingid int);
+2024-08-30 14:10:46.019 IST [63801] ERROR:  syntax error at or near "DROP" at character 17
+2024-08-30 14:10:46.019 IST [63801] STATEMENT:  EXPLAIN VERBOSE DROP  PROCEDURE saverooms;
+2024-08-30 14:10:49.627 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 14:10:49.627 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 14:10:57.552 IST [97801] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 14:10:57.552 IST [97801] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 14:10:57.552 IST [97801] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 14:10:57.552 IST [97801] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 14:10:57.552 IST [97801] STATEMENT:  CALL saverooms($1);
+2024-08-30 14:11:13.836 IST [97882] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 14:11:13.836 IST [97882] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 14:11:13.836 IST [97882] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 14:11:13.836 IST [97882] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 14:11:13.836 IST [97882] STATEMENT:  CALL saverooms($1);
+2024-08-30 14:14:41.430 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 14:14:42.764 IST [63703] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.325 s, sync=0.003 s, total=1.334 s; sync files=14, longest=0.001 s, average=0.001 s; distance=50 kB, estimate=53 kB
+2024-08-30 21:42:21.040 IST [22450] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 21:42:21.040 IST [22450] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 21:42:21.040 IST [22450] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 21:42:21.040 IST [22450] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 21:42:21.040 IST [22450] STATEMENT:  CALL saverooms($1);
+2024-08-30 21:43:02.580 IST [22646] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 21:43:02.580 IST [22646] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 21:43:02.580 IST [22646] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 21:43:02.580 IST [22646] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 21:43:02.580 IST [22646] STATEMENT:  CALL saverooms($1);
+2024-08-30 21:43:51.238 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 21:43:51.659 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.413 s, sync=0.002 s, total=0.422 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=48 kB
+2024-08-30 21:44:11.856 IST [22998] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 21:44:11.856 IST [22998] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 21:44:11.856 IST [22998] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 21:44:11.856 IST [22998] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 21:44:11.856 IST [22998] STATEMENT:  CALL saverooms($1);
+2024-08-30 21:47:07.688 IST [24671] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 21:47:07.688 IST [24671] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 21:47:07.688 IST [24671] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 21:47:07.688 IST [24671] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 21:47:07.688 IST [24671] STATEMENT:  CALL saverooms($1);
+2024-08-30 21:48:30.617 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:48:30.617 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        select * from data;
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:48:40.060 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:48:40.060 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        select * from data;
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:48:51.660 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 21:48:52.493 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.823 s, sync=0.007 s, total=0.833 s; sync files=9, longest=0.004 s, average=0.001 s; distance=30 kB, estimate=46 kB
+2024-08-30 21:49:18.078 IST [63801] ERROR:  syntax error at or near "[" at character 16
+2024-08-30 21:49:18.078 IST [63801] STATEMENT:  call saverooms([
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 101,
+	    maintainanceAmount: 5000
+	  },
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 201,
+	    maintainanceAmount: 5000
+	  }]);
+2024-08-30 21:49:35.170 IST [63801] ERROR:  syntax error at or near "{" at character 16
+2024-08-30 21:49:35.170 IST [63801] STATEMENT:  call saverooms({}
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 101,
+	    maintainanceAmount: 5000
+	  },
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 201,
+	    maintainanceAmount: 5000
+	  }
+	 });
+2024-08-30 21:49:47.888 IST [63801] ERROR:  syntax error at or near "{" at character 16
+2024-08-30 21:49:47.888 IST [63801] STATEMENT:  call saverooms({
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 101,
+	    maintainanceAmount: 5000
+	  },
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 201,
+	    maintainanceAmount: 5000
+	  }
+	 });
+2024-08-30 21:50:03.185 IST [63801] ERROR:  syntax error at or near "{" at character 19
+2024-08-30 21:50:03.185 IST [63801] STATEMENT:  call saverooms(
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 101,
+	    maintainanceAmount: 5000
+	  },
+	  {
+	    wingId: 48,
+	    roomSize: 2,
+	    roomNumber: 201,
+	    maintainanceAmount: 5000
+	  }
+	 );
+2024-08-30 21:50:58.073 IST [63801] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 21:50:58.073 IST [63801] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 21:50:58.073 IST [63801] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 21:50:58.073 IST [63801] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 21:50:58.073 IST [63801] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	]');
+	
+2024-08-30 21:52:15.569 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:52:15.569 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        select * from json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:52:18.084 IST [63801] ERROR:  relation "json_data" does not exist at character 15
+2024-08-30 21:52:18.084 IST [63801] QUERY:  select * from json_data
+2024-08-30 21:52:18.084 IST [63801] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at SQL statement
+2024-08-30 21:52:18.084 IST [63801] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	]');
+	
+2024-08-30 21:53:15.476 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:53:15.476 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:53:17.866 IST [63801] ERROR:  syntax error at or near "CALL" at character 17
+2024-08-30 21:53:17.866 IST [63801] STATEMENT:  EXPLAIN VERBOSE CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	]');
+	
+2024-08-30 21:53:51.473 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 21:53:51.885 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.406 s, sync=0.002 s, total=0.413 s; sync files=5, longest=0.001 s, average=0.001 s; distance=25 kB, estimate=44 kB
+2024-08-30 21:54:10.676 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:10.676 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:10.891 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:10.891 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:11.132 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:11.132 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:11.468 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:11.468 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:11.622 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:11.622 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:11.777 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:11.777 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:11.990 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:11.990 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:31.843 IST [63801] ERROR:  syntax error at or near "drop" at character 193
+2024-08-30 21:54:31.843 IST [63801] STATEMENT:  EXPLAIN VERBOSE -- CALL saverooms('[
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	-- ]');
+	--
+	
+	drop procedure saverooms ;
+	
+2024-08-30 21:54:32.273 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 21:54:32.273 IST [63801] STATEMENT:  -- CALL saverooms('[
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	-- ]');
+	--
+	
+	drop procedure saverooms ;
+	
+2024-08-30 21:54:32.429 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 21:54:32.429 IST [63801] STATEMENT:  -- CALL saverooms('[
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	-- ]');
+	--
+	
+	drop procedure saverooms ;
+	
+2024-08-30 21:54:32.646 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 21:54:32.646 IST [63801] STATEMENT:  -- CALL saverooms('[
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	-- ]');
+	--
+	
+	drop procedure saverooms ;
+	
+2024-08-30 21:54:32.786 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 21:54:32.786 IST [63801] STATEMENT:  -- CALL saverooms('[
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	-- ]');
+	--
+	
+	drop procedure saverooms ;
+	
+2024-08-30 21:54:32.941 IST [63801] ERROR:  could not find a procedure named "saverooms"
+2024-08-30 21:54:32.941 IST [63801] STATEMENT:  -- CALL saverooms('[
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	--   {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	-- ]');
+	--
+	
+	drop procedure saverooms ;
+	
+2024-08-30 21:54:45.620 IST [63801] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 21:54:45.620 IST [63801] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	        RAISE NOTICE '%', json_data;
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	--     LOOP
+	--         select * from data;
+	--         INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	--         VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	--     END LOOP;
+	END;
+	$$;
+	
+	 
+2024-08-30 21:54:55.078 IST [63801] ERROR:  syntax error at or near "CALL" at character 17
+2024-08-30 21:54:55.078 IST [63801] STATEMENT:  EXPLAIN VERBOSE CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 101, "amount": 1500},
+	  {"wing_id": 1, "room_size_id": 2, "room_no": 102, "amount": 1600}
+	]');
+2024-08-30 21:58:51.884 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 21:58:54.245 IST [63703] LOG:  checkpoint complete: wrote 25 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.354 s, sync=0.003 s, total=2.361 s; sync files=18, longest=0.001 s, average=0.001 s; distance=112 kB, estimate=112 kB
+2024-08-30 22:02:29.378 IST [27216] ERROR:  syntax error at or near "CALL" at character 17
+2024-08-30 22:02:29.378 IST [27216] STATEMENT:  EXPLAIN VERBOSE CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250},
+	  {"wing_id": 1, "room_size_id": 1, "room_no": "103", "amount": 180}
+	]');
+	
+2024-08-30 22:02:39.362 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:02:39.362 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(wing_id, room_size_id, room_no, amount)
+	        VALUES (data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+2024-08-30 22:02:42.028 IST [27216] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 22:02:42.028 IST [27216] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:02:42.028 IST [27216] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:02:42.028 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:02:42.028 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250},
+	  {"wing_id": 1, "room_size_id": 1, "room_no": "103", "amount": 180}
+	]');
+	
+2024-08-30 22:03:51.251 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:03:51.886 IST [63703] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.619 s, sync=0.004 s, total=0.636 s; sync files=6, longest=0.003 s, average=0.001 s; distance=23 kB, estimate=103 kB
+2024-08-30 22:04:31.272 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:04:31.272 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:04:31.750 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:04:31.750 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:04:31.887 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:04:31.887 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:04:34.546 IST [27216] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 22:04:34.546 IST [27216] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:04:34.546 IST [27216] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:04:34.546 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:04:34.546 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250},
+	  {"wing_id": 1, "room_size_id": 1, "room_no": "103", "amount": 180}
+	]');
+	
+2024-08-30 22:06:39.789 IST [29052] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 22:06:39.789 IST [29052] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:06:39.789 IST [29052] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:06:39.789 IST [29052] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:06:39.789 IST [29052] STATEMENT:  CALL saverooms($1);
+2024-08-30 22:07:29.257 IST [29783] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 22:07:29.257 IST [29783] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:07:29.257 IST [29783] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:07:29.257 IST [29783] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:07:29.257 IST [29783] STATEMENT:  CALL saverooms($1);
+2024-08-30 22:08:00.922 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:08:00.922 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:08:03.065 IST [27216] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 22:08:03.065 IST [27216] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:08:03.065 IST [27216] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:08:03.065 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:08:03.065 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250}
+	]');
+	
+2024-08-30 22:08:51.887 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:08:52.708 IST [63703] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.816 s, sync=0.002 s, total=0.821 s; sync files=9, longest=0.001 s, average=0.001 s; distance=32 kB, estimate=96 kB
+2024-08-30 22:09:30.686 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:09:30.686 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT wing_id,room_size_id,room_no,amount FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:09:36.003 IST [27216] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 49
+2024-08-30 22:09:36.003 IST [27216] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:09:36.003 IST [27216] QUERY:  SELECT wing_id,room_size_id,room_no,amount FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:09:36.003 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:09:36.003 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250}
+	]');
+	
+2024-08-30 22:10:34.340 IST [27216] ERROR:  syntax error at or near "OR" at character 24
+2024-08-30 22:10:34.340 IST [27216] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	    data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:13:51.716 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:13:52.143 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.419 s, sync=0.006 s, total=0.428 s; sync files=5, longest=0.004 s, average=0.001 s; distance=28 kB, estimate=89 kB
+2024-08-30 22:16:29.194 IST [27216] ERROR:  type "roomdetails_type" does not exist at character 96
+2024-08-30 22:16:29.194 IST [27216] STATEMENT:  CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:18:21.440 IST [65971] ERROR:  relation "your_table_name" does not exist
+2024-08-30 22:18:21.440 IST [65971] STATEMENT:  ALTER TABLE your_table_name ALTER COLUMN room_no TYPE integer USING room_no::integer, ALTER COLUMN amount TYPE integer USING amount::integer;
+2024-08-30 22:18:51.137 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:18:53.212 IST [63703] LOG:  checkpoint complete: wrote 21 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.067 s, sync=0.005 s, total=2.076 s; sync files=17, longest=0.002 s, average=0.001 s; distance=119 kB, estimate=119 kB
+2024-08-30 22:19:28.795 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:19:28.795 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:19:29.279 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:19:29.279 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:19:29.513 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:19:29.513 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:19:29.837 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:19:29.837 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:19:30.006 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:19:30.006 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:19:36.481 IST [27216] ERROR:  type "roomdetails_type" does not exist at character 45
+2024-08-30 22:19:36.481 IST [27216] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data)
+2024-08-30 22:19:36.481 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:19:36.481 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250}
+	]');
+	
+2024-08-30 22:20:00.819 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:00.819 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:01.045 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:01.045 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:01.234 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:01.234 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:01.363 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:01.363 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:01.493 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:01.493 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails%ROWTYPE;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:04.024 IST [27216] ERROR:  function json_populate_recordset(roomdetails, text) does not exist at character 15
+2024-08-30 22:20:04.024 IST [27216] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:20:04.024 IST [27216] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails, json_data)
+2024-08-30 22:20:04.024 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:20:04.024 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250}
+	]');
+	
+2024-08-30 22:20:26.558 IST [27216] ERROR:  type "roomdetails_type" already exists
+2024-08-30 22:20:26.558 IST [27216] STATEMENT:  CREATE TYPE roomdetails_type AS (
+	    wing_id INT,
+	    room_size_id INT,
+	    room_no int,
+	    amount int
+	);
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:26.726 IST [27216] ERROR:  type "roomdetails_type" already exists
+2024-08-30 22:20:26.726 IST [27216] STATEMENT:  CREATE TYPE roomdetails_type AS (
+	    wing_id INT,
+	    room_size_id INT,
+	    room_no int,
+	    amount int
+	);
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:33.918 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:33.918 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:36.211 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:36.211 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:36.403 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:36.403 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:36.555 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:36.555 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:40.501 IST [27216] ERROR:  syntax error at or near "OR" at character 151
+2024-08-30 22:20:40.501 IST [27216] STATEMENT:  EXPLAIN VERBOSE -- CREATE TYPE roomdetails_type AS (
+	--     wing_id INT,
+	--     room_size_id INT,
+	--     room_no int,
+	--     amount int
+	-- );
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount)
+	        VALUES (default, data.wing_id, data.room_size_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-08-30 22:20:43.357 IST [27216] ERROR:  function json_populate_recordset(roomdetails_type, text) does not exist at character 15
+2024-08-30 22:20:43.357 IST [27216] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-08-30 22:20:43.357 IST [27216] QUERY:  SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data)
+2024-08-30 22:20:43.357 IST [27216] CONTEXT:  PL/pgSQL function saverooms(text) line 5 at FOR over SELECT rows
+2024-08-30 22:20:43.357 IST [27216] STATEMENT:  CALL saverooms('[
+	  {"wing_id": 1, "room_size_id": 2, "room_no": "101", "amount": 200},
+	  {"wing_id": 2, "room_size_id": 3, "room_no": "102", "amount": 250}
+	]');
+	
+2024-08-30 22:23:51.212 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:23:53.904 IST [63703] LOG:  checkpoint complete: wrote 28 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.682 s, sync=0.004 s, total=2.692 s; sync files=22, longest=0.001 s, average=0.001 s; distance=124 kB, estimate=124 kB
+2024-08-30 22:28:51.904 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:28:52.326 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.411 s, sync=0.002 s, total=0.423 s; sync files=5, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=113 kB
+2024-08-30 22:29:38.798 IST [35296] ERROR:  invalid input syntax for type integer: "NaN"
+2024-08-30 22:29:38.798 IST [35296] CONTEXT:  unnamed portal parameter $3 = '...'
+2024-08-30 22:29:38.798 IST [35296] STATEMENT:  INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);
+2024-08-30 22:30:01.842 IST [35431] ERROR:  invalid input syntax for type integer: "NaN"
+2024-08-30 22:30:01.842 IST [35431] CONTEXT:  unnamed portal parameter $3 = '...'
+2024-08-30 22:30:01.842 IST [35431] STATEMENT:  INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);
+2024-08-30 22:59:22.580 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 22:59:22.990 IST [63703] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.003 s, total=0.411 s; sync files=5, longest=0.002 s, average=0.001 s; distance=9 kB, estimate=103 kB
+2024-08-30 22:59:58.649 IST [37469] ERROR:  null value in column "wing_id" of relation "roomdetails" violates not-null constraint
+2024-08-30 22:59:58.649 IST [37469] DETAIL:  Failing row contains (1, null, 2, 1, 5000).
+2024-08-30 22:59:58.649 IST [37469] STATEMENT:  INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);
+2024-08-30 23:00:39.618 IST [37672] ERROR:  null value in column "wing_id" of relation "roomdetails" violates not-null constraint
+2024-08-30 23:00:39.618 IST [37672] DETAIL:  Failing row contains (2, null, 2, 1, 5000).
+2024-08-30 23:00:39.618 IST [37672] STATEMENT:  INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);
+2024-08-30 23:01:51.432 IST [38308] ERROR:  invalid input syntax for type integer: "NaN"
+2024-08-30 23:01:51.432 IST [38308] CONTEXT:  unnamed portal parameter $1 = '...'
+2024-08-30 23:01:51.432 IST [38308] STATEMENT:  INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);
+2024-08-30 23:04:23.001 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 23:04:23.623 IST [63703] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.615 s, sync=0.003 s, total=0.622 s; sync files=7, longest=0.002 s, average=0.001 s; distance=9 kB, estimate=93 kB
+2024-08-30 23:12:15.482 IST [40994] ERROR:  invalid input syntax for type integer: "NaN"
+2024-08-30 23:12:15.482 IST [40994] CONTEXT:  unnamed portal parameter $1 = '...'
+2024-08-30 23:12:15.482 IST [40994] STATEMENT:  INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);
+2024-08-30 23:14:23.621 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 23:14:24.853 IST [63703] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.223 s, sync=0.005 s, total=1.232 s; sync files=12, longest=0.002 s, average=0.001 s; distance=65 kB, estimate=90 kB
+2024-08-30 23:16:31.988 IST [65971] ERROR:  syntax error at or near "*" at character 8
+2024-08-30 23:16:31.988 IST [65971] STATEMENT:  delete * from roomdetails;
+2024-08-30 23:18:00.594 IST [65971] ERROR:  syntax error at or near "*" at character 8
+2024-08-30 23:18:00.594 IST [65971] STATEMENT:  delete * from roomdetails;
+2024-08-30 23:19:23.863 IST [63703] LOG:  checkpoint starting: time
+2024-08-30 23:19:25.404 IST [63703] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.532 s, sync=0.003 s, total=1.541 s; sync files=13, longest=0.002 s, average=0.001 s; distance=102 kB, estimate=102 kB
+2024-08-31 09:22:28.343 IST [63703] LOG:  checkpoint starting: time
+2024-08-31 09:22:28.755 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.001 s, total=0.412 s; sync files=6, longest=0.001 s, average=0.001 s; distance=29 kB, estimate=95 kB

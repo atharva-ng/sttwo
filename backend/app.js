@@ -1,11 +1,11 @@
 const express = require ("express");
-const bodyParser = require ("body-parser");
 
 const HttpError = require("./models/http-error");
 
 // const checkAuth = require("./middlewares/tokenAuth")
 
 const Auth = require("./routes/Auth");
+const Register = require("./routes/Register");
 
 const app = express();
 
@@ -23,11 +23,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth',Auth);
 
-app.use('/api/auth',Auth);
-
-app.use('/api/auth',Auth);
-
-app.use('/api/auth',Auth);
+app.use('/api/register',Register);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

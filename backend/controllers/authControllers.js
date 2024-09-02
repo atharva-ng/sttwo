@@ -133,7 +133,7 @@ const societyLogin=async (req,res,next)=>{
 };
 
 const ownerLogin=async (req,res,next)=>{
-  console.log(req);
+  // console.log(req);
   const errors= validationResult(req);
   
   if(!errors.isEmpty()){

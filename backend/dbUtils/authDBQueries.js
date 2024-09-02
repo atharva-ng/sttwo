@@ -3,11 +3,12 @@ const HttpError = require("../models/http-error");
 
 const {hashPassword, verifyPassword} = require("./passwords");
 
+
 const  getRoomSizeQuery=async ()=>{
   try{
-    const result = await pool.query('SELECT size FROM roomsize;');
-    const roomSizeList= result.rows.map(roomSize => roomSize.size);
-    return roomSizeList;
+    const result = await pool.query('SELECT id,size FROM roomsize;');
+    console.log();
+    return result.rows;
   }catch(err){
     throw new HttpError("Something went wrong", 500);
   }
