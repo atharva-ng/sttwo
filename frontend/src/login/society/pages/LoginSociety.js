@@ -1,17 +1,25 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
-import Form from "../components/Form";
+import Form from "../../pages/Form";
 
 const LoginSociety = () => {
 
-  return (
-    <div className="login-container">
-      <header className="header">
-        <div className="brand">COLONY</div>
-        <div className="profile">Profile</div>
-      </header>
+  const redirectHandler = (action) => {
+    const Navigate = useNavigate();
+    if (action === 1) {
+      Navigate()
+    } else if (action === 2) {
 
-      <Form />
+    } else {
+
+    }
+  };
+
+  return (
+    <div className="form-container">
+      <h1>Society Login Form:</h1>
+      <Form url="http://localhost:5007/api/auth/login/society" redirectHandler={redirectHandler} />
     </div>
   );
 };

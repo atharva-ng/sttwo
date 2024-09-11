@@ -5516,3 +5516,28 @@
 2024-08-30 23:19:25.404 IST [63703] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.532 s, sync=0.003 s, total=1.541 s; sync files=13, longest=0.002 s, average=0.001 s; distance=102 kB, estimate=102 kB
 2024-08-31 09:22:28.343 IST [63703] LOG:  checkpoint starting: time
 2024-08-31 09:22:28.755 IST [63703] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.001 s, total=0.412 s; sync files=6, longest=0.001 s, average=0.001 s; distance=29 kB, estimate=95 kB
+2024-09-02 12:20:57.812 IST [63702] LOG:  received fast shutdown request
+2024-09-02 12:20:57.812 IST [63702] LOG:  aborting any active transactions
+2024-09-02 12:20:57.813 IST [27216] FATAL:  terminating connection due to administrator command
+2024-09-02 12:20:57.813 IST [65971] FATAL:  terminating connection due to administrator command
+2024-09-02 12:20:57.815 IST [63702] LOG:  background worker "logical replication launcher" (PID 63708) exited with exit code 1
+2024-09-02 12:20:57.816 IST [63703] LOG:  shutting down
+2024-09-02 12:20:57.816 IST [63703] LOG:  checkpoint starting: shutdown immediate
+2024-09-02 12:20:57.821 IST [63703] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.005 s; sync files=8, longest=0.001 s, average=0.001 s; distance=12 kB, estimate=86 kB
+2024-09-02 12:20:57.826 IST [63702] LOG:  database system is shut down
+2024-09-02 12:21:21.666 IST [71504] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-09-02 12:21:21.669 IST [71504] LOG:  listening on IPv6 address "::1", port 5432
+2024-09-02 12:21:21.669 IST [71504] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-09-02 12:21:21.669 IST [71504] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-09-02 12:21:21.674 IST [71507] LOG:  database system was shut down at 2024-09-02 12:20:57 IST
+2024-09-02 12:21:21.679 IST [71504] LOG:  database system is ready to accept connections
+2024-09-02 12:26:21.685 IST [71505] LOG:  checkpoint starting: time
+2024-09-02 12:26:21.691 IST [71505] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.007 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-09-02 13:37:57.534 IST [71505] LOG:  checkpoint starting: time
+2024-09-02 13:37:58.053 IST [71505] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.003 s, total=0.519 s; sync files=6, longest=0.002 s, average=0.001 s; distance=2 kB, estimate=2 kB
+2024-09-02 17:50:11.786 IST [71505] LOG:  checkpoint starting: time
+2024-09-02 18:51:04.712 IST [71505] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3652.828 s, sync=0.093 s, total=3652.926 s; sync files=6, longest=0.093 s, average=0.016 s; distance=2 kB, estimate=2 kB
+2024-09-03 13:58:03.085 IST [71505] LOG:  checkpoint starting: time
+2024-09-03 13:58:04.125 IST [71505] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.028 s, sync=0.003 s, total=1.041 s; sync files=11, longest=0.001 s, average=0.001 s; distance=61 kB, estimate=61 kB
+2024-09-03 15:28:06.402 IST [71505] LOG:  checkpoint starting: time
+2024-09-03 15:28:06.512 IST [71505] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.001 s, total=0.110 s; sync files=1, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=56 kB

@@ -84,7 +84,7 @@ const postOwnerDetailsQuery=async (ownerDetails)=>{
           hashedPassword,
           null
         ]);
-        console.log(result);
+        // console.log(result);
       }catch(err){
         throw new HttpError("Failed to save the password.", 500);
       }
@@ -100,7 +100,7 @@ const postOwnerDetailsQuery=async (ownerDetails)=>{
 
 const loginQuery=async (email, password, choice)=>{
   try{
-    const result = await pool.query("CALL getemaillogin($1,$2, $3);", [email, choice,null]);
+    const result = await pool.query("CALL getemaillogin($1,$2, $3);", [email, choice, null]);
     if(result.rows[0].idout===null){
       throw new HttpError("Invalid credentials", 401);
     }

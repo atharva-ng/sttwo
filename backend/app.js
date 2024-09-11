@@ -6,6 +6,8 @@ const HttpError = require("./models/http-error");
 
 const Auth = require("./routes/Auth");
 const Register = require("./routes/Register");
+const OwnerProfile = require("./routes/OwnerProfile");
+const SocietyProfile = require("./routes/SocietyProfile");
 
 const app = express();
 
@@ -24,6 +26,10 @@ app.use((req, res, next) => {
 app.use('/api/auth',Auth);
 
 app.use('/api/register',Register);
+
+app.use('/api/owner',OwnerProfile);
+
+app.use('/api/society',SocietyProfile);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

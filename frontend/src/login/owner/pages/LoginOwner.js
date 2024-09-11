@@ -1,6 +1,6 @@
 import React from "react";
 
-import Form from "../components/Form";
+import Form from "../../pages/Form";
 
 const LoginOwner = () => {
 
@@ -11,7 +11,7 @@ const LoginOwner = () => {
         <div className="profile">Profile</div>
       </header>
 
-      <Form />
+      <Form url="http://localhost:5007/api/auth/login/owner"/>
     </div>
   );
 };
