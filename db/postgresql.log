@@ -5541,3 +5541,17 @@
 2024-09-03 13:58:04.125 IST [71505] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.028 s, sync=0.003 s, total=1.041 s; sync files=11, longest=0.001 s, average=0.001 s; distance=61 kB, estimate=61 kB
 2024-09-03 15:28:06.402 IST [71505] LOG:  checkpoint starting: time
 2024-09-03 15:28:06.512 IST [71505] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.001 s, total=0.110 s; sync files=1, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=56 kB
+2024-09-11 13:02:33.067 IST [97077] ERROR:  syntax error at or near "t" at character 1
+2024-09-11 13:02:33.067 IST [97077] STATEMENT:  t
+	 "public.societypasswords"
+	  Column  |          Type          | Collation | Nullable |                   Default                    
+	----------+------------------------+-----------+----------+----------------------------------------------
+	 id       | integer                |           | not null | nextval('societypasswords_id_seq'::regclass)
+	 password | character varying(255) |           | not null | 
+	Indexes:
+	    "societypasswords_pkey" PRIMARY KEY, btree (id)
+	Foreign-key constraints:
+	    "societypasswords_id_fkey" FOREIGN KEY (id) REFERENCES societydetails(id) ON DELETE CASCADE
+	(END)
+	select * from maintenance_heads
+	;
