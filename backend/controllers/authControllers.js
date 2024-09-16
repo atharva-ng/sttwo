@@ -6,19 +6,6 @@ const { validationResult } = require("express-validator");
 
 const jwt = require('jsonwebtoken');
 
-
-const getSignupSociety = async (req, res, next) => {
-  try {
-    const [roomSizes, maintainanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
-    res.status(200).json({
-      "roomSizes": roomSizes,
-      "maintainanceHeads": maintainanceHeads
-    });
-  } catch {
-    throw new HttpError("Something went wrong", 500);
-  }
-}
-
 const postSignupSociety = async (req, res, next) => {
   // console.log(req.body);
   const errors = validationResult(req);

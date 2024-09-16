@@ -194,4 +194,17 @@ const registerSociety = async (req, res, next) => {
   });
 }
 
+const getRegisterSociety = async (req, res, next) => {
+  try {
+    const [roomSizes, maintainanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
+    res.status(200).json({
+      "roomSizes": roomSizes,
+      "maintainanceHeads": maintainanceHeads
+    });
+  } catch {
+    throw new HttpError("Something went wrong", 500);
+  }
+}
+
 exports.registerSociety = registerSociety;
+exports.getRegisterSociety = getRegisterSociety;

@@ -5555,3 +5555,145 @@
 	(END)
 	select * from maintenance_heads
 	;
+2024-09-11 13:36:31.846 IST [71505] LOG:  checkpoint starting: time
+2024-09-11 13:36:32.476 IST [71505] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.623 s, sync=0.002 s, total=0.631 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=51 kB
+2024-09-11 13:45:48.491 IST [97077] ERROR:  syntax error at or near "wingdetails" at character 10
+2024-09-11 13:45:48.491 IST [97077] STATEMENT:  select * wingdetails;
+2024-09-11 13:46:17.609 IST [97077] ERROR:  syntax error at or near "w" at character 10
+2024-09-11 13:46:17.609 IST [97077] STATEMENT:  select * w
+	select * from wingdetails;
+2024-09-11 13:46:23.559 IST [97077] ERROR:  syntax error at or near "w" at character 10
+2024-09-11 13:46:23.559 IST [97077] STATEMENT:  select * w
+	select * from wingdetails;
+2024-09-13 11:50:00.373 IST [71505] LOG:  checkpoint starting: time
+2024-09-13 11:50:00.888 IST [71505] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=46 kB
+2024-09-13 13:51:17.284 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:17.284 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:51:20.632 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:20.632 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:51:21.665 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:21.665 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:51:22.535 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:22.535 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:54:40.780 IST [71505] LOG:  checkpoint starting: time
+2024-09-13 13:54:42.135 IST [71505] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.346 s, sync=0.003 s, total=1.356 s; sync files=13, longest=0.002 s, average=0.001 s; distance=49 kB, estimate=49 kB
+2024-09-13 13:54:47.009 IST [5755] ERROR:  syntax error at or near "BEGIN" at character 1893
+2024-09-13 13:54:47.009 IST [5755] STATEMENT:  CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	    EXECUTE "CREATE OR REPLACE PROCEDURE getemaillogin(_email VARCHAR, _choice int, OUT idout INT) LANGUAGE plpgsql AS $$ BEGIN BEGIN IF _choice = 1 THEN SELECT id INTO idout FROM societydetails WHERE email = _email; ELSEIF _choice =2 THEN SELECT id INTO idout FROM ownerdetails WHERE email = _email; END IF; EXCEPTION WHEN OTHERS THEN RAISE EXCEPTION 'An error occurred: %', SQLERRM; idout := null; END; END; $$;";
+	    
+	    
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:55:10.410 IST [5755] ERROR:  syntax error at or near "BEGIN" at character 1893
+2024-09-13 13:55:10.410 IST [5755] STATEMENT:  CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	    EXECUTE 'CREATE OR REPLACE PROCEDURE getemaillogin(_email VARCHAR, _choice int, OUT idout INT) LANGUAGE plpgsql AS $$ BEGIN BEGIN IF _choice = 1 THEN SELECT id INTO idout FROM societydetails WHERE email = _email; ELSEIF _choice =2 THEN SELECT id INTO idout FROM ownerdetails WHERE email = _email; END IF; EXCEPTION WHEN OTHERS THEN RAISE EXCEPTION 'An error occurred: %', SQLERRM; idout := null; END; END; $$;';
+	    
+	    
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-14 23:53:58.043 IST [71505] LOG:  checkpoint starting: time
+2024-09-14 23:53:58.669 IST [71505] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.618 s, sync=0.002 s, total=0.627 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=45 kB
+2024-09-15 23:18:34.782 IST [71505] LOG:  checkpoint starting: time
+2024-09-15 23:18:35.298 IST [71505] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=41 kB
