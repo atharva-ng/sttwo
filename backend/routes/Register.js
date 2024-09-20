@@ -11,6 +11,6 @@ router.use(checkAuth);
 
 router.get('/', registerControllers.getRegisterSociety);
 
-router.post('/', registerControllers.postRegisterSociety);
+router.post('/', registerControllers.registerSociety);
 
 module.exports = router;

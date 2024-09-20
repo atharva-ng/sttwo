@@ -9,21 +9,48 @@
           "roomNumber":101,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "2":{
           "roomNumber":102,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         },
         "3":{
           "roomNumber":103,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
+          
         },
         "4":{
           "roomNumber":104,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         }
       }
     },
@@ -36,21 +63,47 @@
           "roomNumber":101,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "2":{
           "roomNumber":102,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         },
         "3":{
           "roomNumber":103,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "4":{
           "roomNumber":104,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         }
       }
     },
@@ -63,21 +116,47 @@
           "roomNumber":101,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "2":{
           "roomNumber":102,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         },
         "3":{
           "roomNumber":103,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "4":{
           "roomNumber":104,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         }
       }
     },
@@ -90,21 +169,47 @@
           "roomNumber":101,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "2":{
           "roomNumber":102,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         },
         "3":{
           "roomNumber":103,
           "roomSize":"1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+          },
         },
         "4":{
           "roomNumber":104,
           "roomSize":"2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount":{
+            "1":1500,
+            "2":500,
+            "3":2000,
+            "4":1000,
+            "5":2500
+          },
         }
       }
     }
@@ -126,3 +231,7 @@
 // }
 
 Login, save the key in the front end, add the token to the header. 
+
+
+
+

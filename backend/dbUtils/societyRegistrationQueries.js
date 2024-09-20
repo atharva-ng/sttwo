@@ -1,50 +1,77 @@
 const pool = require('./db');
 const HttpError = require("../models/http-error");
 
-const {getRoomSizeQuery} =require("./authDBQueries");
+const { getRoomSizeQuery } = require("./authDBQueries");
 
-const  saveWingQuery=async (societyID, name, roomsPerFloor)=>{
-  // console.log(societyID);
-  // console.log(typeof societyID);
-  try{
-    const result= await pool.query('CALL savewing($1,$2,$3,$4);', [
+const saveWingQuery = async (societyID, name, roomsPerFloor) => {
+  try {
+    const result = await pool.query('CALL savewing($1,$2,$3,$4);', [
       societyID,
       name,
       roomsPerFloor,
       null]);
-      return result.rows[0].idout;
-  }catch(err){
+    return result.rows[0].idout;
+  } catch (err) {
     console.log(err);
     throw new HttpError("Something went wrong", 500);
   }
 };
 
-const  saveRoomQuery=async (roomsDB)=>{
-  try{
-    // roomsDB='[{"wingId":55,"roomSize":2,"roomNumber":301,"maintainanceAmount":5000}]';
-    // const jsonData= JSON.stringify(roomsDB);
 
-    // const result= await pool.query('CALL saverooms($1);', [
-    //   jsonData]);
+const createRoomLinkQuery = async (wingId, roomSizeId) => {
+  try {
+    const result = await pool.query('CALL createlink($1,$2,$3);', [
+      roomSizeId,
+      wingId,
+      null
+    ]);
 
+    return result.rows[0].new_id;
+
+  } catch (err) {
+    console.log(err);
+    throw new HttpError("Failed to create room link", 500);
+  }
+}
+const saveRoomQuery = async (roomsDB) => {
+  try {
     for (const element of roomsDB) {
-      console.log(element.wingID);
       await pool.query(
-        'INSERT INTO roomdetails(id, wing_id, room_size_id, room_no, amount) VALUES (default, $1, $2, $3, $4);',
+        'INSERT INTO roomdetails(id,  roomlink_id, room_no, amount) VALUES (default, $1, $2, $3);',
         [
-          element.wingId,
-          element.roomSize,
+          element.roomLink,
           element.roomNumber,
           element.maintainanceAmount
         ]
       );
     }
-
-    // console.log(result);
-  }catch(err){
+  } catch (err) {
     console.log(err);
     throw new HttpError("Something went wrong", 500);
   }
 };
 
-module.exports = {saveWingQuery,saveRoomQuery };
+
+const saveMaintainanceHeadQuery = async (roomLinkId, amountObj) => {
+  const idList = []
+  try {
+    for (const [key, value] of Object.entries(amountObj)) {
+      idList.push(await pool.query(
+        'call insertmaintainancehead($1,$2,$3,$4)',
+        [
+          roomLinkId,
+          key,
+          value,
+          null
+        ]
+      ));
+    };
+    return idList;
+  } catch (err) {
+    console.log(err);
+    throw new HttpError("Something went wrong", 500);
+  }
+
+}
+
+module.exports = { saveWingQuery, createRoomLinkQuery, saveRoomQuery, saveMaintainanceHeadQuery };

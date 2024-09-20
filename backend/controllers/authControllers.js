@@ -158,7 +158,6 @@ const ownerLogin = async (req, res, next) => {
   }
 };
 
-exports.getSignupSociety = getSignupSociety;
 exports.postSignupSociety = postSignupSociety;
 exports.postSignupOwner = postSignupOwner;
 exports.societyLogin = societyLogin;
