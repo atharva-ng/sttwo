@@ -8,6 +8,7 @@ const Auth = require("./routes/Auth");
 const Register = require("./routes/Register");
 const OwnerProfile = require("./routes/OwnerProfile");
 const SocietyProfile = require("./routes/SocietyProfile");
+const financeModule = require("./routes/financeModule");
 
 const app = express();
 
@@ -30,6 +31,8 @@ app.use('/api/register', Register);
 app.use('/api/owner', OwnerProfile);
 
 app.use('/api/society', SocietyProfile);
+
+app.use('/api/finance', financeModule);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

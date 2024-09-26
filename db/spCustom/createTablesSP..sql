@@ -20,6 +20,17 @@ BEGIN
 
     EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY,roomLink_id INT NOT NULL REFERENCES roomlink(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
 
+    EXECUTE 'CREATE TABLE payment_type (id SERIAL PRIMARY KEY, payment_head VARCHAR(255) NOT NULL);';
+
+    EXECUTE 'CREATE TABLE transaction_type (id SERIAL PRIMARY KEY, transaction_head VARCHAR(255) NOT NULL);';
+
+    EXECUTE 'CREATE TABLE transaction (id SERIAL PRIMARY KEY, amount DECIMAL(10, 2) NOT NULL, transaction_timestamp TIMESTAMP NOT NULL, transaction_type_id INT NOT NULL REFERENCES transaction_type(id), payment_type_id INT NOT NULL REFERENCES payment_type(id), notes TEXT);';
+
+    EXECUTE 'CREATE TABLE room_transaction (id SERIAL PRIMARY KEY, transaction_date TIMESTAMP NOT NULL, transaction_id INT NOT NULL REFERENCES transaction(id), roomdetails_id INT NOT NULL REFERENCES roomdetails(id));';
+
+    EXECUTE "INSERT INTO payment_type (payment_head) VALUES ('UPI'), ('Cash'), ('Cheque'), ('Mandate'), ('Bank Transfer');";
+
+    EXECUTE"INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');";
 END;
 $$;
 

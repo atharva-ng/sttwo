@@ -7397,3 +7397,18 @@
 2024-09-20 12:10:17.952 IST [3843] ERROR:  syntax error at or near "clear" at character 1
 2024-09-20 12:10:17.952 IST [3843] STATEMENT:  clear
 	;
+2024-09-20 12:13:11.592 IST [3797] LOG:  checkpoint starting: time
+2024-09-20 12:13:13.845 IST [3797] LOG:  checkpoint complete: wrote 24 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.243 s, sync=0.003 s, total=2.253 s; sync files=20, longest=0.001 s, average=0.001 s; distance=119 kB, estimate=220 kB
+2024-09-24 13:40:25.364 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 13:40:31.632 IST [3797] LOG:  checkpoint complete: wrote 62 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.259 s, sync=0.006 s, total=6.270 s; sync files=53, longest=0.001 s, average=0.001 s; distance=260 kB, estimate=260 kB
+2024-09-24 13:45:25.630 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 13:45:26.868 IST [3797] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.229 s, sync=0.002 s, total=1.238 s; sync files=10, longest=0.001 s, average=0.001 s; distance=187 kB, estimate=253 kB
+2024-09-24 14:15:25.952 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 14:15:26.674 IST [3797] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.713 s, sync=0.004 s, total=0.722 s; sync files=7, longest=0.003 s, average=0.001 s; distance=1 kB, estimate=228 kB
+2024-09-24 14:17:05.981 IST [3843] ERROR:  syntax error at or near "dt" at character 1
+2024-09-24 14:17:05.981 IST [3843] STATEMENT:  dt
+	INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');
+2024-09-24 14:20:25.684 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 14:20:26.307 IST [3797] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.613 s, sync=0.002 s, total=0.623 s; sync files=6, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=205 kB
+2024-09-24 14:25:25.310 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 14:25:26.236 IST [3797] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.922 s, sync=0.002 s, total=0.927 s; sync files=9, longest=0.001 s, average=0.001 s; distance=18 kB, estimate=186 kB
