@@ -42,7 +42,8 @@ const Form = (props) => {
       if (!response.ok) {
         throw new Error(responseData.message || "Failed to login");
       }
-      localStorage.setItem('token',responseData.data.token);
+      // localStorage.setItem('token',responseData.data.token);
+      console.log(responseData);
       setSuccessMessage("Login successful!");
 
     } catch (error) {

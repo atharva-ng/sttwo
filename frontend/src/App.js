@@ -10,7 +10,8 @@ import Signup from './signup/signup/pages/Signup';
 import SignupSociety from './signup/signupSociety/pages/SignupSociety';
 import SignupOwner from './signup/signupOwner/pages/SignupOwner'
 // import WingInformation from './signup/signupSociety/pages/WingInformation'; // Import the new component
-
+import SignupSociety2 from './signup/signupSociety/pages/SignupSociet2';
+import SocietyRegistrationForm from './signup/signupSociety/pages/MaintenanceSociety';
 import { useAuth } from './shared/hooks/auth-hook';
 import {AuthContext} from './shared/context/auth-context';
 
@@ -57,6 +58,12 @@ function App() {
         <Route path='/signup/signup-society' exact>
           <SignupSociety />
         </Route>
+        <Route path="/signup/signup-society-2" exact>
+          <SignupSociety2 />
+        </Route>
+        <Route path='/signup/signup-society-3' exact>
+          <SocietyRegistrationForm />
+        </Route>
         <Redirect to='/' />
       </Switch>
       </>
@@ -78,6 +85,7 @@ function App() {
         <Footer/>
 
       </AuthContext.Provider>
+      
     </Router>
   );
 }

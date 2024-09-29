@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
-const Form =()=>{
+import { useHistory } from "react-router-dom";
 
+
+const Form =()=>{
+  
+  const history = useHistory();
   // State variables to store the form data
   const [formData, setFormData] = useState({
     name: "",
@@ -13,7 +17,7 @@ const Form =()=>{
     city: "",
     state: "",
     pincode: "",
-    numberOfWings: "",
+    numberOfWings: 0,
     registrationNumber: "",
   });
 
@@ -30,23 +34,30 @@ const Form =()=>{
   const handleNext = async (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5007/api/auth/signup/society", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    }).then(async response=>{
-      const responseData=await response.json();
-      console.log(responseData);
+    try {
+      const response = await fetch("http://localhost:5007/api/auth/signup/society", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const responseData = await response.json();
+
       if (!response.ok) {
         throw new Error(`Unexpected Error: ${responseData}`);
       }
-      window.location.reload();
-    }).catch(error => {
-      console.log(error);
+
+      // Set a flag in sessionStorage to indicate that the form has been successfully submitted
+      sessionStorage.setItem('formSubmitted', 'true');
+      sessionStorage.setItem('wingNumber', formData.numberOfWings)
+
+      // Redirect to the next page
+      history.push("/signup/signup-society-2");
+    } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
-    })
+    }
   };
 
   return(

@@ -55,10 +55,11 @@ const postSocietyDetailsQuery=async (societyDetails)=>{
       }
     }
   }catch(err){
+    console.log(err);
     if(err instanceof HttpError){
       throw err;
     }else{
-      throw new HttpError("Something went wrong", 500);
+      throw new HttpError("Something went wron", 500);
     }
   }
 };

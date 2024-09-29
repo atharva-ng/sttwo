@@ -6,14 +6,14 @@ import Form from "../../pages/Form";
 const LoginSociety = () => {
 
   const redirectHandler = (action) => {
-    const Navigate = useNavigate();
-    if (action === 1) {
-      Navigate()
-    } else if (action === 2) {
+    // const Navigate = useNavigate();
+    // if (action === 1) {
+    //   Navigate()
+    // } else if (action === 2) {
 
-    } else {
+    // } else {
 
-    }
+    // }
   };
 
   return (
