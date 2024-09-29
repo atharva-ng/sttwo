@@ -12,24 +12,39 @@ import SignupOwner from './signup/signupOwner/pages/SignupOwner'
 // import WingInformation from './signup/signupSociety/pages/WingInformation'; // Import the new component
 import SignupSociety2 from './signup/signupSociety/pages/SignupSociet2';
 import SocietyRegistrationForm from './signup/signupSociety/pages/MaintenanceSociety';
+import SocietyProfile from './profile/society/pages/SocietyProfile';
+import FlatsInformation from './profile/society/pages/FlatsInformation';
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 
 function App() {
 
-  const { token, login, logout, userId } = useAuth();
+  const { userType, token, login, logout } = useAuth();
 
   let routes;
   if (token) {
-    routes = (
-      <>
-        <Switch>
-          <Route path='/' exact>
-            <Homepage />
-          </Route>
-        </Switch>
-      </>
-    )
+    if (userType === "SOCIETY") {
+      routes = (
+        <>
+          <Switch>
+            <Route path='/' exact>
+
+            </Route>
+            <Route path='/profile' exact>
+              <SocietyProfile />
+            </Route>
+            <Route path='/flatsInformation' exact>
+              <FlatsInformation />
+            </Route>
+            <Redirect to='/' />
+          </Switch>
+        </>
+      )
+    } else {
+      routes = (
+        <></>
+      )
+    }
   } else {
     routes = (
       <>
@@ -65,8 +80,8 @@ function App() {
     <Router>
       <AuthContext.Provider value={{
         isLoggedIn: !!token,
+        userType: userType,
         token: token,
-        userId: userId,
         login: login,
         logout: logout
       }}>
@@ -76,7 +91,7 @@ function App() {
         <Footer />
 
       </AuthContext.Provider>
-      
+
     </Router>
   );
 }

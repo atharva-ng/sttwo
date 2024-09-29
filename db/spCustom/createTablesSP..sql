@@ -30,7 +30,7 @@ BEGIN
 
     EXECUTE "INSERT INTO payment_type (payment_head) VALUES ('UPI'), ('Cash'), ('Cheque'), ('Mandate'), ('Bank Transfer');";
 
-    EXECUTE"INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');";
+    EXECUTE "INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');";
 END;
 $$;
 

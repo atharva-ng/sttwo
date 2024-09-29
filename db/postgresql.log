@@ -7412,3 +7412,59 @@
 2024-09-24 14:20:26.307 IST [3797] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.613 s, sync=0.002 s, total=0.623 s; sync files=6, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=205 kB
 2024-09-24 14:25:25.310 IST [3797] LOG:  checkpoint starting: time
 2024-09-24 14:25:26.236 IST [3797] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.922 s, sync=0.002 s, total=0.927 s; sync files=9, longest=0.001 s, average=0.001 s; distance=18 kB, estimate=186 kB
+2024-09-29 10:25:04.094 IST [63318] ERROR:  syntax error at or near "where" at character 53
+2024-09-29 10:25:04.094 IST [63318] STATEMENT:  select * from societydetails
+	inner join wingdetails
+	where societydetails.id = wingdetails.society_id;
+	
+2024-09-29 10:25:25.194 IST [63567] ERROR:  syntax error at or near "where" at character 53
+2024-09-29 10:25:25.194 IST [63567] STATEMENT:  select * from societydetails inner join wingdetails where societydetails.id = wingdetails.society_id;
+2024-09-29 10:36:33.867 IST [63567] ERROR:  syntax error at or near "elect" at character 1
+2024-09-29 10:36:33.867 IST [63567] STATEMENT:  elect * from wingdetails;
+2024-09-29 10:39:43.995 IST [3797] LOG:  checkpoint starting: time
+2024-09-29 10:39:45.938 IST [3797] LOG:  checkpoint complete: wrote 21 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.935 s, sync=0.003 s, total=1.944 s; sync files=21, longest=0.001 s, average=0.001 s; distance=99 kB, estimate=178 kB
+2024-09-29 10:40:18.406 IST [63567] ERROR:  syntax error at or near "*" at character 8
+2024-09-29 10:40:18.406 IST [63567] STATEMENT:  delete * from societydetails;
+2024-09-29 10:43:36.054 IST [63318] ERROR:  missing FROM-clause entry for table "wingdetails" at character 51
+2024-09-29 10:43:36.054 IST [63318] STATEMENT:  select societydetails.name, societydetails.email, wingdetails.password from
+	societypasswords inner join societydetails on societydetails.id=societypasswords.id;
+2024-09-29 10:44:43.941 IST [3797] LOG:  checkpoint starting: time
+2024-09-29 10:44:44.582 IST [3797] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.636 s, sync=0.001 s, total=0.641 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=161 kB
+2024-09-29 14:25:34.875 IST [63318] ERROR:  column b.society_id does not exist at character 95
+2024-09-29 14:25:34.875 IST [63318] STATEMENT:  select a.name, a.email, b.password from
+	societydetails as a, societypasswords as b
+	where a.id=b.society_id;
+2024-09-29 14:25:54.994 IST [63318] ERROR:  column b.d does not exist at character 95
+2024-09-29 14:25:54.994 IST [63318] STATEMENT:  select a.name, a.email, b.password from
+	societydetails as a, societypasswords as b
+	where a.id=b.d;
+2024-09-29 14:28:31.973 IST [3797] LOG:  checkpoint starting: time
+2024-09-29 14:28:32.190 IST [3797] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.207 s, sync=0.001 s, total=0.217 s; sync files=2, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=145 kB
+2024-09-29 14:33:31.190 IST [3797] LOG:  checkpoint starting: time
+2024-09-29 14:33:34.371 IST [3797] LOG:  checkpoint complete: wrote 34 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.167 s, sync=0.010 s, total=3.181 s; sync files=22, longest=0.004 s, average=0.001 s; distance=354 kB, estimate=354 kB
+2024-09-29 14:34:50.582 IST [63318] ERROR:  column a.flats_per_floor does not exist at character 80
+2024-09-29 14:34:50.582 IST [63318] HINT:  Perhaps you meant to reference the column "b.flats_per_floor".
+2024-09-29 14:34:50.582 IST [63318] STATEMENT:  select * from societydetails;
+	select * from wingdetails;
+	
+	select a.id, a.name, a.flats_per_floor, b.id, b.name, b.email
+	from societydetails as a, wingdetails as b
+	where a.society_id=b.id
+	
+2024-09-29 15:31:58.860 IST [63318] ERROR:  invalid reference to FROM-clause entry for table "wingdetails" at character 138
+2024-09-29 15:31:58.860 IST [63318] HINT:  There is an entry for table "a", but it cannot be referenced from this part of the query.
+2024-09-29 15:31:58.860 IST [63318] STATEMENT:  select a.id, a.name, a.flats_per_floor, b.id, b.name, b.email 
+	from wingdetails as a, societydetails as b 
+	inner join societydetails on  wingdetails.society_id=societydetails.id;
+	
+2024-09-29 16:06:14.724 IST [3797] LOG:  checkpoint starting: time
+2024-09-29 16:06:15.055 IST [3797] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.312 s, sync=0.002 s, total=0.331 s; sync files=3, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=319 kB
+2024-09-29 16:06:16.424 IST [63318] ERROR:  missing FROM-clause entry for table "c" at character 59
+2024-09-29 16:06:16.424 IST [63318] STATEMENT:  select a.id, a.name, a.flats_per_floor, b.name, b.email , c.room_size_id
+	from wingdetails as a
+	inner join societydetails as b 
+	on  a.society_id=b.id and b.id=68 --variable
+	-- left join roomlink as c ON
+	-- c.wing_details_id=a.id
+	;
+	

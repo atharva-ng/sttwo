@@ -99,14 +99,17 @@ const societyLogin = async (req, res, next) => {
     let token;
     try {
       token = jwt.sign(
-        { userId: id },
+        {
+          userId: id,
+          userType: "SOCIETY"
+        },
         'authentacationkey_12987655434',
         { expiresIn: '1h' }
       );
     } catch (err) {
       throw new HttpError("Unable to login", 500);
     }
-    res.status(200).json({ "token": token });
+    res.status(200).json({ "token": token, userType: "SOCIETY" });
   } catch (err) {
     if (err instanceof HttpError) {
       return next(err);
@@ -138,7 +141,10 @@ const ownerLogin = async (req, res, next) => {
     let token;
     try {
       token = jwt.sign(
-        { userId: id, email: emailAddress },
+        {
+          userId: id,
+          userType: "OWNER"
+        },
         'authentacationkey_12987655434',
         { expiresIn: '1h' }
       );
@@ -147,7 +153,7 @@ const ownerLogin = async (req, res, next) => {
         throw new HttpError("Unable to login", 500);
       }
     }
-    res.status(200).json({ "token": token });
+    res.status(200).json({ "token": token, userType: "OWNER" });
   } catch (err) {
     if (err instanceof HttpError) {
       return next(err);

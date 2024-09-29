@@ -46,8 +46,7 @@ const Form = (props) => {
 
 
       console.log(responseData);
-      // localStorage.setItem('token',responseData.data.token);
-      // setSuccessMessage("Login successful!");
+      props.login(responseData.userType, responseData.token);
     } catch (error) {
       setErrorMessage(error.message || "There was a problem with the fetch operation");
     } finally {

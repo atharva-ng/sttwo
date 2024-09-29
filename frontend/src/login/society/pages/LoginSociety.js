@@ -1,25 +1,14 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
 
 import Form from "../../pages/Form";
+import { AuthContext } from "../../../shared/context/auth-context";
 
 const LoginSociety = () => {
-
-  const redirectHandler = (action) => {
-    // const Navigate = useNavigate();
-    // if (action === 1) {
-    //   Navigate()
-    // } else if (action === 2) {
-
-    // } else {
-
-    // }
-  };
-
+  const { userType, login, logout } = useContext(AuthContext);
   return (
     <div className="form-container">
       <h1>Society Login Form:</h1>
-      <Form url="http://localhost:5007/api/auth/login/society" redirectHandler={redirectHandler} />
+      <Form url="http://localhost:5007/api/auth/login/society" login={login} logout={logout} userType={userType} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const { getRoomSizeQuery } = require("../dbUtils/authDBQueries");
 const jwt = require('jsonwebtoken');
 
 const numberOfWings = 4;
-const societyID = 52;
+const societyID = 72;
 const reqObj = {
   "wingInformation": {
     "1": {
@@ -315,7 +315,8 @@ const getRegisterSociety = async (req, res, next) => {
       "roomSizes": roomSizes,
       "maintainanceHeads": maintainanceHeads
     });
-  } catch {
+  } catch (err) {
+    console.log(err);
     throw new HttpError("Something went wrong", 500);
   }
 }
