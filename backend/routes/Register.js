@@ -1,7 +1,7 @@
 const express = require("express");
 const { check } = require("express-validator");
 
-const registerControllers=require("../controllers/registerControllers");
+const registerControllers = require("../controllers/registerControllers");
 
 const checkAuth = require("../middlewares/tokenAuth");
 
@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.use(checkAuth);
 
-router.get('/', registerControllers.registerSociety);
+router.get('/', registerControllers.getRegisterSociety);
 
-module.exports=router;
+router.post('/', registerControllers.registerSociety);
+
+module.exports = router;

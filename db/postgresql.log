@@ -5555,3 +5555,1860 @@
 	(END)
 	select * from maintenance_heads
 	;
+2024-09-11 13:36:31.846 IST [71505] LOG:  checkpoint starting: time
+2024-09-11 13:36:32.476 IST [71505] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.623 s, sync=0.002 s, total=0.631 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=51 kB
+2024-09-11 13:45:48.491 IST [97077] ERROR:  syntax error at or near "wingdetails" at character 10
+2024-09-11 13:45:48.491 IST [97077] STATEMENT:  select * wingdetails;
+2024-09-11 13:46:17.609 IST [97077] ERROR:  syntax error at or near "w" at character 10
+2024-09-11 13:46:17.609 IST [97077] STATEMENT:  select * w
+	select * from wingdetails;
+2024-09-11 13:46:23.559 IST [97077] ERROR:  syntax error at or near "w" at character 10
+2024-09-11 13:46:23.559 IST [97077] STATEMENT:  select * w
+	select * from wingdetails;
+2024-09-13 11:50:00.373 IST [71505] LOG:  checkpoint starting: time
+2024-09-13 11:50:00.888 IST [71505] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=46 kB
+2024-09-13 13:51:17.284 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:17.284 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:51:20.632 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:20.632 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:51:21.665 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:21.665 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:51:22.535 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-13 13:51:22.535 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	--     EXECUTE '';
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:54:40.780 IST [71505] LOG:  checkpoint starting: time
+2024-09-13 13:54:42.135 IST [71505] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.346 s, sync=0.003 s, total=1.356 s; sync files=13, longest=0.002 s, average=0.001 s; distance=49 kB, estimate=49 kB
+2024-09-13 13:54:47.009 IST [5755] ERROR:  syntax error at or near "BEGIN" at character 1893
+2024-09-13 13:54:47.009 IST [5755] STATEMENT:  CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	    EXECUTE "CREATE OR REPLACE PROCEDURE getemaillogin(_email VARCHAR, _choice int, OUT idout INT) LANGUAGE plpgsql AS $$ BEGIN BEGIN IF _choice = 1 THEN SELECT id INTO idout FROM societydetails WHERE email = _email; ELSEIF _choice =2 THEN SELECT id INTO idout FROM ownerdetails WHERE email = _email; END IF; EXCEPTION WHEN OTHERS THEN RAISE EXCEPTION 'An error occurred: %', SQLERRM; idout := null; END; END; $$;";
+	    
+	    
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-13 13:55:10.410 IST [5755] ERROR:  syntax error at or near "BEGIN" at character 1893
+2024-09-13 13:55:10.410 IST [5755] STATEMENT:  CREATE OR REPLACE PROCEDURE create_tables_and_procedures()
+	LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    EXECUTE 'CREATE TABLE roomsize (id serial PRIMARY KEY, size varchar(10) NOT NULL);';
+	    EXECUTE 'CREATE TABLE maintenance_heads (id serial PRIMARY KEY, heads varchar(100) NOT NULL, CONSTRAINT unique_heads UNIQUE (heads));';
+	    EXECUTE 'CREATE TABLE ownerdetails (Id SERIAL PRIMARY KEY, FirstName VARCHAR(255) NOT NULL, LastName VARCHAR(255) NOT NULL, Email VARCHAR(255) NOT NULL, PhoneNumber VARCHAR(20) NOT NULL);';
+	    EXECUTE 'CREATE TABLE ownerpassword (Id SERIAL PRIMARY KEY, OwnerId INT NOT NULL, Password VARCHAR(255) NOT NULL, FOREIGN KEY (OwnerId) REFERENCES ownerdetails(Id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE societydetails (id serial PRIMARY KEY, name varchar(100) NOT NULL, email varchar(255) NOT NULL, address varchar(250) NOT NULL, city varchar(100) NOT NULL, state varchar(100) NOT NULL, postalcode varchar(10) NOT NULL, establishmentdate date NOT NULL, registrationnumber varchar(20) NOT NULL, phonenumber varchar(12) NOT NULL, CONSTRAINT uniqueemail UNIQUE (email));';
+	    EXECUTE 'CREATE TABLE societypasswords (id serial PRIMARY KEY, password varchar(255) NOT NULL, CONSTRAINT societypasswords_id_fkey FOREIGN KEY (id) REFERENCES public.societydetails(id) ON DELETE CASCADE);';
+	    EXECUTE 'CREATE TABLE wingdetails (id SERIAL PRIMARY KEY, society_id INT NOT NULL REFERENCES societydetails(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, flats_per_floor INT NOT NULL);';
+	    EXECUTE 'CREATE TABLE roomdetails (id SERIAL PRIMARY KEY, wing_id INT NOT NULL REFERENCES wingdetails(id) ON DELETE CASCADE, room_size_id INT NOT NULL REFERENCES roomsize(id) ON DELETE CASCADE, room_no VARCHAR(50) NOT NULL, amount DECIMAL(10, 2) NOT NULL);';
+	    EXECUTE 'CREATE OR REPLACE PROCEDURE getemaillogin(_email VARCHAR, _choice int, OUT idout INT) LANGUAGE plpgsql AS $$ BEGIN BEGIN IF _choice = 1 THEN SELECT id INTO idout FROM societydetails WHERE email = _email; ELSEIF _choice =2 THEN SELECT id INTO idout FROM ownerdetails WHERE email = _email; END IF; EXCEPTION WHEN OTHERS THEN RAISE EXCEPTION 'An error occurred: %', SQLERRM; idout := null; END; END; $$;';
+	    
+	    
+	    
+	
+	END;
+	$$;
+	
+	
+2024-09-14 23:53:58.043 IST [71505] LOG:  checkpoint starting: time
+2024-09-14 23:53:58.669 IST [71505] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.618 s, sync=0.002 s, total=0.627 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=45 kB
+2024-09-15 23:18:34.782 IST [71505] LOG:  checkpoint starting: time
+2024-09-15 23:18:35.298 IST [71505] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.511 s, sync=0.002 s, total=0.516 s; sync files=6, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=41 kB
+2024-09-16 17:34:30.500 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 17:34:34.797 IST [71505] LOG:  checkpoint complete: wrote 43 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.286 s, sync=0.007 s, total=4.297 s; sync files=39, longest=0.002 s, average=0.001 s; distance=185 kB, estimate=185 kB
+2024-09-16 17:39:30.796 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 17:39:37.609 IST [71505] LOG:  checkpoint complete: wrote 68 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.806 s, sync=0.003 s, total=6.813 s; sync files=48, longest=0.001 s, average=0.001 s; distance=351 kB, estimate=351 kB
+2024-09-16 17:54:30.603 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 17:54:31.015 IST [71505] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.002 s, total=0.413 s; sync files=4, longest=0.001 s, average=0.001 s; distance=11 kB, estimate=317 kB
+2024-09-16 20:13:17.606 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:13:17.815 IST [71505] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.205 s, sync=0.001 s, total=0.210 s; sync files=2, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=286 kB
+2024-09-16 20:18:17.817 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:18:19.142 IST [71505] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.322 s, sync=0.002 s, total=1.326 s; sync files=14, longest=0.001 s, average=0.001 s; distance=36 kB, estimate=261 kB
+2024-09-16 20:31:24.121 IST [5755] ERROR:  syntax error at or near "'id'" at character 172
+2024-09-16 20:31:24.121 IST [5755] STATEMENT:  CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink('id', 'wing_details_id', 'room_size_id') VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:31:30.179 IST [5755] ERROR:  syntax error at or near "'wing_details_id'" at character 176
+2024-09-16 20:31:30.179 IST [5755] STATEMENT:  CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, 'wing_details_id', 'room_size_id') VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:31:37.944 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:31:37.944 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:32:06.846 IST [5755] ERROR:  syntax error at or near "createLink" at character 1
+2024-09-16 20:32:06.846 IST [5755] STATEMENT:  createLink(1,1);
+2024-09-16 20:32:11.890 IST [5755] ERROR:  procedure createlink(integer, integer) does not exist at character 6
+2024-09-16 20:32:11.890 IST [5755] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:32:11.890 IST [5755] STATEMENT:  CALL createLink(1,1);
+2024-09-16 20:33:12.744 IST [5755] ERROR:  column "temp1" does not exist at character 21
+2024-09-16 20:33:12.744 IST [5755] STATEMENT:  CALL createLink(1,1,temp1);
+2024-09-16 20:33:17.146 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:33:18.920 IST [71505] LOG:  checkpoint complete: wrote 18 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.765 s, sync=0.003 s, total=1.775 s; sync files=15, longest=0.001 s, average=0.001 s; distance=54 kB, estimate=240 kB
+2024-09-16 20:33:22.030 IST [5755] ERROR:  invalid input syntax for type integer: "tempq" at character 21
+2024-09-16 20:33:22.030 IST [5755] STATEMENT:  CALL createLink(1,1,'tempq');
+2024-09-16 20:33:30.035 IST [5755] ERROR:  procedure createlink(integer, integer) does not exist at character 6
+2024-09-16 20:33:30.035 IST [5755] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:33:30.035 IST [5755] STATEMENT:  CALL createLink(1,1);
+2024-09-16 20:33:47.565 IST [5755] ERROR:  column "new_id" does not exist at character 21
+2024-09-16 20:33:47.565 IST [5755] STATEMENT:  CALL createLink(1,1,new_id);
+2024-09-16 20:34:32.123 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:32.123 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:32.889 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:32.889 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:33.034 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:33.034 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:33.160 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:33.160 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:33.294 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:33.294 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:33.456 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:33.456 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:33.661 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:34:33.661 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(id, wing_details_id, room_size_id) VALUES (
+	        DEFAULT, _wingID, _roomSizeID) returning id into new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:34:35.476 IST [5755] ERROR:  column "new_id" does not exist at character 21
+2024-09-16 20:34:35.476 IST [5755] STATEMENT:  CALL createLink(1,1,new_id);
+2024-09-16 20:37:43.107 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:43.107 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:37:43.721 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:43.721 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:37:43.906 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:43.906 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:37:44.180 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:44.180 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:37:44.418 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:44.418 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:37:44.568 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:44.568 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:37:44.806 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:37:44.806 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:38:07.729 IST [5755] ERROR:  syntax error at or near "DROP" at character 500
+2024-09-16 20:38:07.729 IST [5755] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--                 new_id := NULL;
+	--     END;
+	-- END;
+	-- $$;
+	DROP PROCEDURE createLink;
+2024-09-16 20:38:09.047 IST [5755] ERROR:  could not find a procedure named "createlink"
+2024-09-16 20:38:09.047 IST [5755] STATEMENT:  -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--                 new_id := NULL;
+	--     END;
+	-- END;
+	-- $$;
+	DROP PROCEDURE createLink;
+2024-09-16 20:38:17.194 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:38:17.194 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+2024-09-16 20:38:17.933 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:38:18.857 IST [71505] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.918 s, sync=0.003 s, total=0.925 s; sync files=10, longest=0.002 s, average=0.001 s; distance=54 kB, estimate=221 kB
+2024-09-16 20:38:21.422 IST [5755] ERROR:  column "new_id" does not exist at character 21
+2024-09-16 20:38:21.422 IST [5755] STATEMENT:  CALL createLink(1,1,new_id);
+2024-09-16 20:38:39.676 IST [5755] ERROR:  syntax error at or near "new_id" at character 1
+2024-09-16 20:38:39.676 IST [5755] STATEMENT:  new_id=0;
+	
+	CALL createLink(1,1,new_id);
+2024-09-16 20:38:44.020 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:38:44.020 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	                new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:43:17.859 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:43:18.273 IST [71505] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.001 s, total=0.414 s; sync files=5, longest=0.001 s, average=0.001 s; distance=28 kB, estimate=202 kB
+2024-09-16 20:47:32.042 IST [73156] ERROR:  procedure createlink(unknown, unknown) does not exist at character 6
+2024-09-16 20:47:32.042 IST [73156] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:47:32.042 IST [73156] STATEMENT:  CALL createLink($1,$2);
+2024-09-16 20:48:17.276 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:48:17.692 IST [71505] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.405 s, sync=0.003 s, total=0.417 s; sync files=5, longest=0.002 s, average=0.001 s; distance=12 kB, estimate=183 kB
+2024-09-16 20:48:51.527 IST [73624] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 20:48:51.527 IST [73624] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:48:51.527 IST [73624] STATEMENT:  CALL createLink($1,$2,$3);
+2024-09-16 20:49:41.227 IST [73928] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 20:49:41.227 IST [73928] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:49:41.227 IST [73928] STATEMENT:  CALL createLink($1,$2,$3);
+2024-09-16 20:53:17.694 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:53:18.113 IST [71505] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.001 s, total=0.419 s; sync files=5, longest=0.001 s, average=0.001 s; distance=11 kB, estimate=166 kB
+2024-09-16 20:58:00.493 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:58:00.493 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createaLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                new_id:=null;
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:58:00.915 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 20:58:00.915 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createaLink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                new_id:=null;
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+2024-09-16 20:58:06.090 IST [5755] ERROR:  column "new_id" does not exist at character 22
+2024-09-16 20:58:06.090 IST [5755] STATEMENT:  
+	CALL createLink(1,1,new_id);
+2024-09-16 20:58:17.108 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 20:58:18.032 IST [71505] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.917 s, sync=0.002 s, total=0.924 s; sync files=10, longest=0.001 s, average=0.001 s; distance=49 kB, estimate=154 kB
+2024-09-16 20:58:19.747 IST [75675] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 20:58:19.747 IST [75675] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:58:19.747 IST [75675] STATEMENT:  CALL createLink($1,$2,$3);
+2024-09-16 20:58:59.199 IST [5755] ERROR:  syntax error at or near "drop" at character 511
+2024-09-16 20:58:59.199 IST [5755] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 new_id:=null;
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	-- 
+	
+	drop PROCEDURE createLink;
+2024-09-16 20:59:02.360 IST [5755] ERROR:  could not find a procedure named "createlink"
+2024-09-16 20:59:02.360 IST [5755] STATEMENT:  -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 new_id:=null;
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	-- 
+	
+	drop PROCEDURE createLink;
+2024-09-16 20:59:02.665 IST [5755] ERROR:  could not find a procedure named "createlink"
+2024-09-16 20:59:02.665 IST [5755] STATEMENT:  -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 new_id:=null;
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	-- 
+	
+	drop PROCEDURE createLink;
+2024-09-16 20:59:02.841 IST [5755] ERROR:  could not find a procedure named "createlink"
+2024-09-16 20:59:02.841 IST [5755] STATEMENT:  -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 new_id:=null;
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	-- 
+	
+	drop PROCEDURE createLink;
+2024-09-16 20:59:30.298 IST [76024] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 20:59:30.298 IST [76024] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:59:30.298 IST [76024] STATEMENT:  CALL createLink($1,$2,$3);
+2024-09-16 20:59:47.651 IST [76185] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 20:59:47.651 IST [76185] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 20:59:47.651 IST [76185] STATEMENT:  CALL createLink($1,$2,$3);
+2024-09-16 21:00:23.980 IST [5755] ERROR:  could not find a procedure named "createlink"
+2024-09-16 21:00:23.980 IST [5755] STATEMENT:  -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 new_id:=null;
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	
+	
+	drop PROCEDURE createLink;
+2024-09-16 21:00:24.767 IST [5755] ERROR:  could not find a procedure named "createlink"
+2024-09-16 21:00:24.767 IST [5755] STATEMENT:  -- CREATE OR REPLACE PROCEDURE createLink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(wing_details_id, room_size_id) 
+	--         VALUES (_wingID, _roomSizeID)
+	--         RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--                 new_id:=null;
+	--                 RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	
+	
+	drop PROCEDURE createLink;
+2024-09-16 21:00:35.477 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 21:00:35.477 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                new_id:=null;
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 21:00:44.387 IST [76385] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 21:00:44.387 IST [76385] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 21:00:44.387 IST [76385] STATEMENT:  CALL createlink($1,$2,$3);
+2024-09-16 21:22:25.090 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 21:22:26.519 IST [71505] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.426 s, sync=0.002 s, total=1.429 s; sync files=15, longest=0.001 s, average=0.001 s; distance=60 kB, estimate=145 kB
+2024-09-16 21:53:38.509 IST [48524] ERROR:  syntax error at or near "t" at character 1
+2024-09-16 21:53:38.509 IST [48524] STATEMENT:  t
+	INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (134,3);
+2024-09-16 21:54:14.261 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 21:54:14.261 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                new_id:=null;
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 21:54:14.797 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 21:54:14.797 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) 
+	        VALUES (_wingID, _roomSizeID)
+	        RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                new_id:=null;
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 21:56:19.156 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 21:56:19.156 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	        wing_details_id, room_size_id
+	        )VALUES (
+	        _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	                new_id:=null;
+	                RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 21:57:07.812 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 21:57:08.941 IST [71505] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.121 s, sync=0.003 s, total=1.129 s; sync files=11, longest=0.001 s, average=0.001 s; distance=39 kB, estimate=134 kB
+2024-09-16 21:57:18.669 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 21:57:18.669 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 21:58:49.686 IST [79865] ERROR:  procedure createlink(unknown, unknown, unknown) does not exist at character 6
+2024-09-16 21:58:49.686 IST [79865] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 21:58:49.686 IST [79865] STATEMENT:  CALL createlink($1,$2,$3);
+2024-09-16 22:01:20.915 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:20.915 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:21.401 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:21.401 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:21.648 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:21.648 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:21.806 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:21.806 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.051 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.051 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.181 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.181 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.336 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.336 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.446 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.446 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.587 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.587 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.797 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.797 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:01:22.946 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:01:22.946 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	--             new_id:=null;
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+	
+	-- drop PROCEDURE createLink;
+2024-09-16 22:02:07.939 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 22:02:08.764 IST [71505] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.819 s, sync=0.003 s, total=0.825 s; sync files=9, longest=0.002 s, average=0.001 s; distance=47 kB, estimate=125 kB
+2024-09-16 22:04:44.537 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:04:44.537 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:04:45.196 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:04:45.196 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:04:45.361 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:04:45.361 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:04:45.548 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:04:45.548 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES (
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:10:30.969 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 22:10:31.380 IST [71505] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.003 s, total=0.411 s; sync files=5, longest=0.002 s, average=0.001 s; distance=31 kB, estimate=116 kB
+2024-09-16 22:11:05.753 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:11:05.753 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            134,1
+	        );
+	END;
+	$$;
+2024-09-16 22:11:19.456 IST [5755] ERROR:  syntax error at or near ";" at character 9
+2024-09-16 22:11:19.456 IST [5755] STATEMENT:  call abc;
+2024-09-16 22:11:23.828 IST [5755] ERROR:  syntax error at end of input at character 9
+2024-09-16 22:11:23.828 IST [5755] STATEMENT:  call abc
+2024-09-16 22:11:28.794 IST [5755] ERROR:  relation "roomlink" does not exist at character 13
+2024-09-16 22:11:28.794 IST [5755] QUERY:  INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            134,1
+	        )
+2024-09-16 22:11:28.794 IST [5755] CONTEXT:  PL/pgSQL function abc() line 3 at SQL statement
+2024-09-16 22:11:28.794 IST [5755] STATEMENT:  call abc();
+2024-09-16 22:12:52.389 IST [5755] ERROR:  syntax error at or near "abc" at character 16
+2024-09-16 22:12:52.389 IST [5755] STATEMENT:  call procedure abc();
+2024-09-16 22:13:01.210 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:01.210 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1);
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:01.390 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:01.390 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1);
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:01.694 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:01.694 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1);
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:01.895 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:01.895 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1);
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:02.149 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:02.149 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1);
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:02.307 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:02.307 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1);
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:04.671 IST [5755] ERROR:  syntax error at or near "abc" at character 16
+2024-09-16 22:13:04.671 IST [5755] STATEMENT:  call procedure abc();
+2024-09-16 22:13:05.135 IST [5755] ERROR:  syntax error at or near "abc" at character 16
+2024-09-16 22:13:05.135 IST [5755] STATEMENT:  call procedure abc();
+2024-09-16 22:13:05.490 IST [5755] ERROR:  syntax error at or near "abc" at character 16
+2024-09-16 22:13:05.490 IST [5755] STATEMENT:  call procedure abc();
+2024-09-16 22:13:13.255 IST [5755] ERROR:  relation "roomlink" does not exist at character 13
+2024-09-16 22:13:13.255 IST [5755] QUERY:  INSERT INTO roomlink(wing_details_id, room_size_id) VALUES(134,1)
+2024-09-16 22:13:13.255 IST [5755] CONTEXT:  PL/pgSQL function abc() line 3 at SQL statement
+2024-09-16 22:13:13.255 IST [5755] STATEMENT:  call abc();
+2024-09-16 22:13:39.904 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:39.904 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        select * from roomsize;
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:40.289 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:40.289 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        select * from roomsize;
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:40.509 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:13:40.509 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	        select * from roomsize;
+	END;
+	$$;
+	
+	
+	
+	
+2024-09-16 22:13:42.152 IST [5755] ERROR:  relation "roomsize" does not exist at character 15
+2024-09-16 22:13:42.152 IST [5755] QUERY:  select * from roomsize
+2024-09-16 22:13:42.152 IST [5755] CONTEXT:  PL/pgSQL function abc() line 3 at SQL statement
+2024-09-16 22:13:42.152 IST [5755] STATEMENT:  call abc();
+2024-09-16 22:14:11.762 IST [5755] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:14:11.762 IST [5755] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:14:26.070 IST [5753] ERROR:  syntax error at or near "OR" at character 24
+2024-09-16 22:14:26.070 IST [5753] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:15:30.379 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 22:15:32.539 IST [71505] LOG:  checkpoint complete: wrote 22 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.154 s, sync=0.003 s, total=2.161 s; sync files=22, longest=0.001 s, average=0.001 s; distance=106 kB, estimate=115 kB
+2024-09-16 22:15:39.627 IST [5753] ERROR:  syntax error at or near "OR" at character 26
+2024-09-16 22:15:39.627 IST [5753] STATEMENT:  EXPLAIN VERBOSE 
+	
+	CREATE OR REPLACE PROCEDURE abc()
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    select * from roomsize;
+	END;
+	$$;
+	
+	-- CREATE OR REPLACE PROCEDURE createlink(
+	--     _roomSizeID INT,
+	--     _wingID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(
+	--             wing_details_id, room_size_id
+	--         )VALUES(
+	--             _wingID, _roomSizeID
+	--         ) RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--             RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+2024-09-16 22:15:45.535 IST [5753] ERROR:  query has no destination for result data
+2024-09-16 22:15:45.535 IST [5753] HINT:  If you want to discard the results of a SELECT, use PERFORM instead.
+2024-09-16 22:15:45.535 IST [5753] CONTEXT:  PL/pgSQL function abc() line 3 at SQL statement
+2024-09-16 22:15:45.535 IST [5753] STATEMENT:  call abc();
+2024-09-16 22:15:57.490 IST [5753] ERROR:  syntax error at or near "result" at character 1
+2024-09-16 22:15:57.490 IST [5753] STATEMENT:  result = call abc();
+2024-09-16 22:16:16.250 IST [5753] ERROR:  syntax error at or near "OR" at character 1
+2024-09-16 22:16:16.250 IST [5753] STATEMENT:  OR REPLACE PROCEDURE createlink(
+	    _roomSizeID INT,
+	    _wingID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:16:46.481 IST [5753] ERROR:  column "new_id" does not exist at character 23
+2024-09-16 22:16:46.481 IST [5753] STATEMENT:  call createlink(1,134,new_id);
+2024-09-16 22:16:53.226 IST [5753] ERROR:  procedure createlink(integer, integer) does not exist at character 6
+2024-09-16 22:16:53.226 IST [5753] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-09-16 22:16:53.226 IST [5753] STATEMENT:  call createlink(1,134);
+2024-09-16 22:17:49.062 IST [5753] ERROR:  syntax error at or near "call" at character 17
+2024-09-16 22:17:49.062 IST [5753] STATEMENT:  EXPLAIN VERBOSE call createlink(1,134,null);
+2024-09-16 22:19:36.435 IST [83484] ERROR:  An error occurred: insert or update on table "roomlink" violates foreign key constraint "roomlink_room_size_id_fkey"
+2024-09-16 22:19:36.435 IST [83484] CONTEXT:  PL/pgSQL function createlink(integer,integer) line 11 at RAISE
+2024-09-16 22:19:36.435 IST [83484] STATEMENT:  CALL createlink($1,$2,$3);
+2024-09-16 22:20:30.543 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 22:20:33.504 IST [71505] LOG:  checkpoint complete: wrote 31 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.954 s, sync=0.003 s, total=2.961 s; sync files=24, longest=0.001 s, average=0.001 s; distance=103 kB, estimate=114 kB
+2024-09-16 22:20:38.139 IST [5753] ERROR:  cannot change name of input parameter "_roomsizeid"
+2024-09-16 22:20:38.139 IST [5753] HINT:  Use DROP PROCEDURE createlink(integer,integer) first.
+2024-09-16 22:20:38.139 IST [5753] STATEMENT:  
+	
+	-- CREATE OR REPLACE PROCEDURE abc()
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     select * from roomsize;
+	-- END;
+	-- $$;
+	
+	CREATE OR REPLACE PROCEDURE createlink(
+	    _wingID INT,
+	    _roomSizeID INT,
+	    out new_id int
+	)
+	LANGUAGE plpgsql AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+2024-09-16 22:20:52.269 IST [5753] ERROR:  syntax error at or near "drop" at character 618
+2024-09-16 22:20:52.269 IST [5753] STATEMENT:  EXPLAIN VERBOSE 
+	
+	-- CREATE OR REPLACE PROCEDURE abc()
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     select * from roomsize;
+	-- END;
+	-- $$;
+	
+	-- CREATE OR REPLACE PROCEDURE createlink(
+	--     _wingID INT,
+	--     _roomSizeID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(
+	--             wing_details_id, room_size_id
+	--         )VALUES(
+	--             _wingID, _roomSizeID
+	--         ) RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--             RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	
+	drop PROCEDURE createlink;
+2024-09-16 22:21:02.623 IST [5753] ERROR:  could not find a procedure named "createlink"
+2024-09-16 22:21:02.623 IST [5753] STATEMENT:  
+	
+	-- CREATE OR REPLACE PROCEDURE abc()
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     select * from roomsize;
+	-- END;
+	-- $$;
+	
+	-- CREATE OR REPLACE PROCEDURE createlink(
+	--     _wingID INT,
+	--     _roomSizeID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(
+	--             wing_details_id, room_size_id
+	--         )VALUES(
+	--             _wingID, _roomSizeID
+	--         ) RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--             RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	
+	drop PROCEDURE createlink;
+	
+	
+	
+2024-09-16 22:24:33.188 IST [5753] ERROR:  syntax error at or near "drop" at character 508
+2024-09-16 22:24:33.188 IST [5753] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE PROCEDURE createlink(
+	--     _wingID INT,
+	--     _roomSizeID INT,
+	--     out new_id int
+	-- )
+	-- LANGUAGE plpgsql AS $$    
+	-- BEGIN
+	--     BEGIN
+	--         INSERT INTO roomlink(
+	--             wing_details_id, room_size_id
+	--         )VALUES(
+	--             _wingID, _roomSizeID
+	--         ) RETURNING id INTO new_id;
+	--     EXCEPTION
+	--         WHEN OTHERS THEN
+	--             RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	--     END;
+	-- END;
+	-- $$;
+	-- 
+	-- 
+	-- 
+	-- 
+	drop PROCEDURE abc;
+2024-09-16 22:25:30.505 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 22:25:34.069 IST [71505] LOG:  checkpoint complete: wrote 39 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.555 s, sync=0.006 s, total=3.564 s; sync files=22, longest=0.002 s, average=0.001 s; distance=198 kB, estimate=198 kB
+2024-09-16 23:05:17.041 IST [5753] ERROR:  type "roomdetails_type" already exists
+2024-09-16 23:05:17.041 IST [5753] STATEMENT:  CREATE TYPE roomdetails_type AS (
+	    room_no int,
+	    roomlink_id INT,
+	    amount int
+	);
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, roomlink_id, room_no, amount)
+	        VALUES (default, data.roomlink_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-09-16 23:05:39.012 IST [5753] ERROR:  syntax error at or near "roomdetails_type" at character 539
+2024-09-16 23:05:39.012 IST [5753] STATEMENT:  -- CREATE TYPE roomdetails_type AS (
+	--     room_no int,
+	--     roomlink_id INT,
+	--     amount int
+	-- );
+	
+	-- CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	-- LANGUAGE plpgsql AS $$
+	-- DECLARE
+	--      data roomdetails_type;
+	-- BEGIN
+	--     FOR data IN 
+	--         SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	--     LOOP
+	--         INSERT INTO roomdetails(id, roomlink_id, room_no, amount)
+	--         VALUES (default, data.roomlink_id, data.room_no, data.amount);
+	--     END LOOP;
+	-- END;
+	-- $$;
+	
+	drop roomdetails_type;
+2024-09-16 23:06:53.621 IST [5753] ERROR:  type "roomdetails_type" already exists
+2024-09-16 23:06:53.621 IST [5753] STATEMENT:  CREATE TYPE roomdetails_type AS (
+	    room_no int,
+	    roomlink_id INT,
+	    amount int
+	);
+	
+	CREATE OR REPLACE PROCEDURE saverooms(json_data TEXT)
+	LANGUAGE plpgsql AS $$
+	DECLARE
+	     data roomdetails_type;
+	BEGIN
+	    FOR data IN 
+	        SELECT * FROM json_populate_recordset(NULL::roomdetails_type, json_data) 
+	    LOOP
+	        INSERT INTO roomdetails(id, roomlink_id, room_no, amount)
+	        VALUES (default, data.roomlink_id, data.room_no, data.amount);
+	    END LOOP;
+	END;
+	$$;
+	
+2024-09-16 23:10:10.996 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:10:13.553 IST [71505] LOG:  checkpoint complete: wrote 26 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.550 s, sync=0.004 s, total=2.557 s; sync files=21, longest=0.002 s, average=0.001 s; distance=138 kB, estimate=192 kB
+2024-09-16 23:15:10.559 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:15:11.487 IST [71505] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.912 s, sync=0.002 s, total=0.928 s; sync files=10, longest=0.001 s, average=0.001 s; distance=23 kB, estimate=175 kB
+2024-09-16 23:20:10.480 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:20:11.600 IST [71505] LOG:  checkpoint complete: wrote 14 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.115 s, sync=0.003 s, total=1.121 s; sync files=12, longest=0.001 s, average=0.001 s; distance=36 kB, estimate=161 kB
+2024-09-16 23:25:10.599 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:25:11.425 IST [71505] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.818 s, sync=0.003 s, total=0.827 s; sync files=9, longest=0.001 s, average=0.001 s; distance=24 kB, estimate=147 kB
+2024-09-16 23:30:10.424 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:30:11.552 IST [71505] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.118 s, sync=0.004 s, total=1.128 s; sync files=12, longest=0.002 s, average=0.001 s; distance=46 kB, estimate=137 kB
+2024-09-16 23:35:10.551 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:35:11.376 IST [71505] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.818 s, sync=0.002 s, total=0.825 s; sync files=9, longest=0.001 s, average=0.001 s; distance=16 kB, estimate=125 kB
+2024-09-16 23:38:29.720 IST [48524] ERROR:  syntax error at or near "*" at character 8
+2024-09-16 23:38:29.720 IST [48524] STATEMENT:  delete * from roomlink;
+2024-09-16 23:39:08.700 IST [48524] ERROR:  syntax error at or near "*" at character 8
+2024-09-16 23:39:08.700 IST [48524] STATEMENT:  delete * from wingdetails;
+2024-09-16 23:40:10.391 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:40:12.228 IST [71505] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.830 s, sync=0.003 s, total=1.837 s; sync files=20, longest=0.001 s, average=0.001 s; distance=81 kB, estimate=121 kB
+2024-09-16 23:45:10.228 IST [71505] LOG:  checkpoint starting: time
+2024-09-16 23:45:11.347 IST [71505] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.116 s, sync=0.002 s, total=1.120 s; sync files=12, longest=0.001 s, average=0.001 s; distance=16 kB, estimate=110 kB
+2024-09-17 14:15:04.755 IST [71504] LOG:  received smart shutdown request
+2024-09-17 14:15:04.758 IST [71504] LOG:  background worker "logical replication launcher" (PID 71510) exited with exit code 1
+2024-09-17 14:15:04.758 IST [71505] LOG:  shutting down
+2024-09-17 14:15:04.760 IST [71505] LOG:  checkpoint starting: shutdown immediate
+2024-09-17 14:15:04.768 IST [71505] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.010 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=99 kB
+2024-09-17 14:15:04.783 IST [71504] LOG:  database system is shut down
+2024-09-17 17:53:12.816 IST [3796] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-09-17 17:53:12.818 IST [3796] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-09-17 17:53:12.818 IST [3796] LOG:  listening on IPv6 address "::1", port 5432
+2024-09-17 17:53:12.819 IST [3796] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-09-17 17:53:12.824 IST [3799] LOG:  database system was shut down at 2024-09-17 14:15:04 IST
+2024-09-17 17:53:12.828 IST [3796] LOG:  database system is ready to accept connections
+2024-09-17 18:47:27.320 IST [3797] LOG:  checkpoint starting: time
+2024-09-17 18:47:27.330 IST [3797] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.010 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-09-17 18:57:27.334 IST [3797] LOG:  checkpoint starting: time
+2024-09-17 18:57:27.754 IST [3797] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.410 s, sync=0.001 s, total=0.421 s; sync files=3, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=7 kB
+2024-09-17 19:01:30.544 IST [5889] ERROR:  relation "wingdetails" does not exist at character 15
+2024-09-17 19:01:30.544 IST [5889] STATEMENT:  Select * from wingdetails;
+	Select * from roomlink;
+	SELECT * FROM roomdetails;
+	
+	
+2024-09-17 19:01:42.972 IST [7167] ERROR:  relation "wingdetails" does not exist at character 15
+2024-09-17 19:01:42.972 IST [7167] STATEMENT:  Select * from wingdetails;
+	Select * from roomlink;
+	SELECT * FROM roomdetails;
+	
+	
+2024-09-17 19:07:27.774 IST [3797] LOG:  checkpoint starting: time
+2024-09-17 19:07:28.199 IST [3797] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.420 s, sync=0.002 s, total=0.426 s; sync files=6, longest=0.001 s, average=0.001 s; distance=22 kB, estimate=22 kB
+2024-09-17 20:32:02.665 IST [3797] LOG:  checkpoint starting: time
+2024-09-17 20:32:02.875 IST [3797] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.204 s, sync=0.002 s, total=0.211 s; sync files=3, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=20 kB
+2024-09-17 21:00:43.968 IST [3797] LOG:  checkpoint starting: time
+2024-09-17 21:00:45.631 IST [3797] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.655 s, sync=0.002 s, total=1.663 s; sync files=15, longest=0.001 s, average=0.001 s; distance=54 kB, estimate=54 kB
+2024-09-17 21:53:16.638 IST [3797] LOG:  checkpoint starting: time
+2024-09-17 21:53:22.266 IST [3797] LOG:  checkpoint complete: wrote 56 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=5.618 s, sync=0.006 s, total=5.629 s; sync files=43, longest=0.001 s, average=0.001 s; distance=277 kB, estimate=277 kB
+2024-09-20 11:52:41.491 IST [3843] ERROR:  syntax error at or near "elect" at character 1
+2024-09-20 11:52:41.491 IST [3843] STATEMENT:  elect * from maintenance_transaction
+	;
+2024-09-20 11:53:11.629 IST [3797] LOG:  checkpoint starting: time
+2024-09-20 11:53:12.970 IST [3797] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.330 s, sync=0.003 s, total=1.342 s; sync files=7, longest=0.002 s, average=0.001 s; distance=23 kB, estimate=252 kB
+2024-09-20 11:55:33.615 IST [5881] ERROR:  syntax error at or near "or" at character 25
+2024-09-20 11:55:33.615 IST [5881] STATEMENT:  EXPLAIN VERBOSE  CREATE or REPLACE PROCEDURE insertmaintainancehead(
+	    _roomLinkID INT,
+	    _maintainanceHeadID Int,
+	    _amount int,
+	    OUT new_id INT
+	)LANGUAGE plpgsql
+	AS $$
+	BEGIN
+	    BEGIN
+	        INSERT INTO maintenance_transaction (
+	            id, roomlink_id, maintenance_heads_id, amount
+	        )
+	        VALUES(
+	            default, _roomLinkID, _maintainanceHeadID, _amount
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	            new_id := NULL;
+	    END;
+	END;
+	$$;
+	
+2024-09-20 11:55:56.968 IST [5881] ERROR:  syntax error at or near "insertmaintainancehead" at character 1
+2024-09-20 11:55:56.968 IST [5881] STATEMENT:  insertmaintainancehead(1,1,1000,null);
+2024-09-20 11:56:56.196 IST [5881] ERROR:  syntax error at or near "insertmaintainancehead" at character 1
+2024-09-20 11:56:56.196 IST [5881] STATEMENT:  insertmaintainancehead(141,1,1000,null);
+2024-09-20 11:57:02.401 IST [5881] ERROR:  syntax error at or near "insertmaintainancehead" at character 1
+2024-09-20 11:57:02.401 IST [5881] STATEMENT:  insertmaintainancehead(141,1,1000);
+2024-09-20 11:57:14.481 IST [5881] ERROR:  syntax error at or near "call" at character 17
+2024-09-20 11:57:14.481 IST [5881] STATEMENT:  EXPLAIN VERBOSE call insertmaintainancehead(141,1,1000,null);
+2024-09-20 11:57:44.826 IST [3843] ERROR:  syntax error at or near "select" at character 35
+2024-09-20 11:57:44.826 IST [3843] STATEMENT:  select * from maintenance_heads_t
+	select * from maintenance_transaction;
+2024-09-20 11:58:11.967 IST [3797] LOG:  checkpoint starting: time
+2024-09-20 11:58:13.600 IST [3797] LOG:  checkpoint complete: wrote 18 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.628 s, sync=0.002 s, total=1.633 s; sync files=16, longest=0.001 s, average=0.001 s; distance=49 kB, estimate=231 kB
+2024-09-20 12:10:17.952 IST [3843] ERROR:  syntax error at or near "clear" at character 1
+2024-09-20 12:10:17.952 IST [3843] STATEMENT:  clear
+	;
+2024-09-20 12:13:11.592 IST [3797] LOG:  checkpoint starting: time
+2024-09-20 12:13:13.845 IST [3797] LOG:  checkpoint complete: wrote 24 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.243 s, sync=0.003 s, total=2.253 s; sync files=20, longest=0.001 s, average=0.001 s; distance=119 kB, estimate=220 kB
+2024-09-24 13:40:25.364 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 13:40:31.632 IST [3797] LOG:  checkpoint complete: wrote 62 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.259 s, sync=0.006 s, total=6.270 s; sync files=53, longest=0.001 s, average=0.001 s; distance=260 kB, estimate=260 kB
+2024-09-24 13:45:25.630 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 13:45:26.868 IST [3797] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.229 s, sync=0.002 s, total=1.238 s; sync files=10, longest=0.001 s, average=0.001 s; distance=187 kB, estimate=253 kB
+2024-09-24 14:15:25.952 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 14:15:26.674 IST [3797] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.713 s, sync=0.004 s, total=0.722 s; sync files=7, longest=0.003 s, average=0.001 s; distance=1 kB, estimate=228 kB
+2024-09-24 14:17:05.981 IST [3843] ERROR:  syntax error at or near "dt" at character 1
+2024-09-24 14:17:05.981 IST [3843] STATEMENT:  dt
+	INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');
+2024-09-24 14:20:25.684 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 14:20:26.307 IST [3797] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.613 s, sync=0.002 s, total=0.623 s; sync files=6, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=205 kB
+2024-09-24 14:25:25.310 IST [3797] LOG:  checkpoint starting: time
+2024-09-24 14:25:26.236 IST [3797] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.922 s, sync=0.002 s, total=0.927 s; sync files=9, longest=0.001 s, average=0.001 s; distance=18 kB, estimate=186 kB

@@ -29,8 +29,8 @@ BEGIN
         END IF;
     EXCEPTION
         WHEN OTHERS THEN
-            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
             new_id := NULL;
+            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
     END;
 END;
 $$;

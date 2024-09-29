@@ -1,4 +1,4 @@
-import { React,useState } from "react";
+import { React, useState } from "react";
 
 
 const Form = (props) => {
@@ -9,8 +9,9 @@ const Form = (props) => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false); // To manage loading state
-  const [errorMessage, setErrorMessage] = useState(""); // To display error messages
-  const [successMessage, setSuccessMessage] = useState(""); // To display success messages
+  const [errorMessage, setErrorMessage] = useState("");
+  // const [successMessage, setSuccessMessage] = useState(""); 
+  let successMessage = "";
 
   // Handle input change
   const handleChange = (e) => {
@@ -26,7 +27,7 @@ const Form = (props) => {
     e.preventDefault();
     setIsSubmitting(true); // Set submitting to true
     setErrorMessage(""); // Reset error message
-    setSuccessMessage(""); // Reset success message
+    // setSuccessMessage(""); // Reset success message
 
     try {
       const response = await fetch(props.url, {
@@ -42,10 +43,11 @@ const Form = (props) => {
       if (!response.ok) {
         throw new Error(responseData.message || "Failed to login");
       }
-      // localStorage.setItem('token',responseData.data.token);
-      console.log(responseData);
-      setSuccessMessage("Login successful!");
 
+
+      console.log(responseData);
+      // localStorage.setItem('token',responseData.data.token);
+      // setSuccessMessage("Login successful!");
     } catch (error) {
       setErrorMessage(error.message || "There was a problem with the fetch operation");
     } finally {
@@ -53,7 +55,7 @@ const Form = (props) => {
     }
   };
 
-  return(<form className="form" onSubmit={handleNext}>
+  return (<form className="form" onSubmit={handleNext}>
     <div className="form-group">
       <label>Email Address</label>
       <input

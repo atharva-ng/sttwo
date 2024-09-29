@@ -1,7 +1,7 @@
 const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
-const { saveWingQuery, saveRoomQuery } = require("../dbUtils/societyRegistrationQueries")
+const { saveWingQuery, saveRoomQuery, createRoomLinkQuery, saveMaintainanceHeadQuery } = require("../dbUtils/societyRegistrationQueries")
 const { getRoomSizeQuery } = require("../dbUtils/authDBQueries");
 
 const jwt = require('jsonwebtoken');
@@ -19,80 +19,53 @@ const reqObj = {
           "roomNumber": 101,
           "roomSize": "1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
         },
         "2": {
           "roomNumber": 102,
           "roomSize": "2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
         },
         "3": {
           "roomNumber": 103,
           "roomSize": "1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
+
         },
         "4": {
           "roomNumber": 104,
           "roomSize": "2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
         }
       }
     },
     "2": {
-      "name": "wing2",
-      "floors": 10,
-      "roomsPerFloor": 4,
-      "roomDetails": {
-        "1": {
-          "roomNumber": 301,
-          "roomSize": "1BHK",
-          "maintainanceAmount": 5000,
-        },
-        "2": {
-          "roomNumber": 302,
-          "roomSize": "2BHK",
-          "maintainanceAmount": 7500,
-        },
-        "3": {
-          "roomNumber": 303,
-          "roomSize": "1BHK",
-          "maintainanceAmount": 5000,
-        },
-        "4": {
-          "roomNumber": 304,
-          "roomSize": "2BHK",
-          "maintainanceAmount": 7500,
-        }
-      }
-    },
-    "3": {
-      "name": "wing3",
-      "floors": 3,
-      "roomsPerFloor": 4,
-      "roomDetails": {
-        "1": {
-          "roomNumber": 1,
-          "roomSize": "1BHK",
-          "maintainanceAmount": 5000,
-        },
-        "2": {
-          "roomNumber": 2,
-          "roomSize": "2BHK",
-          "maintainanceAmount": 7500,
-        },
-        "3": {
-          "roomNumber": 3,
-          "roomSize": "1BHK",
-          "maintainanceAmount": 5000,
-        },
-        "4": {
-          "roomNumber": 4,
-          "roomSize": "2BHK",
-          "maintainanceAmount": 7500,
-        }
-      }
-    },
-    "4": {
-      "name": "wing4",
+      "name": "wing1",
       "floors": 10,
       "roomsPerFloor": 4,
       "roomDetails": {
@@ -100,21 +73,153 @@ const reqObj = {
           "roomNumber": 101,
           "roomSize": "1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
         },
         "2": {
           "roomNumber": 102,
           "roomSize": "2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
         },
         "3": {
           "roomNumber": 103,
           "roomSize": "1BHK",
           "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
         },
         "4": {
           "roomNumber": 104,
           "roomSize": "2BHK",
           "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
+        }
+      }
+    },
+    "3": {
+      "name": "wing1",
+      "floors": 10,
+      "roomsPerFloor": 4,
+      "roomDetails": {
+        "1": {
+          "roomNumber": 101,
+          "roomSize": "1BHK",
+          "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
+        },
+        "2": {
+          "roomNumber": 102,
+          "roomSize": "2BHK",
+          "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
+        },
+        "3": {
+          "roomNumber": 103,
+          "roomSize": "1BHK",
+          "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
+        },
+        "4": {
+          "roomNumber": 104,
+          "roomSize": "2BHK",
+          "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
+        }
+      }
+    },
+    "4": {
+      "name": "wing1",
+      "floors": 10,
+      "roomsPerFloor": 4,
+      "roomDetails": {
+        "1": {
+          "roomNumber": 101,
+          "roomSize": "1BHK",
+          "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
+        },
+        "2": {
+          "roomNumber": 102,
+          "roomSize": "2BHK",
+          "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
+        },
+        "3": {
+          "roomNumber": 103,
+          "roomSize": "1BHK",
+          "maintainanceAmount": 5000,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+          },
+        },
+        "4": {
+          "roomNumber": 104,
+          "roomSize": "2BHK",
+          "maintainanceAmount": 7500,
+          "maintainanceHeadAmount": {
+            "1": 1500,
+            "2": 500,
+            "3": 2000,
+            "4": 1000,
+            "5": 2500
+          },
         }
       }
     }
@@ -126,7 +231,8 @@ const sizeToId = (roomSizeArray, size) => {
   return room ? room.id : null;
 };
 
-const genRooms = (roomData, floors, roomsPerFloor) => {
+const genRooms = async (roomData, floors, roomsPerFloor) => {
+  console.log(roomData);
   rooms = []
   const str = String(roomData.room_no);
   let initial = parseInt(str.substring(0, 1));
@@ -135,8 +241,7 @@ const genRooms = (roomData, floors, roomsPerFloor) => {
     const rest = str.substring(1);
     for (let k = initial; k <= floors; k++) {
       rooms.push({
-        "wingId": roomData.wing_id,
-        "roomSize": roomData.room_size_id,
+        "roomLink": roomData.roomlink_id,
         "roomNumber": parseInt(String(k) + rest),
         "maintainanceAmount": roomData.amount
       });
@@ -144,8 +249,7 @@ const genRooms = (roomData, floors, roomsPerFloor) => {
   } else {
     for (let k = 1; k <= floors; k++) {
       rooms.push({
-        "wingId": roomData.wing_id,
-        "roomSize": roomData.room_size_id,
+        "roomLink": roomData.roomlink_id,
         "roomNumber": roomData.room_no + (roomsPerFloor * (k - 1)),
         "maintainanceAmount": roomData.amount
       });
@@ -161,19 +265,28 @@ const registerSociety = async (req, res, next) => {
       //For every wing
       const dbObj = reqObj.wingInformation[i];
       const wingId = await saveWingQuery(societyID, dbObj.name, dbObj.roomsPerFloor);
-      const roomSize = await getRoomSizeQuery();
 
-      // console.log(wingId);
+      if (wingId === null) {
+        throw new HttpError("Failed to save wing", 500);
+      }
 
+      const roomSizes = await getRoomSizeQuery();
       const floors = dbObj.floors;
       const roomsPerFloor = dbObj.roomsPerFloor;
+
+      const roomLinkIds = {};
+      for (let j = 1; j <= roomsPerFloor; j++) {
+        const roomSizeID = sizeToId(roomSizes, dbObj.roomDetails[j].roomSize);
+        const id = await createRoomLinkQuery(roomSizeID, wingId);
+        roomLinkIds[`${roomSizeID}-${dbObj.roomDetails[j].roomNumber}`] = id;
+        await saveMaintainanceHeadQuery(id, dbObj.roomDetails[j].maintainanceHeadAmount);
+      }
 
       let rooms = [];
       for (let j = 1; j <= roomsPerFloor; j++) {
         rooms.push(...await genRooms(
           {
-            "wing_id": wingId,
-            "room_size_id": sizeToId(roomSize, dbObj.roomDetails[j].roomSize),
+            "roomlink_id": roomLinkIds[`${sizeToId(roomSizes, dbObj.roomDetails[j].roomSize)}-${dbObj.roomDetails[j].roomNumber}`],
             "room_no": dbObj.roomDetails[j].roomNumber,
             "amount": dbObj.roomDetails[j].maintainanceAmount
           }
@@ -183,10 +296,11 @@ const registerSociety = async (req, res, next) => {
       await saveRoomQuery(rooms);
     }
   } catch (err) {
+    console.log(err);
     if (err instanceof HttpError) {
       throw err;
     } else {
-      throw new HttpError("Something went wrong", 500);
+      throw new HttpError("Something went wrong-controller", 500);
     }
   }
   return res.status(200).json({
@@ -194,4 +308,17 @@ const registerSociety = async (req, res, next) => {
   });
 }
 
+const getRegisterSociety = async (req, res, next) => {
+  try {
+    const [roomSizes, maintainanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
+    res.status(200).json({
+      "roomSizes": roomSizes,
+      "maintainanceHeads": maintainanceHeads
+    });
+  } catch {
+    throw new HttpError("Something went wrong", 500);
+  }
+}
+
 exports.registerSociety = registerSociety;
+exports.getRegisterSociety = getRegisterSociety;

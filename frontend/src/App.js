@@ -13,59 +13,50 @@ import SignupOwner from './signup/signupOwner/pages/SignupOwner'
 import SignupSociety2 from './signup/signupSociety/pages/SignupSociet2';
 import SocietyRegistrationForm from './signup/signupSociety/pages/MaintenanceSociety';
 import { useAuth } from './shared/hooks/auth-hook';
-import {AuthContext} from './shared/context/auth-context';
-
-
-
+import { AuthContext } from './shared/context/auth-context';
 
 function App() {
 
   const { token, login, logout, userId } = useAuth();
 
   let routes;
-  if(token){
-    routes=(
-      <>  
+  if (token) {
+    routes = (
+      <>
         <Switch>
-          <Route path='/' exact> 
+          <Route path='/' exact>
             <Homepage />
           </Route>
         </Switch>
       </>
     )
-  }else{
-    routes=(
+  } else {
+    routes = (
       <>
-      <Switch>
-        <Route path='/' exact> 
-          <Homepage />
-        </Route>
-        <Route path='/login' exact>
-          <Login />
-        </Route>
-        <Route path='/login/login-society' exact>
-          <LoginSociety />
-        </Route>
-        <Route path='/login/login-owner' exact>
-          <LoginOwner />
-        </Route>
-        <Route path='/signup' exact>
-          <Signup />
-        </Route>
-        <Route path='/signup/signup-owner' exact>
-          <SignupOwner />
-        </Route>
-        <Route path='/signup/signup-society' exact>
-          <SignupSociety />
-        </Route>
-        <Route path="/signup/signup-society-2" exact>
-          <SignupSociety2 />
-        </Route>
-        <Route path='/signup/signup-society-3' exact>
-          <SocietyRegistrationForm />
-        </Route>
-        <Redirect to='/' />
-      </Switch>
+        <Switch>
+          <Route path='/' exact>
+            <Homepage />
+          </Route>
+          <Route path='/login' exact>
+            <Login />
+          </Route>
+          <Route path='/login/login-society' exact>
+            <LoginSociety />
+          </Route>
+          <Route path='/login/login-owner' exact>
+            <LoginOwner />
+          </Route>
+          <Route path='/signup' exact>
+            <Signup />
+          </Route>
+          <Route path='/signup/signup-owner' exact>
+            <SignupOwner />
+          </Route>
+          <Route path='/signup/signup-society' exact>
+            <SignupSociety />
+          </Route>
+          <Redirect to='/' />
+        </Switch>
       </>
     )
   }
@@ -78,11 +69,11 @@ function App() {
         userId: userId,
         login: login,
         logout: logout
-      }}> 
+      }}>
 
-        <Navbar/>
+        <Navbar />
         <main>{routes}</main>
-        <Footer/>
+        <Footer />
 
       </AuthContext.Provider>
       
