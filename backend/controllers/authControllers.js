@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const postSignupSociety = async (req, res, next) => {
   // console.log(req.body);
   const errors = validationResult(req);
+  console.log(errors);
 
   if (!errors.isEmpty()) {
     const error = new HttpError("Invalid inputs passed, please check your data", 422);
