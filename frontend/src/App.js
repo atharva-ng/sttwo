@@ -28,13 +28,16 @@ function App() {
         <>
           <Switch>
             <Route path='/' exact>
-
+              {/* <FlatsInformation /> */}
             </Route>
             <Route path='/profile' exact>
               <SocietyProfile />
             </Route>
             <Route path='/flatsInformation' exact>
               <FlatsInformation />
+            </Route>
+            <Route path='/dashboard' exact>
+              <SocietyProfile />
             </Route>
             <Redirect to='/' />
           </Switch>
@@ -69,6 +72,12 @@ function App() {
           </Route>
           <Route path='/signup/signup-society' exact>
             <SignupSociety />
+          </Route>
+          <Route path='/signup/signup-society-2' exact>
+            <SignupSociety2 />
+          </Route>
+          <Route path='/signup/signup-society-3' exact>
+          <SocietyRegistrationForm />
           </Route>
           <Redirect to='/' />
         </Switch>
