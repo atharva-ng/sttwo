@@ -70,6 +70,12 @@ function App() {
           <Route path='/signup/signup-society' exact>
             <SignupSociety />
           </Route>
+          <Route path='/signup/signup-society-2' exact>
+            <SignupSociety2 />
+          </Route>
+          <Route path='/signup/signup-society-3' exact>
+          <SocietyRegistrationForm />
+          </Route>
           <Redirect to='/' />
         </Switch>
       </>
