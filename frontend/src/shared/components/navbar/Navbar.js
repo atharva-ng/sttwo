@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import './Navbar.css';
 import { AuthContext } from '../../context/auth-context';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { userType, isLoggedIn, logout } = useContext(AuthContext);
@@ -16,10 +17,10 @@ const Navbar = () => {
         Welcome society
         <ul>
           <li>
-            <a href='http://localhost:3000/flatsInformation/'>Flat Info</a>
+            <Link to='/flatsInformation'>Flat Info</Link>
           </li>
           <li>
-            <a href='http://localhost:3000/dashboard/'>Dashboard</a>
+            <Link to='/dashboard'>Dashboard</Link>
           </li>
           <li>
             <button onClick={logout}>Logout</button>

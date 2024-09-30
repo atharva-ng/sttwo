@@ -28,13 +28,16 @@ function App() {
         <>
           <Switch>
             <Route path='/' exact>
-
+              {/* <FlatsInformation /> */}
             </Route>
             <Route path='/profile' exact>
               <SocietyProfile />
             </Route>
             <Route path='/flatsInformation' exact>
               <FlatsInformation />
+            </Route>
+            <Route path='/dashboard' exact>
+              <SocietyProfile />
             </Route>
             <Redirect to='/' />
           </Switch>
