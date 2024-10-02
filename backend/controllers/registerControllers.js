@@ -7,7 +7,7 @@ const { getRoomSizeQuery } = require("../dbUtils/authDBQueries");
 const jwt = require('jsonwebtoken');
 
 const numberOfWings = 4;
-const societyID = 72;
+const societyID = 75;
 const reqObj = {
   "wingInformation": {
     "1": {
@@ -65,7 +65,7 @@ const reqObj = {
       }
     },
     "2": {
-      "name": "wing1",
+      "name": "wing2",
       "floors": 10,
       "roomsPerFloor": 4,
       "roomDetails": {
@@ -118,7 +118,7 @@ const reqObj = {
       }
     },
     "3": {
-      "name": "wing1",
+      "name": "wing3",
       "floors": 10,
       "roomsPerFloor": 4,
       "roomDetails": {
@@ -171,7 +171,7 @@ const reqObj = {
       }
     },
     "4": {
-      "name": "wing1",
+      "name": "wing4",
       "floors": 10,
       "roomsPerFloor": 4,
       "roomDetails": {

@@ -7,8 +7,10 @@ const HttpError = require("./models/http-error");
 const Auth = require("./routes/Auth");
 const Register = require("./routes/Register");
 const OwnerProfile = require("./routes/OwnerProfile");
+const OwnersModule = require("./routes/ownersModule");
 const SocietyProfile = require("./routes/SocietyProfile");
 const financeModule = require("./routes/financeModule");
+
 
 const app = express();
 
@@ -29,6 +31,8 @@ app.use('/api/auth', Auth);
 app.use('/api/register', Register);
 
 app.use('/api/owner', OwnerProfile);
+
+app.use('/api/ownersModule', OwnersModule);
 
 app.use('/api/society', SocietyProfile);
 
