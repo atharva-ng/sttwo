@@ -12,8 +12,7 @@ module.exports = (req, res, next) => {
     }
     const decodedToken = jwt.verify(token, 'authentacationkey_12987655434');
     req.userData = {
-      userId: decodedToken.userId,
-      userType: decodedToken.userType
+      userId: decodedToken.userId
     };
     next();
   } catch (err) {

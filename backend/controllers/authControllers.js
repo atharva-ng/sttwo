@@ -101,8 +101,7 @@ const societyLogin = async (req, res, next) => {
     try {
       token = jwt.sign(
         {
-          userId: id,
-          userType: "SOCIETY"
+          userId: id
         },
         'authentacationkey_12987655434',
         { expiresIn: '1h' }
@@ -110,7 +109,7 @@ const societyLogin = async (req, res, next) => {
     } catch (err) {
       throw new HttpError("Unable to login", 500);
     }
-    res.status(200).json({ "token": token, userType: "SOCIETY" });
+    res.status(200).json({ "token": token });
   } catch (err) {
     if (err instanceof HttpError) {
       return next(err);

@@ -31,6 +31,8 @@ BEGIN
     EXECUTE "INSERT INTO payment_type (payment_head) VALUES ('UPI'), ('Cash'), ('Cheque'), ('Mandate'), ('Bank Transfer');";
 
     EXECUTE "INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');";
+
+    EXECUTE "CREATE TABLE owner_transaction (id SERIAL PRIMARY KEY, owner_id INTEGER REFERENCES ownerdetails(id) ON DELETE CASCADE NOT NULL, room_id INTEGER REFERENCES roomdetails(id) ON DELETE CASCADE NOT NULL, date_of_purchase DATE NOT NULL, date_of_selling DATE)";
 END;
 $$;
 

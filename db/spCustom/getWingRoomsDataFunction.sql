@@ -1,7 +1,7 @@
-CREATE OR REPLACE FUNCTION getWingRoomsData(soc_id INT) RETURNS TABLE(id INT, "name" VARCHAR, room_no VARCHAR)
+CREATE OR REPLACE FUNCTION getWingRoomsData(soc_id INT) RETURNS TABLE(id INT, "name" VARCHAR, room_id INT, room_no VARCHAR)
 AS $$
 BEGIN
-    RETURN QUERY Select a.id, a.name, d.room_no
+    RETURN QUERY Select a.id, a.name, d.id, d.room_no
     from wingdetails as a 
     inner join roomlink as b 
         on a.id=b.wing_details_id
