@@ -3,7 +3,7 @@ const path = require('path');
 
 const HttpError = require('../models/http-error');
 
-const { getWingDataQuery } = require('../dbUtils/ownersModuleQueries');
+const { getWingDataQuery, saveOwnerDataQuery } = require('../dbUtils/ownersModuleQueries');
 
 const cleanGetData = (data) => {
   const uniqueWings = new Set();
@@ -110,7 +110,7 @@ const getOwnersModule = async (req, res, next) => {
 const cleanPostData = (inputData, sortedWingData) => {
   const output = {
     societyName: '',
-    wingInfo: {}
+    roomInfo: []
   };
 
   let currentWing = '';
@@ -119,15 +119,14 @@ const cleanPostData = (inputData, sortedWingData) => {
     if (Array.isArray(item) && item.length === 1) {
       if (item[0].startsWith('wing')) {
         currentWing = item[0];
-        output.wingInfo[currentWing] = [];
       } else {
         output.societyName = item[0];
       }
     } else if (Array.isArray(item) && item.length > 1 && currentWing) {
       // Skip the header row
       if (item[0] !== 'Sr. No.') {
-        output.wingInfo[currentWing].push({
-          roomNumber: numberToId(item[1], sortedWingData[currentWing]),
+        output.roomInfo.push({
+          roomId: numberToId(item[1], sortedWingData[currentWing]),
           firstName: item[2],
           lastName: item[3],
           email: item[4],
@@ -157,7 +156,9 @@ const postOwnersModule = async (req, res, next) => {
 
     var output = cleanPostData(inputData, sortedWingData);
 
-    console.log(output.wingInfo.wing1);
+    const result = await saveOwnerDataQuery(output.roomInfo);
+
+    // console.log(output.roomInfo);
 
   } catch (error) {
     console.log('Error processing file:', error);
