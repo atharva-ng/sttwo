@@ -232,7 +232,6 @@ const sizeToId = (roomSizeArray, size) => {
 };
 
 const genRooms = async (roomData, floors, roomsPerFloor) => {
-  console.log(roomData);
   rooms = []
   const str = String(roomData.room_no);
   let initial = parseInt(str.substring(0, 1));

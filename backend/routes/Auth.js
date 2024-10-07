@@ -18,19 +18,10 @@ check('numberOfWings').trim().not().isEmpty().withMessage('Number of wings canno
 check('registrationNumber').trim().not().isEmpty().withMessage('Registration Number cannot be empty').escape()
 ], authControllers.postSignupSociety);
 
-router.post('/signup/owner', [check('firstName').trim().not().isEmpty().withMessage('First name cannot be empty').escape(),
-check('lastName').trim().not().isEmpty().withMessage('Last name cannot be empty').escape(),
-check('emailAddress').trim().not().isEmpty().withMessage('Email Address cannot be empty').escape().isEmail().withMessage("Please enter a valid email address"),
-check('password').trim().not().isEmpty().withMessage('Password cannot be empty'),
-check('phoneNumber').trim().not().isEmpty().withMessage('Phone Number cannot be empty').isMobilePhone('any').withMessage('Please enter a valid phone number').escape()
-], authControllers.postSignupOwner);
 
 router.post('/login/society', [check('emailAddress').trim().not().isEmpty().withMessage('Email cannot be empty').escape(),
 check('password').trim().not().isEmpty().withMessage('Password cannot be empty')]
   , authControllers.societyLogin);
 
-router.post('/login/owner', [check('emailAddress').trim().not().isEmpty().withMessage('Email cannot be empty').escape(),
-check('password').trim().not().isEmpty().withMessage('Password cannot be empty')]
-  , authControllers.ownerLogin);
 
 module.exports = router;
