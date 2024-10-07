@@ -12,8 +12,10 @@ const upload = multer({ dest: 'uploads/', });
 
 router.use(checkAuth);
 
-router.get('/', ownersModuleController.getOwnersModule);
+router.get('/', ownersModuleController.getOwnersData);
 
-router.post('/', upload.single('excel'), ownersModuleController.postOwnersModule);
+router.get('/get-excel', ownersModuleController.getOwnersModuleExcel);
+
+router.post('/post-excel', upload.single('excel'), ownersModuleController.postOwnersModuleExcel);
 
 module.exports = router;

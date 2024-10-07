@@ -14,9 +14,9 @@ const getWingDataQuery = async (soc_id) => {
 };
 
 const saveOwnerDataQuery = async (ownerData) => {
-  console.log(ownerData.slice(0, 40));
+  console.log(ownerData);
   try {
-    const result = await pool.query("SELECT saveOwnerDetails($1::jsonb);", [await JSON.stringify(await ownerData.slice(0, 40))]);
+    const result = await pool.query("SELECT saveOwnerDetails($1::jsonb);", [await JSON.stringify(await ownerData)]);
     console.log(result);
     return result;
   } catch (error) {
@@ -24,6 +24,18 @@ const saveOwnerDataQuery = async (ownerData) => {
     throw new HttpError("Something went wrong-saveOwnerDataQuery", 500);
   }
 }
-module.exports = { getWingDataQuery, saveOwnerDataQuery };
+
+const getOwnersDataQuery = async (soc_id) => {
+  try {
+    const result = await pool.query("select * from getownersdata($1);", [
+      soc_id
+    ]);
+    return result.rows;
+  } catch (error) {
+    console.log(error);
+    throw new HttpError("Something went wrong-getOwnersDataQuery", 500);
+  }
+}
+module.exports = { getWingDataQuery, saveOwnerDataQuery, getOwnersDataQuery };
 
 

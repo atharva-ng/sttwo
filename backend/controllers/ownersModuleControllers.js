@@ -3,7 +3,7 @@ const path = require('path');
 
 const HttpError = require('../models/http-error');
 
-const { getWingDataQuery, saveOwnerDataQuery } = require('../dbUtils/ownersModuleQueries');
+const { getWingDataQuery, saveOwnerDataQuery, getOwnersDataQuery } = require('../dbUtils/ownersModuleQueries');
 
 const cleanGetData = (data) => {
   const uniqueWings = new Set();
@@ -86,7 +86,7 @@ const numberToId = (str, sortedRoomData) => {
   return room ? room.roomId : null;
 }
 
-const getOwnersModule = async (req, res, next) => {
+const getOwnersModuleExcel = async (req, res, next) => {
   // const userId = req.userData.userId;
   const userId = 75;
   if (userId === null) {
@@ -106,6 +106,7 @@ const getOwnersModule = async (req, res, next) => {
   }
   return res.status(200).send(excelFileBuffer);
 }
+
 
 const cleanPostData = (inputData, sortedWingData) => {
   const output = {
@@ -141,7 +142,7 @@ const cleanPostData = (inputData, sortedWingData) => {
   return output;
 }
 
-const postOwnersModule = async (req, res, next) => {
+const postOwnersModuleExcel = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
@@ -167,5 +168,25 @@ const postOwnersModule = async (req, res, next) => {
   return res.status(200).json();
 }
 
-exports.getOwnersModule = getOwnersModule;
-exports.postOwnersModule = postOwnersModule;
+
+const getOwnersData = async (req, res, next) => {
+  // const userId = req.userData.userId;
+  const userId = 75;
+  if (userId === null) {
+    throw HttpError("Authentication Failed", 401);
+  }
+  try {
+    const ownersData = await getOwnersDataQuery(75);
+    console.log(ownersData);
+    return res.status(200).json(ownersData);
+  } catch (error) {
+    console.log(error);
+    throw new HttpError("Something went wrong-getOwnersData", 500);
+  }
+}
+
+
+
+exports.getOwnersModuleExcel = getOwnersModuleExcel;
+exports.postOwnersModuleExcel = postOwnersModuleExcel;
+exports.getOwnersData = getOwnersData;

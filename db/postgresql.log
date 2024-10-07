@@ -7468,3 +7468,312 @@
 	-- c.wing_details_id=a.id
 	;
 	
+2024-10-04 15:39:00.108 IST [81668] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:39:00.110 IST [81668] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:39:00.110 IST [81668] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:39:00.110 IST [81668] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:39:00.115 IST [81671] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:39:00.115 IST [81671] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:39:00.115 IST [81671] LOG:  invalid primary checkpoint record
+2024-10-04 15:39:00.115 IST [81671] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:39:00.115 IST [81668] LOG:  startup process (PID 81671) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:39:00.115 IST [81668] LOG:  aborting startup due to startup process failure
+2024-10-04 15:39:00.116 IST [81668] LOG:  database system is shut down
+2024-10-04 15:39:03.568 IST [81688] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:39:03.571 IST [81688] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:39:03.571 IST [81688] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:39:03.571 IST [81688] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:39:03.573 IST [81691] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:39:03.574 IST [81691] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:39:03.574 IST [81691] LOG:  invalid primary checkpoint record
+2024-10-04 15:39:03.574 IST [81691] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:39:03.574 IST [81688] LOG:  startup process (PID 81691) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:39:03.574 IST [81688] LOG:  aborting startup due to startup process failure
+2024-10-04 15:39:03.574 IST [81688] LOG:  database system is shut down
+2024-10-04 15:39:29.011 IST [81785] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:39:29.012 IST [81785] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:39:29.012 IST [81785] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:39:29.013 IST [81785] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:39:29.015 IST [81788] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:39:29.016 IST [81788] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:39:29.016 IST [81788] LOG:  invalid primary checkpoint record
+2024-10-04 15:39:29.016 IST [81788] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:39:29.016 IST [81785] LOG:  startup process (PID 81788) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:39:29.016 IST [81785] LOG:  aborting startup due to startup process failure
+2024-10-04 15:39:29.016 IST [81785] LOG:  database system is shut down
+2024-10-04 15:39:43.987 IST [81866] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:39:43.991 IST [81866] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:39:43.991 IST [81866] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:39:43.992 IST [81866] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:39:43.995 IST [81869] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:39:43.995 IST [81869] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:39:43.995 IST [81869] LOG:  invalid primary checkpoint record
+2024-10-04 15:39:43.995 IST [81869] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:39:43.995 IST [81866] LOG:  startup process (PID 81869) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:39:43.995 IST [81866] LOG:  aborting startup due to startup process failure
+2024-10-04 15:39:43.996 IST [81866] LOG:  database system is shut down
+2024-10-04 15:39:53.224 IST [81907] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:39:53.226 IST [81907] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:39:53.226 IST [81907] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:39:53.227 IST [81907] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:39:53.229 IST [81910] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:39:53.229 IST [81910] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:39:53.229 IST [81910] LOG:  invalid primary checkpoint record
+2024-10-04 15:39:53.229 IST [81910] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:39:53.229 IST [81907] LOG:  startup process (PID 81910) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:39:53.229 IST [81907] LOG:  aborting startup due to startup process failure
+2024-10-04 15:39:53.230 IST [81907] LOG:  database system is shut down
+2024-10-04 15:41:50.216 IST [82295] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:41:50.219 IST [82295] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:41:50.219 IST [82295] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:41:50.219 IST [82295] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:41:50.225 IST [82298] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:41:50.225 IST [82298] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:41:50.225 IST [82298] LOG:  invalid primary checkpoint record
+2024-10-04 15:41:50.226 IST [82298] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:41:50.226 IST [82295] LOG:  startup process (PID 82298) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:41:50.226 IST [82295] LOG:  aborting startup due to startup process failure
+2024-10-04 15:41:50.226 IST [82295] LOG:  database system is shut down
+2024-10-04 15:45:58.371 IST [874] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:45:58.373 IST [874] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:45:58.373 IST [874] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:45:58.373 IST [874] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:45:58.377 IST [877] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:45:58.378 IST [877] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:45:58.378 IST [877] LOG:  invalid primary checkpoint record
+2024-10-04 15:45:58.378 IST [877] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:45:58.378 IST [874] LOG:  startup process (PID 877) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:45:58.378 IST [874] LOG:  aborting startup due to startup process failure
+2024-10-04 15:45:58.378 IST [874] LOG:  database system is shut down
+2024-10-04 15:46:30.844 IST [975] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:46:30.845 IST [975] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:46:30.845 IST [975] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:46:30.845 IST [975] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:46:30.847 IST [978] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:46:30.847 IST [978] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:46:30.847 IST [978] LOG:  invalid primary checkpoint record
+2024-10-04 15:46:30.847 IST [978] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:46:30.847 IST [975] LOG:  startup process (PID 978) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:46:30.847 IST [975] LOG:  aborting startup due to startup process failure
+2024-10-04 15:46:30.848 IST [975] LOG:  database system is shut down
+2024-10-04 15:48:02.151 IST [1185] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:48:02.153 IST [1185] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:48:02.153 IST [1185] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:48:02.154 IST [1185] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:48:02.158 IST [1188] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:48:02.158 IST [1188] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:48:02.158 IST [1188] LOG:  invalid primary checkpoint record
+2024-10-04 15:48:02.158 IST [1188] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:48:02.158 IST [1185] LOG:  startup process (PID 1188) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:48:02.158 IST [1185] LOG:  aborting startup due to startup process failure
+2024-10-04 15:48:02.158 IST [1185] LOG:  database system is shut down
+2024-10-04 15:48:57.847 IST [1227] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:48:57.848 IST [1227] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:48:57.848 IST [1227] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:48:57.849 IST [1227] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:48:57.851 IST [1230] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:48:57.851 IST [1230] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:48:57.851 IST [1230] LOG:  invalid primary checkpoint record
+2024-10-04 15:48:57.851 IST [1230] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:48:57.851 IST [1227] LOG:  startup process (PID 1230) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:48:57.851 IST [1227] LOG:  aborting startup due to startup process failure
+2024-10-04 15:48:57.851 IST [1227] LOG:  database system is shut down
+2024-10-04 15:49:45.517 IST [1297] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:49:45.518 IST [1297] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:49:45.518 IST [1297] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:49:45.518 IST [1297] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:49:45.520 IST [1300] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:49:45.520 IST [1300] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:49:45.520 IST [1300] LOG:  invalid primary checkpoint record
+2024-10-04 15:49:45.520 IST [1300] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:49:45.521 IST [1297] LOG:  startup process (PID 1300) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:49:45.521 IST [1297] LOG:  aborting startup due to startup process failure
+2024-10-04 15:49:45.521 IST [1297] LOG:  database system is shut down
+2024-10-04 15:49:48.533 IST [1305] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:49:48.535 IST [1305] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:49:48.535 IST [1305] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:49:48.536 IST [1305] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:49:48.537 IST [1308] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:49:48.538 IST [1308] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:49:48.538 IST [1308] LOG:  invalid primary checkpoint record
+2024-10-04 15:49:48.538 IST [1308] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:49:48.538 IST [1305] LOG:  startup process (PID 1308) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:49:48.538 IST [1305] LOG:  aborting startup due to startup process failure
+2024-10-04 15:49:48.538 IST [1305] LOG:  database system is shut down
+2024-10-04 15:51:05.909 IST [1377] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:51:05.911 IST [1377] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:51:05.911 IST [1377] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:51:05.911 IST [1377] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:51:05.913 IST [1380] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:51:05.913 IST [1380] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:51:05.913 IST [1380] LOG:  invalid primary checkpoint record
+2024-10-04 15:51:05.913 IST [1380] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:51:05.914 IST [1377] LOG:  startup process (PID 1380) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:51:05.914 IST [1377] LOG:  aborting startup due to startup process failure
+2024-10-04 15:51:05.914 IST [1377] LOG:  database system is shut down
+2024-10-04 15:58:31.886 IST [1633] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 15:58:31.887 IST [1633] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 15:58:31.887 IST [1633] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 15:58:31.888 IST [1633] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 15:58:31.893 IST [1636] LOG:  database system was shut down at 2024-10-04 15:38:51 IST
+2024-10-04 15:58:31.893 IST [1636] LOG:  invalid record length at 0/27D4960: wanted 24, got 0
+2024-10-04 15:58:31.893 IST [1636] LOG:  invalid primary checkpoint record
+2024-10-04 15:58:31.893 IST [1636] PANIC:  could not locate a valid checkpoint record
+2024-10-04 15:58:31.894 IST [1633] LOG:  startup process (PID 1636) was terminated by signal 6: Abort trap: 6
+2024-10-04 15:58:31.894 IST [1633] LOG:  aborting startup due to startup process failure
+2024-10-04 15:58:31.894 IST [1633] LOG:  database system is shut down
+2024-10-04 16:02:24.160 IST [1725] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-04 16:02:24.162 IST [1725] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-04 16:02:24.162 IST [1725] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-04 16:02:24.162 IST [1725] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-04 16:02:24.164 IST [1728] LOG:  database system was shut down at 2024-10-04 16:02:17 IST
+2024-10-04 16:02:24.169 IST [1725] LOG:  database system is ready to accept connections
+2024-10-04 16:07:24.166 IST [1726] LOG:  checkpoint starting: time
+2024-10-04 16:07:24.277 IST [1726] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.002 s, total=0.112 s; sync files=4, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-10-04 16:11:14.306 PostgresPermissionDialog[1962:36158] +[IMKClient subclass]: chose IMKClient_Legacy
+2024-10-04 16:11:14.308 PostgresPermissionDialog[1962:36158] +[IMKInputSession subclass]: chose IMKInputSession_Legacy
+2024-10-04 16:12:42.903 PostgresPermissionDialog[1995:37526] +[IMKClient subclass]: chose IMKClient_Legacy
+2024-10-04 16:12:42.904 PostgresPermissionDialog[1995:37526] +[IMKInputSession subclass]: chose IMKInputSession_Legacy
+2024-10-04 17:00:19.945 IST [1772] ERROR:  syntax error at or near "postgres" at character 1
+2024-10-04 17:00:19.945 IST [1772] STATEMENT:  postgres --version
+	Alternatively, run the shorthand version postgres -V
+	SQL shell:
+	Open the PostgreSQL shell by typing sudo -u postgres psql
+	Run the statement postgre=# SELECT version();
+2024-10-04 17:00:38.609 IST [2747] FATAL:  database "client:" does not exist
+2024-10-04 19:16:14.743 IST [14645] ERROR:  syntax error at or near "ls" at character 1
+2024-10-04 19:16:14.743 IST [14645] STATEMENT:  ls
+	select * from pg_roles;
+2024-10-07 11:35:22.438 IST [47051] ERROR:  syntax error at or near "inner" at character 54
+2024-10-07 11:35:22.438 IST [47051] STATEMENT:  Select * from wingdetails as a where a.society_id=75
+	inner join roomlink as b where b.wing_details_id = a.id;
+	
+	
+2024-10-07 11:35:32.987 IST [47051] ERROR:  syntax error at or near "inner" at character 54
+2024-10-07 11:35:32.987 IST [47051] STATEMENT:  Select * from wingdetails as a where a.society_id=75
+	inner join roomlink as b on b.wing_details_id = a.id;
+	
+	
+2024-10-07 11:50:32.940 IST [47051] ERROR:  column f.name does not exist at character 51
+2024-10-07 11:50:32.940 IST [47051] HINT:  Perhaps you meant to reference the column "a.name".
+2024-10-07 11:50:32.940 IST [47051] STATEMENT:  Select a.id as wingid, a.name, c.size, d.room_no, f.name from wingdetails as a 
+	inner join roomlink as b on b.wing_details_id = a.id
+	inner join roomsize as c on b.room_size_id = c.id
+	inner join roomdetails as d on d.roomlink_id = b.id
+	inner join room_transaction as e on e.roomdetails_id = d.id
+	inner join ownerdetails as f on e.owner_id = f.id
+	where a.society_id=75;
+	
+	
+2024-10-07 11:58:52.672 IST [47051] ERROR:  syntax error at or near "OR" at character 24
+2024-10-07 11:58:52.672 IST [47051] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE FUNCTION getownersdata(soc_id INT) RETURNS TABLE(id INT, "wingName" VARCHAR, roomSize varchar, room_no VARCHAR, firstname varchar, lastname varchar)
+	AS $$
+	BEGIN
+	    RETURN QUERY Select a.id as wingid, a.name, c.size, d.room_no, f.firstname, f.lastname 
+	    from wingdetails as a 
+	    inner join roomlink as b on b.wing_details_id = a.id
+	    inner join roomsize as c on b.room_size_id = c.id
+	    inner join roomdetails as d on d.roomlink_id = b.id
+	    inner join room_transaction as e on e.roomdetails_id = d.id
+	    inner join ownerdetails as f on e.owner_id = f.id
+	    where a.society_id=soc_id;
+	
+	
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	-- drop function getownersdata(int);
+2024-10-07 12:01:59.165 IST [1726] LOG:  checkpoint starting: time
+2024-10-07 12:02:01.142 IST [1726] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.965 s, sync=0.004 s, total=1.978 s; sync files=19, longest=0.002 s, average=0.001 s; distance=42 kB, estimate=42 kB
+2024-10-07 12:03:07.316 IST [47051] ERROR:  syntax error at or near "OR" at character 24
+2024-10-07 12:03:07.316 IST [47051] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE FUNCTION getownersdata(soc_id INT) RETURNS TABLE(id INT, "wingName" VARCHAR, roomSize varchar, room_no VARCHAR, firstname varchar, lastname varchar)
+	AS $$
+	BEGIN
+	    RETURN QUERY Select a.id as wingid, a.name, c.size, d.room_no, f.firstname, f.lastname 
+	    from wingdetails as a 
+	    inner join roomlink as b on b.wing_details_id = a.id
+	    inner join roomsize as c on b.room_size_id = c.id
+	    inner join roomdetails as d on d.roomlink_id = b.id
+	    inner join room_transaction as e on e.roomdetails_id = d.id
+	    inner join ownerdetails as f on e.owner_id = f.id
+	    where a.society_id=soc_id;
+	EXCEPTION
+	    WHEN OTHERS THEN
+	        RAISE exception 'Error occurred: %', SQLERRM;
+	END;
+	$$ LANGUAGE plpgsql;
+2024-10-07 12:06:59.145 IST [1726] LOG:  checkpoint starting: time
+2024-10-07 12:06:59.557 IST [1726] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.002 s, total=0.412 s; sync files=5, longest=0.001 s, average=0.001 s; distance=22 kB, estimate=40 kB
+2024-10-07 13:02:55.852 IST [64803] ERROR:  function getownerdata(unknown) does not exist at character 8
+2024-10-07 13:02:55.852 IST [64803] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-10-07 13:02:55.852 IST [64803] STATEMENT:  SELECT getOwnerData($1);
+2024-10-07 13:07:05.361 IST [66015] ERROR:  function getownerdata(unknown) does not exist at character 8
+2024-10-07 13:07:05.361 IST [66015] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-10-07 13:07:05.361 IST [66015] STATEMENT:  SELECT getOwnerData($1);
+2024-10-07 13:08:07.782 IST [66694] ERROR:  function getownerdata(integer) does not exist at character 8
+2024-10-07 13:08:07.782 IST [66694] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-10-07 13:08:07.782 IST [66694] STATEMENT:  SELECT getOwnerData(75);
+2024-10-07 13:09:11.597 IST [67312] ERROR:  function getownerdata(integer) does not exist at character 15
+2024-10-07 13:09:11.597 IST [67312] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2024-10-07 13:09:11.597 IST [67312] STATEMENT:  SELECT * FROM getOwnerData(75);
+2024-10-07 13:12:21.173 IST [68486] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-10-07 13:12:21.173 IST [68486] STATEMENT:  select * from getownersdata(75);
+2024-10-07 13:12:41.617 IST [69019] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2024-10-07 13:12:41.617 IST [69019] STATEMENT:  select * from getownersdata(75);
+2024-10-07 13:13:37.495 IST [47051] ERROR:  cannot change return type of existing function
+2024-10-07 13:13:37.495 IST [47051] DETAIL:  Row type defined by OUT parameters is different.
+2024-10-07 13:13:37.495 IST [47051] HINT:  Use DROP FUNCTION getownersdata(integer) first.
+2024-10-07 13:13:37.495 IST [47051] STATEMENT:  CREATE OR REPLACE FUNCTION getownersdata(soc_id INT) RETURNS TABLE(id INT, "wingName" VARCHAR, roomSize varchar, roomNo VARCHAR, firstName varchar, lastname varchar)
+	AS $$
+	BEGIN
+	    RETURN QUERY Select a.id as wingid, a.name, c.size, d.room_no, f.firstname, f.lastname 
+	    from wingdetails as a 
+	    inner join roomlink as b on b.wing_details_id = a.id
+	    inner join roomsize as c on b.room_size_id = c.id
+	    inner join roomdetails as d on d.roomlink_id = b.id
+	    inner join room_transaction as e on e.roomdetails_id = d.id
+	    inner join ownerdetails as f on e.owner_id = f.id
+	    where a.society_id=soc_id;
+	EXCEPTION
+	    WHEN OTHERS THEN
+	        RAISE exception 'Error occurred: %', SQLERRM;
+	END;
+	$$ LANGUAGE plpgsql;
+2024-10-07 13:13:55.974 IST [47051] ERROR:  syntax error at or near "drop" at character 790
+2024-10-07 13:13:55.974 IST [47051] STATEMENT:  EXPLAIN VERBOSE -- CREATE OR REPLACE FUNCTION getownersdata(soc_id INT) RETURNS TABLE(id INT, "wingName" VARCHAR, roomSize varchar, roomNo VARCHAR, firstName varchar, lastname varchar)
+	-- AS $$
+	-- BEGIN
+	--     RETURN QUERY Select a.id as wingid, a.name, c.size, d.room_no, f.firstname, f.lastname 
+	--     from wingdetails as a 
+	--     inner join roomlink as b on b.wing_details_id = a.id
+	--     inner join roomsize as c on b.room_size_id = c.id
+	--     inner join roomdetails as d on d.roomlink_id = b.id
+	--     inner join room_transaction as e on e.roomdetails_id = d.id
+	--     inner join ownerdetails as f on e.owner_id = f.id
+	--     where a.society_id=soc_id;
+	-- EXCEPTION
+	--     WHEN OTHERS THEN
+	--         RAISE exception 'Error occurred: %', SQLERRM;
+	-- END;
+	-- $$ LANGUAGE plpgsql;
+	
+	drop function getownersdata;
+2024-10-07 13:14:02.812 IST [47051] ERROR:  syntax error at or near "OR" at character 24
+2024-10-07 13:14:02.812 IST [47051] STATEMENT:  EXPLAIN VERBOSE CREATE OR REPLACE FUNCTION getownersdata(soc_id INT) RETURNS TABLE(id INT, "wingName" VARCHAR, roomSize varchar, roomNo VARCHAR, firstName varchar, lastname varchar)
+	AS $$
+	BEGIN
+	    RETURN QUERY Select a.id as wingid, a.name, c.size, d.room_no, f.firstname, f.lastname 
+	    from wingdetails as a 
+	    inner join roomlink as b on b.wing_details_id = a.id
+	    inner join roomsize as c on b.room_size_id = c.id
+	    inner join roomdetails as d on d.roomlink_id = b.id
+	    inner join room_transaction as e on e.roomdetails_id = d.id
+	    inner join ownerdetails as f on e.owner_id = f.id
+	    where a.society_id=soc_id;
+	EXCEPTION
+	    WHEN OTHERS THEN
+	        RAISE exception 'Error occurred: %', SQLERRM;
+	END;
+	$$ LANGUAGE plpgsql;
+2024-10-07 13:17:45.773 IST [1726] LOG:  checkpoint starting: time
+2024-10-07 13:17:46.700 IST [1726] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.919 s, sync=0.004 s, total=0.928 s; sync files=10, longest=0.001 s, average=0.001 s; distance=44 kB, estimate=44 kB
