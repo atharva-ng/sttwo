@@ -7777,3 +7777,9 @@
 	$$ LANGUAGE plpgsql;
 2024-10-07 13:17:45.773 IST [1726] LOG:  checkpoint starting: time
 2024-10-07 13:17:46.700 IST [1726] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.919 s, sync=0.004 s, total=0.928 s; sync files=10, longest=0.001 s, average=0.001 s; distance=44 kB, estimate=44 kB
+2024-10-07 19:09:20.603 IST [51647] ERROR:  procedure getemaillogin(unknown, unknown, unknown) does not exist at character 6
+2024-10-07 19:09:20.603 IST [51647] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-10-07 19:09:20.603 IST [51647] STATEMENT:  CALL getemaillogin($1,$2, $3);
+2024-10-07 19:10:15.802 IST [51948] ERROR:  procedure getemaillogin(unknown, unknown, unknown) does not exist at character 6
+2024-10-07 19:10:15.802 IST [51948] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
+2024-10-07 19:10:15.802 IST [51948] STATEMENT:  CALL getemaillogin($1,$2, $3);
