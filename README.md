@@ -17,26 +17,26 @@ POST-"/" - To register a with structure and maintenance details
 Required fields: Structure similar to the following
 
 {
--"wingInformation": {
---"1": {
----"name": "wing1",
----"floors": 10,
----"roomsPerFloor": 2,
----"roomDetails": {
-----"1": {
------"roomNumber": 101,
------"roomSize": "1BHK",
------"maintainanceAmount": 5000,
------"maintainanceHeadAmount": {
-------"1": 1500,
-------"2": 500,
-------"3": 2000,
-------"4": 1000,
------},
-----}
----}
---}
--}
+"wingInformation": {
+"1": {
+"name": "wing1",
+"floors": 10,
+roomsPerFloor": 2,
+"roomDetails": {
+1": {
+"roomNumber": 101,
+"roomSize": "1BHK",
+"maintainanceAmount": 5000,
+"maintainanceHeadAmount": {
+"1": 1500,
+"2": 500,
+"3": 2000,
+"4": 1000,
+},
+}
+}
+}
+}
 }
 
 --"/api/ownersModule":
