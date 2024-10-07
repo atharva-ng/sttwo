@@ -2,7 +2,7 @@ const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
 const { saveWingQuery, saveRoomQuery, createRoomLinkQuery, saveMaintainanceHeadQuery } = require("../dbUtils/societyRegistrationQueries")
-const { getRoomSizeQuery } = require("../dbUtils/authDBQueries");
+const { getRoomSizeQuery, getMaintenanceHeadsQuery } = require("../dbUtils/authDBQueries");
 
 const jwt = require('jsonwebtoken');
 

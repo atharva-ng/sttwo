@@ -18,11 +18,11 @@ Required fields: Structure similar to the following
 
 {
 "wingInformation": {
-"1": {
+  "1": {
 "name": "wing1",
 "floors": 10,
 roomsPerFloor": 2,
-"roomDetails": {
+ "roomDetails": {
 1": {
 "roomNumber": 101,
 "roomSize": "1BHK",

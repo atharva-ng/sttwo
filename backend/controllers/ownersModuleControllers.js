@@ -1,4 +1,5 @@
 const XLSX = require('xlsx');
+const ExcelJS = require('exceljs');
 const path = require('path');
 
 const HttpError = require('../models/http-error');
@@ -35,7 +36,7 @@ const cleanGetData = (data) => {
   return finalObj;
 }
 
-function generateGetExcelFile(dataVar) {
+async function generateGetExcelFile(dataVar) {
 
   const data = [
     ['XYZ Society'],
@@ -60,25 +61,94 @@ function generateGetExcelFile(dataVar) {
     });
   });
 
-  console.log(mergeList);
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Society Data');
 
-  // Create a new workbook
-  const wb = XLSX.utils.book_new();
+  const baseStyles={
+    alignment: { vertical: 'middle', horizontal: 'center' },
+    border: {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    },
+    protection: { locked: true },
+  }
 
-  // Create a worksheet
-  const ws = XLSX.utils.aoa_to_sheet(data);
+  const sectionHeaderStyle = {
+    font: { bold: true, size: 14 },
+    fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFE0B2' } }, // light yellow fill
+  };
 
-  // Set column widths
-  const colWidths = [10, 15, 15, 15, 25, 15, 15, 15];
-  ws['!cols'] = colWidths.map(width => ({ width }));
+  let currentRow = 1;
 
-  // Merge cells for the title and subtitle
-  ws['!merges'] = mergeList;
+  data.forEach((row) => {
+    const isSectionHeader = row.length === 1 && typeof row[0] === 'string';
+    const rowRef = worksheet.addRow(row);
 
-  // Add the worksheet to the workbook
-  XLSX.utils.book_append_sheet(wb, ws, 'XYZ Society');
-  // XLSX.writeFile(wb, 'example.xlsx');
-  return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+    // Apply section header styles
+    if (isSectionHeader) {
+      rowRef.font = sectionHeaderStyle.font;
+      
+      worksheet.mergeCells(`A${currentRow}:H${currentRow}`);
+      rowRef.eachCell({ includeEmpty: true }, (cell) => {
+        cell.border = baseStyles.border;
+        cell.fill=sectionHeaderStyle.fill;
+        cell.protection = baseStyles.protection;
+      });
+      rowRef.alignment = baseStyles.alignment;
+    } else {
+      // Apply header style to the row if it's the table header
+      if (currentRow === 2 || row[0] === 'Sr. No.') {
+        rowRef.eachCell({ includeEmpty: true }, (cell) => {
+          cell.font = sectionHeaderStyle.font;
+          cell.alignment = baseStyles.alignment;
+          cell.border = baseStyles.border;
+          cell.protection = baseStyles.protection;
+        });
+      } else {
+        // Apply data cell styles for normal rows
+        rowRef.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+          cell.alignment = baseStyles.alignment;
+          cell.border = baseStyles.border;
+
+          if (colNumber === 1 || colNumber === 2) {
+            // Lock the Sr. No. and Room Number columns
+            cell.protection = { locked: true };
+          } else {
+            // Other columns can remain unlocked (editable)
+            cell.protection = { locked: false };
+          }
+        });
+      }
+    }
+    currentRow++;
+  });
+  
+
+  worksheet.columns = [
+    { width: 10 },  // Sr. No.
+    { width: 20 },  // Room Number
+    { width: 15 },  // First Name
+    { width: 15 },  // Last Name
+    { width: 30 },  // Email
+    { width: 20 },  // Phone Number
+    { width: 30 },  // Date of Purchase
+    { width: 30 },  // Date of Selling
+  ];
+
+  worksheet.columns = Array.from({ length: 8 }, (_, i) => ({
+    width: 15,  // You can set this dynamically based on column content
+  }));
+
+  worksheet.protect('password123', {
+    selectLockedCells: true,
+    selectUnlockedCells: true,
+  });
+
+  const filePath = path.join(__dirname, 'SocietyDataWithBorders.xlsx');
+  await workbook.xlsx.writeFile(filePath);      
+
 }
 
 const numberToId = (str, sortedRoomData) => {
@@ -97,7 +167,7 @@ const getOwnersModuleExcel = async (req, res, next) => {
     const wingData = await getWingDataQuery(userId);
     const sortedWingData = cleanGetData(wingData);
 
-    excelFileBuffer = generateGetExcelFile(sortedWingData);
+    excelFileBuffer = await generateGetExcelFile(sortedWingData);
     res.setHeader('Content-Disposition', 'attachment; filename="data.xlsx"');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   } catch (error) {

@@ -20,7 +20,7 @@ const getMaintenanceHeadsQuery = async () => {
     const maintenanceHeadsList = result.rows.map(row => row.heads);
     return maintenanceHeadsList;
   } catch (err) {
-    throw new HttpError("Something went wrong", 500);
+    throw new HttpError("Something went wrong- getMaintenanceHeadsQuery", 500);
   }
 };
 
