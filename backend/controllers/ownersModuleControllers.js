@@ -147,7 +147,7 @@ async function generateGetExcelFile(dataVar) {
   });
 
   const filePath = path.join(__dirname, 'SocietyDataWithBorders.xlsx');
-  await workbook.xlsx.writeFile(filePath);      
+  await workbook.xlsx.writeFile(filePath);
 
 }
 

@@ -41,9 +41,15 @@ roomsPerFloor": 2,
 
 --"/api/ownersModule":
 -GET-"/" - Get all the owner details with room info
-FIelds- id, wingName, roomsize, roomno, firstname, lastname
+Fields- id, wingName, roomsize, roomno, firstname, lastname
 
 -GET- "/get-excel" - Get the excel file with basic wing and room details which is to be downloaded by the user
 
 -POST- "/post-excel" - POST the excel file with basic wing and room details
 Fields: excel
+
+
+
+--"/api/community-communications":
+-POST - "/notices" - Create a new notice for a particular society
+Fields: title-255 Chars, content, start_date, end_date
