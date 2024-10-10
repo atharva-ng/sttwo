@@ -7783,3 +7783,106 @@
 2024-10-07 19:10:15.802 IST [51948] ERROR:  procedure getemaillogin(unknown, unknown, unknown) does not exist at character 6
 2024-10-07 19:10:15.802 IST [51948] HINT:  No procedure matches the given name and argument types. You might need to add explicit type casts.
 2024-10-07 19:10:15.802 IST [51948] STATEMENT:  CALL getemaillogin($1,$2, $3);
+2024-10-08 14:25:39.488 IST [1725] LOG:  received fast shutdown request
+2024-10-08 14:25:39.489 IST [1725] LOG:  aborting any active transactions
+2024-10-08 14:25:39.498 IST [1725] LOG:  background worker "logical replication launcher" (PID 1731) exited with exit code 1
+2024-10-08 14:25:39.498 IST [1726] LOG:  shutting down
+2024-10-08 14:25:39.499 IST [1726] LOG:  checkpoint starting: shutdown immediate
+2024-10-08 14:25:39.508 IST [1726] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.010 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=40 kB
+2024-10-08 14:25:39.513 IST [1725] LOG:  database system is shut down
+2024-10-08 14:26:40.013 IST [61601] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-08 14:26:40.015 IST [61601] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-08 14:26:40.015 IST [61601] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 14:26:40.015 IST [61601] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-08 14:26:40.020 IST [61604] LOG:  database system was shut down at 2024-10-08 14:25:39 IST
+2024-10-08 14:26:40.024 IST [61601] LOG:  database system is ready to accept connections
+2024-10-08 14:31:40.022 IST [61602] LOG:  checkpoint starting: time
+2024-10-08 14:31:40.025 IST [61602] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-10-08 15:14:07.837 IST [61601] LOG:  received fast shutdown request
+2024-10-08 15:14:07.837 IST [61601] LOG:  aborting any active transactions
+2024-10-08 15:14:07.839 IST [61601] LOG:  background worker "logical replication launcher" (PID 61607) exited with exit code 1
+2024-10-08 15:14:07.839 IST [61602] LOG:  shutting down
+2024-10-08 15:14:07.839 IST [61602] LOG:  checkpoint starting: shutdown immediate
+2024-10-08 15:14:07.840 IST [61602] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
+2024-10-08 15:14:07.843 IST [61601] LOG:  database system is shut down
+2024-10-08 15:17:43.052 IST [62015] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-08 15:17:43.054 IST [62015] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-08 15:17:43.054 IST [62015] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 15:17:43.054 IST [62015] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-08 15:17:43.057 IST [62018] LOG:  database system was shut down at 2024-10-08 15:14:07 IST
+2024-10-08 15:17:43.060 IST [62015] LOG:  database system is ready to accept connections
+2024-10-08 15:17:46.513 IST [62015] LOG:  received fast shutdown request
+2024-10-08 15:17:46.514 IST [62015] LOG:  aborting any active transactions
+2024-10-08 15:17:46.515 IST [62015] LOG:  background worker "logical replication launcher" (PID 62021) exited with exit code 1
+2024-10-08 15:17:46.515 IST [62016] LOG:  shutting down
+2024-10-08 15:17:46.515 IST [62016] LOG:  checkpoint starting: shutdown immediate
+2024-10-08 15:17:46.517 IST [62016] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-10-08 15:17:46.518 IST [62015] LOG:  database system is shut down
+2024-10-08 16:10:04.765 IST [63192] LOG:  starting PostgreSQL 15.7 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2024-10-08 16:10:04.767 IST [63192] LOG:  listening on IPv6 address "::1", port 5432
+2024-10-08 16:10:04.767 IST [63192] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-10-08 16:10:04.767 IST [63192] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-10-08 16:10:04.770 IST [63195] LOG:  database system was shut down at 2024-10-08 15:17:46 IST
+2024-10-08 16:10:04.774 IST [63192] LOG:  database system is ready to accept connections
+2024-10-08 16:12:31.553 IST [63222] ERROR:  syntax error at or near "ls" at character 1
+2024-10-08 16:12:31.553 IST [63222] STATEMENT:  ls
+	CREATE TABLE complaintDetails(complaint_id INT PRIMARY KEY AUTO_INCREMENT, society_id INT, room_id INT, title VARCHAR(100) NOT NULL, description TEXT NOT NULL, status ENUM('Open', 'In Progress', 'Resolved', 'Closed') DEFAULT 'Open', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (society_id) REFERENCES societydetails(id));
+2024-10-08 16:12:40.148 IST [63222] ERROR:  syntax error at or near "AUTO_INCREMENT" at character 60
+2024-10-08 16:12:40.148 IST [63222] STATEMENT:  CREATE TABLE complaintDetails(complaint_id INT PRIMARY KEY AUTO_INCREMENT, society_id INT, room_id INT, title VARCHAR(100) NOT NULL, description TEXT NOT NULL, status ENUM('Open', 'In Progress', 'Resolved', 'Closed') DEFAULT 'Open', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (society_id) REFERENCES societydetails(id));
+2024-10-08 16:15:04.768 IST [63193] LOG:  checkpoint starting: time
+2024-10-08 16:15:04.778 IST [63193] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.011 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2024-10-08 16:15:22.293 IST [63222] ERROR:  syntax error at or near "ON" at character 289
+2024-10-08 16:15:22.293 IST [63222] STATEMENT:  CREATE TABLE complaintDetails (complaint_id SERIAL PRIMARY KEY, society_id INT, room_id INT, title VARCHAR(100) NOT NULL, description TEXT NOT NULL, status VARCHAR(20) NOT NULL DEFAULT 'Open', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (society_id) REFERENCES societydetails(id), FOREIGN KEY (room_id) REFERENCES roomdetails(id), CHECK (status IN ('Open', 'In Progress', 'Resolved', 'Closed')));
+2024-10-08 17:03:43.214 IST [63222] ERROR:  column "room_id" referenced in foreign key constraint does not exist
+2024-10-08 17:03:43.214 IST [63222] STATEMENT:  CREATE TABLE complaintDetails (complaint_id SERIAL PRIMARY KEY,society_id INT,room_id INT,title VARCHAR(100) NOT NULL,description TEXT NOT NULL,status VARCHAR(20) NOT NULL DEFAULT 'Open',created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY (society_id) REFERENCES societydetails(id),FOREIGN KEY (room_id) REFERENCES roomdetails(room_id),CHECK (status IN ('Open', 'In Progress', 'Resolved', 'Closed')));
+2024-10-08 17:07:30.398 IST [63193] LOG:  checkpoint starting: time
+2024-10-08 17:07:35.430 IST [63222] ERROR:  column "id" referenced in foreign key constraint does not exist
+2024-10-08 17:07:35.430 IST [63222] STATEMENT:  CREATE TABLE comments (comment_id SERIAL PRIMARY KEY, complaint_id INT NOT NULL, owner_id INT NOT NULL, description TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (complaint_id) REFERENCES complaintDetails(id), FOREIGN KEY (owner_id) REFERENCES ownerdetails(id));
+2024-10-08 17:07:36.454 IST [63193] LOG:  checkpoint complete: wrote 60 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.042 s, sync=0.009 s, total=6.056 s; sync files=59, longest=0.002 s, average=0.001 s; distance=279 kB, estimate=279 kB
+2024-10-08 17:09:10.247 IST [63222] ERROR:  column "comment_id" does not exist
+2024-10-08 17:09:10.247 IST [63222] STATEMENT:  ALTER TABLE comments
+	RENAME COLUMN comment_id TO id;
+2024-10-08 17:12:30.452 IST [63193] LOG:  checkpoint starting: time
+2024-10-08 17:12:35.244 IST [63193] LOG:  checkpoint complete: wrote 48 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.781 s, sync=0.008 s, total=4.792 s; sync files=46, longest=0.002 s, average=0.001 s; distance=239 kB, estimate=275 kB
+2024-10-09 17:24:02.526 IST [63222] ERROR:  syntax error at or near "pg_dump" at character 1
+2024-10-09 17:24:02.526 IST [63222] STATEMENT:  pg_dump -U atharva_main -d your_database_name -F c -f /path/to/dump_file.sql
+	;
+2024-10-09 17:24:39.099 IST [63222] ERROR:  syntax error at or near "pg_dump" at character 1
+2024-10-09 17:24:39.099 IST [63222] STATEMENT:  pg_dump -U postgres -d postgres -F c -f /dump_file.sql;
+2024-10-09 17:24:50.329 IST [63222] ERROR:  syntax error at or near "pg_dump" at character 1
+2024-10-09 17:24:50.329 IST [63222] STATEMENT:  pg_dump -U postgres -d postgres -F c -f dump_file.sql;
+2024-10-09 17:32:35.889 IST [63193] LOG:  checkpoint starting: time
+2024-10-09 17:32:40.016 IST [63193] LOG:  checkpoint complete: wrote 41 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.109 s, sync=0.006 s, total=4.128 s; sync files=32, longest=0.002 s, average=0.001 s; distance=217 kB, estimate=269 kB
+2024-10-10 12:04:50.566 IST [31537] ERROR:  function "createlink" already exists with same argument types
+2024-10-10 12:04:50.566 IST [31537] STATEMENT:  CREATE PROCEDURE public.createlink(IN _wingid integer, IN _roomsizeid integer, OUT new_id integer)
+	    LANGUAGE plpgsql
+	    AS $$    
+	BEGIN
+	    BEGIN
+	        INSERT INTO roomlink(
+	            wing_details_id, room_size_id
+	        )VALUES(
+	            _wingID, _roomSizeID
+	        ) RETURNING id INTO new_id;
+	    EXCEPTION
+	        WHEN OTHERS THEN
+	            RAISE EXCEPTION 'An error occurred: %', SQLERRM;
+	    END;
+	END;
+	$$;
+	
+	
+	
+2024-10-10 12:05:34.613 IST [63193] LOG:  checkpoint starting: immediate force wait
+2024-10-10 12:05:34.618 IST [63193] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.005 s; sync files=5, longest=0.001 s, average=0.001 s; distance=1042 kB, estimate=1042 kB
+2024-10-10 12:07:49.984 IST [63193] LOG:  checkpoint starting: immediate force wait
+2024-10-10 12:07:49.990 IST [63193] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.006 s; sync files=12, longest=0.001 s, average=0.001 s; distance=4966 kB, estimate=4966 kB
+2024-10-10 12:07:55.388 IST [32067] FATAL:  database "sttwo" does not exist
+2024-10-10 12:12:49.993 IST [63193] LOG:  checkpoint starting: time
+2024-10-10 12:14:33.280 IST [63193] LOG:  checkpoint complete: wrote 1019 buffers (6.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=103.258 s, sync=0.025 s, total=103.288 s; sync files=376, longest=0.006 s, average=0.001 s; distance=4929 kB, estimate=4962 kB
+2024-10-10 13:31:31.828 IST [63192] LOG:  received smart shutdown request
+2024-10-10 13:31:31.834 IST [63192] LOG:  background worker "logical replication launcher" (PID 63198) exited with exit code 1
+2024-10-10 13:31:31.835 IST [63193] LOG:  shutting down
+2024-10-10 13:31:31.836 IST [63193] LOG:  checkpoint starting: shutdown immediate
+2024-10-10 13:31:31.846 IST [63193] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.011 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=4466 kB
+2024-10-10 13:31:31.864 IST [63192] LOG:  database system is shut down

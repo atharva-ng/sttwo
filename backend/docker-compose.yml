@@ -1,0 +1,15 @@
+
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5007:5007"  # Map host port 5007 to container port 5007
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://atharva_main:sttwoadmin@host.docker.internal:5432/sttwo
+    volumes:
+      - .:/usr/src/app  # Optional: Bind mount for local development
+      - /usr/src/app/node_modules
+

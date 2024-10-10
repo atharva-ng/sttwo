@@ -33,6 +33,13 @@ BEGIN
     EXECUTE "INSERT INTO transaction_type (transaction_head) VALUES ('Maintenance'), ('Event Contribution'), ('Donation'), ('Custom');";
 
     EXECUTE "CREATE TABLE owner_transaction (id SERIAL PRIMARY KEY, owner_id INTEGER REFERENCES ownerdetails(id) ON DELETE CASCADE NOT NULL, room_id INTEGER REFERENCES roomdetails(id) ON DELETE CASCADE NOT NULL, date_of_purchase DATE NOT NULL, date_of_selling DATE)";
+
+    EXECUTE "CREATE TABLE complaintDetails (complaint_id SERIAL PRIMARY KEY,society_id INT,room_id INT,title VARCHAR(100) NOT NULL,description TEXT NOT NULL,status VARCHAR(20) NOT NULL DEFAULT 'Open',created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY (society_id) REFERENCES societydetails(id),FOREIGN KEY (room_id) REFERENCES roomdetails(id),CHECK (status IN ('Open', 'In Progress', 'Resolved', 'Closed')));"
+
+    EXECUTE "CREATE TABLE comments (id SERIAL PRIMARY KEY, complaint_id INT NOT NULL, owner_id INT NOT NULL, description TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (complaint_id) REFERENCES complaintDetails(complaint_id), FOREIGN KEY (owner_id) REFERENCES ownerdetails(id));"
+
+    EXECUTE "CREATE TABLE notices (id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, content TEXT NOT NULL, start_date TIMESTAMP NOT NULL, end_date TIMESTAMP NOT NULL, isActive BOOLEAN DEFAULT TRUE, society_id INT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (society_id) REFERENCES societydetails(id));"
+
 END;
 $$;
 
