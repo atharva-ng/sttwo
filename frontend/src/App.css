@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.app-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 20%; /* Same width as the sidebar */
+  width: 80%; /* Remaining width of the screen */
+  padding: 20px;
+}

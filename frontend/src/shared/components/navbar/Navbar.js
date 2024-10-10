@@ -10,61 +10,83 @@ const Navbar = () => {
   let navElement;
   if (isLoggedIn) {
     if (userType === "SOCIETY") {
-      navElement = (<nav className='nav'>
-        <a href='/' className='site-title'>
-          Sttwo
-        </a>
-        Welcome society
-        <ul>
-          <li>
-            <Link to='/flatsInformation'>Flat Info</Link>
-          </li>
-          <li>
-            <Link to='/dashboard'>Dashboard</Link>
-          </li>
-          <li>
-            <button onClick={logout}>Logout</button>
-          </li>
-        </ul>
-      </nav>)
+      navElement = (
+        <>
+          <nav className='nav'>
+            <div className='nav-left'>
+              <img src='/logo.svg' alt='Logo' className='nav-logo' />
+              <span className='site-title'>ST II</span>
+            </div>
+            <ul className='nav-right'>
+              <li>
+                <Link to='/flatsInformation'>Flat Info</Link>
+              </li>
+              <li>
+                <Link to='/dashboard'>Dashboard</Link>
+              </li>
+              <li>
+                <button onClick={logout}>Logout</button>
+              </li>
+            </ul>
+          </nav>
+          <div className='nav-divider'></div> {/* Divider moved here */}
+        </>
+      );
     } else {
-      navElement = (<nav className='nav'>
-        <a href='/' className='site-title'>
-          Sttwo
-        </a>
-        Welcome Owner
-        <ul>
-          <li>
-            <a href='http://localhost:3000/dashboard/'>Dashboard</a>
-          </li>
-        </ul>
-      </nav>)
+      navElement = (
+        <>
+          <nav className='nav'>
+            <div className='nav-left'>
+              <img src='/logo.svg' alt='Logo' className='nav-logo' />
+              <span className='site-title'>ST II</span>
+            </div>
+            <ul className='nav-right'>
+              <li>
+                <a href='http://localhost:3000/contact-us/' className='nav-link'>Contact Us</a>
+              </li>
+              <li>
+                <a href='http://localhost:3000/about/' className='nav-link'>About Us</a>
+              </li>
+              <li>
+                <a href='http://localhost:3000/login/' className='nav-link'>Login</a>
+              </li>
+              <li>
+                <a href='http://localhost:3000/signup/' className='nav-link signup'>Sign Up</a>
+              </li>
+            </ul>
+          </nav>
+          <div className='nav-divider'></div> {/* Divider moved here */}
+        </>
+      );
     }
   } else {
     navElement = (
-      <nav className='nav'>
-        <a href='/' className='site-title'>
-          Sttwo
-        </a>
-        <ul>
-          <li>
-            <a href='http://localhost:3000/login/'>Login</a>
-          </li>
-          <li>
-            <a href='http://localhost:3000/signup/'>Sign Up</a>
-          </li>
-          <li>
-            <a href='http://localhost:3000/about/'>About</a>
-          </li>
-          <li>
-            <a href='http://localhost:3000/contact-us/'>Contact Us</a>
-          </li>
-        </ul>
-      </nav>
-    )
+      <>
+        <nav className='nav'>
+          <div className='nav-left'>
+            <img src='/logo.svg' alt='Logo' className='nav-logo' />
+            <span className='site-title'>ST II</span>
+          </div>
+          <ul className='nav-right'>
+            <li>
+              <a href='http://localhost:3000/contact-us/'>Contact Us</a>
+            </li>
+            <li>
+              <a href='http://localhost:3000/about/'>About Us</a>
+            </li>
+            <li>
+              <a href='http://localhost:3000/login/'>Login</a>
+            </li>
+            <li>
+              <a href='http://localhost:3000/signup/'>Sign Up</a>
+            </li>
+          </ul>
+        </nav>
+        <div className='nav-divider'></div> {/* Divider moved here */}
+      </>
+    );
   }
 
   return navElement;
 };
-
 export default Navbar;
