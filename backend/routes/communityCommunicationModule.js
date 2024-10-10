@@ -9,6 +9,9 @@ const router = express.Router();
 
 router.use(checkAuth);
 
+router.get('/notices', communityCommunicationModuleController.getNotices);
+router.get('/notices/:active?', communityCommunicationModuleController.getNotices);
+
 router.post('/notices',[
     check('title').trim().not().isEmpty().withMessage('Title cannot be empty').escape(),
     check('content').trim().not().isEmpty().withMessage('Content cannot be empty').escape(),

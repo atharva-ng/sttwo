@@ -9,15 +9,34 @@ const createNoticeQuery = async (title, content, start_date, end_date, userId) =
     
     return result.rows;
   } catch (error) {
-    if (err instanceof HttpError) {
-      return next(err);
+    if (error instanceof HttpError) {
+      return next(error);
     } else {
-      console.log(err);
+      console.log(error);
       throw new HttpError("Something went wrong-createNoticeQuery", 500);
     }
   }
 };
 
-module.exports = { createNoticeQuery };
+const getNoticesQuery = async (userId, active) => {
+  try {
+    console.log(active);
+    const result = await pool.query('SELECT * FROM getnotices($1, $2);', [
+      userId,
+      active
+    ]);
+    
+    return result.rows;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-getNoticesQuery", 500);
+    }
+  }
+};
+
+module.exports = { createNoticeQuery,getNoticesQuery };
 
 

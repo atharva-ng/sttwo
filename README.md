@@ -53,3 +53,7 @@ Fields: excel
 --"/api/community-communications":
 -POST - "/notices" - Create a new notice for a particular society
 Fields: title-255 Chars, content, start_date, end_date
+
+-GET - "/notices" - Get a list of all the notices made by the society
+'/notices/true' - Get all the active notices
+'/notices/false' - Get all the inactive notices
