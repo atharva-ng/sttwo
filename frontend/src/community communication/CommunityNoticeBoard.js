@@ -128,9 +128,9 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
         if (!response.ok) {
           throw new Error('Failed to post notice');
         }
-        // const postedNotice = await response.json();
-        // setNotices(prev => [postedNotice, ...prev]);
-        // setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
+        const postedNotice = await response.json();
+        setNotices(prev => [postedNotice, ...prev]);
+        setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
 
         window.location.reload();
       } catch (err) {
