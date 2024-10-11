@@ -18,12 +18,12 @@ const createNoticeQuery = async (title, content, start_date, end_date, userId) =
   }
 };
 
-const getNoticesQuery = async (userId, active) => {
+const getNoticesQuery = async (userId, active, id) => {
   try {
-    console.log(active);
-    const result = await pool.query('SELECT * FROM getnotices($1, $2);', [
+    const result = await pool.query('SELECT * FROM getnotices($1, $2, $3);', [
       userId,
-      active
+      active,
+      id
     ]);
     
     return result.rows;

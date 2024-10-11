@@ -6,14 +6,32 @@ const { createNoticeQuery, getNoticesQuery } = require("../dbUtils/communityComm
 
 const getNotices= async (req, res, next) => {
   const userId=req.userData.userId;
-
-  const active=req.params.active;
-
+  var active=req.params.active;
+  
+  Number(active);
+  
   try {
+    var noticeData;
+    if(!isNaN(active) && isFinite(active)){
+      if (active>2147483647) {
+        return next(new HttpError("Invalid Input1", 400));
+      }
 
-    const noticeData = await getNoticesQuery(userId, active);
+      noticeData = await getNoticesQuery(userId, null, active);
+    }else if (typeof active === "string" || isNaN(active)){
+      noticeData = await getNoticesQuery(userId, active, null);
+    }else{
+      return next(new HttpError("Invalid Input", 400));
+    }
+
+    if(noticeData.length===0){
+      return res.status(200).json({
+        "message": "No Notices Found"
+      });
+    }
+
     return res.status(200).json(noticeData);
-    
+
   } catch (error) {
     if (error instanceof HttpError) {
       return next(error);
@@ -49,6 +67,7 @@ const createNotice= async (req, res, next) => {
     }
   }
 };
+
 
 exports.createNotice = createNotice;
 exports.getNotices = getNotices;
