@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import './CommunityNoticeBoard.css';
+
+import { AuthContext } from "./../shared/context/auth-context";
 
 const CommunityNoticeBoard = ({ isAdmin }) => {
 //   const [notices, setNotices] = useState([
@@ -63,6 +65,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
 //     </div>
 //   );
 
+  const { token } = useContext(AuthContext);
   const [notices, setNotices] = useState([]);
   const [newNotice, setNewNotice] = useState({
     title: '',
@@ -73,8 +76,10 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = 'http://3.109.108.99:5007/api/community-communications/notices/';
+  const API_URL = 'http://3.109.108.99:5007/api/community-communications/notices';
 
+
+  //***************I think you will have to memoize this
   useEffect(() => {
     fetchNotices();
   }, []);
@@ -82,7 +87,13 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
   const fetchNotices = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_URL}`);
+      const response = await fetch(`${API_URL}`,{
+        method: 'GET', 
+        headers: {
+            'Authorization': `Bearer ${token}`, 
+            'Content-Type': 'application/json',  
+        },
+    });
       if (!response.ok) {
         throw new Error('Failed to fetch notices');
       }
@@ -108,6 +119,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
         const response = await fetch(API_URL, {
           method: 'POST',
           headers: {
+            'Authorization': `Bearer ${token}`, 
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newNotice),
@@ -116,10 +128,11 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
         if (!response.ok) {
           throw new Error('Failed to post notice');
         }
+        // const postedNotice = await response.json();
+        // setNotices(prev => [postedNotice, ...prev]);
+        // setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
 
-        const postedNotice = await response.json();
-        setNotices(prev => [postedNotice, ...prev]);
-        setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
+        window.location.reload();
       } catch (err) {
         setError('Failed to post notice. Please try again.');
         console.error('Error posting notice:', err);

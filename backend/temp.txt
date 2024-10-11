@@ -1,14 +1,10 @@
-id         | integer                     |           | not null | nextval('notices_id_seq'::regclass)
- title      | character varying(255)      |           | not null | 
- content    | text                        |           | not null | 
- start_date | timestamp without time zone |           | not null | 
- end_date   | timestamp without time zone |           | not null | 
- isactive   | boolean                     |           |          | true
- society_id | integer                     |           | not null | 
- created_at | timestamp without time zone |           |          | CURRENT_TIMESTAMP
- updated_at | timestamp without time zone |           |          | CURRENT_TIMESTAMP
-
 create notice->put the entry in db
 get notice-> get all the existing notices related to a particular user
+
+get id in req-> if form data is changed -> update, else leave as is
+
 update notice-> modify an existing notice
+
 delete notice-> delete an existing notice
+
+

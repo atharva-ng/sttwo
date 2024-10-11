@@ -19,4 +19,6 @@ router.post('/notices',[
     check('end_date').trim().not().isEmpty().withMessage('End Date cannot be empty').isDate().withMessage('End Date must be a valid date').escape(),
   ],communityCommunicationModuleController.createNotice );
 
+// router.get('/events', communityCommunicationModuleController.getEvents);
+
 module.exports = router;

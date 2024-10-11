@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import Form from "../../pages/Form";
-import { AuthContext } from "../../../shared/context/auth-context";
+import { AuthContext } from "../../shared/context/auth-context";
+import Form from "../Form";
 
 const LoginSociety = () => {
   const { userType, login, logout } = useContext(AuthContext);

@@ -57,7 +57,12 @@ const createNotice= async (req, res, next) => {
 
   try {
     const noticeData = await createNoticeQuery(title, content, start_date, end_date, userId);
-    return res.status(200).json();
+    return res.status(200).json({
+        "title":title, 
+    "content": content, 
+    "start_date":start_date,
+    "end_date":end_date
+    });
   } catch (error) {
     if (error instanceof HttpError) {
       return next(error);
