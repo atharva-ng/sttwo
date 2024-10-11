@@ -37,19 +37,19 @@ const Form = () => {
     e.preventDefault();
 
     try {
-      // const response = await fetch("http://localhost:5007/api/auth/signup/society", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
+      const response = await fetch("http://localhost:5007/api/auth/signup/society", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // const responseData = await response.json();
+      const responseData = await response.json();
 
-      // if (!response.ok) {
-      //   throw new Error(`Unexpected Error: ${responseData}`);
-      // }
+      if (!response.ok) {
+        throw new Error(`Unexpected Error: ${responseData}`);
+      }
 
       // Set a flag in sessionStorage to indicate that the form has been successfully submitted
       sessionStorage.setItem('formSubmitted', 'true');
