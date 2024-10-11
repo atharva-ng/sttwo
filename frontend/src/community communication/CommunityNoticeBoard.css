@@ -1,0 +1,99 @@
+.notice-board {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.notice-board h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.notice-form {
+  margin-bottom: 30px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.notice-form h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+textarea.input-field {
+  min-height: 100px;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+.notices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notice {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.notice-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.notice-content {
+  margin-bottom: 10px;
+}
+
+.notice-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.no-notices {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.error {
+  color: #ff0000;
+}

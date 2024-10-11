@@ -11,7 +11,7 @@ const LoginOwner = () => {
         <div className="profile">Profile</div>
       </header>
 
-      <Form url="http://localhost:5007/api/auth/login/owner"/>
+      <Form url="http://3.109.108.99:5007/api/auth/login/owner"/>
     </div>
   );
 };

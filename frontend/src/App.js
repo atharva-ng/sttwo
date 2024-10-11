@@ -14,6 +14,7 @@ import SignupSociety2 from './signup/signupSociety/pages/SignupSociet2';
 import SocietyRegistrationForm from './signup/signupSociety/pages/MaintenanceSociety';
 import SocietyProfile from './profile/society/pages/SocietyProfile';
 import FlatsInformation from './profile/society/pages/FlatsInformation';
+import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path='/dashboard' exact>
               <SocietyProfile />
+            </Route>
+            <Route path='/notice' exact>
+              <CommunityNoticeBoardDriver />
             </Route>
             <Redirect to='/' />
           </Switch>
@@ -79,6 +83,9 @@ function App() {
           <Route path='/signup/signup-society-3' exact>
           <SocietyRegistrationForm />
           </Route>
+          <Route path='/notice' exact>
+              <CommunityNoticeBoardDriver />
+            </Route>
           <Redirect to='/' />
         </Switch>
       </>
