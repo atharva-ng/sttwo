@@ -2,8 +2,8 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    /* text-align: center; */
+    /* font-family: Arial, sans-serif; */
   }
   
   .header {
@@ -12,10 +12,12 @@
     align-items: center;
     padding: 10px 0;
     border-bottom: 2px solid black;
+    max-width: 800px;
   }
   
   .header h1 {
     margin: 0;
+    width: 100%;
   }
   
   .profile {
@@ -24,6 +26,11 @@
   
   .form-container {
     margin: 20px 0;
+    width: 100%;
+  }
+  .form-container p{
+    color:#414480;
+    font-weight: bold;
   }
   
   table {
@@ -38,10 +45,10 @@
     text-align: left;
   }
   
-  input[type="text"] {
+  /* input[type="text"] {
     width: 90%;
     padding: 5px;
-  }
+  } */
   
   .button-container {
     display: flex;
@@ -49,13 +56,7 @@
     margin-top: 20px;
   }
   
-  .previous-button, .register-button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
+
   
   .footer {
     display: flex;
@@ -81,4 +82,88 @@
   .footer-section li {
     margin-bottom: 5px;
   }
+  
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    /* font-family: Arial, sans-serif; */
+  }
+  
+  table thead th {
+    background-color: #fff;
+    color: #B8BFCA;
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    font-weight: 450;
+  }
+  
+  table tbody tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  table input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .register-button {
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-button:hover {
+    background-color: #4F46E5;
+  }
+  
+  .register-button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+  }
+  
+  /* button#previous {
+    background-color: #E0E7FF;
+    color: #6366F1;
+    margin-right: 10px;
+  }
+  
+  button#previous:hover {
+    background-color: #c7d2fe;
+  } */
+
+
+  
+  
+  table tbody tr:hover {
+    background-color: #e0e7ff; /* Light blue shade for hover */
+    transition: background-color 0.3s ease;
+  }
+
+  table thead tr:hover th {
+    background-color: #eceff9; /* Light blue shade for hover */
+    transition: background-color 0.3s ease;
+  }
+  
+  
   
