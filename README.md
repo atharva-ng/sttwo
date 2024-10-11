@@ -111,7 +111,6 @@ Create a new notice for a particular society.
 - `end_date`: End date of the notice (string, YYYY-MM-DD)
 
 ---
-a
 ### GET `/api/community-communications/notices`
 Retrieve a list of all the notices made by the society.
 
