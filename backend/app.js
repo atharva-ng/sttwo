@@ -2,6 +2,9 @@ const express = require("express");
 
 const HttpError = require("./models/http-error");
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('./swaggerConfig');
+
 // const checkAuth = require("./middlewares/tokenAuth")
 
 const Auth = require("./routes/Auth");
@@ -25,6 +28,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api/auth', Auth);
 

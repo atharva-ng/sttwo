@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION getnotices(soc_id INT, active VARCHAR DEFAULT NULL) 
+CREATE OR REPLACE FUNCTION getnotices(soc_id INT, active VARCHAR DEFAULT NULL, _id INT DEFAULT NULL) 
 RETURNS TABLE(
     id INT, 
     title VARCHAR, 
@@ -11,10 +11,17 @@ RETURNS TABLE(
 ) AS $$
 BEGIN
     IF active IS NULL THEN
-        RETURN QUERY 
-        SELECT notices.id, notices.title, notices.content, notices.start_date, notices.end_date, notices.isactive, notices.created_at, notices.updated_at 
-        FROM notices 
-        WHERE notices.society_id = soc_id;
+        IF _id IS NULL THEN
+            RETURN QUERY 
+            SELECT notices.id, notices.title, notices.content, notices.start_date, notices.end_date, notices.isactive, notices.created_at, notices.updated_at 
+            FROM notices 
+            WHERE notices.society_id = soc_id;
+        ELSE
+            RETURN QUERY 
+            SELECT notices.id, notices.title, notices.content, notices.start_date, notices.end_date, notices.isactive, notices.created_at, notices.updated_at 
+            FROM notices 
+            WHERE notices.society_id = soc_id AND notices.id = _id;
+        END IF;
     ELSIF active = 'true' THEN
         RETURN QUERY 
         SELECT notices.id, notices.title, notices.content, notices.start_date, notices.end_date, notices.isactive, notices.created_at, notices.updated_at 
