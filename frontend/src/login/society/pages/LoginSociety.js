@@ -8,7 +8,7 @@ const LoginSociety = () => {
   return (
     <div className="form-container">
       <h1>Society Login Form:</h1>
-      <Form url="http://localhost:5007/api/auth/login/society" login={login} logout={logout} userType={userType} />
+      <Form url="http://3.109.108.99:5007/api/auth/login/society" login={login} logout={logout} userType={userType} />
     </div>
   );
 };
