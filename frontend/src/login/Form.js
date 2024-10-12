@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import "./Form-login.css";
 
 
 const Form = (props) => {
@@ -54,24 +55,24 @@ const Form = (props) => {
     }
   };
 
-  return (<form className="form" onSubmit={handleNext}>
-    <div className="form-group">
-      <label>Email Address</label>
+  return (<form className="form-signup" onSubmit={handleNext}>
+    <div className="form-group-signup">
+      <label>Email</label>
       <input
         type="email"
         name="emailAddress"
-        placeholder="EMAIL ADDRESS"
+        placeholder="Enter Email"
         value={formData.emailAddress}
         onChange={handleChange}
         required
       />
     </div>
-    <div className="form-group">
+    <div className="form-group-signup">
       <label>Password</label>
       <input
         type="password"
         name="password"
-        placeholder="PASSWORD"
+        placeholder="Enter Password"
         value={formData.password}
         onChange={handleChange}
         required
@@ -81,7 +82,7 @@ const Form = (props) => {
     {errorMessage && <div className="error-message">{errorMessage}</div>}
     {successMessage && <div className="success-message">{successMessage}</div>}
 
-    <button className="next-button" type="submit" disabled={isSubmitting}>
+    <button className="login-button" type="submit" disabled={isSubmitting}>
       {isSubmitting ? "Logging in..." : "Login"}
     </button>
   </form>);

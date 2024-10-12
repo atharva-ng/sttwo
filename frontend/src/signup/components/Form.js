@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import socreg_1 from "../../gallery/SocReg-1.svg";
+
 
 const Form = () => {
 
@@ -62,47 +64,63 @@ const Form = () => {
 
   return (
     <div className="form-container">
-      <h1>Society Registration Form (1/4):</h1>
-      <h2>Basic Information:</h2>
+      <h1 style={{ textAlign: "center",
+        paddingBottom:"10px"
+       }}>
+  Society Registration Form: <br />
+  <img
+    src={socreg_1}
+    alt="step-1"
+    style={{ marginTop: "30px", width: "100%", height: "auto" }}
+  />
+</h1>
+
       <form className="form" onSubmit={handleNext}>
         <div className="form-group">
+          <>
           <label>Name</label>
-          <input type="text" name="name" placeholder="NAME" value={formData.name} onChange={handleChange} />
+          <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+          </>
           <label>Date of Establishment</label>
           <input type="date" name="dateOfEstablishment" value={formData.dateOfEstablishment} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>Address</label>
-          <input type="text" name="address" placeholder="ADDRESS" value={formData.address} onChange={handleChange} />
+          <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} />
+          <label>Pincode</label>
+          <input type="text" name="pincode" placeholder="Pincode" value={formData.pincode} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>City</label>
-          <input type="text" name="city" placeholder="CITY" value={formData.city} onChange={handleChange} />
+          <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} />
           <label>State</label>
-          <input type="text" name="state" placeholder="STATE" value={formData.state} onChange={handleChange} />
-          <label>Pincode</label>
-          <input type="text" name="pincode" placeholder="PINCODE" value={formData.pincode} onChange={handleChange} />
+          <input type="text" name="state" placeholder="State" value={formData.state} onChange={handleChange} />
+          
         </div>
         <div className="form-group">
-          <label>Phone Number</label>
-          <input type="text" name="phoneNumber" placeholder="PHONE NUMBER" value={formData.phoneNumber} onChange={handleChange} />
+          
+          
           <label>Registration Number</label>
-          <input type="text" name="registrationNumber" placeholder="REGISTRATION NUMBER" value={formData.registrationNumber} onChange={handleChange} />
-          <label>NUMBER OF WINGS</label>
-          <input type="number" name="numberOfWings" placeholder="NUMBER OF WINGS" value={formData.numberOfWings} onChange={handleChange} />
+          <input type="text" name="registrationNumber" placeholder="Registration Number" value={formData.registrationNumber} onChange={handleChange} />
+          
         </div>
 
         {/* New fields for Email Address and Password */}
         <div className="form-group">
-          <label>Email Address</label>
-          <input type="email" name="emailAddress" placeholder="EMAIL ADDRESS" value={formData.emailAddress} onChange={handleChange} required />
+        <label>Number Of Wings</label>
+        <input type="number" name="numberOfWings" placeholder="Number Of Wings" value={formData.numberOfWings} onChange={handleChange} />
+        <label>Phone Number</label>
+        <input type="text" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} />
+          
         </div>
         <div className="form-group">
+        <label>Email Address</label>
+        <input type="email" name="emailAddress" placeholder="Email Address" value={formData.emailAddress} onChange={handleChange} required />
           <label>Password</label>
-          <input type="password" name="password" placeholder="PASSWORD" value={formData.password} onChange={handleChange} required />
+          <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
         </div>
 
-        <button className="next-button" type="submit">Register</button>
+        <button className="next-button" type="submit">Next</button>
       </form>
     </div>);
 }
