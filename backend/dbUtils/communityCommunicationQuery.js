@@ -37,6 +37,28 @@ const getNoticesQuery = async (userId, active, id) => {
   }
 };
 
-module.exports = { createNoticeQuery,getNoticesQuery };
+const updateNoticeQuery = async (title, content, start_date, end_date, userId, id) => {
+  try {
+    const result = await pool.query('SELECT * FROM updatenotice($1, $2, $3, $4, $5, $6);', [
+      id,
+      userId,
+      title, 
+      content, 
+      start_date, 
+      end_date
+    ]);
+    
+    return result.rows;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-updateNoticesQuery", 500);
+    }
+  }
+};
+
+module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery };
 
 

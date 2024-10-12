@@ -2,7 +2,7 @@ const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
 
-const { createNoticeQuery, getNoticesQuery } = require("../dbUtils/communityCommunicationQuery");
+const { createNoticeQuery, getNoticesQuery, updateNoticeQuery } = require("../dbUtils/communityCommunicationQuery");
 
 const getNotices= async (req, res, next) => {
   const userId=req.userData.userId;
@@ -73,6 +73,31 @@ const createNotice= async (req, res, next) => {
   }
 };
 
+const updateNotice=async (req, res, next)=>{
+  const userId=req.userData.userId;
+  const id=req.params.id;
+  Number(id);
+
+  const {title, content, start_date, end_date } = req.body;
+
+  try{
+    const noticeData = await updateNoticeQuery(title, content, start_date, end_date, userId, id);
+    return res.status(200).json({
+      "title":title, 
+      "content": content, 
+      "start_date":start_date,
+      "end_date":end_date
+    });
+  }catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+}
 
 exports.createNotice = createNotice;
 exports.getNotices = getNotices;
+exports.updateNotice=updateNotice;
