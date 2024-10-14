@@ -37,7 +37,7 @@ const Form = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5007/api/auth/signup/society", {
+      const response = await fetch("http://3.109.108.99:5007/api/auth/signup/society", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

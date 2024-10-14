@@ -44,10 +44,6 @@ const SignupSociety2 = () => {
 
   return (
     <div className="wing-container">
-      <header className="header">
-        <div className="brand">COLONY</div>
-        <div className="profile">Profile</div>
-      </header>
       <div className="form-container">
       <h1 style={{ textAlign: "center",
         paddingBottom:"10px"}}>

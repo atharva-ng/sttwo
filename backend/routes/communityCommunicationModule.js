@@ -12,7 +12,7 @@ router.use(checkAuth);
 router.get('/notices', communityCommunicationModuleController.getNotices);
 router.get('/notices/:active?', communityCommunicationModuleController.getNotices);
 
-router.put('/notices/:id', communityCommunicationModuleController.updateNotice);
+router.patch('/notices/:id', communityCommunicationModuleController.updateNotice);
 
 router.post('/notices',[
     check('title').trim().not().isEmpty().withMessage('Title cannot be empty').escape(),

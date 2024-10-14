@@ -14,7 +14,7 @@ const getNotices= async (req, res, next) => {
     var noticeData;
     if(!isNaN(active) && isFinite(active)){
       if (active>2147483647) {
-        return next(new HttpError("Invalid Input1", 400));
+        return next(new HttpError("Invalid Input", 400));
       }
 
       noticeData = await getNoticesQuery(userId, null, active);
@@ -25,7 +25,7 @@ const getNotices= async (req, res, next) => {
     }
 
     if(noticeData.length===0){
-      return res.status(200).json({
+      return res.status(404).json({
         "message": "No Notices Found"
       });
     }
@@ -57,7 +57,7 @@ const createNotice= async (req, res, next) => {
 
   try {
     const noticeData = await createNoticeQuery(title, content, start_date, end_date, userId);
-    return res.status(200).json({
+    return res.status(201).json({
         "title":title, 
     "content": content, 
     "start_date":start_date,
@@ -77,16 +77,33 @@ const updateNotice=async (req, res, next)=>{
   const userId=req.userData.userId;
   const id=req.params.id;
   Number(id);
+  if(id===NaN){
+    return next(new HttpError("Id of the notice is invalid", 400));
+  }
 
   const {title, content, start_date, end_date } = req.body;
 
   try{
+    const noticeGetData = await getNoticesQuery(userId, null, id);
+    if(noticeGetData.length===0){
+      return next(new HttpError("Id of the notice is invalid", 404));
+    }
+  }catch(error){
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+
+  try{
     const noticeData = await updateNoticeQuery(title, content, start_date, end_date, userId, id);
     return res.status(200).json({
-      "title":title, 
-      "content": content, 
-      "start_date":start_date,
-      "end_date":end_date
+      "title":noticeData[0].o_title, 
+      "content": noticeData[0].o_content, 
+      "start_date":noticeData[0].o_start_date,
+      "end_date":noticeData[0].o_end_date
     });
   }catch (error) {
     if (error instanceof HttpError) {

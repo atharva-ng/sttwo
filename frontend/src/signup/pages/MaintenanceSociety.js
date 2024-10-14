@@ -13,10 +13,6 @@ function SocietyRegistrationForm() {
   }
   return (
     <div className="container">
-      <header className="header">
-        <h1>COLONY</h1>
-        <div className="profile">Profile</div>
-      </header>
       <div className="form-container">
       <h1 style={{ textAlign: "center",
         paddingBottom:"10px"}}>
