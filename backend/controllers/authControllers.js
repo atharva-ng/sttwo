@@ -65,8 +65,8 @@ const societyLogin = async (req, res, next) => {
       throw new HttpError("Invalid credentials", 401);
     }
 
-    const adminStatus = await getAdminStatus(id)[0].isadmin;
-    console.log(adminStatus);
+    let adminStatus = await getAdminStatus(id);
+    adminStatus=adminStatus[0].isadmin;
 
     let token;
     try {

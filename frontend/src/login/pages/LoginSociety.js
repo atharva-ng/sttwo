@@ -9,6 +9,7 @@ const LoginSociety = () => {
     <div className="form-container-signup">
       <h1>Society Login:</h1>
       <Form url="http://3.109.108.99:5007/api/auth/login/society" login={login} logout={logout} userType={userType} />
+      
     </div>
   );
 };

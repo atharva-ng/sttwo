@@ -11,8 +11,6 @@ const Form = (props) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false); // To manage loading state
   const [errorMessage, setErrorMessage] = useState("");
-  // const [successMessage, setSuccessMessage] = useState(""); 
-  let successMessage = "";
 
   // Handle input change
   const handleChange = (e) => {
@@ -46,7 +44,7 @@ const Form = (props) => {
       }
 
 
-      // console.log(responseData);
+      console.log(responseData);
       props.login(responseData.isAdmin, responseData.token);
     } catch (error) {
       setErrorMessage(error.message || "There was a problem with the fetch operation");
@@ -80,7 +78,6 @@ const Form = (props) => {
     </div>
 
     {errorMessage && <div className="error-message">{errorMessage}</div>}
-    {successMessage && <div className="success-message">{successMessage}</div>}
 
     <button className="login-button" type="submit" disabled={isSubmitting}>
       {isSubmitting ? "Logging in..." : "Login"}
