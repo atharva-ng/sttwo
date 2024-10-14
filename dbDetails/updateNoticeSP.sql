@@ -15,7 +15,7 @@ BEGIN
     SET title = COALESCE(_title, title),
         content = COALESCE(_content, content),
         start_date = COALESCE(_start_date, start_date),
-        end_date = COALESCE(_end_date, end_date)
+        end_date = COALESCE(_end_date, end_date),
         updated_at = CURRENT_TIMESTAMP
     WHERE id = _id
     AND society_id = _society_id

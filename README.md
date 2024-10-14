@@ -155,3 +155,19 @@ Update a notice by its ID.
 #### Error Responses:
 - `404 Bad Request`: Invalid notice ID or missing required fields.
 - `500 Internal Server Error`: Something went wrong while updating the notice.
+
+### DELETE `/api/community-communications/notices/{id}`
+Delete a notice by its ID.
+
+#### Path Parameters:
+- `id` (number): The ID of the notice to delete.
+
+#### Response:
+- `200 OK`: Successfully deleted the notice.
+  - `message`: "Successfully Deleted".
+
+#### Error Responses:
+- `400 Bad Request`: Invalid notice ID.
+- `403 Forbidden`: User does not have permission to delete this notice.
+- `500 Internal Server Error`: Something went wrong while deleting the notice.
+

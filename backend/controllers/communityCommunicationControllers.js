@@ -2,13 +2,11 @@ const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
 
-const { createNoticeQuery, getNoticesQuery, updateNoticeQuery } = require("../dbUtils/communityCommunicationQuery");
+const { createNoticeQuery, getNoticesQuery, updateNoticeQuery, deleteNoticeQuery } = require("../dbUtils/communityCommunicationQuery");
 
 const getNotices= async (req, res, next) => {
   const userId=req.userData.userId;
   var active=req.params.active;
-  
-  Number(active);
   
   try {
     var noticeData;
@@ -75,9 +73,8 @@ const createNotice= async (req, res, next) => {
 
 const updateNotice=async (req, res, next)=>{
   const userId=req.userData.userId;
-  const id=req.params.id;
-  Number(id);
-  if(id===NaN){
+  const id=Number(req.params.id);
+  if(id==NaN){
     return next(new HttpError("Id of the notice is invalid", 400));
   }
 
@@ -115,6 +112,43 @@ const updateNotice=async (req, res, next)=>{
   }
 }
 
+const deleteNotice=async (req, res, next)=>{
+  const userId=req.userData.userId;
+  const id=Number(req.params.id);
+  if(id===NaN){
+    return next(new HttpError("Id of the notice is invalid and should be a number", 400));
+  }
+
+  try{
+    const noticeGetData = await getNoticesQuery(userId, null, id);
+    if(noticeGetData.length===0){
+      return next(new HttpError("You do not have permission to delete this notice", 403));
+    }
+  }catch(error){
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+
+  try{
+    const noticeData = await deleteNoticeQuery(id, userId);
+    return res.status(200).json({
+      "message":"Successfully Deleted"
+    });
+  }catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+}
+
 exports.createNotice = createNotice;
 exports.getNotices = getNotices;
 exports.updateNotice=updateNotice;
+exports.deleteNotice=deleteNotice;
