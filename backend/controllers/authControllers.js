@@ -66,14 +66,14 @@ const societyLogin = async (req, res, next) => {
     }
 
     const adminStatus = await getAdminStatus(id)[0].isadmin;
-   
+    console.log(adminStatus);
 
     let token;
     try {
       token = jwt.sign(
         {
           userId: id,
-          adminStatus
+          isAdmin: adminStatus
         },
         'authentacationkey_12987655434',
         { expiresIn: '1h' }
@@ -81,7 +81,7 @@ const societyLogin = async (req, res, next) => {
     } catch (err) {
       throw new HttpError("Unable to login", 500);
     }
-    res.status(200).json({ "token": token, "adminstatus": adminStatus });
+    res.status(200).json({ "token": token, "isAdmin": adminStatus });
   } catch (err) {
     if (err instanceof HttpError) {
       return next(err);
