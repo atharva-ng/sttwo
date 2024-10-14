@@ -12,6 +12,8 @@ router.use(checkAuth);
 router.get('/notices', communityCommunicationModuleController.getNotices);
 router.get('/notices/:active?', communityCommunicationModuleController.getNotices);
 
+router.patch('/notices/:id', communityCommunicationModuleController.updateNotice);
+
 router.post('/notices',[
     check('title').trim().not().isEmpty().withMessage('Title cannot be empty').escape(),
     check('content').trim().not().isEmpty().withMessage('Content cannot be empty').escape(),
@@ -19,6 +21,7 @@ router.post('/notices',[
     check('end_date').trim().not().isEmpty().withMessage('End Date cannot be empty').isDate().withMessage('End Date must be a valid date').escape(),
   ],communityCommunicationModuleController.createNotice );
 
-// router.get('/events', communityCommunicationModuleController.getEvents);
+router.delete('/notices/:id', communityCommunicationModuleController.deleteNotice);
+
 
 module.exports = router;

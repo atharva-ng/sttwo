@@ -99,21 +99,75 @@ Upload an Excel file with basic wing and room details.
 
 ---
 
-## Community Communications
+## Community Communications API
 
 ### POST `/api/community-communications/notices`
 Create a new notice for a particular society.
 
-**Required Fields:**
-- `title`: Title of the notice (string, max 255 characters)
-- `content`: Content of the notice (string)
-- `start_date`: Start date of the notice (string, YYYY-MM-DD)
-- `end_date`: End date of the notice (string, YYYY-MM-DD)
+#### Request Body:
+- `title` (string, max 255 characters): Title of the notice.
+- `content` (string): Content of the notice.
+- `start_date` (string, format: YYYY-MM-DD): Start date of the notice.
+- `end_date` (string, format: YYYY-MM-DD): End date of the notice.
+
+#### Response:
+- `201 Created`: Notice created successfully.
+- `400 Bad Request`: Missing or invalid required fields.
+- `422 Incorrect Format` : Invalid format of the submitted fields.
+- `500 Internal Server Error`: Something went wrong while creating the notice.
 
 ---
+
 ### GET `/api/community-communications/notices`
 Retrieve a list of all the notices made by the society.
 
+#### Routes:
 - `/notices/true`: Retrieve all active notices.
 - `/notices/false`: Retrieve all inactive notices.
 - `/notices/{id}`: Retrieve a specific notice by its ID.
+
+#### Response:
+- `200 OK`: Successfully retrieved the notices.
+- `400 Bad Request`: Invalid ID.
+- `500 Internal Server Error`: Something went wrong while fetching the notices.
+
+---
+
+### PATCH `/api/community-communications/notices/{id}`
+Update a notice by its ID.
+
+#### Path Parameters:
+- `id` (number): The ID of the notice to update.
+
+#### Request Body:
+- `title` (string, max 255 characters): Updated title of the notice.
+- `content` (string): Updated content of the notice.
+- `start_date` (string, format: YYYY-MM-DD): Updated start date of the notice.
+- `end_date` (string, format: YYYY-MM-DD): Updated end date of the notice.
+
+#### Response:
+- `200 OK`: Successfully updated the notice.
+  - `title`: Updated title of the notice.
+  - `content`: Updated content of the notice.
+  - `start_date`: Updated start date of the notice.
+  - `end_date`: Updated end date of the notice.
+  
+#### Error Responses:
+- `404 Bad Request`: Invalid notice ID or missing required fields.
+- `500 Internal Server Error`: Something went wrong while updating the notice.
+
+### DELETE `/api/community-communications/notices/{id}`
+Delete a notice by its ID.
+
+#### Path Parameters:
+- `id` (number): The ID of the notice to delete.
+
+#### Response:
+- `200 OK`: Successfully deleted the notice.
+  - `message`: "Successfully Deleted".
+
+#### Error Responses:
+- `400 Bad Request`: Invalid notice ID.
+- `403 Forbidden`: User does not have permission to delete this notice.
+- `500 Internal Server Error`: Something went wrong while deleting the notice.
+

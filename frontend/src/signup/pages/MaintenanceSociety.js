@@ -1,5 +1,8 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
+import "./MaintenanceSociety.css";
+
+import socreg_4 from "../../gallery/SocReg-4.svg";
 
 function SocietyRegistrationForm() {
 
@@ -10,12 +13,16 @@ function SocietyRegistrationForm() {
   }
   return (
     <div className="container">
-      <header className="header">
-        <h1>COLONY</h1>
-        <div className="profile">Profile</div>
-      </header>
       <div className="form-container">
-        <h2>Society Registration Form (4/4):</h2>
+      <h1 style={{ textAlign: "center",
+        paddingBottom:"10px"}}>
+        Society Registration Form: <br />
+        <img
+          src={socreg_4}
+          alt="step-2"
+          style={{ marginTop: "30px", width: "100%", height: "auto" }}
+        />
+      </h1>
         <p>Maintenance amount for wing A:</p>
         <table>
           <thead>

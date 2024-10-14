@@ -22,10 +22,6 @@ const WingInformation = () => {
 
   return (
     <div className="wing-container">
-      <header className="header">
-        <div className="brand">COLONY</div>
-        <div className="profile">Profile</div>
-      </header>
       <div className="form-container">
         <h1>Society Registration Form(2/4):</h1>
         <h2>Wing Information:</h2>
