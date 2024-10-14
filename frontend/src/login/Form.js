@@ -46,8 +46,8 @@ const Form = (props) => {
       }
 
 
-      console.log(responseData);
-      props.login(responseData.userType, responseData.token);
+      // console.log(responseData);
+      props.login(responseData.isAdmin, responseData.token);
     } catch (error) {
       setErrorMessage(error.message || "There was a problem with the fetch operation");
     } finally {

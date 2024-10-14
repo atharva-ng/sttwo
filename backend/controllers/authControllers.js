@@ -1,13 +1,14 @@
 const HttpError = require("../models/http-error");
 
-const { getRoomSizeQuery, getMaintenanceHeadsQuery, postSocietyDetailsQuery, loginQuery } = require("../dbUtils/authDBQueries");
+const { postSocietyDetailsQuery, loginQuery, updateSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
+const {getAdminStatus}= require("../dbUtils/getters");
 
 const { validationResult } = require("express-validator");
 
 const jwt = require('jsonwebtoken');
 
+
 const postSignupSociety = async (req, res, next) => {
-  // console.log(req.body);
   const errors = validationResult(req);
   console.log(errors);
 
@@ -48,7 +49,6 @@ const postSignupSociety = async (req, res, next) => {
 
 
 const societyLogin = async (req, res, next) => {
-  // console.log(req);
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -65,11 +65,15 @@ const societyLogin = async (req, res, next) => {
       throw new HttpError("Invalid credentials", 401);
     }
 
+    const adminStatus = await getAdminStatus(id)[0].isadmin;
+   
+
     let token;
     try {
       token = jwt.sign(
         {
-          userId: id
+          userId: id,
+          adminStatus
         },
         'authentacationkey_12987655434',
         { expiresIn: '1h' }
@@ -77,7 +81,7 @@ const societyLogin = async (req, res, next) => {
     } catch (err) {
       throw new HttpError("Unable to login", 500);
     }
-    res.status(200).json({ "token": token });
+    res.status(200).json({ "token": token, "adminstatus": adminStatus });
   } catch (err) {
     if (err instanceof HttpError) {
       return next(err);
@@ -88,5 +92,24 @@ const societyLogin = async (req, res, next) => {
   }
 };
 
+const updateSocietyDetails= async (req, res, next) => {
+  const userId=req.userData.userId;
+
+  const {isadmin } = req.body;
+
+  try{
+    const noticeData = await updateSocietyDetailsQuery(userId, isadmin);
+    return res.status(200).json({"message": "Success"});
+  }catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+}
+
 exports.postSignupSociety = postSignupSociety;
 exports.societyLogin = societyLogin;
+exports.updateSocietyDetails=updateSocietyDetails;

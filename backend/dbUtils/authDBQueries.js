@@ -4,26 +4,39 @@ const HttpError = require("../models/http-error");
 const { hashPassword, verifyPassword } = require("./passwords");
 
 
+// Function to get room sizes from the 'roomsize' table
 const getRoomSizeQuery = async () => {
   try {
     const result = await pool.query('SELECT id,size FROM roomsize;');
     console.log();
     return result.rows;
-  } catch (err) {
-    throw new HttpError("Something went wrong", 500);
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-getRoomSizeQuery", 500);
+    }
   }
 };
 
+// Function to get the maintenance heads from the 'maintenance_heads' table
 const getMaintenanceHeadsQuery = async () => {
   try {
     const result = await pool.query('SELECT heads FROM maintenance_heads;');
     const maintenanceHeadsList = result.rows.map(row => row.heads);
     return maintenanceHeadsList;
-  } catch (err) {
-    throw new HttpError("Something went wrong- getMaintenanceHeadsQuery", 500);
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong- getMaintenanceHeadsQuery", 500);
+    }
   }
 };
 
+// Function to insert society details into the database
 const postSocietyDetailsQuery = async (societyDetails) => {
   try {
     const res = await pool.query('CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);', [societyDetails.name,
@@ -54,15 +67,16 @@ const postSocietyDetailsQuery = async (societyDetails) => {
         throw new HttpError("Failed to save the password.", 500);
       }
     }
-  } catch (err) {
-    if (err instanceof HttpError) {
-      throw err;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      throw error;
     } else {
       throw new HttpError("Something went wrong", 500);
     }
   }
 };
 
+// Function to handle user login
 const loginQuery = async (email, password, choice) => {
   if (choice != 1) {
     throw new HttpError("Something went wrong", 500);
@@ -80,9 +94,28 @@ const loginQuery = async (email, password, choice) => {
     } else {
       return -1;
     }
-  } catch (err) {
-    throw err;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-loginQuery", 500);
+    }
   }
 };
 
-module.exports = { getRoomSizeQuery, getMaintenanceHeadsQuery, postSocietyDetailsQuery, loginQuery };
+const updateSocietyDetailsQuery = async(userId,isadmin)=>{
+  try {
+    const result = await pool.query("SELECT * FROM update_societydetails($1,$2);", [userId, isadmin]);
+   
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-updateSocietyDetailsQuery", 500);
+    }
+  }
+}
+
+module.exports = { getRoomSizeQuery, getMaintenanceHeadsQuery, postSocietyDetailsQuery, loginQuery, updateSocietyDetailsQuery };

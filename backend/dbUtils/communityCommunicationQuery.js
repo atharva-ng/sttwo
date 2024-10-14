@@ -1,6 +1,7 @@
 const pool = require('./db');
 const HttpError = require("../models/http-error");
 
+//Notices Start================================================================================================
 const createNoticeQuery = async (title, content, start_date, end_date, userId) => {
   try {
     const result = await pool.query('CALL createNotice($1,$2,$3,$4,$5,$6);', [
@@ -59,13 +60,12 @@ const updateNoticeQuery = async (title, content, start_date, end_date, userId, i
   }
 };
 
-const deleteNoticeQuery=async(id, userId)=>{
+const deleteNoticeQuery=async (id, userId)=>{
   try{
     const result = await pool.query('SELECT * FROM deletenotice($1, $2);', [
       id,
       userId
     ]);
-    console.log(result.rows);
   }catch(error){
     if (error instanceof HttpError) {
       return next(error);
@@ -79,6 +79,9 @@ const deleteNoticeQuery=async(id, userId)=>{
     }
   }
 }
+//Notices End================================================================================================
+
+
 
 module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery };
 

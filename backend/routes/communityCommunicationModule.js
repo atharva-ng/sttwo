@@ -1,9 +1,9 @@
 const express = require("express");
 const { check } = require("express-validator");
-
 const checkAuth = require("../middlewares/tokenAuth");
 
-const communityCommunicationModuleController = require("../controllers/communityCommunicationControllers");
+
+const communityCommunicationModuleController = require("../controllers/communityCommunicationControllers-notices");
 
 const router = express.Router();
 

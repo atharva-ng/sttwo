@@ -1,6 +1,9 @@
 
 # Society Management API Documentation
 
+For testing, use 1@1.com and 123456. It has all the data setup.
+Alternative would be 6@1.com and 123456. 
+
 ## Authentication
 
 ### POST `/api/auth/signup/society`
@@ -101,6 +104,8 @@ Upload an Excel file with basic wing and room details.
 
 ## Community Communications API
 
+#Notices
+
 ### POST `/api/community-communications/notices`
 Create a new notice for a particular society.
 
@@ -115,8 +120,6 @@ Create a new notice for a particular society.
 - `400 Bad Request`: Missing or invalid required fields.
 - `422 Incorrect Format` : Invalid format of the submitted fields.
 - `500 Internal Server Error`: Something went wrong while creating the notice.
-
----
 
 ### GET `/api/community-communications/notices`
 Retrieve a list of all the notices made by the society.
