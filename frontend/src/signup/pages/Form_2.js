@@ -135,7 +135,7 @@ const Form_2 = ({ step, formData, setStep, setFormData }) => {
                   <h5 className="text-lg font-medium mb-3 text-customGray">Room {roomIndex + 1}</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2 text-customGray" htmlFor={`roomNumber${wingIndex}-${roomIndex}`}>
+                      <label className="block text-sm font-bold mb-2 text-customGray" htmlFor={`roomNumber${wingIndex}-${roomIndex}`}>
                         Room Number
                       </label>
                       <input
@@ -148,7 +148,7 @@ const Form_2 = ({ step, formData, setStep, setFormData }) => {
                       />
                     </div>
                     <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2 text-customGray" htmlFor={`roomSize${wingIndex}-${roomIndex}`}>
+                      <label className="block text-sm font-bold mb-2 text-customGray" htmlFor={`roomSize${wingIndex}-${roomIndex}`}>
                         Room Size
                       </label>
                       <select
@@ -164,7 +164,7 @@ const Form_2 = ({ step, formData, setStep, setFormData }) => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2 text-customGray" htmlFor={`maintenanceAmount${wingIndex}-${roomIndex}`}>
+                      <label className="block text-sm font-bold mb-2 text-customGray" htmlFor={`maintenanceAmount${wingIndex}-${roomIndex}`}>
                         Maintenance Amount
                       </label>
                       <input
