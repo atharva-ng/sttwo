@@ -37,4 +37,21 @@ const getAdminStatus = async (soc_id) => {
   }
 }
 
-module.exports = { getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery, getAdminStatus};
+
+// Choice :1 - id:ownerid
+// Choice :2 - id:roomdetailsid
+const getSocietyId = async (id, choice) =>{
+  try{
+    const result = await pool.query('SELECT * FROM getsocietydetailsid($1,$2);', [
+      id,
+      choice
+    ]);
+    console.log(result.rows);
+    return result.rows;
+  }catch(error){
+    throw new HttpError("Something went wrong-getSocietyId", 500);
+  }
+}
+
+
+module.exports = { getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery, getAdminStatus, getSocietyId};
