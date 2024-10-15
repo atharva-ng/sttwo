@@ -42,9 +42,7 @@ const Form = (props) => {
       if (!response.ok) {
         throw new Error(responseData.message || "Failed to login");
       }
-
-
-      console.log(responseData);
+      
       props.login(responseData.isAdmin, responseData.token);
     } catch (error) {
       setErrorMessage(error.message || "There was a problem with the fetch operation");

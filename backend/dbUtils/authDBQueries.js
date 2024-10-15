@@ -51,6 +51,7 @@ const postSocietyDetailsQuery = async (societyDetails) => {
       null]);
 
     newId = res.rows[0].new_id;
+
     if (newId === null) {
       throw new HttpError("Email already exists", 422);
     } else {
@@ -62,15 +63,18 @@ const postSocietyDetailsQuery = async (societyDetails) => {
           hashedPassword,
           null
         ]);
-        console.log(result);
+        // console.log(result);
       } catch (err) {
         throw new HttpError("Failed to save the password.", 500);
       }
     }
+
+    return newId;
   } catch (error) {
     if (error instanceof HttpError) {
       throw error;
     } else {
+      console.log(error);
       throw new HttpError("Something went wrong", 500);
     }
   }
