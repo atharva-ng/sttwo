@@ -1,6 +1,7 @@
 const pool = require('./db');
 const HttpError = require("../models/http-error");
 
+//Notices Start================================================================================================
 const createNoticeQuery = async (title, content, start_date, end_date, userId) => {
   try {
     const result = await pool.query('CALL createNotice($1,$2,$3,$4,$5,$6);', [
@@ -59,13 +60,12 @@ const updateNoticeQuery = async (title, content, start_date, end_date, userId, i
   }
 };
 
-const deleteNoticeQuery=async(id, userId)=>{
+const deleteNoticeQuery=async (id, userId)=>{
   try{
     const result = await pool.query('SELECT * FROM deletenotice($1, $2);', [
       id,
       userId
     ]);
-    console.log(result.rows);
   }catch(error){
     if (error instanceof HttpError) {
       return next(error);
@@ -79,7 +79,47 @@ const deleteNoticeQuery=async(id, userId)=>{
     }
   }
 }
+//Notices End================================================================================================
 
-module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery };
+//Complaints Start================================================================================================
+const getComplaintsQuery = async (queryParams) => {
+  try {
+    const result = await pool.query('SELECT * FROM getcomplaints($1, $2, $3, $4);', [
+      queryParams.socid, 
+      queryParams.active,
+      queryParams.start_date , 
+      queryParams.end_date
+    ]);
+    return result.rows;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-getComplaintsQuery", 500);
+    }
+  }
+};
+const createComplaintQuery = async (soc_id, room_transaction_id,title, description) => {
+  try {
+    const result = await pool.query('SELECT * FROM insert_complaint($1,$2,$3,$4);', [
+      soc_id, 
+      room_transaction_id,
+      title, 
+      description
+    ]);
+    return result.rows[0].insert_complaint;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-createComplaintQuery", 500);
+    }
+  }
+};
+//Complaints End================================================================================================
+
+module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery };
 
 

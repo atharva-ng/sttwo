@@ -14,9 +14,10 @@ import CommunityNoticeBoardDriver from './community communication/CommunityNotic
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 
+
 function App() {
 
-  const { userType, token, login, logout } = useAuth();
+  const { isAdmin, token, login, logout } = useAuth();
 
   let routes;
   if (token) {
@@ -75,15 +76,16 @@ function App() {
     <Router>
       <AuthContext.Provider value={{
         isLoggedIn: !!token,
-        userType: userType,
+        isAdmin: isAdmin,
         token: token,
         login: login,
         logout: logout
       }}>
 
-        <Navbar />
+        
+      <Navbar />
         <main>{routes}</main>
-        <Footer />
+      <Footer />
 
       </AuthContext.Provider>
 
