@@ -295,3 +295,26 @@ Delete a notice by its ID.
 - `403 Forbidden`: User does not have permission to delete this notice.
 - `500 Internal Server Error`: Something went wrong while deleting the notice.
 
+
+#Complaints
+
+### GET `/api/complaints`
+Retrieve complaints for a society based on provided filters.
+
+#### Query Parameters:
+
+-   `socid`: Society ID (string)
+-   `active`: Active status of the complaint (string: "true" or "false")
+-   `start_date`: Start date to filter complaints (string, format: YYYY-MM-DD)
+-   `end_date`: End date to filter complaints (string, format: YYYY-MM-DD)
+
+#### Response:
+
+-   `200 OK`: Successfully retrieved the complaints.
+    -   `complaints`: List of complaints matching the provided filters.
+
+#### Error Responses:
+
+-   `400 Bad Request`: Invalid `active` parameter (not "true" or "false").
+-   `500 Internal Server Error`: Something went wrong while retrieving the complaints.
+

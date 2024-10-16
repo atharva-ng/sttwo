@@ -24,6 +24,7 @@ router.post('/notices',[
 
 router.delete('/notices/:id', communityCommControllerNotices.deleteNotice);
 
+router.get('/complaints', communityCommControllerComplaints.getComplaints);
 router.post('/complaints', communityCommControllerComplaints.createComplaint);
 
 

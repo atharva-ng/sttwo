@@ -82,14 +82,31 @@ const deleteNoticeQuery=async (id, userId)=>{
 //Notices End================================================================================================
 
 //Complaints Start================================================================================================
-const createComplaintQuery = async (soc_id, room_transaction_id,title, description, status) => {
+const getComplaintsQuery = async (queryParams) => {
   try {
-    const result = await pool.query('SELECT * FROM insert_complaint($1,$2,$3,$4,$5);', [
+    const result = await pool.query('SELECT * FROM getcomplaints($1, $2, $3, $4);', [
+      queryParams.socid, 
+      queryParams.active,
+      queryParams.start_date , 
+      queryParams.end_date
+    ]);
+    return result.rows;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-getComplaintsQuery", 500);
+    }
+  }
+};
+const createComplaintQuery = async (soc_id, room_transaction_id,title, description) => {
+  try {
+    const result = await pool.query('SELECT * FROM insert_complaint($1,$2,$3,$4);', [
       soc_id, 
       room_transaction_id,
       title, 
-      description, 
-      status
+      description
     ]);
     return result.rows[0].insert_complaint;
   } catch (error) {
@@ -103,6 +120,6 @@ const createComplaintQuery = async (soc_id, room_transaction_id,title, descripti
 };
 //Complaints End================================================================================================
 
-module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery };
+module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery };
 
 

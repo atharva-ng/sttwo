@@ -2,8 +2,7 @@ CREATE OR REPLACE FUNCTION insert_complaint(
     _society_id INTEGER,
     _room_transaction_id INTEGER,
     _title VARCHAR(100),
-    _description TEXT,
-    _status VARCHAR(20) DEFAULT 'Open'
+    _description TEXT
 )
 RETURNS INTEGER AS $$
 DECLARE
@@ -14,8 +13,7 @@ BEGIN
             society_id, 
             room_transaction_id, 
             title, 
-            description, 
-            status, 
+            description,  
             created_at, 
             updated_at
         ) VALUES (
@@ -23,7 +21,6 @@ BEGIN
             _room_transaction_id, 
             _title, 
             _description, 
-            _status, 
             CURRENT_TIMESTAMP, 
             CURRENT_TIMESTAMP
         )RETURNING id INTO new_complaint_id;
@@ -39,3 +36,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+
+-- drop function insert_complaint;

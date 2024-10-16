@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Form_2 = ({ step, formData, setStep, setFormData }) => {
   const numWings = parseInt(formData.societyInformation.numberOfWings) || 1; // Ensure it's an integer
