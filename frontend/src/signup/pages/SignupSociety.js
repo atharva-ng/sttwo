@@ -22,7 +22,7 @@ const SignupSociety = () => {
         city: '',
         state: '',
         pincode: '',
-        numberOfWings: '1',
+        numberOfWings: '',
         registrationNumber: '',
        },
        wingInformation:{

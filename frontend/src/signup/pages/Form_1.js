@@ -163,6 +163,7 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
         // onChange={handleChange('societyInformation.numberOfWings')}
         onChange = {handleWingsChange}
           className="w-full p-2 border rounded"
+          min = "1"
         />
       </div>
       
