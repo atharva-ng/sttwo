@@ -6,7 +6,11 @@ module.exports = (req, res, next) => {
     return next();
   }
   try {
-    const token = req.headers.authorization.split(' ')[1];
+    const tokenCont=req.headers.authorization;
+    if(tokenCont==null){
+      throw new HttpError("Authentication Failed", 401);
+    }
+    const token = tokenCont.split(' ')[1];
     if (!token) {
       throw new HttpError("Authentication Failed", 401);
     }

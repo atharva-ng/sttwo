@@ -3,27 +3,25 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Homepage from './homepage/pages/Homepage';
 import Navbar from './shared/components/navbar/Navbar';
 import Footer from './shared/components/Footer';
-import Login from './login/pages/Login';
-import LoginSociety from './login/society/pages/LoginSociety';
-import LoginOwner from './login/owner/pages/LoginOwner';
-import Signup from './signup/signup/pages/Signup';
-import SignupSociety from './signup/signupSociety/pages/SignupSociety';
-import SignupOwner from './signup/signupOwner/pages/SignupOwner'
-// import WingInformation from './signup/signupSociety/pages/WingInformation'; // Import the new component
-import SignupSociety2 from './signup/signupSociety/pages/SignupSociet2';
-import SocietyRegistrationForm from './signup/signupSociety/pages/MaintenanceSociety';
-import SocietyProfile from './profile/society/pages/SocietyProfile';
-import FlatsInformation from './profile/society/pages/FlatsInformation';
+import LoginSociety from './login/pages/LoginSociety';
+import SignupSociety from './signup/pages/SignupSociety';
+import SignupSociety2 from './signup/pages/SignupSociet2';
+import SocietyRegistrationForm from './signup/pages/MaintenanceSociety';
+import SocietyProfile from './profile/pages/SocietyProfile';
+import FlatsInformation from './profile/pages/FlatsInformation';
+import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
+
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 
+
 function App() {
 
-  const { userType, token, login, logout } = useAuth();
+  const { isAdmin, token, login, logout } = useAuth();
 
   let routes;
   if (token) {
-    if (userType === "SOCIETY") {
+    
       routes = (
         <>
           <Switch>
@@ -39,15 +37,14 @@ function App() {
             <Route path='/dashboard' exact>
               <SocietyProfile />
             </Route>
+            <Route path='/notice' exact>
+              <CommunityNoticeBoardDriver />
+            </Route>
             <Redirect to='/' />
           </Switch>
         </>
       )
-    } else {
-      routes = (
-        <></>
-      )
-    }
+    
   } else {
     routes = (
       <>
@@ -55,22 +52,12 @@ function App() {
           <Route path='/' exact>
             <Homepage />
           </Route>
+         
           <Route path='/login' exact>
-            <Login />
-          </Route>
-          <Route path='/login/login-society' exact>
             <LoginSociety />
           </Route>
-          <Route path='/login/login-owner' exact>
-            <LoginOwner />
-          </Route>
+          
           <Route path='/signup' exact>
-            <Signup />
-          </Route>
-          <Route path='/signup/signup-owner' exact>
-            <SignupOwner />
-          </Route>
-          <Route path='/signup/signup-society' exact>
             <SignupSociety />
           </Route>
           <Route path='/signup/signup-society-2' exact>
@@ -89,15 +76,16 @@ function App() {
     <Router>
       <AuthContext.Provider value={{
         isLoggedIn: !!token,
-        userType: userType,
+        isAdmin: isAdmin,
         token: token,
         login: login,
         logout: logout
       }}>
 
-        <Navbar />
+        
+      <Navbar />
         <main>{routes}</main>
-        <Footer />
+      <Footer />
 
       </AuthContext.Provider>
 

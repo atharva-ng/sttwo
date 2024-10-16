@@ -4,7 +4,8 @@ const path = require('path');
 
 const HttpError = require('../models/http-error');
 
-const { getWingDataQuery, saveOwnerDataQuery, getOwnersDataQuery } = require('../dbUtils/ownersModuleQueries');
+const {  saveOwnerDataQuery } = require('../dbUtils/ownersModuleQueries');
+const {getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery}= require('../dbUtils/getters');
 
 const cleanGetData = (data) => {
   const uniqueWings = new Set();
@@ -147,7 +148,7 @@ async function generateGetExcelFile(dataVar) {
   });
 
   const filePath = path.join(__dirname, 'SocietyDataWithBorders.xlsx');
-  await workbook.xlsx.writeFile(filePath);      
+  await workbook.xlsx.writeFile(filePath);
 
 }
 
@@ -164,7 +165,7 @@ const getOwnersModuleExcel = async (req, res, next) => {
   }
   var excelFileBuffer;
   try {
-    const wingData = await getWingDataQuery(userId);
+    const wingData = await getWingRoomDataQuery(userId);
     const sortedWingData = cleanGetData(wingData);
 
     excelFileBuffer = await generateGetExcelFile(sortedWingData);
@@ -223,7 +224,7 @@ const postOwnersModuleExcel = async (req, res, next) => {
     // Convert the worksheet to JSON
     const inputData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
 
-    const sortedWingData = cleanGetData(await getWingDataQuery(75));
+    const sortedWingData = cleanGetData(await getWingRoomDataQuery(75));
 
     var output = cleanPostData(inputData, sortedWingData);
 
@@ -246,7 +247,7 @@ const getOwnersData = async (req, res, next) => {
     throw HttpError("Authentication Failed", 401);
   }
   try {
-    const ownersData = await getOwnersDataQuery(75);
+    const ownersData = await getOwnersDataFromSocietyIDQuery(75);
     console.log(ownersData);
     return res.status(200).json(ownersData);
   } catch (error) {

@@ -2,6 +2,9 @@ const express = require("express");
 
 const HttpError = require("./models/http-error");
 
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocs = require('./swaggerConfig');
+
 // const checkAuth = require("./middlewares/tokenAuth")
 
 const Auth = require("./routes/Auth");
@@ -26,6 +29,8 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 app.use('/api/auth', Auth);
 
 app.use('/api/register', Register);
@@ -39,8 +44,7 @@ app.use('/api/finance', financeModule);
 app.use('/api/community-communications', communityCommunicationModule);
 
 app.use((req, res, next) => {
-  const error = new HttpError('Could not find this route.', 404);
-  throw error;
+  throw new HttpError('Could not find this route.', 404);
 });
 
 app.use((error, req, res, next) => {

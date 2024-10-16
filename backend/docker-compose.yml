@@ -1,6 +1,3 @@
-
-version: '3.8'
-
 services:
   app:
     build: .
@@ -9,7 +6,8 @@ services:
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgres://atharva_main:sttwoadmin@host.docker.internal:5432/sttwo
+    env_file:
+      - ./../../.env
     volumes:
       - .:/usr/src/app  # Optional: Bind mount for local development
       - /usr/src/app/node_modules
-
