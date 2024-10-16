@@ -74,4 +74,5 @@ const saveMaintainanceHeadQuery = async (roomLinkId, amountObj) => {
 
 }
 
+
 module.exports = { saveWingQuery, createRoomLinkQuery, saveRoomQuery, saveMaintainanceHeadQuery };

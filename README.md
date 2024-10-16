@@ -1,25 +1,10 @@
 
 # Society Management API Documentation
 
+For testing, use 1@1.com and 123456. It has all the data setup.
+Alternative would be 6@1.com and 123456. 
+
 ## Authentication
-
-### POST `/api/auth/signup/society`
-Register a new society with basic details.
-
-**Required Fields:**
-- `name`: Society name (string)
-- `dateOfEstablishment`: Date of establishment (string, YYYY-MM-DD)
-- `emailAddress`: Society's email address (string)
-- `password`: Society's password (string)
-- `phoneNumber`: Contact number (string)
-- `address`: Society's address (string)
-- `city`: City name (string)
-- `state`: State name (string)
-- `pincode`: Postal code (string)
-- `numberOfWings`: Number of wings in the society (integer)
-- `registrationNumber`: Society registration number (string)
-
----
 
 ### POST `/api/auth/login/society`
 Log into a society account.
@@ -27,6 +12,20 @@ Log into a society account.
 **Required Fields:**
 - `emailAddress`: Society's email address (string)
 - `password`: Society's password (string)
+
+---
+### PATCH `/api/auth/edit`
+Update society details, specifically the admin status.
+
+#### Request Body:
+- `isadmin` (boolean): Specifies if the user should be an admin.
+
+#### Response:
+- `200 OK`: Successfully updated society details.
+  - `message`: "Success".
+
+#### Error Responses:
+- `500 Internal Server Error`: Something went wrong while updating the society details.
 
 ---
 
@@ -42,11 +41,136 @@ Retrieve available maintenance heads and room size details.
 ---
 
 ### POST `/api/register`
-Register a society with structure and maintenance details.
+Register a society with basic details, structure and maintenance details.
+
+    "roomDetails": {
+      "1": {
+        "roomNumber": 101,
+        "roomSize": "1BHK",
+        "maintainanceAmount": 5000,
+        "maintainanceHeadAmount": {
+          "1": 1500,
+          "2": 500,
+          "3": 2000,
+          "4": 1000
+        }
+      },
+      "2": {
+        "roomNumber": 102,
+        "roomSize": "2BHK",
+        "maintainanceAmount": 7500,
+        "maintainanceHeadAmount": {
+          "1": 1500,
+          "2": 500,
+          "3": 2000,
+          "4": 1000,
+          "5": 2500
+        }
+      },
+      "3": {
+        "roomNumber": 103,
+        "roomSize": "1BHK",
+        "maintainanceAmount": 5000,
+        "maintainanceHeadAmount": {
+          "1": 1500,
+          "2": 500,
+          "3": 2000,
+          "4": 1000
+        }
+      },
+      "4": {
+        "roomNumber": 104,
+        "roomSize": "2BHK",
+        "maintainanceAmount": 7500,
+        "maintainanceHeadAmount": {
+          "1": 1500,
+          "2": 500,
+          "3": 2000,
+          "4": 1000,
+          "5": 2500
+        }
+      }
+    }
+  }
+}
+Wing 2, 3, 4
+Similar to Wing 1, but the name and room details may vary as shown above.
+
+Notes
+Each wing contains details about its rooms and the maintenance amounts.
+The structure allows adding multiple wings, with each wing having its own room details and maintenance breakdown.
+Usage Example
+You can use this JSON structure to create or retrieve society-related data such as the number of wings, room details, and maintenance calculations. This format ensures that all relevant details are organized hierarchically for easy processing and access.
+
+css
+Copy code
+
+This markdown file provides a detailed and structured documentation of the JSON object, ensuring clear explanation of each field and the possible values they can have.
+
+
+
+
+
+You said:
+Give all in a single file
+ChatGPT said:
+ChatGPT
+Here is the entire markdown documentation in a single .md file format:
+
+md
+Copy code
+# JSON Structure Documentation
+
+## Society Details
+
+This section describes the information related to the society.
+
+### `societyDetails` Object
+
+- **`name`** (string): The name of the society.
+- **`dateOfEstablishment`** (string, date): The date the society was established in `YYYY-MM-DD` format.
+- **`emailAddress`** (string): The email address of the society.
+- **`password`** (string): The password associated with the society account.
+- **`phoneNumber`** (string): The phone number of the society.
+- **`address`** (string): The address of the society.
+- **`city`** (string): The city where the society is located.
+- **`state`** (string): The state where the society is located.
+- **`pincode`** (string): The postal code (PIN code) of the society.
+- **`numberOfWings`** (string): The number of wings in the society.
+- **`registrationNumber`** (string): The registration number of the society.
+
+### Example:
+
+```json
+{
+  "name": "name",
+  "dateOfEstablishment": "2024-08-11",
+  "emailAddress": "emaixdxx6lAddjdress@email.com",
+  "password": "123456",
+  "phoneNumber": "8879806920",
+  "address": "address",
+  "city": "city",
+  "state": "state",
+  "pincode": "400012",
+  "numberOfWings": "4",
+  "registrationNumber": "registrationNumber"
+}
 
 **Required Fields:**
 ```json
-{
+{ "societyDetails":{
+  "name": "name",
+  "dateOfEstablishment": "2024-08-11",
+  "emailAddress": "emaixdxx6lAddjdress@email.com",
+  "password": "123456",
+  "phoneNumber": "8879806920",
+  "address": "address",
+  "city": "city",
+  "state": "state",
+  "pincode": "400012",
+  "numberOfWings": "4",
+  "registrationNumber": "registrationNumber"
+},
   "wingInformation": {
     "1": {
       "name": "wing1",
@@ -101,6 +225,8 @@ Upload an Excel file with basic wing and room details.
 
 ## Community Communications API
 
+#Notices
+
 ### POST `/api/community-communications/notices`
 Create a new notice for a particular society.
 
@@ -115,8 +241,6 @@ Create a new notice for a particular society.
 - `400 Bad Request`: Missing or invalid required fields.
 - `422 Incorrect Format` : Invalid format of the submitted fields.
 - `500 Internal Server Error`: Something went wrong while creating the notice.
-
----
 
 ### GET `/api/community-communications/notices`
 Retrieve a list of all the notices made by the society.
@@ -170,4 +294,27 @@ Delete a notice by its ID.
 - `400 Bad Request`: Invalid notice ID.
 - `403 Forbidden`: User does not have permission to delete this notice.
 - `500 Internal Server Error`: Something went wrong while deleting the notice.
+
+
+#Complaints
+
+### GET `/api/complaints`
+Retrieve complaints for a society based on provided filters.
+
+#### Query Parameters:
+
+-   `socid`: Society ID (string)
+-   `active`: Active status of the complaint (string: "true" or "false")
+-   `start_date`: Start date to filter complaints (string, format: YYYY-MM-DD)
+-   `end_date`: End date to filter complaints (string, format: YYYY-MM-DD)
+
+#### Response:
+
+-   `200 OK`: Successfully retrieved the complaints.
+    -   `complaints`: List of complaints matching the provided filters.
+
+#### Error Responses:
+
+-   `400 Bad Request`: Invalid `active` parameter (not "true" or "false").
+-   `500 Internal Server Error`: Something went wrong while retrieving the complaints.
 
