@@ -8,40 +8,6 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { token } = useContext(AuthContext);
-
-  const API_URL = 'http://3.109.108.99:5007/api/register';
-
-  const fetchNotices = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${API_URL}`, {
-        method: 'GET',
-        // headers: {
-        //   'Authorization': `Bearer ${token}`,
-        //   'Content-Type': 'application/json',
-        // },
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch notices');
-      }
-      const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.error('Error fetching notices:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (token) {
-      fetchNotices();
-    } else {
-      console.log("No token");
-      fetchNotices();
-    }
-  }, []);
 
   const handleChange = (path) => (e) => {
     const keys = path.split('.');
@@ -59,18 +25,46 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     setFormData(updatedFormData);
   };
 
+  // const handleMaintenanceHeadChange = (selectedHead) => {
+  //   if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       maintenanceHeads: [...prevData.maintenanceHeads, selectedHead],
+  //     }));
+  //   }
+  //   setIsDropdownOpen(false);
+  // };
+
   const handleMaintenanceHeadChange = (selectedHead) => {
+    // If the selected head is not already included, add it to the formData.
     if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
-      setFormData((prevData) => ({
-        ...prevData,
-        maintenanceHeads: [...prevData.maintenanceHeads, selectedHead],
-      }));
+      const updatedFormData = { ...formData };
+  
+      // Add the selected head to the maintenanceHeads array.
+      updatedFormData.maintenanceHeads.push(selectedHead);
+  
+      // Iterate through all wings and rooms to add the new head.
+      Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
+        const wing = updatedFormData.wingInformation[wingKey];
+        Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
+          const room = wing.wingRoomDetails[roomKey];
+          
+          // If the head is not already in the room's maintenanceHeadAmount, add it.
+          if (!room.maintenanceHeadAmount[selectedHead]) {
+            room.maintenanceHeadAmount[selectedHead] = '';
+          }
+        });
+      });
+  
+      // Update the formData with the new structure.
+      setFormData(updatedFormData);
     }
     setIsDropdownOpen(false);
   };
+  
 
   return (
-    <div className="space-y-4 py-2 my-5">
+    <div className="space-y-4 py-2 my-5 mb-20">
       <div className="relative">
         <label htmlFor="maintenanceHead" className="block mb-2 text-sm font-medium text-gray-700">
           Select Maintenance Head

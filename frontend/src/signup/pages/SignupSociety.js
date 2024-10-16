@@ -15,39 +15,37 @@ const SignupSociety = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [formData, setFormData] = useState({
-    societyInformation:{
-        name: '',
-        dateOfEstablishment: '',
-        emailAddress: '',
-        password:'',
-        phoneNumber: '', //need to add phonenumber input
-        address: '',
-        city: '',
-        state: '',
-        pincode: '',
-        numberOfWings: '',
-        registrationNumber: '',
-       },
-       wingInformation:{
-            wingNumber:{
-              wingName:'',
-              wingFloors:'',
-              wingRoomsPerFloor:'',//need input
-              wingRoomDetails:{
-                roomIndex:{
-                  roomNumber:'',
-                  roomSize:'',
-                  maintenanceAmount:'',
-                  maintenanceHeadAmount:{
-                    landTax:'',
-                    waterTax:'',
-                    parkingCharges:''
-                  }
-                }
-              }
-            }
-        }
-      });
+    societyInformation: {
+      name: '',
+      dateOfEstablishment: '',
+      emailAddress: '',
+      password: '',
+      phoneNumber: '',
+      address: '',
+      city: '',
+      state: '',
+      pincode: '',
+      numberOfWings: '',
+      registrationNumber: '',
+    },
+    wingInformation: {
+      wingNumber: {
+        wingName: '',
+        wingFloors: '',
+        wingRoomsPerFloor: '',
+        wingRoomDetails: {
+          roomIndex: {
+            roomNumber: '',
+            roomSize: '',
+            maintenanceAmount: '',
+            maintenanceHeadAmount: {},
+          },
+        },
+      },
+    },
+    maintenanceHeads: [], // Add this to avoid the 'undefined' error.
+  });
+  
 
       const { token } = useContext(AuthContext);
 
