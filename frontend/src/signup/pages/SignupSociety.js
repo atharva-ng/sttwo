@@ -14,6 +14,13 @@ const SignupSociety = () => {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
+  // let roomSizes;
+  const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
+  const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
+
+  // let maintenanceHeads;
+
+
   const [formData, setFormData] = useState({
     societyInformation: {
       name: '',
@@ -47,7 +54,7 @@ const SignupSociety = () => {
   });
   
 
-      const { token } = useContext(AuthContext);
+      // const { token } = useContext(AuthContext);
 
     const API_URL = 'http://3.109.108.99:5007/api/register';
 
@@ -65,6 +72,11 @@ const SignupSociety = () => {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
+        // console.log("data fetched",data)
+        setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+        // maintenanceHeads = data.maintainanceHeads;
+        // console.log("room size", roomSizes);
         // setNotices(data);
         // console.log(data);
       } catch (err) {
@@ -75,103 +87,62 @@ const SignupSociety = () => {
       }
     };
 
-    // useEffect(() => {
-    //   if (token) {
-    //     fetchNotices();
-    //   }
-    //   else{
-    //     console.log("No token");
-    //     fetchNotices();
-    //   }
-    // }, []);
+    useEffect(() => {
+      fetchNotices();
+    }, []);
 
-    const data = {
-      "roomSizes": [
-          {
-              "id": 1,
-              "size": "1RK"
-          },
-          {
-              "id": 2,
-              "size": "1BHK"
-          },
-          {
-              "id": 3,
-              "size": "2BHK"
-          },
-          {
-              "id": 4,
-              "size": "3BHK"
-          },
-          {
-              "id": 5,
-              "size": "4BHK"
-          },
-          {
-              "id": 6,
-              "size": "5BHK"
-          },
-          {
-              "id": 7,
-              "size": "6BHK"
-          },
-          {
-              "id": 8,
-              "size": "7BHK"
-          }
-      ],
-      "maintainanceHeads": [
-          "Electric Charges",
-          "Water Charges",
-          "Service & Maintenance Charges",
-          "Sinking Fund",
-          "Repairing Fund",
-          "Non Agriculture Tax",
-          "Festival & Welfare Charges",
-          "Four Wheelers Parking Charges",
-          "Education & Training Fund"
-      ]
-  }
 
-  const roomSizes = data.roomSizes;
-  const maintenanceHeads = data.maintainanceHeads;
 
-  // console.log(maintenanceHeads);
+  //   const data = {
+  //     "roomSizes": [
+  //         {
+  //             "id": 1,
+  //             "size": "1RK"
+  //         },
+  //         {
+  //             "id": 2,
+  //             "size": "1BHK"
+  //         },
+  //         {
+  //             "id": 3,
+  //             "size": "2BHK"
+  //         },
+  //         {
+  //             "id": 4,
+  //             "size": "3BHK"
+  //         },
+  //         {
+  //             "id": 5,
+  //             "size": "4BHK"
+  //         },
+  //         {
+  //             "id": 6,
+  //             "size": "5BHK"
+  //         },
+  //         {
+  //             "id": 7,
+  //             "size": "6BHK"
+  //         },
+  //         {
+  //             "id": 8,
+  //             "size": "7BHK"
+  //         }
+  //     ],
+  //     "maintainanceHeads": [
+  //         "Electric Charges",
+  //         "Water Charges",
+  //         "Service & Maintenance Charges",
+  //         "Sinking Fund",
+  //         "Repairing Fund",
+  //         "Non Agriculture Tax",
+  //         "Festival & Welfare Charges",
+  //         "Four Wheelers Parking Charges",
+  //         "Education & Training Fund"
+  //     ]
+  // }
 
-      // const roomSizes = [
-      //   {
-      //     id: 1,
-      //     size: "1RK"
-      //   },
-      //   {
-      //     id: 2,
-      //     size: "1BHK"
-      //   },
-      //   {
-      //     id: 3,
-      //     size: "2BHK"
-      //   },
-      //   {
-      //     id: 4,
-      //     size: "3BHK"
-      //   },
-      //   {
-      //     id: 5,
-      //     size: "4BHK"
-      //   },
-      //   {
-      //     id: 6,
-      //     size: "5BHK"
-      //   },
-      //   {
-      //     id: 7,
-      //     size: "6BHK"
-      //   },
-      //   {
-      //     id: 8,
-      //     size: "7BHK"
-      //   }
-      // ];
+  
+
 
   const handleNext = () => {
     setStep(prevStep => prevStep + 1);

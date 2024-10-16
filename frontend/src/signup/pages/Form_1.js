@@ -88,6 +88,7 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           value={formData.societyInformation.name}
           onChange={handleChange('societyInformation.name')}
           className="w-full p-2 border rounded"
+          required
         />
       </div>
       

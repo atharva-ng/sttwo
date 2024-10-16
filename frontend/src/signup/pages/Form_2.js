@@ -159,11 +159,15 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
     onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomSize', e.target.value)}
   >
     <option value="">Select Size</option>
-    {roomSizes.map((room) => (
-      <option key={room.id} value={room.size}>
-        {room.size}
-      </option>
-    ))}
+      {roomSizes && roomSizes.length > 0 ? (
+        roomSizes.map((room) => (
+          <option key={room.id} value={room.size}>
+            {room.size}
+          </option>
+        ))
+      ) : (
+        <option value="">No Sizes Available</option>
+      )}
   </select>
 </div>
                     <div>
