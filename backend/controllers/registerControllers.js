@@ -4,6 +4,7 @@ const { validationResult } = require("express-validator");
 const { saveWingQuery, saveRoomQuery, createRoomLinkQuery, saveMaintainanceHeadQuery } = require("../dbUtils/societyRegistrationQueries")
 const { postSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
 const { getRoomSizeQuery, getMaintenanceHeadsQuery } = require("../dbUtils/authDBQueries");
+const {getSocietyId}= require("../dbUtils/getters");
 
 const jwt = require('jsonwebtoken');
 
@@ -130,6 +131,8 @@ const registerSociety = async (req, res, next) => {
 const getRegisterSociety = async (req, res, next) => {
   try {
     const [roomSizes, maintainanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
+    // const varm=await getSocietyId(130,3);
+    // console.log(varm);
     res.status(200).json({
       "roomSizes": roomSizes,
       "maintainanceHeads": maintainanceHeads
