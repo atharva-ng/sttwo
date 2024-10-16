@@ -66,7 +66,7 @@ const SignupSociety = () => {
         }
         const data = await response.json();
         // setNotices(data);
-        console.log(data);
+        // console.log(data);
       } catch (err) {
         // setError('Failed to load notices. Please try again later.');
         console.error('Error fetching notices:', err);
@@ -136,7 +136,7 @@ const SignupSociety = () => {
   const roomSizes = data.roomSizes;
   const maintenanceHeads = data.maintainanceHeads;
 
-  console.log(maintenanceHeads);
+  // console.log(maintenanceHeads);
 
       // const roomSizes = [
       //   {

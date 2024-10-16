@@ -12,6 +12,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
           roomSize: '',
           maintenanceAmount: '',
           maintenanceHeadAmount: {
+
           }
         }));
 
