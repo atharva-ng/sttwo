@@ -118,8 +118,26 @@ const createComplaintQuery = async (soc_id, room_transaction_id,title, descripti
     }
   }
 };
+
+const deleteComplaintQuery = async (soc_id, comp_id)=>{
+  try {
+    const result="Later";
+    // const result = await pool.query('', []);
+    return result;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-createComplaintQuery", 500);
+    }
+  }
+}
+
+
+
 //Complaints End================================================================================================
 
-module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery };
+module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery};
 
 

@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 // import "./SignupSociety.css";
-
 import { AuthContext } from "../../shared/context/auth-context.js";
-
-import Form from "../components/Form";
 import Form_1 from "./Form_1.js";
 import Form_2 from "./Form_2.js";
 import Form_3 from "./Form_3.js";
@@ -22,6 +19,7 @@ const SignupSociety = () => {
 
 
   const [formData, setFormData] = useState({
+
     societyInformation: {
       name: '',
       dateOfEstablishment: '',
@@ -141,12 +139,9 @@ const SignupSociety = () => {
   //     ]
   // }
 
-  
-
 
   const handleNext = () => {
     setStep(prevStep => prevStep + 1);
-
   };
 
   const handlePrevious = () => {

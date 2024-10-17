@@ -36,10 +36,9 @@ BEGIN
 
     EXECUTE "CREATE TABLE complaintDetails (complaint_id SERIAL PRIMARY KEY,society_id INT,room_id INT,title VARCHAR(100) NOT NULL,description TEXT NOT NULL,status VARCHAR(20) NOT NULL DEFAULT 'Open',created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY (society_id) REFERENCES societydetails(id),FOREIGN KEY (room_id) REFERENCES roomdetails(id),CHECK (status IN ('Open', 'In Progress', 'Resolved', 'Closed')));"
 
-    EXECUTE "CREATE TABLE comments (id SERIAL PRIMARY KEY, complaint_id INT NOT NULL, owner_id INT NOT NULL, description TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (complaint_id) REFERENCES complaintDetails(complaint_id), FOREIGN KEY (owner_id) REFERENCES ownerdetails(id));"
-
     EXECUTE "CREATE TABLE notices (id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, content TEXT NOT NULL, start_date TIMESTAMP NOT NULL, end_date TIMESTAMP NOT NULL, isActive BOOLEAN DEFAULT TRUE, society_id INT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (society_id) REFERENCES societydetails(id));"
 
+    EXECUTE "CREATE TABLE comments (id SERIAL PRIMARY KEY,complaint_id INT NOT NULL,society_id INT,room_transaction_id INT,content TEXT NOT NULL,created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY (complaint_id) REFERENCES complaintdetails(id),FOREIGN KEY (society_id) REFERENCES societydetails(id),FOREIGN KEY (room_transaction_id) REFERENCES room_transaction(id),CHECK (society_id IS NOT NULL OR room_transaction_id IS NOT NULL));"
 END;
 $$;
 
