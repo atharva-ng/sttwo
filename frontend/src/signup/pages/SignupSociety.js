@@ -92,7 +92,7 @@ const SignupSociety = () => {
     }, []);
 
 
-
+// sample data
   //   const data = {
   //     "roomSizes": [
   //         {
