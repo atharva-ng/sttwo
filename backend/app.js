@@ -5,8 +5,6 @@ const HttpError = require("./models/http-error");
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerDocs = require('./swaggerConfig');
 
-// const checkAuth = require("./middlewares/tokenAuth")
-
 const Auth = require("./routes/Auth");
 const Register = require("./routes/Register");
 const OwnersModule = require("./routes/ownersModule");
