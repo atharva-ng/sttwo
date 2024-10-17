@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 // import "./SignupSociety.css";
-import { AuthContext } from "../../shared/context/auth-context.js";
+
 import Form_1 from "./Form_1.js";
 import Form_2 from "./Form_2.js";
 import Form_3 from "./Form_3.js";
@@ -170,8 +170,8 @@ const SignupSociety = () => {
 
       <div className="form-page">
         {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
-        {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} roomSizes = {roomSizes}/>}
-        {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} maintenanceHeads = {maintenanceHeads}/>}
+        {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
+        {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
         {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
         
         </div>
