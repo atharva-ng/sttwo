@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import "./SignupSociety.css";
 
-import Form from "../components/Form";
 import Form_1 from "./Form_1.js";
 import Form_2 from "./Form_2.js";
 import Form_3 from "./Form_3.js";
@@ -13,8 +12,8 @@ const SignupSociety = () => {
 
   const [formData, setFormData] = useState({
     societyInformation:{
-        name: '',
-        dateOfEstablishment: '',
+      name: '',
+      dateOfEstablishment: '',
         emailAddress: '',
         password:'',
         phoneNumber: '', //need to add phonenumber input
@@ -44,11 +43,10 @@ const SignupSociety = () => {
               }
             }
         }
-      });
+    });
 
   const handleNext = () => {
     setStep(prevStep => prevStep + 1);
-
   };
 
   const handlePrevious = () => {

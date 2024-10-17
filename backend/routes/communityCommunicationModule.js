@@ -27,5 +27,9 @@ router.delete('/notices/:id', communityCommControllerNotices.deleteNotice);
 router.get('/complaints', communityCommControllerComplaints.getComplaints);
 router.post('/complaints', communityCommControllerComplaints.createComplaint);
 
+router.delete('/complaints/:id', communityCommControllerComplaints.deleteComplaint);
+
+// router.post('/comments', communityCommControllerComplaints.)
+
 
 module.exports = router;
