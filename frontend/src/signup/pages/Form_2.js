@@ -1,7 +1,7 @@
 import React from "react";
 
-const Form_2 = ({ step, formData, setStep, setFormData }) => {
-  const numWings = parseInt(formData.societyInformation.numberOfWings) || 1; // Ensure it's an integer
+const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
+  const numWings = parseInt(formData.societyDetails.numberOfWings) || 1; // Ensure it's an integer
 
   const handleRoomsChange = (wingIndex, roomsPerFloor) => {
     const updatedWings = formData.wingInformation.map((wing, index) => {
@@ -12,9 +12,7 @@ const Form_2 = ({ step, formData, setStep, setFormData }) => {
           roomSize: '',
           maintenanceAmount: '',
           maintenanceHeadAmount: {
-            landTax: '',
-            waterTax: '',
-            parkingCharges: ''
+            
           }
         }));
 
@@ -148,21 +146,30 @@ const Form_2 = ({ step, formData, setStep, setFormData }) => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold mb-2 text-customGray" htmlFor={`roomSize${wingIndex}-${roomIndex}`}>
-                        Room Size
-                      </label>
-                      <select
-                        className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                        id={`roomSize${wingIndex}-${roomIndex}`}
-                        value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.roomSize || ''}
-                        onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomSize', e.target.value)}
-                      >
-                        <option value="">Select Size</option>
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                      </select>
-                    </div>
+                    <label
+          className="block text-sm font-bold mb-2 text-customGray"
+          htmlFor={`roomSize${wingIndex}-${roomIndex}`}
+        >     
+        Room Size
+      </label>
+      <select
+        className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+        id={`roomSize${wingIndex}-${roomIndex}`}
+        value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.roomSize || ''}
+        onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomSize', e.target.value)}
+      >
+        <option value="">Select Size</option>
+          {roomSizes && roomSizes.length > 0 ? (
+            roomSizes.map((room) => (
+              <option key={room.id} value={room.size}>
+                {room.size}
+              </option>
+            ))
+          ) : (
+            <option value="">No Sizes Available</option>
+          )}
+      </select>
+    </div>
                     <div>
                       <label className="block text-sm font-bold mb-2 text-customGray" htmlFor={`maintenanceAmount${wingIndex}-${roomIndex}`}>
                         Maintenance Amount

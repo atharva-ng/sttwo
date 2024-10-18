@@ -30,8 +30,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
       const handleSocietyNameChange = (e) => {
         setFormData({
           ...formData,
-          societyInformation: {
-            ...formData.societyInformation,
+          societyDetails: {
+            ...formData.societyDetails,
             name: e.target.value,
           },
         });
@@ -64,8 +64,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
       
         setFormData(prevState => ({
           ...prevState,
-          societyInformation: {
-            ...prevState.societyInformation,
+          societyDetails: {
+            ...prevState.societyDetails,
             numberOfWings: numberOfWings
           },
           wingInformation: wings
@@ -85,9 +85,10 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           type="text"
           id="societyName"
           name="name"
-          value={formData.societyInformation.name}
-          onChange={handleChange('societyInformation.name')}
+          value={formData.societyDetails.name}
+          onChange={handleChange('societyDetails.name')}
           className="w-full p-2 border rounded"
+          required
         />
       </div>
       
@@ -97,8 +98,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           type="date"
           id="dateOfEstablishment"
           name="dateOfEstablishment"
-          value={formData.societyInformation.dateOfEstablishment}
-          onChange={handleChange('societyInformation.dateOfEstablishment')}
+          value={formData.societyDetails.dateOfEstablishment}
+          onChange={handleChange('societyDetails.dateOfEstablishment')}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -109,8 +110,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
         <textarea
           id="address"
           name="address"
-          value={formData.societyInformation.address}
-        onChange={handleChange('societyInformation.address')}
+          value={formData.societyDetails.address}
+        onChange={handleChange('societyDetails.address')}
           className="w-full p-2 border rounded"
           rows="2"
         ></textarea>
@@ -123,8 +124,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
             type="text"
             id="city"
             name="city"
-            value={formData.societyInformation.city}
-        onChange={handleChange('societyInformation.city')}
+            value={formData.societyDetails.city}
+        onChange={handleChange('societyDetails.city')}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -134,8 +135,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
             type="text"
             id="state"
             name="state"
-            value={formData.societyInformation.state}
-        onChange={handleChange('societyInformation.state')}
+            value={formData.societyDetails.state}
+        onChange={handleChange('societyDetails.state')}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -145,8 +146,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
             type="text"
             id="pincode"
             name="pincode"
-            value={formData.societyInformation.pincode}
-        onChange={handleChange('societyInformation.pincode')}
+            value={formData.societyDetails.pincode}
+        onChange={handleChange('societyDetails.pincode')}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -159,8 +160,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           type="number"
           id="numberOfWings"
           name="numberOfWings"
-          value={formData.societyInformation.numberOfWings}
-        // onChange={handleChange('societyInformation.numberOfWings')}
+          value={formData.societyDetails.numberOfWings}
+        // onChange={handleChange('societyDetails.numberOfWings')}
         onChange = {handleWingsChange}
           className="w-full p-2 border rounded"
           min = "1"
@@ -173,10 +174,10 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           type="text"
           id="registrationNumber"
           name="registrationNumber"
-          value={formData.societyInformation.registrationNumber}
-        onChange={handleChange('societyInformation.registrationNumber')}
+          value={formData.societyDetails.registrationNumber}
+        onChange={handleChange('societyDetails.registrationNumber')}
           className="w-full p-2 border rounded"
-        />
+        /> 
       </div>
 
       </div>
@@ -188,8 +189,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           type="email"
           id="emailAddress"
           name="emailAddress"
-          value={formData.societyInformation.emailAddress}
-          onChange={handleChange('societyInformation.emailAddress')}
+          value={formData.societyDetails.emailAddress}
+          onChange={handleChange('societyDetails.emailAddress')}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -200,8 +201,8 @@ const Form_1 = ({step, formData, setStep, setFormData}) => {
           type="password"
           id="password"
           name="password"
-          value={formData.societyInformation.password}
-        onChange={handleChange('societyInformation.password')}
+          value={formData.societyDetails.password}
+        onChange={handleChange('societyDetails.password')}
           className="w-full p-2 border rounded"
         />
       </div>
