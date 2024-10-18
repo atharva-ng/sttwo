@@ -27,7 +27,7 @@ export const useAuth = () => {
     setToken(null);
     setTokenExpirationDate(null);
     setisAdmin(null);
-    localStorage.removeItem('userData');
+    sessionStorage.removeItem('userData');
   }, []);
 
   useEffect(() => {
