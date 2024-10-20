@@ -12,6 +12,8 @@ const SignupSociety = () => {
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
 
+  //minor changesssss
+
 
   const [formData, setFormData] = useState({
 
