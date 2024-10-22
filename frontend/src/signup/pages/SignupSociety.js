@@ -14,6 +14,9 @@ const SignupSociety = () => {
 
   //minor changesssss
 
+  const [isWingDetailsFilled, setIsWingDetailsFilled] = useState(false);  // Track if WingDetailsForm is filled
+  const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
+
 
   const [formData, setFormData] = useState({
 
@@ -80,11 +83,27 @@ const SignupSociety = () => {
     }, []);
 
 
-  const handleNext = () => {
-    setStep(prevStep => prevStep + 1);
+    // Callback to update `isFilled` status for WingDetailsForm
+  const handleWingDetailsFilledChange = (isFilled) => {
+    setIsWingDetailsFilled(isFilled);
   };
+
+  const handleNext = () => {
+  //   console.log("filled,main:", isWingDetailsFilled, step);
+  //   if (step===1 && !isWingDetailsFilled){
+  //     alert("Fill all fields");
+    
+  // }
+  setStep(prevStep => prevStep + 1);
+  };
+
   const handlePrevious = () => {
     setStep(prevStep => prevStep - 1);
+  };
+
+  const handleRegister = () => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+    alert("Form data saved successfully!");
   };
   console.log(formData);
   return (
@@ -105,7 +124,7 @@ const SignupSociety = () => {
       
 
       <div className="form-page">
-        {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
+        {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} onIsFilledChange={handleWingDetailsFilledChange}/>}
         {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} roomSizes = {roomSizes}/>}
         {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} maintenanceHeads = {maintenanceHeads}/>}
         {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
@@ -131,7 +150,7 @@ const SignupSociety = () => {
             <>
             <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
             {/* submit button */}
-            <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleNext}>Register</button>
+            <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleRegister}>Register</button>
             </>
           }
           

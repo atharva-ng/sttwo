@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const Form_1 = ({step, formData, setStep, setFormData}) => {
+const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
+
+  const [isFilled, setIsFilled] = useState(false);
+
+  // Validate form and set isFilled
+  useEffect(() => {
+    const allFieldsFilled = Object.values(formData).every((value) => value !== "");
+    // console.log("filled?:", Object.values(formData), allFieldsFilled);
+    setIsFilled(allFieldsFilled);
+    onIsFilledChange(allFieldsFilled);  // Pass this state up to parent (signupsociety.js)
+  }, [formData, onIsFilledChange]);
 
       // Generic function to handle changes in form data
   const handleChange = (path) => (e) => {
