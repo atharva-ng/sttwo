@@ -237,7 +237,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
       
     </div>
     <div className={`button-row flex justify-end`}>
-    <button type="submit" className="next-button px-12 py-2 my-4  bg-blue-600 text-white rounded hover:bg-blue-700" >Next</button>
+    <button type="submit" className="next-button px-12 py-2  bg-blue-600 text-white rounded hover:bg-blue-700" >Next</button>
     </div>
     </form>
 
