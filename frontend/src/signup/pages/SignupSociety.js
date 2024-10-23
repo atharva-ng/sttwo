@@ -83,28 +83,89 @@ const SignupSociety = () => {
     }, []);
 
 
+
+    //For when data fetching isnt working / server is down
+    // sample data
+
+  //   const data = {
+  //     "roomSizes": [
+  //         {
+  //             "id": 1,
+  //             "size": "1RK"
+  //         },
+  //         {
+  //             "id": 2,
+  //             "size": "1BHK"
+  //         },
+  //         {
+  //             "id": 3,
+  //             "size": "2BHK"
+  //         },
+  //         {
+  //             "id": 4,
+  //             "size": "3BHK"
+  //         },
+  //         {
+  //             "id": 5,
+  //             "size": "4BHK"
+  //         },
+  //         {
+  //             "id": 6,
+  //             "size": "5BHK"
+  //         },
+  //         {
+  //             "id": 7,
+  //             "size": "6BHK"
+  //         },
+  //         {
+  //             "id": 8,
+  //             "size": "7BHK"
+  //         }
+  //     ],
+  //     "maintainanceHeads": [
+  //         "Electric Charges",
+  //         "Water Charges",
+  //         "Service & Maintenance Charges",
+  //         "Sinking Fund",
+  //         "Repairing Fund",
+  //         "Non Agriculture Tax",
+  //         "Festival & Welfare Charges",
+  //         "Four Wheelers Parking Charges",
+  //         "Education & Training Fund"
+  //     ]
+  // }
+  // useEffect(() => {
+  //   setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+  //     setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+  // },[]);
+      
+
+
+
+
     // Callback to update `isFilled` status for WingDetailsForm
   const handleWingDetailsFilledChange = (isFilled) => {
     setIsWingDetailsFilled(isFilled);
   };
 
-  const handleNext = () => {
-  //   console.log("filled,main:", isWingDetailsFilled, step);
-  //   if (step===1 && !isWingDetailsFilled){
-  //     alert("Fill all fields");
+  // const handleNext = () => {
+  // //   console.log("filled,main:", isWingDetailsFilled, step);
+  // //   if (step===1 && !isWingDetailsFilled){
+  // //     alert("Fill all fields");
     
-  // }
-  setStep(prevStep => prevStep + 1);
-  };
+  // // }
+  // setStep(prevStep => prevStep + 1);
+  // };
 
-  const handlePrevious = () => {
-    setStep(prevStep => prevStep - 1);
-  };
+  // const handlePrevious = () => {
+  //   setStep(prevStep => prevStep - 1);
+  // };
 
-  const handleRegister = () => {
-    localStorage.setItem('formData', JSON.stringify(formData));
-    alert("Form data saved successfully!");
-  };
+  // const handleRegister = () => {
+  //         localStorage.setItem('formData', JSON.stringify(formData));
+  //     alert("Form data saved successfully!");
+  // };
+
   console.log(formData);
   return (
     <div className="signup-container">
@@ -130,7 +191,7 @@ const SignupSociety = () => {
         {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
 
         </div>
-        <div className={`button-row flex ${step === 1 ? 'justify-end' : 'justify-between'}`}>
+        {/* <div className={`button-row flex ${step === 1 ? 'justify-end' : 'justify-between'}`}>
           {
             step === 1 &&
             <>
@@ -149,12 +210,12 @@ const SignupSociety = () => {
             step === 4 &&
             <>
             <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
-            {/* submit button */}
+          
             <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleRegister}>Register</button>
             </>
           }
           
-        </div>
+        </div> */}
       </div>
       {/* <Form /> */}
     </div>

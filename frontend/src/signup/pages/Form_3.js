@@ -61,8 +61,24 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     setIsDropdownOpen(false);
   };
 
+  const handleNext3 = (e) => {
+    e.preventDefault(); // Prevent form submission
+  
+    if (formData.maintenanceHeads.length === 0) {
+      alert("Please select at least one Maintenance Head before proceeding.");
+    } else {
+      setStep((prevStep) => prevStep + 1);
+    }
+  };
+  
+
+  const handlePrevious = () => {
+    setStep(prevStep => prevStep - 1);
+  };
+
 
   return (
+    <form onSubmit={handleNext3}>
     <div className="space-y-4 py-2 my-5 mb-20">
       <div className="relative">
         <label htmlFor="maintenanceHead" className="block mb-2 text-sm font-medium text-gray-700">
@@ -104,6 +120,14 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
         </div>
       )}
     </div>
+
+    <div className={`button-row flex justify-between`}>
+    <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
+    <button type="submit" className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Next</button>
+    
+    </div>
+
+    </form>
   );
 };
 

@@ -47,18 +47,20 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
         });
       };
     
-      const handleNext = () => {
-        if (step === 1) {
-          // If moving to Wing Information, initialize wings array based on numberOfWings
-          const wings = Array.from({ length: parseInt(formData.numberOfWings) || 0 }, (_, i) => ({
-            wingName: `Wing ${i + 1}`,
-            numberOfFlats: '',
-            numberOfLifts: ''
-          }));
-          setFormData(prevData => ({ ...prevData, wings }));
-        }
-        setStep(prevStep => prevStep + 1);
-      };
+      // const handleNext = () => {
+      //   if (step === 1) {
+      //     // If moving to Wing Information, initialize wings array based on numberOfWings
+      //     const wings = Array.from({ length: parseInt(formData.numberOfWings) || 0 }, (_, i) => ({
+      //       wingName: `Wing ${i + 1}`,
+      //       numberOfFlats: '',
+      //       numberOfLifts: ''
+      //     }));
+      //     setFormData(prevData => ({ ...prevData, wings }));
+      //   }
+      //   setStep(prevStep => prevStep + 1);
+      // };
+
+    
 
       const handleWingsChange = (e) => {
         const numberOfWings = parseInt(e.target.value, 10);
@@ -82,10 +84,15 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
         }));
       };
       
+      const handleNext1 = () => {
+
+        setStep(prevStep => prevStep + 1);
+      }
 
 
     return (
         <>
+        <form onSubmit={handleNext1}>
          <div className="space-y-4 px-8 pt-6 pb-8 mb-4">
         
         <div className="flex space-x-4">
@@ -111,6 +118,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           value={formData.societyDetails.dateOfEstablishment}
           onChange={handleChange('societyDetails.dateOfEstablishment')}
           className="w-full p-2 border rounded"
+          required
         />
       </div>
       </div>
@@ -124,6 +132,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
         onChange={handleChange('societyDetails.address')}
           className="w-full p-2 border rounded"
           rows="2"
+          required
         ></textarea>
       </div>
       
@@ -137,6 +146,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
             value={formData.societyDetails.city}
         onChange={handleChange('societyDetails.city')}
             className="w-full p-2 border rounded"
+            required
           />
         </div>
         <div className="flex-1">
@@ -148,6 +158,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
             value={formData.societyDetails.state}
         onChange={handleChange('societyDetails.state')}
             className="w-full p-2 border rounded"
+            required
           />
         </div>
         <div className="flex-1">
@@ -159,6 +170,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
             value={formData.societyDetails.pincode}
         onChange={handleChange('societyDetails.pincode')}
             className="w-full p-2 border rounded"
+            required
           />
         </div>
       </div>
@@ -175,6 +187,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
         onChange = {handleWingsChange}
           className="w-full p-2 border rounded"
           min = "1"
+          required
         />
       </div>
       
@@ -187,6 +200,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           value={formData.societyDetails.registrationNumber}
         onChange={handleChange('societyDetails.registrationNumber')}
           className="w-full p-2 border rounded"
+          required
         /> 
       </div>
 
@@ -202,6 +216,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           value={formData.societyDetails.emailAddress}
           onChange={handleChange('societyDetails.emailAddress')}
           className="w-full p-2 border rounded"
+          required
         />
       </div>
       
@@ -214,11 +229,18 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           value={formData.societyDetails.password}
         onChange={handleChange('societyDetails.password')}
           className="w-full p-2 border rounded"
+          required
         />
       </div>
 
       </div>
+      
     </div>
+    <div className={`button-row flex justify-end`}>
+    <button type="submit" className="next-button px-12 py-2 my-4  bg-blue-600 text-white rounded hover:bg-blue-700" >Next</button>
+    </div>
+    </form>
+
   
 
         </>

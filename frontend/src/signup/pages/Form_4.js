@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form_4 = ({ formData, setFormData }) => {
+const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
   const handleInputChange = (wingIndex, head, roomSize, value) => {
     const updatedWings = [...formData.wingInformation];
 
@@ -18,7 +18,18 @@ const Form_4 = ({ formData, setFormData }) => {
     });
   };
 
+  
+  const handleRegister = () => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+    alert("Form data saved successfully!");
+};
+
+  const handlePrevious = () => {
+    setStep(prevStep => prevStep - 1);
+  };
+
   return (
+    <form onSubmit={handleRegister}>
     <div className="space-y-6 my-10">
       {formData.wingInformation.map((wing, wingIndex) => {
         // Get unique room sizes for the current wing
@@ -55,6 +66,7 @@ const Form_4 = ({ formData, setFormData }) => {
                           onChange={(e) =>
                             handleInputChange(wingIndex, head, size, e.target.value)
                           }
+                          required
                         />
                       </td>
                     ))}
@@ -66,6 +78,13 @@ const Form_4 = ({ formData, setFormData }) => {
         );
       })}
     </div>
+
+    <div className={`button-row flex justify-between`}>
+    <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
+    <button type="submit" className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Register</button>
+    
+    </div>
+    </form>
   );
 };
 

@@ -77,7 +77,18 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
     }));
   };
 
+
+  const handleNext2 = () => {
+
+    setStep(prevStep => prevStep + 1);
+  };
+  const handlePrevious = () => {
+    setStep(prevStep => prevStep - 1);
+  };
+
+
   return (
+    <form onSubmit={handleNext2} autoComplete="true">
     <div className="container mx-auto p-4">
       <div className=" px-8 pt-6 pb-8 mb-4">
         {[...Array(numWings)].map((_, wingIndex) => (
@@ -95,6 +106,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                   placeholder="Name"
                   value={formData.wingInformation[wingIndex]?.wingName || ''}
                   onChange={(e) => handleWingInputChange(wingIndex, 'wingName', e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -108,6 +120,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                   onChange={(e) => handleWingInputChange(wingIndex, 'wingFloors', e.target.value)}
                   type="number"
                   placeholder="Floors"
+                  required
                 />
               </div>
               <div>
@@ -122,6 +135,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                   value={formData.wingInformation[wingIndex]?.wingRoomsPerFloor || ''}
                   placeholder="Enter rooms per floor"
                   min="1"
+                  required
                 />
               </div>
             </div>
@@ -143,6 +157,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                         onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomNumber', e.target.value)}
                         type="text"
                         placeholder={`Room Number ${roomIndex + 1}`}
+                        required
                       />
                     </div>
                     <div>
@@ -157,6 +172,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
         id={`roomSize${wingIndex}-${roomIndex}`}
         value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.roomSize || ''}
         onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomSize', e.target.value)}
+        required
       >
         <option value="">Select Size</option>
           {roomSizes && roomSizes.length > 0 ? (
@@ -181,6 +197,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                         placeholder="Maintenance Amount"
                         value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.maintenanceAmount || ''}
                         onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'maintenanceAmount', e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -191,6 +208,14 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
         ))}
       </div>
     </div>
+
+    <div className={`button-row flex justify-between`}>
+    <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
+    <button type="submit" className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Next</button>
+    
+    </div>
+
+    </form>
   );
 };
 
