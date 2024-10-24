@@ -5,12 +5,19 @@ import Form_3 from "./Form_3.js";
 import Form_4 from "./Form_4.js";
 // import SignupSociety2 from "./SignupSociet2.js";
 
+import "./LoadingPopUp.css";
+
 const SignupSociety = () => {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
+
+  //minor changesssss
+
+  const [isWingDetailsFilled, setIsWingDetailsFilled] = useState(false);  // Track if WingDetailsForm is filled
+  const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
 
 
   const [formData, setFormData] = useState({
@@ -48,7 +55,7 @@ const SignupSociety = () => {
 
     const API_URL = 'http://3.109.108.99:5007/api/register';
 
-    const fetchNotices = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
         const response = await fetch(`${API_URL}`,{
@@ -68,22 +75,183 @@ const SignupSociety = () => {
         
       } catch (err) {
         console.error('Error fetching notices:', err);
+
+        //For when data fetching isnt working / server is down
+    // sample data
+
+    const data = {
+      "roomSizes": [
+          {
+              "id": 1,
+              "size": "1RK"
+          },
+          {
+              "id": 2,
+              "size": "1BHK"
+          },
+          {
+              "id": 3,
+              "size": "2BHK"
+          },
+          {
+              "id": 4,
+              "size": "3BHK"
+          },
+          {
+              "id": 5,
+              "size": "4BHK"
+          },
+          {
+              "id": 6,
+              "size": "5BHK"
+          },
+          {
+              "id": 7,
+              "size": "6BHK"
+          },
+          {
+              "id": 8,
+              "size": "7BHK"
+          }
+      ],
+      "maintainanceHeads": [
+          "Electric Charges",
+          "Water Charges",
+          "Service & Maintenance Charges",
+          "Sinking Fund",
+          "Repairing Fund",
+          "Non Agriculture Tax",
+          "Festival & Welfare Charges",
+          "Four Wheelers Parking Charges",
+          "Education & Training Fund"
+      ]
+  }
+
+  setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+
       } finally {
         setIsLoading(false);
       }
     };
 
+    const handleSubmitForm = async (e) => {
+      e.preventDefault();
+      setIsLoading(true);
+        try {
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              // 'Authorization': `Bearer ${token}`, 
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+  
+          if (!response.ok) {
+            throw new Error('Failed to post formData');
+          }
+  
+          window.location.reload();
+        } catch (err) {
+          // setError('Failed to post notice. Please try again.');
+          console.error('Error posting notice:', err);
+        } finally {
+          localStorage.setItem('formData', JSON.stringify(formData));
+          console.log("Form Submitted:", formData);
+          setIsLoading(false);
+          alert("Data Posted");
+        }      
+    };
+
     useEffect(() => {
-      fetchNotices();
+      fetchData();
     }, []);
 
 
-  const handleNext = () => {
-    setStep(prevStep => prevStep + 1);
+
+    //For when data fetching isnt working / server is down
+    // sample data
+
+  //   const data = {
+  //     "roomSizes": [
+  //         {
+  //             "id": 1,
+  //             "size": "1RK"
+  //         },
+  //         {
+  //             "id": 2,
+  //             "size": "1BHK"
+  //         },
+  //         {
+  //             "id": 3,
+  //             "size": "2BHK"
+  //         },
+  //         {
+  //             "id": 4,
+  //             "size": "3BHK"
+  //         },
+  //         {
+  //             "id": 5,
+  //             "size": "4BHK"
+  //         },
+  //         {
+  //             "id": 6,
+  //             "size": "5BHK"
+  //         },
+  //         {
+  //             "id": 7,
+  //             "size": "6BHK"
+  //         },
+  //         {
+  //             "id": 8,
+  //             "size": "7BHK"
+  //         }
+  //     ],
+  //     "maintainanceHeads": [
+  //         "Electric Charges",
+  //         "Water Charges",
+  //         "Service & Maintenance Charges",
+  //         "Sinking Fund",
+  //         "Repairing Fund",
+  //         "Non Agriculture Tax",
+  //         "Festival & Welfare Charges",
+  //         "Four Wheelers Parking Charges",
+  //         "Education & Training Fund"
+  //     ]
+  // }
+  // useEffect(() => {
+  //   setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+  //     setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+  // },[]);
+      
+
+
+
+
+    // Callback to update `isFilled` status for WingDetailsForm
+  const handleWingDetailsFilledChange = (isFilled) => {
+    setIsWingDetailsFilled(isFilled);
   };
-  const handlePrevious = () => {
-    setStep(prevStep => prevStep - 1);
-  };
+
+  // const handleNext = () => {
+  // //   console.log("filled,main:", isWingDetailsFilled, step);
+  // //   if (step===1 && !isWingDetailsFilled){
+  // //     alert("Fill all fields");
+    
+  // // }
+  // setStep(prevStep => prevStep + 1);
+  // };
+
+  // const handlePrevious = () => {
+  //   setStep(prevStep => prevStep - 1);
+  // };
+
+  // const handleRegister = () => {
+  //         localStorage.setItem('formData', JSON.stringify(formData));
+  //     alert("Form data saved successfully!");
+  // };
+
   console.log(formData);
   return (
     <div className="signup-container">
@@ -99,17 +267,41 @@ const SignupSociety = () => {
             {label}
           </div>
         ))}
+
+
       </div>
+
+      {
+        isLoading && 
+        <>
+        <div class="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center"
+        style = {{background:"rgba(0, 0, 0, 0.3)"}}
+        >
+  <div class="bg-white border py-2 px-5 rounded-lg flex items-center flex-col">
+    <div class="loader-dots block relative w-20 h-5 mt-2">
+      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+    </div>
+    <div class="text-gray-500 text-xs font-medium mt-2 text-center">
+      Connecting to client...
+    </div>
+  </div>
+  </div>
+
+        </>
+      }
       
 
       <div className="form-page">
-        {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
+        {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} onIsFilledChange={handleWingDetailsFilledChange}/>}
         {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} roomSizes = {roomSizes}/>}
         {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} maintenanceHeads = {maintenanceHeads}/>}
-        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
+        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm}/>}
 
         </div>
-        <div className={`button-row flex ${step === 1 ? 'justify-end' : 'justify-between'}`}>
+        {/* <div className={`button-row flex ${step === 1 ? 'justify-end' : 'justify-between'}`}>
           {
             step === 1 &&
             <>
@@ -128,12 +320,12 @@ const SignupSociety = () => {
             step === 4 &&
             <>
             <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
-            {/* submit button */}
-            <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleNext}>Register</button>
+          
+            <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleRegister}>Register</button>
             </>
           }
           
-        </div>
+        </div> */}
       </div>
       {/* <Form /> */}
     </div>
