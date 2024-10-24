@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
+const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handleSubmitForm }) => {
   const handleInputChange = (wingIndex, head, roomSize, value) => {
     const updatedWings = [...formData.wingInformation];
 
@@ -29,7 +29,7 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
   };
 
   return (
-    <form onSubmit={handleRegister}>
+    <form onSubmit={handleSubmitForm}>
     <div className="space-y-6 my-10">
       {formData.wingInformation.map((wing, wingIndex) => {
         // Get unique room sizes for the current wing

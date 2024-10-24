@@ -6,7 +6,7 @@ import Form_4 from "./Form_4.js";
 // import SignupSociety2 from "./SignupSociet2.js";
 
 const SignupSociety = () => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
@@ -73,39 +73,92 @@ const SignupSociety = () => {
         
       } catch (err) {
         console.error('Error fetching notices:', err);
+
+        //For when data fetching isnt working / server is down
+    // sample data
+
+    const data = {
+      "roomSizes": [
+          {
+              "id": 1,
+              "size": "1RK"
+          },
+          {
+              "id": 2,
+              "size": "1BHK"
+          },
+          {
+              "id": 3,
+              "size": "2BHK"
+          },
+          {
+              "id": 4,
+              "size": "3BHK"
+          },
+          {
+              "id": 5,
+              "size": "4BHK"
+          },
+          {
+              "id": 6,
+              "size": "5BHK"
+          },
+          {
+              "id": 7,
+              "size": "6BHK"
+          },
+          {
+              "id": 8,
+              "size": "7BHK"
+          }
+      ],
+      "maintainanceHeads": [
+          "Electric Charges",
+          "Water Charges",
+          "Service & Maintenance Charges",
+          "Sinking Fund",
+          "Repairing Fund",
+          "Non Agriculture Tax",
+          "Festival & Welfare Charges",
+          "Four Wheelers Parking Charges",
+          "Education & Training Fund"
+      ]
+  }
+
+  setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+
       } finally {
         setIsLoading(false);
       }
     };
 
-    // const handleSubmitForm = async (e) => {
-    //   e.preventDefault();
-    //   if (true) {
-    //     try {
-    //       const response = await fetch(API_URL, {
-    //         method: 'POST',
-    //         headers: {
-    //           // 'Authorization': `Bearer ${token}`, 
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(formData),
-    //       });
+    const handleSubmitForm = async (e) => {
+      e.preventDefault();
+        try {
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              // 'Authorization': `Bearer ${token}`, 
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
   
-    //       if (!response.ok) {
-    //         throw new Error('Failed to post notice');
-    //       }
-    //       // const postedNotice = await response.json();
-    //       // setNotices(prev => [postedNotice, ...prev]);
-    //       // setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
-
+          if (!response.ok) {
+            throw new Error('Failed to post formData');
+          }
   
-    //       window.location.reload();
-    //     } catch (err) {
-    //       // setError('Failed to post notice. Please try again.');
-    //       console.error('Error posting notice:', err);
-    //     }
-    //   }
-    // };
+          window.location.reload();
+        } catch (err) {
+          // setError('Failed to post notice. Please try again.');
+          console.error('Error posting notice:', err);
+        } finally {
+          localStorage.setItem('formData', JSON.stringify(formData));
+          console.log("Form Submitted:", formData);
+          alert("Data Posted");
+        }      
+    };
 
     useEffect(() => {
       fetchData();
@@ -217,7 +270,7 @@ const SignupSociety = () => {
         {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} onIsFilledChange={handleWingDetailsFilledChange}/>}
         {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} roomSizes = {roomSizes}/>}
         {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} maintenanceHeads = {maintenanceHeads}/>}
-        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData}/>}
+        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm}/>}
 
         </div>
         {/* <div className={`button-row flex ${step === 1 ? 'justify-end' : 'justify-between'}`}>
