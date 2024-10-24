@@ -53,7 +53,7 @@ const SignupSociety = () => {
 
     const API_URL = 'http://3.109.108.99:5007/api/register';
 
-    const fetchNotices = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
         const response = await fetch(`${API_URL}`,{
@@ -78,8 +78,37 @@ const SignupSociety = () => {
       }
     };
 
+    // const handleSubmitForm = async (e) => {
+    //   e.preventDefault();
+    //   if (true) {
+    //     try {
+    //       const response = await fetch(API_URL, {
+    //         method: 'POST',
+    //         headers: {
+    //           // 'Authorization': `Bearer ${token}`, 
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(formData),
+    //       });
+  
+    //       if (!response.ok) {
+    //         throw new Error('Failed to post notice');
+    //       }
+    //       // const postedNotice = await response.json();
+    //       // setNotices(prev => [postedNotice, ...prev]);
+    //       // setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
+
+  
+    //       window.location.reload();
+    //     } catch (err) {
+    //       // setError('Failed to post notice. Please try again.');
+    //       console.error('Error posting notice:', err);
+    //     }
+    //   }
+    // };
+
     useEffect(() => {
-      fetchNotices();
+      fetchData();
     }, []);
 
 
