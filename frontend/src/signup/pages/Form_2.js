@@ -177,7 +177,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
         <option value="">Select Size</option>
           {roomSizes && roomSizes.length > 0 ? (
             roomSizes.map((room) => (
-              <option key={room.id} value={room.size}>
+              <option key={room.id} value={room.id}>
                 {room.size}
               </option>
             ))

@@ -70,6 +70,7 @@ const SignupSociety = () => {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
+        console.log(data);
         
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
         setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
@@ -252,6 +253,7 @@ const SignupSociety = () => {
   //         localStorage.setItem('formData', JSON.stringify(formData));
   //     alert("Form data saved successfully!");
   // };
+
 
   console.log(formData);
   return (
