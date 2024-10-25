@@ -108,19 +108,22 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           required
         />
       </div>
-      
+
       <div className="flex-1">
-        <label htmlFor="dateOfEstablishment" className="block mb-1 text-customGray">Date of Establishment</label>
+        <label htmlFor="societyName" className="block mb-1 text-customGray">Phone Number</label>
         <input
-          type="date"
-          id="dateOfEstablishment"
-          name="dateOfEstablishment"
-          value={formData.societyDetails.dateOfEstablishment}
-          onChange={handleChange('societyDetails.dateOfEstablishment')}
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          value={formData.societyDetails.phoneNumber}
+          onChange={handleChange('societyDetails.phoneNumber')}
           className="w-full p-2 border rounded"
+          pattern="[0-9]{10}"
           required
         />
       </div>
+      
+      
       </div>
       
       <div>
@@ -202,6 +205,19 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           className="w-full p-2 border rounded"
           required
         /> 
+      </div>
+
+      <div className="flex-1">
+        <label htmlFor="dateOfEstablishment" className="block mb-1 text-customGray">Date of Establishment</label>
+        <input
+          type="date"
+          id="dateOfEstablishment"
+          name="dateOfEstablishment"
+          value={formData.societyDetails.dateOfEstablishment}
+          onChange={handleChange('societyDetails.dateOfEstablishment')}
+          className="w-full p-2 border rounded"
+          required
+        />
       </div>
 
       </div>

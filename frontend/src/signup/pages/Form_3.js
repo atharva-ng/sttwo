@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown } from 'lucide-react';
 
 const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [noHead, setNoHead] = useState(false);
+  const dropdownRef = useRef(null); // Reference for the dropdown
 
   const handleChange = (path) => (e) => {
     const keys = path.split('.');
@@ -20,13 +22,27 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     setFormData(updatedFormData);
   };
 
-  const handleMaintenanceHeadChange = (selectedHead) => {
-    // If the selected head is not already included, add it to the formData.
-    if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
-      const updatedFormData = { ...formData };
+  // Logic to remove a maintenance head
+  const handleRemoveHead = (headToRemove) => {
+    const updatedFormData = { ...formData };
 
-      // Add the selected head to the maintenanceHeads array.
-      updatedFormData.maintenanceHeads.push(selectedHead);
+    // Remove the head from the formData's maintenanceHeads array
+    updatedFormData.maintenanceHeads = updatedFormData.maintenanceHeads.filter(
+      (head) => head !== headToRemove
+    );
+
+    setFormData(updatedFormData); // Update the form data
+  };
+
+  const handleNext3 = (e) => {
+    e.preventDefault(); // Prevent form submission
+  
+    if (formData.maintenanceHeads.length === 0) {
+      // alert("Please select at least one Maintenance Head before proceeding.");
+      setNoHead(true);
+    } else {
+      setNoHead(false);
+      const updatedFormData = { ...formData };
 
       // Iterate through all wings and rooms to add the new head.
       Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
@@ -34,52 +50,76 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
         Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
           const room = wing.wingRoomDetails[roomKey];
 
-          // If the head is not already in the room's maintenanceHeadAmount, add it.
-          if (!room.maintenanceHeadAmount[selectedHead]) {
-            room.maintenanceHeadAmount[selectedHead] = '';
-          }
+          // Add maintenance heads if not already present
+          formData.maintenanceHeads.forEach((head) => {
+            if (!room.maintenanceHeadAmount[head]) {
+              room.maintenanceHeadAmount[head] = '';
+            }
+          });
         });
       });
 
       // Update the formData with the new structure.
       setFormData(updatedFormData);
+
+      // Proceed to the next step
+      setStep((prevStep) => prevStep + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    setStep((prevStep) => prevStep - 1);
+  };
+
+  const handleMaintenanceHeadChange = (selectedHead) => {
+    setNoHead(false);
+    // If the selected head is not already included, add it to the formData.
+    if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
+      const updatedFormData = { ...formData };
+      updatedFormData.maintenanceHeads.push(selectedHead);
+      setFormData(updatedFormData);
     }
     setIsDropdownOpen(false);
   };
 
-  const handleNext3 = (e) => {
-    e.preventDefault(); // Prevent form submission
-  
-    if (formData.maintenanceHeads.length === 0) {
-      alert("Please select at least one Maintenance Head before proceeding.");
-    } else {
-      setStep((prevStep) => prevStep + 1);
-    }
-  };
-  
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
 
-  const handlePrevious = () => {
-    setStep(prevStep => prevStep - 1);
-  };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   return (
     <form onSubmit={handleNext3}>
       <div className="space-y-4 py-2 my-5 mb-20">
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
           <label htmlFor="maintenanceHead" className="block mb-2 text-sm font-medium text-gray-700">
             Select Maintenance Head
           </label>
           <div
-            className="w-full p-2 border rounded-md bg-white shadow-sm cursor-pointer flex justify-between items-center"
+            className="w-full p-2 border rounded-md hover:border-blue-400 bg-white shadow-sm cursor-pointer flex justify-between items-center"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          > 
+          >
+            
             <span className="text-gray-700">
               {formData.maintenanceHeads && formData.maintenanceHeads.length > 0
                 ? formData.maintenanceHeads[formData.maintenanceHeads.length - 1]
                 : 'Select'}
             </span>
             <ChevronDown className="h-5 w-5 text-gray-400" />
+            
           </div>
+          {noHead && 
+          <span className="text-red-400">
+          Please select a maintenance head
+          </span>}
           {isDropdownOpen && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
               {maintenanceHeads.length === 0 ? (
@@ -98,12 +138,22 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
             </div>
           )}
         </div>
+
         {formData.maintenanceHeads && formData.maintenanceHeads.length > 0 && (
           <div>
             <h3 className="font-semibold mb-2">Selected Maintenance Heads:</h3>
             <ul className="list-disc pl-5">
               {formData.maintenanceHeads.map((head) => (
-                <li key={head}>{head}</li>
+                <li key={head} className="flex justify-between items-center">
+                  <span>{head}</span>
+                  <button
+                    type="button"
+                    className="crossButton px-2 mb-2 ml-2 text-sm text-red-500 hover:text-red-800 p-1 rounded-full border border-red-500 hover:border-red-800"
+                    onClick={() => handleRemoveHead(head)}
+                  >
+                    ✖
+                  </button>
+                </li>
               ))}
             </ul>
           </div>
