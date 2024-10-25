@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+
+import { Check } from 'lucide-react';
+
 import Form_1 from "./Form_1.js";
 import Form_2 from "./Form_2.js";
 import Form_3 from "./Form_3.js";
 import Form_4 from "./Form_4.js";
+
+import SubmittedModal from "./SubmittedModal.js";
 // import SignupSociety2 from "./SignupSociet2.js";
 
 import "./LoadingPopUp.css";
@@ -10,6 +15,8 @@ import "./LoadingPopUp.css";
 const SignupSociety = () => {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
@@ -20,26 +27,60 @@ const SignupSociety = () => {
   const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
 
 
+  // const [formData, setFormData] = useState({
+
+  //   societyDetails: {
+  //     name: '',
+  //     phoneNumber:'',
+  //     dateOfEstablishment: '',
+  //     emailAddress: '',
+  //     password: '',
+  //     address: '',
+  //     city: '',
+  //     state: '',
+  //     pincode: '',
+  //     numberOfWings: '',
+  //     registrationNumber: '',
+  //   },
+  //   wingInformation: {
+  //     wingNumber: {
+  //       wingName: '',
+  //       floors: '',
+  //       roomsPerFloor: '',
+  //       wingRoomDetails: {
+  //         roomIndex: {
+  //           roomNumber: '',
+  //           roomSize: '',
+  //           maintenanceAmount: '',
+  //           maintenanceHeadAmount: {},
+  //         },
+  //       },
+  //     },
+  //   },
+  //   maintenanceHeads: [], // Add this to avoid the 'undefined' error.
+  // });
+
+
   const [formData, setFormData] = useState({
 
     societyDetails: {
-      name: '',
-      phoneNumber:'',
-      dateOfEstablishment: '',
-      emailAddress: '',
-      password: '',
-      address: '',
-      city: '',
-      state: '',
-      pincode: '',
-      numberOfWings: '',
-      registrationNumber: '',
+      name: 'om',
+      phoneNumber:'1234567890',
+      dateOfEstablishment: '2024-10-10',
+      emailAddress: 'test@test.com',
+      password: '123',
+      address: 'abc',
+      city: 'abc',
+      state: 'abc',
+      pincode: '123',
+      numberOfWings: '1',
+      registrationNumber: '123',
     },
     wingInformation: {
       wingNumber: {
-        wingName: '',
-        wingFloors: '',
-        wingRoomsPerFloor: '',
+        name: '',
+        floors: '',
+        roomsPerFloor: '',
         wingRoomDetails: {
           roomIndex: {
             roomNumber: '',
@@ -71,9 +112,65 @@ const SignupSociety = () => {
         
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
         setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+
         
       } catch (err) {
         console.error('Error fetching notices:', err);
+
+        // sample data
+    const data = {
+      "roomSizes": [
+          {
+              "id": 1,
+              "size": "1RK"
+          },
+          {
+              "id": 2,
+              "size": "1BHK"
+          },
+          {
+              "id": 3,
+              "size": "2BHK"
+          },
+          {
+              "id": 4,
+              "size": "3BHK"
+          },
+          {
+              "id": 5,
+              "size": "4BHK"
+          },
+          {
+              "id": 6,
+              "size": "5BHK"
+          },
+          {
+              "id": 7,
+              "size": "6BHK"
+          },
+          {
+              "id": 8,
+              "size": "7BHK"
+          }
+      ],
+      "maintainanceHeads": [
+          "Electric Charges",
+          "Water Charges",
+          "Service & Maintenance Charges",
+          "Sinking Fund",
+          "Repairing Fund",
+          "Non Agriculture Tax",
+          "Festival & Welfare Charges",
+          "Four Wheelers Parking Charges",
+          "Education & Training Fund"
+      ]
+
+      
+  }
+
+  setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+
       } finally {
         setIsLoading(false);
       }
@@ -81,6 +178,7 @@ const SignupSociety = () => {
 
     const handleSubmitForm = async (e) => {
       e.preventDefault();
+      console.log(formData.wingInformation[0].wingName,formData.wingInformation[0].name);
       setIsLoading(true);
         try {
           const response = await fetch(API_URL, {
@@ -106,7 +204,10 @@ const SignupSociety = () => {
           localStorage.setItem('formData', JSON.stringify(formData));
           console.log("Form Submitted:", JSON.stringify(formData));
           setIsLoading(false);
-          alert("Data Posted");
+          setIsSubmitted(true);
+          // alert("Data Posted");
+
+
         }      
     };
 
@@ -119,23 +220,23 @@ const SignupSociety = () => {
     setIsWingDetailsFilled(isFilled);
   };
 
+  console.log(formData);
+
   return (
     <div className="signup-container">
           <div className="max-w-4xl mx-auto p-4">
       <h1 className="text-2xl font-bold text-center mb-6">Society Registration Form</h1>
       
       <div className="flex justify-between mb-6">
-        {['Basic Information', 'Wing Information', 'Maintenance Heads', 'Maintenance amount'].map((label, index) => (
-          <div key={index} className={`flex items-center ${index + 1 === step ? 'text-blue-600 font-bold' : 'text-gray-400'}`}>
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${index + 1 === step ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
-              {index + 1}
-            </div>
-            {label}
-          </div>
-        ))}
-
-
+  {['Basic Information', 'Wing Information', 'Maintenance Heads', 'Maintenance amount'].map((label, index) => (
+    <div key={index} className={`flex items-center ${index + 1 === step ? 'text-blue-600 font-bold' : 'text-gray-400'}`}>
+      <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${index + 1 === step ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
+        {index + 1 < step ? <Check className="text-gray-600 size-4" /> : index + 1}
       </div>
+      {label}
+    </div>
+  ))}
+</div>
 
       {
         isLoading && 
@@ -158,6 +259,8 @@ const SignupSociety = () => {
 
         </>
       }
+
+      { isSubmitted && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted}/>}
       
 
       <div className="form-page">

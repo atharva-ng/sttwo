@@ -18,7 +18,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
 
         return {
           ...wing,
-          wingRoomsPerFloor: roomsPerFloor,
+          roomsPerFloor: roomsPerFloor,
           wingRoomDetails: roomDetails
         };
       }
@@ -96,28 +96,28 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
             <h3 className="text-lg font-semibold mb-2 text-customBlue">Details for Wing {wingIndex + 1}:</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4  ">
               <div>
-                <label className="block  text-sm font-bold mb-2 text-customGray " htmlFor={`wingName${wingIndex}`}>
+                <label className="block  text-sm font-bold mb-2 text-customGray " htmlFor={`name${wingIndex}`}>
                   Name
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id={`wingName${wingIndex}`}
+                  id={`name${wingIndex}`}
                   type="text"
                   placeholder="Name"
-                  value={formData.wingInformation[wingIndex]?.wingName || ''}
-                  onChange={(e) => handleWingInputChange(wingIndex, 'wingName', e.target.value)}
+                  value={formData.wingInformation[wingIndex]?.name || ''}
+                  onChange={(e) => handleWingInputChange(wingIndex, 'name', e.target.value)}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold mb-2  text-customGray" htmlFor={`wingFloors${wingIndex}`}>
+                <label className="block text-sm font-bold mb-2  text-customGray" htmlFor={`floors${wingIndex}`}>
                   Floors
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id={`wingFloors${wingIndex}`}
-                  value={formData.wingInformation[wingIndex]?.wingFloors || ''}
-                  onChange={(e) => handleWingInputChange(wingIndex, 'wingFloors', e.target.value)}
+                  id={`floors${wingIndex}`}
+                  value={formData.wingInformation[wingIndex]?.floors || ''}
+                  onChange={(e) => handleWingInputChange(wingIndex, 'floors', e.target.value)}
                   type="number"
                   placeholder="Floors"
                   required
@@ -132,7 +132,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                   id="roomsPerFloor"
                   type="number"
                   onChange={(e) => handleRoomsChange(wingIndex, parseInt(e.target.value))}
-                  value={formData.wingInformation[wingIndex]?.wingRoomsPerFloor || ''}
+                  value={formData.wingInformation[wingIndex]?.roomsPerFloor || ''}
                   placeholder="Enter rooms per floor"
                   min="1"
                   required
