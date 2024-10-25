@@ -2,33 +2,54 @@ const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
 
-const { createNoticeQuery, getNoticesQuery, updateNoticeQuery, deleteNoticeQuery } = require("../dbUtils/communityCommunicationQuery");
+const { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery } = require("../dbUtils/communityCommunicationQuery");
 
 const getNotices= async (req, res, next) => {
   const userId=req.userData.userId;
-  var active=req.params.active;
+  // var active=req.params.active;
+
+  const { id, active, start_date, end_date, categoryId } = req.query;
+
+  if(active !== undefined &&(!(active === "true" || active === "false" ))) {
+    return next(new HttpError("Invalid Input for active parameter", 400));
+  }
+
+  var categoryData;
+  try{
+    categoryData= await getNoticeCategoriesQuery();
+  }catch(error){
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
   
   try {
-    var noticeData;
-    if(!isNaN(active) && isFinite(active)){
-      if (active>2147483647) {
-        return next(new HttpError("Invalid Input", 400));
-      }
+    
+    const queryParams = {
+      socid: userId,
+      id: id !== undefined ? Number(id) : null,
+      active: active !== undefined ? JSON.parse(active) : null,
+      start_date: start_date ? new Date(start_date) : null,
+      end_date: end_date ? new Date(end_date) : null,
+      categoryId: categoryId !== undefined ? Number(categoryId) : null
+    };
 
-      noticeData = await getNoticesQuery(userId, null, active);
-    }else if (typeof active === "string" || isNaN(active)){
-      noticeData = await getNoticesQuery(userId, active, null);
-    }else{
-      return next(new HttpError("Invalid Input", 400));
-    }
+    const noticeData= await getNoticesQuery(queryParams);
 
     if(noticeData.length===0){
       return res.status(404).json({
-        "message": "No Notices Found"
+        "categories":categoryData,
+        "notices": "No Notices Found for the given filters"
       });
     }
 
-    return res.status(200).json(noticeData);
+    return res.status(200).json({
+      "categories":categoryData,
+      "notices":noticeData
+    });
 
   } catch (error) {
     if (error instanceof HttpError) {
@@ -38,7 +59,7 @@ const getNotices= async (req, res, next) => {
       return next(new HttpError("Something went wrong", 500));
     }
   }
-}
+};
 
 const createNotice= async (req, res, next) => {
   const userId=req.userData.userId;
@@ -51,15 +72,16 @@ const createNotice= async (req, res, next) => {
     return next(error);
   }
 
-  const {title, content, start_date, end_date } = req.body;
-
+  const {title, content, start_date, end_date, categoryId } = req.body;
   try {
-    const noticeData = await createNoticeQuery(title, content, start_date, end_date, userId);
+    const noticeData = await createNoticeQuery(title, content, start_date, end_date, userId, categoryId);
+    console.log(noticeData);
     return res.status(201).json({
         "title":title, 
     "content": content, 
     "start_date":start_date,
-    "end_date":end_date
+    "end_date":end_date,
+    "category":categoryId
     });
   } catch (error) {
     if (error instanceof HttpError) {
@@ -78,10 +100,16 @@ const updateNotice=async (req, res, next)=>{
     return next(new HttpError("Id of the notice is invalid", 400));
   }
 
-  const {title, content, start_date, end_date } = req.body;
-
   try{
-    const noticeGetData = await getNoticesQuery(userId, null, id);
+    const queryParams = {
+      socid: userId,
+      id: id !== undefined ? Number(id) : null,
+      active: null,
+      start_date: null,
+      end_date: null,
+      categoryId: null
+    };
+    const noticeGetData = await getNoticesQuery(queryParams);
     if(noticeGetData.length===0){
       return next(new HttpError("Id of the notice is invalid", 404));
     }
@@ -94,13 +122,17 @@ const updateNotice=async (req, res, next)=>{
     }
   }
 
+  const {title, content, start_date, end_date, categoryId } = req.body;
+  
   try{
-    const noticeData = await updateNoticeQuery(title, content, start_date, end_date, userId, id);
+    const noticeData = await updateNoticeQuery(title, content, start_date, end_date, userId, id, categoryId);
+
     return res.status(200).json({
       "title":noticeData[0].o_title, 
       "content": noticeData[0].o_content, 
       "start_date":noticeData[0].o_start_date,
-      "end_date":noticeData[0].o_end_date
+      "end_date":noticeData[0].o_end_date,
+      "category":noticeData[0].o_category
     });
   }catch (error) {
     if (error instanceof HttpError) {

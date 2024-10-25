@@ -4,6 +4,7 @@ CREATE OR REPLACE PROCEDURE createNotice(
     _start_date TIMESTAMP,
     _end_date TIMESTAMP, 
     _userId INT,
+    _category INT,
     OUT idOut INT
 )
 LANGUAGE plpgsql
@@ -18,17 +19,17 @@ BEGIN
         flag := FALSE; 
     END IF;
     
-    INSERT INTO notices(title, content, start_date, end_date, isactive, society_id)
-    VALUES (_title, _content, _start_date, _end_date, flag, _userId)
+    INSERT INTO notices(title, content, start_date, end_date, isactive, society_id, category)
+    VALUES (_title, _content, _start_date, _end_date, flag, _userId, _category)
     RETURNING id INTO idOut;
 
 EXCEPTION
     WHEN unique_violation THEN
-        RAISE NOTICE 'A notice with the same title already exists.';
+        RAISE EXCEPTION 'A notice with the same title already exists.';
         idOut := NULL;
         
     WHEN OTHERS THEN
-        RAISE NOTICE 'An error occurred: %', SQLERRM;
+        RAISE EXCEPTION 'An error occurred: %', SQLERRM;
         idOut := NULL;
 END;
 $$;

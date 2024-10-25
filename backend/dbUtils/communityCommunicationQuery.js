@@ -2,10 +2,10 @@ const pool = require('./db');
 const HttpError = require("../models/http-error");
 
 //Notices Start================================================================================================
-const createNoticeQuery = async (title, content, start_date, end_date, userId) => {
+const createNoticeQuery = async (title, content, start_date, end_date, userId, categoryId) => {
   try {
-    const result = await pool.query('CALL createNotice($1,$2,$3,$4,$5,$6);', [
-      title, content, start_date, end_date, userId, null
+    const result = await pool.query('CALL createNotice($1,$2,$3,$4,$5,$6, $7);', [
+      title, content, start_date, end_date, userId, categoryId, null
     ]);
     
     return result.rows;
@@ -19,12 +19,15 @@ const createNoticeQuery = async (title, content, start_date, end_date, userId) =
   }
 };
 
-const getNoticesQuery = async (userId, active, id) => {
+const getNoticesQuery = async (queryParams) => {
   try {
-    const result = await pool.query('SELECT * FROM getnotices($1, $2, $3);', [
-      userId,
-      active,
-      id
+    const result = await pool.query('SELECT * FROM getnotices($1, $2, $3, $4, $5, $6);', [
+      queryParams.socid,
+      queryParams.id,
+      queryParams.active,
+      queryParams.start_date,
+      queryParams.end_date,
+      queryParams.categoryId
     ]);
     
     return result.rows;
@@ -38,17 +41,32 @@ const getNoticesQuery = async (userId, active, id) => {
   }
 };
 
-const updateNoticeQuery = async (title, content, start_date, end_date, userId, id) => {
+const getNoticeCategoriesQuery = async () => {
   try {
-    const result = await pool.query('SELECT * FROM updatenotice($1, $2, $3, $4, $5, $6);', [
+    const result = await pool.query('select * from get_notice_categories();');
+    
+    return result.rows;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-getNoticeCategoriesQuery", 500);
+    }
+  }
+};
+
+const updateNoticeQuery = async (title, content, start_date, end_date, userId, id, categoryId) => {
+  try {
+    const result = await pool.query('SELECT * FROM updatenotice($1, $2, $3, $4, $5, $6, $7);', [
       id,
       userId,
-      title, 
-      content, 
-      start_date, 
-      end_date
+      title,
+      content,
+      start_date,
+      end_date,
+      categoryId
     ]);
-    
     return result.rows;
   } catch (error) {
     if (error instanceof HttpError) {
@@ -79,9 +97,10 @@ const deleteNoticeQuery=async (id, userId)=>{
     }
   }
 }
+
 //Notices End================================================================================================
 
-//Complaints Start================================================================================================
+//Complaints Start===========================================================================================
 const getComplaintsQuery = async (queryParams) => {
   try {
     const result = await pool.query('SELECT * FROM getcomplaints($1, $2, $3, $4);', [
@@ -138,6 +157,6 @@ const deleteComplaintQuery = async (soc_id, comp_id)=>{
 
 //Complaints End================================================================================================
 
-module.exports = { createNoticeQuery,getNoticesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery};
+module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery};
 
 

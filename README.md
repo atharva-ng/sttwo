@@ -223,77 +223,117 @@ Upload an Excel file with basic wing and room details.
 
 ---
 
-## Community Communications API
+# Community Communications API
 
-#Notices
-
-### POST `/api/community-communications/notices`
-Create a new notice for a particular society.
-
-#### Request Body:
-- `title` (string, max 255 characters): Title of the notice.
-- `content` (string): Content of the notice.
-- `start_date` (string, format: YYYY-MM-DD): Start date of the notice.
-- `end_date` (string, format: YYYY-MM-DD): End date of the notice.
-
-#### Response:
-- `201 Created`: Notice created successfully.
-- `400 Bad Request`: Missing or invalid required fields.
-- `422 Incorrect Format` : Invalid format of the submitted fields.
-- `500 Internal Server Error`: Something went wrong while creating the notice.
+## Notices
 
 ### GET `/api/community-communications/notices`
-Retrieve a list of all the notices made by the society.
+Retrieve notices for a society with optional filtering parameters.
 
-#### Routes:
-- `/notices/true`: Retrieve all active notices.
-- `/notices/false`: Retrieve all inactive notices.
-- `/notices/{id}`: Retrieve a specific notice by its ID.
+#### Query Parameters
+- `id` (number, optional): Filter by specific notice ID
+- `active` (boolean, optional): Filter by notice status
+  - `true`: Get active notices
+  - `false`: Get inactive notices
+- `start_date` (string, optional): Filter by start date (format: YYYY-MM-DD)
+- `end_date` (string, optional): Filter by end date (format: YYYY-MM-DD)
+- `categoryId` (number, optional): Filter by category ID
 
-#### Response:
-- `200 OK`: Successfully retrieved the notices.
-- `400 Bad Request`: Invalid ID.
-- `500 Internal Server Error`: Something went wrong while fetching the notices.
+#### Response
+##### Success Response (200 OK)
+```json
+{
+  "categories": [...],  // List of available notice categories
+  "notices": [...]      // List of notices matching the filter criteria
+}
+```
 
----
+##### Not Found Response (404)
+```json
+{
+  "categories": [...],  // List of available notice categories
+  "notices": "No Notices Found for the given filters"
+}
+```
 
-### PATCH `/api/community-communications/notices/{id}`
-Update a notice by its ID.
+##### Error Responses
+- `400 Bad Request`: Invalid input for active parameter
+- `500 Internal Server Error`: Server-side error occurred
 
-#### Path Parameters:
-- `id` (number): The ID of the notice to update.
+### POST `/api/community-communications/notices`
+Create a new notice for a society.
 
-#### Request Body:
-- `title` (string, max 255 characters): Updated title of the notice.
-- `content` (string): Updated content of the notice.
-- `start_date` (string, format: YYYY-MM-DD): Updated start date of the notice.
-- `end_date` (string, format: YYYY-MM-DD): Updated end date of the notice.
+#### Request Body
+- `title` (string, required): Title of the notice
+- `content` (string, required): Content of the notice
+- `start_date` (string, required): Start date of the notice (format: YYYY-MM-DD)
+- `end_date` (string, required): End date of the notice (format: YYYY-MM-DD)
+- `categoryId` (number, required): Category ID for the notice
 
-#### Response:
-- `200 OK`: Successfully updated the notice.
-  - `title`: Updated title of the notice.
-  - `content`: Updated content of the notice.
-  - `start_date`: Updated start date of the notice.
-  - `end_date`: Updated end date of the notice.
-  
-#### Error Responses:
-- `404 Bad Request`: Invalid notice ID or missing required fields.
-- `500 Internal Server Error`: Something went wrong while updating the notice.
+#### Response
+##### Success Response (201 Created)
+```json
+{
+  "title": "string",
+  "content": "string",
+  "start_date": "YYYY-MM-DD",
+  "end_date": "YYYY-MM-DD",
+  "category": "number"
+}
+```
 
-### DELETE `/api/community-communications/notices/{id}`
-Delete a notice by its ID.
+##### Error Responses
+- `422 Unprocessable Entity`: Invalid inputs with validation errors
+- `500 Internal Server Error`: Server-side error occurred
 
-#### Path Parameters:
-- `id` (number): The ID of the notice to delete.
+### PATCH `/api/community-communications/notices/:id`
+Update an existing notice.
 
-#### Response:
-- `200 OK`: Successfully deleted the notice.
-  - `message`: "Successfully Deleted".
+#### Path Parameters
+- `id` (number, required): ID of the notice to update
 
-#### Error Responses:
-- `400 Bad Request`: Invalid notice ID.
-- `403 Forbidden`: User does not have permission to delete this notice.
-- `500 Internal Server Error`: Something went wrong while deleting the notice.
+#### Request Body
+- `title` (string, optional): Updated title
+- `content` (string, optional): Updated content
+- `start_date` (string, optional): Updated start date (format: YYYY-MM-DD)
+- `end_date` (string, optional): Updated end date (format: YYYY-MM-DD)
+- `categoryId` (number, optional): Updated category ID
+
+#### Response
+##### Success Response (200 OK)
+```json
+{
+  "title": "string",
+  "content": "string",
+  "start_date": "YYYY-MM-DD",
+  "end_date": "YYYY-MM-DD",
+  "category": "number"
+}
+```
+
+##### Error Responses
+- `400 Bad Request`: Invalid notice ID
+- `404 Not Found`: Notice not found
+- `500 Internal Server Error`: Server-side error occurred
+
+### DELETE `/api/community-communications/notices/:id`
+Delete a notice.
+
+#### Path Parameters
+- `id` (number, required): ID of the notice to delete
+
+#### Response
+##### Success Response (200 OK)
+```json
+{
+  "message": "Successfully Deleted"
+}
+```
+
+##### Error Responses
+- `400 Bad Request`: Invalid notice ID
+- `403 Forbidden`: User doesn't have permission to delete the notice
+- `500 Internal Server Error`: Server-side error occurred
 
 
 #Complaints

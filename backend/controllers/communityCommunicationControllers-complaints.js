@@ -5,15 +5,15 @@ const HttpError = require("../models/http-error");
 const {createComplaintQuery, getComplaintsQuery, deleteComplaintQuery } = require("../dbUtils/communityCommunicationQuery");
 
 const getComplaints= async(req, res, next) => {
-  // const userId=req.userData.userId;
+  const userId=req.userData.userId;
 
   try{
-    const { socid, active, start_date, end_date } = req.query;
+    const { active, start_date, end_date } = req.query;
     if(active !== undefined &&(!(active === "true" || active === "false" ))) {
       return next(new HttpError("Invalid Input for active parameter", 400));
     }
     const queryParams = {
-      socid: socid,
+      socid: userId,
       active: active !== undefined ? JSON.parse(active) : null,
       start_date: start_date ? new Date(start_date) : null,
       end_date: end_date ? new Date(end_date) : null
