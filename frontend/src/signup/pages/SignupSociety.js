@@ -17,6 +17,7 @@ const SignupSociety = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isError, setIsError] = useState(true);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
@@ -77,13 +78,16 @@ const SignupSociety = () => {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
-        
+        console.log("Data Fetched");
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
         setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+        setIsError(false);
 
         
       } catch (err) {
         console.error('Error fetching notices:', err);
+        setIsError(true);
+        
 
         // sample data
     const data = {
@@ -159,17 +163,18 @@ const SignupSociety = () => {
           if (!response.ok) {
             const data = await response.json();
             console.log(data);
-            throw new Error('Failed to post formData');
+            throw new Error('Failed to post formData') ;
           }
   
           window.location.reload();
         } catch (err) {
           console.log('Error posting notice:', err);
+          setIsError(true);
         } finally {
           localStorage.setItem('formData', JSON.stringify(formData));
           console.log("Form Submitted:", JSON.stringify(formData));
           setIsLoading(false);
-          setIsSubmitted(true);
+          {!isError && setIsSubmitted(true);}
           // alert("Data Posted");
 
 
@@ -225,7 +230,7 @@ const SignupSociety = () => {
         </>
       }
 
-      { isSubmitted && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted}/>}
+      { (isSubmitted || isError) && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted} isError = {isError} setIsError={setIsError}/>}
       
 
       <div className="form-page">
