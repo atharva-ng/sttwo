@@ -8,7 +8,7 @@ import Form_4 from "./Form_4.js";
 import "./LoadingPopUp.css";
 
 const SignupSociety = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
   const [isLoading, setIsLoading] = useState(true);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
