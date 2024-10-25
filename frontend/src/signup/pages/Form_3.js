@@ -20,31 +20,25 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     setFormData(updatedFormData);
   };
 
-  const handleMaintenanceHeadChange = (selectedHead) => {
-    // If the selected head is not already included, add it to the formData.
-    if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
-      const updatedFormData = { ...formData };
+  // Logic to remove a maintenance head
+  const handleRemoveHead = (headToRemove) => {
+    const updatedFormData = { ...formData };
 
-      // Add the selected head to the maintenanceHeads array.
-      updatedFormData.maintenanceHeads.push(selectedHead);
+    // Remove the head from the formData's maintenanceHeads array
+    updatedFormData.maintenanceHeads = updatedFormData.maintenanceHeads.filter(
+      (head) => head !== headToRemove
+    );
 
-      // Iterate through all wings and rooms to add the new head.
-      Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
-        const wing = updatedFormData.wingInformation[wingKey];
-        Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
-          const room = wing.wingRoomDetails[roomKey];
+    // // Remove the head from each room's maintenanceHeadAmount
+    // Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
+    //   const wing = updatedFormData.wingInformation[wingKey];
+    //   Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
+    //     const room = wing.wingRoomDetails[roomKey];
+    //     delete room.maintenanceHeadAmount[headToRemove]; // Remove the head from the room
+    //   });
+    // });
 
-          // If the head is not already in the room's maintenanceHeadAmount, add it.
-          if (!room.maintenanceHeadAmount[selectedHead]) {
-            room.maintenanceHeadAmount[selectedHead] = '';
-          }
-        });
-      });
-
-      // Update the formData with the new structure.
-      setFormData(updatedFormData);
-    }
-    setIsDropdownOpen(false);
+    setFormData(updatedFormData); // Update the form data
   };
 
   const handleNext3 = (e) => {
@@ -53,13 +47,43 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     if (formData.maintenanceHeads.length === 0) {
       alert("Please select at least one Maintenance Head before proceeding.");
     } else {
+      const updatedFormData = { ...formData };
+
+      // Iterate through all wings and rooms to add the new head.
+      Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
+        const wing = updatedFormData.wingInformation[wingKey];
+        Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
+          const room = wing.wingRoomDetails[roomKey];
+
+          // Add maintenance heads if not already present
+          formData.maintenanceHeads.forEach((head) => {
+            if (!room.maintenanceHeadAmount[head]) {
+              room.maintenanceHeadAmount[head] = '';
+            }
+          });
+        });
+      });
+
+      // Update the formData with the new structure.
+      setFormData(updatedFormData);
+
+      // Proceed to the next step
       setStep((prevStep) => prevStep + 1);
     }
   };
-  
 
   const handlePrevious = () => {
-    setStep(prevStep => prevStep - 1);
+    setStep((prevStep) => prevStep - 1);
+  };
+
+  const handleMaintenanceHeadChange = (selectedHead) => {
+    // If the selected head is not already included, add it to the formData.
+    if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
+      const updatedFormData = { ...formData };
+      updatedFormData.maintenanceHeads.push(selectedHead);
+      setFormData(updatedFormData);
+    }
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -72,7 +96,7 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
           <div
             className="w-full p-2 border rounded-md bg-white shadow-sm cursor-pointer flex justify-between items-center"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          > 
+          >
             <span className="text-gray-700">
               {formData.maintenanceHeads && formData.maintenanceHeads.length > 0
                 ? formData.maintenanceHeads[formData.maintenanceHeads.length - 1]
@@ -98,12 +122,22 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
             </div>
           )}
         </div>
+
         {formData.maintenanceHeads && formData.maintenanceHeads.length > 0 && (
           <div>
             <h3 className="font-semibold mb-2">Selected Maintenance Heads:</h3>
             <ul className="list-disc pl-5">
               {formData.maintenanceHeads.map((head) => (
-                <li key={head}>{head}</li>
+                <li key={head} className="flex justify-between items-center">
+                  <span>{head}</span>
+                  <button
+                    type="button"
+                    className="crossButton ml-2 text-red-500 hover:text-red-700 p-1 rounded-full border border-red-500 hover:border-red-700"
+                    onClick={() => handleRemoveHead(head)}
+                  >
+                    ✖
+                  </button>
+                </li>
               ))}
             </ul>
           </div>
