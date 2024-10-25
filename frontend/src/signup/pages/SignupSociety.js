@@ -8,7 +8,7 @@ import Form_3 from "./Form_3.js";
 import Form_4 from "./Form_4.js";
 
 import SubmittedModal from "./SubmittedModal.js";
-// import SignupSociety2 from "./SignupSociet2.js";
+
 
 import "./LoadingPopUp.css";
 
@@ -16,7 +16,7 @@ const SignupSociety = () => {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
@@ -27,58 +27,24 @@ const SignupSociety = () => {
   const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
 
 
-  // const [formData, setFormData] = useState({
-
-  //   societyDetails: {
-  //     name: '',
-  //     phoneNumber:'',
-  //     dateOfEstablishment: '',
-  //     emailAddress: '',
-  //     password: '',
-  //     address: '',
-  //     city: '',
-  //     state: '',
-  //     pincode: '',
-  //     numberOfWings: '',
-  //     registrationNumber: '',
-  //   },
-  //   wingInformation: {
-  //     wingNumber: {
-  //       wingName: '',
-  //       floors: '',
-  //       roomsPerFloor: '',
-  //       wingRoomDetails: {
-  //         roomIndex: {
-  //           roomNumber: '',
-  //           roomSize: '',
-  //           maintenanceAmount: '',
-  //           maintenanceHeadAmount: {},
-  //         },
-  //       },
-  //     },
-  //   },
-  //   maintenanceHeads: [], // Add this to avoid the 'undefined' error.
-  // });
-
-
   const [formData, setFormData] = useState({
 
     societyDetails: {
-      name: 'om',
-      phoneNumber:'1234567890',
-      dateOfEstablishment: '2024-10-10',
-      emailAddress: 'test@test.com',
-      password: '123',
-      address: 'abc',
-      city: 'abc',
-      state: 'abc',
-      pincode: '123',
-      numberOfWings: '1',
-      registrationNumber: '123',
+      name: '',
+      phoneNumber:'',
+      dateOfEstablishment: '',
+      emailAddress: '',
+      password: '',
+      address: '',
+      city: '',
+      state: '',
+      pincode: '',
+      numberOfWings: '',
+      registrationNumber: '',
     },
     wingInformation: {
       wingNumber: {
-        name: '',
+        wingName: '',
         floors: '',
         roomsPerFloor: '',
         wingRoomDetails: {
@@ -93,6 +59,8 @@ const SignupSociety = () => {
     },
     maintenanceHeads: [], // Add this to avoid the 'undefined' error.
   });
+
+
 
     const API_URL = 'http://3.109.108.99:5007/api/register';
 
@@ -178,7 +146,6 @@ const SignupSociety = () => {
 
     const handleSubmitForm = async (e) => {
       e.preventDefault();
-      console.log(formData.wingInformation[0].wingName,formData.wingInformation[0].name);
       setIsLoading(true);
         try {
           const response = await fetch(API_URL, {
@@ -197,8 +164,6 @@ const SignupSociety = () => {
   
           window.location.reload();
         } catch (err) {
-          // setError('Failed to post notice. Please try again.');
-
           console.log('Error posting notice:', err);
         } finally {
           localStorage.setItem('formData', JSON.stringify(formData));
@@ -270,31 +235,6 @@ const SignupSociety = () => {
         {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm}/>}
 
         </div>
-        {/* <div className={`button-row flex ${step === 1 ? 'justify-end' : 'justify-between'}`}>
-          {
-            step === 1 &&
-            <>
-            <button className="next-button px-12 py-2 my-4  bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleNext}>Next</button>
-            
-            </>
-          }
-          {step > 1 && step < 4 &&
-          <>
-          <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
-          <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleNext}>Next</button>
-          
-          </>
-          }
-          {
-            step === 4 &&
-            <>
-            <button className="previous-button px-12 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" onClick={handlePrevious}>Previous</button>
-          
-            <button className="next-button px-12 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleRegister}>Register</button>
-            </>
-          }
-          
-        </div> */}
       </div>
 
     </div>
