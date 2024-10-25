@@ -17,7 +17,7 @@ const SignupSociety = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
