@@ -84,8 +84,6 @@ const createComment=async (req, res, next) => {
       return next(new HttpError("Something went wrong", 500));
     }
   }
-
-
 } 
 
 exports.createComplaint = createComplaint;

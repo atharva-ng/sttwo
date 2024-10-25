@@ -14,7 +14,7 @@ const SignupSociety = () => {
   const [roomSizes, setRoomSizes] = useState([]); // Initialize as an empty array
   const [maintenanceHeads, setMaintenanceHeads] = useState([]); // Initialize as an empty array
 
-  //minor changesssss
+  //minor changes
 
   const [isWingDetailsFilled, setIsWingDetailsFilled] = useState(false);  // Track if WingDetailsForm is filled
   const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
@@ -28,7 +28,6 @@ const SignupSociety = () => {
       dateOfEstablishment: '',
       emailAddress: '',
       password: '',
-      phoneNumber: '',
       address: '',
       city: '',
       state: '',
@@ -61,77 +60,20 @@ const SignupSociety = () => {
       try {
         const response = await fetch(`${API_URL}`,{
           method: 'GET', 
-          // headers: {
-          //     'Authorization': `Bearer ${token}`, 
-          //     'Content-Type': 'application/json',  
-          // },
+          headers: {
+              'Content-Type': 'application/json',  
+          },
       });
         if (!response.ok) {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
-        console.log(data);
         
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
         setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
         
       } catch (err) {
         console.error('Error fetching notices:', err);
-
-        //For when data fetching isnt working / server is down
-    // sample data
-
-    const data = {
-      "roomSizes": [
-          {
-              "id": 1,
-              "size": "1RK"
-          },
-          {
-              "id": 2,
-              "size": "1BHK"
-          },
-          {
-              "id": 3,
-              "size": "2BHK"
-          },
-          {
-              "id": 4,
-              "size": "3BHK"
-          },
-          {
-              "id": 5,
-              "size": "4BHK"
-          },
-          {
-              "id": 6,
-              "size": "5BHK"
-          },
-          {
-              "id": 7,
-              "size": "6BHK"
-          },
-          {
-              "id": 8,
-              "size": "7BHK"
-          }
-      ],
-      "maintainanceHeads": [
-          "Electric Charges",
-          "Water Charges",
-          "Service & Maintenance Charges",
-          "Sinking Fund",
-          "Repairing Fund",
-          "Non Agriculture Tax",
-          "Festival & Welfare Charges",
-          "Four Wheelers Parking Charges",
-          "Education & Training Fund"
-      ]
-  }
-
-  setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
-        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
-
       } finally {
         setIsLoading(false);
       }
@@ -143,24 +85,26 @@ const SignupSociety = () => {
         try {
           const response = await fetch(API_URL, {
             method: 'POST',
-            headers: {
-              // 'Authorization': `Bearer ${token}`, 
+            headers: { 
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData),
           });
   
           if (!response.ok) {
+            const data = await response.json();
+            console.log(data);
             throw new Error('Failed to post formData');
           }
   
           window.location.reload();
         } catch (err) {
           // setError('Failed to post notice. Please try again.');
-          console.error('Error posting notice:', err);
+
+          console.log('Error posting notice:', err);
         } finally {
           localStorage.setItem('formData', JSON.stringify(formData));
-          console.log("Form Submitted:", formData);
+          console.log("Form Submitted:", JSON.stringify(formData));
           setIsLoading(false);
           alert("Data Posted");
         }      
@@ -170,92 +114,11 @@ const SignupSociety = () => {
       fetchData();
     }, []);
 
-
-
-    //For when data fetching isnt working / server is down
-    // sample data
-
-  //   const data = {
-  //     "roomSizes": [
-  //         {
-  //             "id": 1,
-  //             "size": "1RK"
-  //         },
-  //         {
-  //             "id": 2,
-  //             "size": "1BHK"
-  //         },
-  //         {
-  //             "id": 3,
-  //             "size": "2BHK"
-  //         },
-  //         {
-  //             "id": 4,
-  //             "size": "3BHK"
-  //         },
-  //         {
-  //             "id": 5,
-  //             "size": "4BHK"
-  //         },
-  //         {
-  //             "id": 6,
-  //             "size": "5BHK"
-  //         },
-  //         {
-  //             "id": 7,
-  //             "size": "6BHK"
-  //         },
-  //         {
-  //             "id": 8,
-  //             "size": "7BHK"
-  //         }
-  //     ],
-  //     "maintainanceHeads": [
-  //         "Electric Charges",
-  //         "Water Charges",
-  //         "Service & Maintenance Charges",
-  //         "Sinking Fund",
-  //         "Repairing Fund",
-  //         "Non Agriculture Tax",
-  //         "Festival & Welfare Charges",
-  //         "Four Wheelers Parking Charges",
-  //         "Education & Training Fund"
-  //     ]
-  // }
-  // useEffect(() => {
-  //   setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
-  //     setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
-  // },[]);
-      
-
-
-
-
     // Callback to update `isFilled` status for WingDetailsForm
   const handleWingDetailsFilledChange = (isFilled) => {
     setIsWingDetailsFilled(isFilled);
   };
 
-  // const handleNext = () => {
-  // //   console.log("filled,main:", isWingDetailsFilled, step);
-  // //   if (step===1 && !isWingDetailsFilled){
-  // //     alert("Fill all fields");
-    
-  // // }
-  // setStep(prevStep => prevStep + 1);
-  // };
-
-  // const handlePrevious = () => {
-  //   setStep(prevStep => prevStep - 1);
-  // };
-
-  // const handleRegister = () => {
-  //         localStorage.setItem('formData', JSON.stringify(formData));
-  //     alert("Form data saved successfully!");
-  // };
-
-
-  console.log(formData);
   return (
     <div className="signup-container">
           <div className="max-w-4xl mx-auto p-4">
@@ -277,17 +140,17 @@ const SignupSociety = () => {
       {
         isLoading && 
         <>
-        <div class="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center"
+        <div className="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center"
         style = {{background:"rgba(0, 0, 0, 0.3)"}}
         >
-  <div class="bg-white border py-2 px-5 rounded-lg flex items-center flex-col">
-    <div class="loader-dots block relative w-20 h-5 mt-2">
-      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
-      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
-      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
-      <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+  <div className="bg-white border py-2 px-5 rounded-lg flex items-center flex-col">
+    <div className="loader-dots block relative w-20 h-5 mt-2">
+      <div className="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+      <div className="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+      <div className="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
+      <div className="absolute top-0 mt-1 w-3 h-3 rounded-full bg-blue-600"></div>
     </div>
-    <div class="text-gray-500 text-xs font-medium mt-2 text-center">
+    <div className="text-gray-500 text-xs font-medium mt-2 text-center">
       Connecting to client...
     </div>
   </div>
@@ -330,7 +193,7 @@ const SignupSociety = () => {
           
         </div> */}
       </div>
-      {/* <Form /> */}
+
     </div>
   );
 };

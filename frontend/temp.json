@@ -1,0 +1,77 @@
+{
+  "societyDetails": {
+      "name": "Atharva Ghadi",
+      "phoneNumber": "8879806920",
+      "dateOfEstablishment": "2024-10-25",
+      "emailAddress": "123@123.1",
+      "password": "123456",
+      "address": "48/c, Rameshwar society\nG.d. ambekar road,",
+      "city": "Parel",
+      "state": "Maharashtra",
+      "pincode": "400012",
+      "numberOfWings": 2,
+      "registrationNumber": "scewvewvew"
+  },
+  "wingInformation": [
+      {
+          "wingNumber": 1,
+          "wingName": "Wing 1",
+          "wingFloors": "2",
+          "wingRoomsPerFloor": 2,
+          "wingRoomDetails": [
+              {
+                  "roomIndex": 1,
+                  "roomNumber": "1",
+                  "roomSize": "2",
+                  "maintenanceAmount": "5000",
+                  "maintenanceHeadAmount": {
+                      "Electric Charges": "3000",
+                      "Service & Maintenance Charges": "2000"
+                  }
+              },
+              {
+                  "roomIndex": 2,
+                  "roomNumber": "2",
+                  "roomSize": "3",
+                  "maintenanceAmount": "6000",
+                  "maintenanceHeadAmount": {
+                      "Electric Charges": "3000",
+                      "Service & Maintenance Charges": "3000"
+                  }
+              }
+          ]
+      },
+      {
+          "wingNumber": 2,
+          "wingName": "Wing 2",
+          "wingFloors": "5",
+          "wingRoomsPerFloor": 2,
+          "wingRoomDetails": [
+              {
+                  "roomIndex": 1,
+                  "roomNumber": "101",
+                  "roomSize": "2",
+                  "maintenanceAmount": "5000",
+                  "maintenanceHeadAmount": {
+                      "Electric Charges": "3000",
+                      "Service & Maintenance Charges": "2000"
+                  }
+              },
+              {
+                  "roomIndex": 2,
+                  "roomNumber": "102",
+                  "roomSize": "3",
+                  "maintenanceAmount": "6000",
+                  "maintenanceHeadAmount": {
+                      "Electric Charges": "3000",
+                      "Service & Maintenance Charges": "3000"
+                  }
+              }
+          ]
+      }
+  ],
+  "maintenanceHeads": [
+      "Electric Charges",
+      "Service & Maintenance Charges"
+  ]
+}

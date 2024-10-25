@@ -7,7 +7,6 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
   // Validate form and set isFilled
   useEffect(() => {
     const allFieldsFilled = Object.values(formData).every((value) => value !== "");
-    // console.log("filled?:", Object.values(formData), allFieldsFilled);
     setIsFilled(allFieldsFilled);
     onIsFilledChange(allFieldsFilled);  // Pass this state up to parent (signupsociety.js)
   }, [formData, onIsFilledChange]);
@@ -46,19 +45,6 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           },
         });
       };
-    
-      // const handleNext = () => {
-      //   if (step === 1) {
-      //     // If moving to Wing Information, initialize wings array based on numberOfWings
-      //     const wings = Array.from({ length: parseInt(formData.numberOfWings) || 0 }, (_, i) => ({
-      //       wingName: `Wing ${i + 1}`,
-      //       numberOfFlats: '',
-      //       numberOfLifts: ''
-      //     }));
-      //     setFormData(prevData => ({ ...prevData, wings }));
-      //   }
-      //   setStep(prevStep => prevStep + 1);
-      // };
 
     
 
@@ -78,7 +64,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           ...prevState,
           societyDetails: {
             ...prevState.societyDetails,
-            numberOfWings: numberOfWings
+            numberOfWings: String(numberOfWings)
           },
           wingInformation: wings
         }));
