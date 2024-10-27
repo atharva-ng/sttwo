@@ -54,9 +54,9 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
         // Create an array of wing objects based on the number of wings
         const wings = Array.from({ length: numberOfWings }, (_, index) => ({
           wingNumber: index + 1,
-          wingName: '',
-          wingFloors: '',
-          wingRoomsPerFloor: '',
+          name: '',
+          floors: '',
+          roomsPerFloor: '',
           wingRoomDetails: []
         }));
       

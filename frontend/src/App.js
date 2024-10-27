@@ -5,8 +5,7 @@ import Navbar from './shared/components/navbar/Navbar';
 import Footer from './shared/components/Footer';
 import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
-import SignupSociety2 from './signup/pages/SignupSociet2';
-import SocietyRegistrationForm from './signup/pages/MaintenanceSociety';
+
 import SocietyProfile from './profile/pages/SocietyProfile';
 import FlatsInformation from './profile/pages/FlatsInformation';
 import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
@@ -60,12 +59,7 @@ function App() {
           <Route path='/signup' exact>
             <SignupSociety />
           </Route>
-          <Route path='/signup/signup-society-2' exact>
-            <SignupSociety2 />
-          </Route>
-          <Route path='/signup/signup-society-3' exact>
-          <SocietyRegistrationForm />
-          </Route>
+          {/*  */}
           <Redirect to='/' />
         </Switch>
       </>

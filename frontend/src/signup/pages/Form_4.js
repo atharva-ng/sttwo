@@ -1,6 +1,9 @@
 import React from "react";
 
 const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handleSubmitForm }) => {
+
+  
+
   const handleInputChange = (wingIndex, head, roomSize, value) => {
     const updatedWings = [...formData.wingInformation];
 
@@ -37,7 +40,7 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
 
         return (
           <div key={wingIndex} className="space-y-4 bg-gray-100 shadow-md rounded px-4 py-4">
-            <h3 className="text-lg font-semibold text-customBlue">Maintenance Input for {wing.wingName}:</h3>
+            <h3 className="text-lg font-semibold text-customBlue">Maintenance Input for {wing.name}:</h3>
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-gray-100 text-b">

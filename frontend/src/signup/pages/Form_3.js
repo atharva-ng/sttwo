@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -113,7 +113,10 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
                 ? formData.maintenanceHeads[formData.maintenanceHeads.length - 1]
                 : 'Select'}
             </span>
-            <ChevronDown className="h-5 w-5 text-gray-400" />
+            {isDropdownOpen ? 
+            <ChevronUp className="h-5 w-5 text-gray-400" />
+            : <ChevronDown className="h-5 w-5 text-gray-400" />}
+            
             
           </div>
           {noHead && 
