@@ -31,6 +31,8 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
     setStep(prevStep => prevStep - 1);
   };
 
+  
+
   return (
     <form onSubmit={handleSubmitForm}>
     <div className="space-y-6 my-10">
@@ -54,8 +56,9 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
               <tbody>
                 {formData.maintenanceHeads.map((head, headIndex) => (
                   <tr key={head}>
-                    <td className="border p-2">{headIndex + 1}</td>
-                    <td className="border p-2">{head}</td>
+                    <td className="border p-2">{headIndex + 1}</td>  {/* Display the index for Sr No */}
+                    <td className="border p-2">{maintenanceHeads[head]}</td> 
+
                     {uniqueRoomSizes.map((size, index) => (
                       <td key={index} className="border p-2">
                         <input

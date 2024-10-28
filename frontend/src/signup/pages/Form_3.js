@@ -22,13 +22,13 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     setFormData(updatedFormData);
   };
 
-  // Logic to remove a maintenance head
-  const handleRemoveHead = (headToRemove) => {
+  // Logic to remove a maintenance head (by index)
+  const handleRemoveHead = (indexToRemove) => {
     const updatedFormData = { ...formData };
 
-    // Remove the head from the formData's maintenanceHeads array
+    // Remove the head by its index from the formData's maintenanceHeads array
     updatedFormData.maintenanceHeads = updatedFormData.maintenanceHeads.filter(
-      (head) => head !== headToRemove
+      (index) => index !== indexToRemove
     );
 
     setFormData(updatedFormData); // Update the form data
@@ -36,24 +36,24 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
 
   const handleNext3 = (e) => {
     e.preventDefault(); // Prevent form submission
-  
+
     if (formData.maintenanceHeads.length === 0) {
-      // alert("Please select at least one Maintenance Head before proceeding.");
       setNoHead(true);
     } else {
       setNoHead(false);
       const updatedFormData = { ...formData };
 
-      // Iterate through all wings and rooms to add the new head.
+      // Iterate through all wings and rooms to add the new head index.
       Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
         const wing = updatedFormData.wingInformation[wingKey];
         Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
           const room = wing.wingRoomDetails[roomKey];
 
-          // Add maintenance heads if not already present
-          formData.maintenanceHeads.forEach((head) => {
-            if (!room.maintenanceHeadAmount[head]) {
-              room.maintenanceHeadAmount[head] = '';
+          // Add maintenance heads by index if not already present
+          formData.maintenanceHeads.forEach((headIndex) => {
+            const headName = maintenanceHeads[headIndex];
+            if (!room.maintenanceHeadAmount[headName]) {
+              room.maintenanceHeadAmount[headIndex] = '';
             }
           });
         });
@@ -71,12 +71,14 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
     setStep((prevStep) => prevStep - 1);
   };
 
-  const handleMaintenanceHeadChange = (selectedHead) => {
+  // Handle selecting a maintenance head (storing the index instead of name)
+  const handleMaintenanceHeadChange = (selectedIndex) => {
     setNoHead(false);
-    // If the selected head is not already included, add it to the formData.
-    if (selectedHead && !formData.maintenanceHeads.includes(selectedHead)) {
+
+    // If the selected index is not already included, add it to the formData.
+    if (!formData.maintenanceHeads.includes(selectedIndex)) {
       const updatedFormData = { ...formData };
-      updatedFormData.maintenanceHeads.push(selectedHead);
+      updatedFormData.maintenanceHeads.push(selectedIndex);
       setFormData(updatedFormData);
     }
     setIsDropdownOpen(false);
@@ -107,32 +109,29 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
             className="w-full p-2 border rounded-md hover:border-blue-400 bg-white shadow-sm cursor-pointer flex justify-between items-center"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            
             <span className="text-gray-700">
               {formData.maintenanceHeads && formData.maintenanceHeads.length > 0
-                ? formData.maintenanceHeads[formData.maintenanceHeads.length - 1]
+                ? maintenanceHeads[formData.maintenanceHeads[formData.maintenanceHeads.length - 1]] // Show the name for the latest selected index
                 : 'Select'}
             </span>
             {isDropdownOpen ? 
             <ChevronUp className="h-5 w-5 text-gray-400" />
             : <ChevronDown className="h-5 w-5 text-gray-400" />}
-            
-            
           </div>
           {noHead && 
           <span className="text-red-400">
-          Please select a maintenance head
+            Please select a maintenance head
           </span>}
           {isDropdownOpen && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
               {maintenanceHeads.length === 0 ? (
                 <div className="p-2 text-gray-500">No Maintenance Head Available</div>
               ) : (
-                maintenanceHeads.map((head) => (
+                maintenanceHeads.map((head, index) => (
                   <div
-                    key={head}
+                    key={index}
                     className="p-2 hover:bg-blue-100 cursor-pointer"
-                    onClick={() => handleMaintenanceHeadChange(head)}
+                    onClick={() => handleMaintenanceHeadChange(index)} // Pass index
                   >
                     {head}
                   </div>
@@ -146,13 +145,13 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
           <div>
             <h3 className="font-semibold mb-2">Selected Maintenance Heads:</h3>
             <ul className="list-disc pl-5">
-              {formData.maintenanceHeads.map((head) => (
-                <li key={head} className="flex justify-between items-center">
-                  <span>{head}</span>
+              {formData.maintenanceHeads.map((headIndex) => (
+                <li key={headIndex} className="flex justify-between items-center">
+                  <span>{maintenanceHeads[headIndex]}</span> {/* Show the head name */}
                   <button
                     type="button"
                     className="crossButton px-2 mb-2 ml-2 text-sm text-red-500 hover:text-red-800 p-1 rounded-full border border-red-500 hover:border-red-800"
-                    onClick={() => handleRemoveHead(head)}
+                    onClick={() => handleRemoveHead(headIndex)}
                   >
                     ✖
                   </button>
