@@ -2,8 +2,7 @@ CREATE OR REPLACE FUNCTION insert_complaint(
     _society_id INTEGER,
     _room_transaction_id INTEGER,
     _title VARCHAR(100),
-    _description TEXT,
-    _categoryId INT
+    _description TEXT
 )
 RETURNS INTEGER AS $$
 DECLARE
@@ -16,16 +15,14 @@ BEGIN
             title, 
             description,  
             created_at, 
-            updated_at,
-            category_id
+            updated_at
         ) VALUES (
             _society_id, 
             _room_transaction_id, 
             _title, 
             _description, 
             CURRENT_TIMESTAMP, 
-            CURRENT_TIMESTAMP,
-            _categoryId
+            CURRENT_TIMESTAMP
         )RETURNING id INTO new_complaint_id;
         
         RETURN new_complaint_id;

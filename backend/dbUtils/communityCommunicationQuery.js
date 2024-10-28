@@ -103,11 +103,13 @@ const deleteNoticeQuery=async (id, userId)=>{
 //Complaints Start===========================================================================================
 const getComplaintsQuery = async (queryParams) => {
   try {
-    const result = await pool.query('SELECT * FROM getcomplaints($1, $2, $3, $4);', [
+    const result = await pool.query('SELECT * FROM getcomplaints($1, $2, $3, $4, $5, $6);', [
       queryParams.socid, 
+      queryParams.complaintId,
       queryParams.active,
-      queryParams.start_date , 
-      queryParams.end_date
+      queryParams.start_date, 
+      queryParams.end_date,
+      queryParams.categoryId
     ]);
     return result.rows;
   } catch (error) {
@@ -119,13 +121,14 @@ const getComplaintsQuery = async (queryParams) => {
     }
   }
 };
-const createComplaintQuery = async (soc_id, room_transaction_id,title, description) => {
+const createComplaintQuery = async (soc_id, room_transaction_id,title, description, categoryId) => {
   try {
-    const result = await pool.query('SELECT * FROM insert_complaint($1,$2,$3,$4);', [
+    const result = await pool.query('SELECT * FROM insert_complaint($1,$2,$3,$4,$5);', [
       soc_id, 
       room_transaction_id,
       title, 
-      description
+      description,
+      categoryId
     ]);
     return result.rows[0].insert_complaint;
   } catch (error) {
@@ -140,23 +143,32 @@ const createComplaintQuery = async (soc_id, room_transaction_id,title, descripti
 
 const deleteComplaintQuery = async (soc_id, comp_id)=>{
   try {
-    const result="Later";
-    // const result = await pool.query('', []);
+    const result = await pool.query('SELECT * FROM deleteComplaint($1,$2);', [soc_id,comp_id]);
     return result;
   } catch (error) {
-    if (error instanceof HttpError) {
-      return next(error);
-    } else {
-      console.log(error);
       throw new HttpError("Something went wrong-createComplaintQuery", 500);
-    }
   }
 }
 
-
+const updateComplaintQuery = async (queryParams) => {
+  
+  try {
+    const result = await pool.query('SELECT * FROM updateComplaints($1, $2, $3, $4, $5);', [
+      queryParams.socid,
+      queryParams.complaintId,
+      queryParams.title,
+      queryParams.description,
+      queryParams.categoryId
+    ]);
+    
+    return result.rows;
+  } catch (error) {
+      throw new HttpError("Something went wrong-updateComplaintQuery", 500);
+  }
+};
 
 //Complaints End================================================================================================
 
-module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery};
+module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery};
 
 

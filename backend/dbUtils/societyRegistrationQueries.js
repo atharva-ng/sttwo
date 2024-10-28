@@ -1,8 +1,6 @@
 const pool = require('./db');
 const HttpError = require("../models/http-error");
 
-const { getRoomSizeQuery } = require("./authDBQueries");
-
 const saveWingQuery = async (societyID, name, roomsPerFloor) => {
   try {
     const result = await pool.query('CALL savewing($1,$2,$3,$4);', [

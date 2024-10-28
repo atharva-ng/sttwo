@@ -6,7 +6,6 @@ const { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoti
 
 const getNotices= async (req, res, next) => {
   const userId=req.userData.userId;
-  // var active=req.params.active;
 
   const { id, active, start_date, end_date, categoryId } = req.query;
 
@@ -27,7 +26,6 @@ const getNotices= async (req, res, next) => {
   }
   
   try {
-    
     const queryParams = {
       socid: userId,
       id: id !== undefined ? Number(id) : null,

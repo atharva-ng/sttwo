@@ -65,7 +65,7 @@ const registerSociety = async (req, res, next) => {
     "numberOfWings": numberOfWings,
     "registrationNumber": registrationNumber
   }
-
+  var societyID;
   try {
     societyID=await postSocietyDetailsQuery(societyDetails);
     if(societyID===null){
@@ -115,10 +115,11 @@ const registerSociety = async (req, res, next) => {
 
       await saveRoomQuery(rooms);
     }
-  } catch (err) {
-    console.log(err);
-    if (err instanceof HttpError) {
-      throw err;
+  } catch (error) {
+    console.log(error);
+    console.log(societyID);
+    if (error instanceof HttpError) {
+      throw error;
     } else {
       throw new HttpError("Something went wrong-controller", 500);
     }
