@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check, Info } from 'lucide-react';
 
-const ErrorModal = ({message}) => {
+const ErrorModal = ({message, isError, setIsError}) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-10">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-sm">
@@ -30,6 +30,7 @@ const ErrorModal = ({message}) => {
           <button
             onClick={() => {
                 //
+                setIsError(false);
 
             }}
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"

@@ -8,6 +8,7 @@ import Form_3 from "./Form_3.js";
 import Form_4 from "./Form_4.js";
 
 import SubmittedModal from "./SubmittedModal.js";
+import ErrorModal from "./ErrorModal.js";
 
 
 import "./LoadingPopUp.css";
@@ -26,6 +27,8 @@ const SignupSociety = () => {
 
   const [isWingDetailsFilled, setIsWingDetailsFilled] = useState(false);  // Track if WingDetailsForm is filled
   const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
+
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   const [formData, setFormData] = useState({
@@ -83,11 +86,13 @@ const SignupSociety = () => {
         setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
         
         setIsError(false);
+        
 
         
       } catch (err) {
         console.error('Error fetching notices:', err);
         setIsError(true);
+        setErrorMessage("There was an Error Fetching Heads and Room Sizes");
         
 
         // sample data
@@ -208,6 +213,7 @@ const SignupSociety = () => {
         } catch (err) {
           console.log('Error posting notice:', err);
           setIsError(true);
+          setErrorMessage("There was some Error while submitting the Form. Please Try Again.")
         } finally {
           localStorage.setItem('formData', JSON.stringify(transformedData));
           console.log("Form Submitted:", JSON.stringify(transformedData));
@@ -268,7 +274,10 @@ const SignupSociety = () => {
         </>
       }
 
-      { (isSubmitted || isError) && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted} isError = {isError} setIsError={setIsError}/>}
+      { (isSubmitted) && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted} />}
+      {
+        isError && <ErrorModal message = {errorMessage} isError = {isError} setIsError={setIsError}/>
+      }
       
 
       <div className="form-page">
