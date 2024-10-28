@@ -169,6 +169,26 @@ const updateComplaintQuery = async (queryParams) => {
 
 //Complaints End================================================================================================
 
-module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery};
+//Comments Start================================================================================================
+const createCommentQuery = async (complaint_id, content, society_id) => {
+  try {
+    const result = await pool.query('SELECT * FROM createComment($1, $2, $3);', [
+      complaint_id,
+      content,
+      society_id
+    ]);
+    return result.rows[0].createcomment;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-createCommentQuery", 500);
+    }
+  }
+};
+//Comments End====================================================================================================
+
+module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery, createCommentQuery};
 
 

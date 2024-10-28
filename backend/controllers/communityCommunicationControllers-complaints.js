@@ -1,6 +1,6 @@
 const HttpError = require("../models/http-error");
 
-const {createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery } = require("../dbUtils/communityCommunicationQuery");
+const {createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery, createCommentQuery } = require("../dbUtils/communityCommunicationQuery");
 
 
 const getComplaints= async(req, res, next) => {
@@ -148,13 +148,15 @@ const updateComplaint = async (req, res, next) => {
   }
 }
 
+
 const createComment=async (req, res, next) => {
   const userId=req.userData.userId;
-  const {complaint_id, society_id, room_transaction_id, content}= req.body;
+  const {complaint_id, content}= req.body;
 
   try{
-    const complaintData = await createCommentQuery(userId, complaint_id, society_id, room_transaction_id, content);
-    return res.status(201).json({"message": "Success"});
+    const complaintData = await createCommentQuery(complaint_id, content, userId);
+
+    return res.status(201).json({"commentId": complaintData});
   }catch (error) {
     if (error instanceof HttpError) {
       return next(error);
@@ -165,8 +167,11 @@ const createComment=async (req, res, next) => {
   }
 } 
 
+
+
 exports.createComplaint = createComplaint;
 exports.getComplaints = getComplaints;
 exports.deleteComplaint = deleteComplaint;
-exports.createComment = createComment;
 exports.updateComplaint = updateComplaint;
+
+exports.createComment = createComment;
