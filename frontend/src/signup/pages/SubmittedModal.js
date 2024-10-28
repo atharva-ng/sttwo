@@ -3,7 +3,7 @@ import { Check, Info } from 'lucide-react';
 
 const SubmittedModal = ({isSubmitted, setIsSubmitted, isError, setIsError}) => {
     const message = "Your details have been successfully submitted. Thanks!";
-    const messageError = "There was an Error while submitting. Please try again.";
+    const messageError = "There was some Error. Please try again.";
   return (
     <>
 
