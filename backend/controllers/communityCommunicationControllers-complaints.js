@@ -83,7 +83,7 @@ const deleteComplaint = async (req, res, next) => {
 
   try {
     const result=await deleteComplaintQuery(userId,id);
-    return res.status(201).json({"message":"Successfully Deleted"});
+    return res.status(204).json({"message":"Successfully Deleted"});
   } catch (error) {
     if (error instanceof HttpError) {
       return next(error);
@@ -137,7 +137,7 @@ const updateComplaint = async (req, res, next) => {
     
     const result = await updateComplaintQuery(queryParams);
 
-    return res.status(201).json(result[0]);
+    return res.status(200).json(result[0]);
   }catch(error){
     if (error instanceof HttpError) {
       return next(error);
@@ -154,7 +154,7 @@ const createComment=async (req, res, next) => {
 
   try{
     const complaintData = await createCommentQuery(userId, complaint_id, society_id, room_transaction_id, content);
-    return res.status(200).json({"message": "Success"});
+    return res.status(201).json({"message": "Success"});
   }catch (error) {
     if (error instanceof HttpError) {
       return next(error);

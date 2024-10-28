@@ -428,7 +428,7 @@ Delete an existing complaint.
 - `id`: ID of the complaint to delete (number)
 
 #### Response
-- `201 Created`: Successfully deleted the complaint
+- `204 Created`: Successfully deleted the complaint
   ```json
   {
     "message": "Successfully Deleted"
