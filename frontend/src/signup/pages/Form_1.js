@@ -75,7 +75,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           name: '',
           floors: '',
           roomsPerFloor: '',
-          wingRoomDetails: []
+          roomDetails: []
         }));
       
         setFormData(prevState => ({
@@ -174,6 +174,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           
           <StateSelect className="text-lg font-semibold text-blue-700 p-2"
         countryid={countryid}
+        
         required
         onChange={(e) => {
           

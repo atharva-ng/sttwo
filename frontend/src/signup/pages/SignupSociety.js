@@ -51,7 +51,7 @@ const SignupSociety = () => {
         wingName: '',
         floors: '',
         roomsPerFloor: '',
-        wingRoomDetails: {
+        roomDetails: {
           roomIndex: {
             roomNumber: '',
             roomSize: '',
@@ -83,7 +83,9 @@ const SignupSociety = () => {
         const data = await response.json();
         
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
-        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+        setMaintenanceHeads(data.maintenanceHeads); // Ensure roomSizes is updated
+        
+
         
         setIsError(false);
         
@@ -164,10 +166,10 @@ const SignupSociety = () => {
 
     // Convert wingInformation array to an object where wingNumber is the key
     const transformedWingInformation = wingInformation.reduce((result, wing) => {
-        const { wingNumber, wingRoomDetails, ...otherWingDetails } = wing;
+        const { wingNumber, roomDetails, ...otherWingDetails } = wing;
 
-        // Convert wingRoomDetails array to an object where roomIndex is the key
-        const transformedRoomDetails = wingRoomDetails.reduce((roomResult, room) => {
+        // Convert roomDetails array to an object where roomIndex is the key
+        const transformedRoomDetails = roomDetails.reduce((roomResult, room) => {
             const { roomIndex, ...otherRoomDetails } = room;
             roomResult[roomIndex] = { ...otherRoomDetails };
             return roomResult;
@@ -175,7 +177,7 @@ const SignupSociety = () => {
 
         result[wingNumber] = {
             ...otherWingDetails,
-            wingRoomDetails: transformedRoomDetails,
+            roomDetails: transformedRoomDetails,
         };
 
         return result;
@@ -234,7 +236,8 @@ const SignupSociety = () => {
     setIsWingDetailsFilled(isFilled);
   };
 
-  console.log(formData);
+  // console.log(formData);
+  
 
   return (
     <div className="signup-container">

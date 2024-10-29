@@ -46,8 +46,8 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
       // Iterate through all wings and rooms to add the new head index.
       Object.keys(updatedFormData.wingInformation).forEach((wingKey) => {
         const wing = updatedFormData.wingInformation[wingKey];
-        Object.keys(wing.wingRoomDetails).forEach((roomKey) => {
-          const room = wing.wingRoomDetails[roomKey];
+        Object.keys(wing.roomDetails).forEach((roomKey) => {
+          const room = wing.roomDetails[roomKey];
 
           // Add maintenance heads by index if not already present
           formData.maintenanceHeads.forEach((headIndex) => {
@@ -97,6 +97,8 @@ const Form_3 = ({ step, formData, setStep, setFormData, maintenanceHeads }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
+
+  
 
   return (
     <form onSubmit={handleNext3}>
