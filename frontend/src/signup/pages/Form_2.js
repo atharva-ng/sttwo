@@ -19,7 +19,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
         return {
           ...wing,
           roomsPerFloor: roomsPerFloor,
-          wingRoomDetails: roomDetails
+          roomDetails: roomDetails
         };
       }
       return wing;
@@ -53,7 +53,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
   const handleRoomInputChange = (wingIndex, roomIndex, field, value) => {
     const updatedWings = formData.wingInformation.map((wing, wIndex) => {
       if (wIndex === wingIndex) {
-        const updatedRooms = wing.wingRoomDetails.map((room, rIndex) => {
+        const updatedRooms = wing.roomDetails.map((room, rIndex) => {
           if (rIndex === roomIndex) {
             return {
               ...room,
@@ -65,7 +65,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
 
         return {
           ...wing,
-          wingRoomDetails: updatedRooms
+          roomDetails: updatedRooms
         };
       }
       return wing;
@@ -142,7 +142,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
 
             <h4 className="text-md font-semibold mt-4 mb-2 text-customGray">Room Information (1st residential floor):</h4>
             <div className="space-y-6">
-              {formData.wingInformation[wingIndex]?.wingRoomDetails?.map((_, roomIndex) => (
+              {formData.wingInformation[wingIndex]?.roomDetails?.map((_, roomIndex) => (
                 <div key={roomIndex} className="p-4 border border-gray-200 rounded-lg shadow-sm">
                   <h5 className="text-lg font-medium mb-3 text-customGray">Room {roomIndex + 1}</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -153,7 +153,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                       <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id={`roomNumber${wingIndex}-${roomIndex}`}
-                        value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.roomNumber || ''}
+                        value={formData.wingInformation[wingIndex]?.roomDetails[roomIndex]?.roomNumber || ''}
                         onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomNumber', e.target.value)}
                         type="text"
                         placeholder={`Room Number ${roomIndex + 1}`}
@@ -170,7 +170,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
       <select
         className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         id={`roomSize${wingIndex}-${roomIndex}`}
-        value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.roomSize || ''}
+        value={formData.wingInformation[wingIndex]?.roomDetails[roomIndex]?.roomSize || ''}
         onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'roomSize', e.target.value)}
         required
       >
@@ -195,7 +195,7 @@ const Form_2 = ({ step, formData, setStep, setFormData, roomSizes }) => {
                         id={`maintenanceAmount${wingIndex}-${roomIndex}`}
                         type="number"
                         placeholder="Maintenance Amount"
-                        value={formData.wingInformation[wingIndex]?.wingRoomDetails[roomIndex]?.maintenanceAmount || ''}
+                        value={formData.wingInformation[wingIndex]?.roomDetails[roomIndex]?.maintenanceAmount || ''}
                         onChange={(e) => handleRoomInputChange(wingIndex, roomIndex, 'maintenanceAmount', e.target.value)}
                         required
                       />

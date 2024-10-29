@@ -1,11 +1,29 @@
 import React, { useState, useEffect } from "react";
+import SubmittedModal from "./SubmittedModal";
+import ErrorModal from "./ErrorModal";
+
+import {
+  CitySelect,
+  CountrySelect,
+  StateSelect,
+  LanguageSelect,
+} from "react-country-state-city";
+
+import "./state.css";
+
+
 
 const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
 
   const [isFilled, setIsFilled] = useState(false);
+  const [stateid, setstateid] = useState(0);
+  const [countryid, setCountryid] = useState(0);
+
+  
 
   // Validate form and set isFilled
   useEffect(() => {
+    setCountryid(101);
     const allFieldsFilled = Object.values(formData).every((value) => value !== "");
     setIsFilled(allFieldsFilled);
     onIsFilledChange(allFieldsFilled);  // Pass this state up to parent (signupsociety.js)
@@ -57,7 +75,7 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           name: '',
           floors: '',
           roomsPerFloor: '',
-          wingRoomDetails: []
+          roomDetails: []
         }));
       
         setFormData(prevState => ({
@@ -71,9 +89,24 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
       };
       
       const handleNext1 = () => {
-
         setStep(prevStep => prevStep + 1);
       }
+
+      
+      
+
+      const handleStateChange = (e) => {
+        const updatedFormData = { ...formData };
+        updatedFormData.societyDetails.state = e.name;
+        setFormData(updatedFormData);
+      }
+
+      const handleCityChange = (e) => {
+        const updatedFormData = { ...formData };
+        updatedFormData.societyDetails.city = e.name;
+        setFormData(updatedFormData);
+      }
+
 
 
     return (
@@ -126,21 +159,9 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
       </div>
       
       <div className="flex space-x-4">
-        <div className="flex-1">
-          <label htmlFor="city" className="block mb-1 text-customGray">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.societyDetails.city}
-        onChange={handleChange('societyDetails.city')}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-        <div className="flex-1">
+      <div className="flex-1">
           <label htmlFor="state" className="block mb-1 text-customGray">State</label>
-          <input
+          {/* <input
             type="text"
             id="state"
             name="state"
@@ -148,8 +169,55 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
         onChange={handleChange('societyDetails.state')}
             className="w-full p-2 border rounded"
             required
-          />
+          /> */}
+
+          
+          <StateSelect className="text-lg font-semibold text-blue-700 p-2"
+        countryid={countryid}
+        
+        required
+        onChange={(e) => {
+          
+          setstateid(e.id);
+          handleStateChange(e);
+        }}
+        
+
+        // onChange = {(e) => { setstateid(e.id); handleChange('societyDetails.state'); }}
+
+        placeHolder="Select State"
+      />
         </div>
+        <div className="flex-1">
+          <label htmlFor="city" className="block mb-1 text-customGray">City</label>
+          {/* <input
+            type="text"
+            id="city"
+            name="city"
+            value={formData.societyDetails.city}
+        onChange={handleChange('societyDetails.city')}
+            className="w-full p-2 border rounded"
+            required
+          /> */}
+          <CitySelect
+        countryid={countryid}
+        stateid={stateid}
+        onChange={(e) => {
+          handleCityChange(e);
+        }}
+        required
+        placeHolder="Select City"
+      />
+      {/* <CountrySelect
+        onChange={(e) => {
+          setCountryid(e.id);
+        }}
+        placeHolder="Select Country"
+      /> */}
+
+
+        </div>
+        
         <div className="flex-1">
           <label htmlFor="pincode" className="block mb-1 text-customGray">Pincode</label>
           <input
@@ -159,6 +227,8 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
             value={formData.societyDetails.pincode}
         onChange={handleChange('societyDetails.pincode')}
             className="w-full p-2 border rounded"
+            pattern="^[1-9][0-9]{5}$"
+            title="Enter a Valid Pin Code"
             required
           />
         </div>
@@ -218,6 +288,8 @@ const Form_1 = ({step, formData, setStep, setFormData, onIsFilledChange}) => {
           value={formData.societyDetails.emailAddress}
           onChange={handleChange('societyDetails.emailAddress')}
           className="w-full p-2 border rounded"
+          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+          title="Enter valid email"
           required
         />
       </div>

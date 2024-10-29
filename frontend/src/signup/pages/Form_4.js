@@ -8,7 +8,7 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
     const updatedWings = [...formData.wingInformation];
 
     // Update the specific head amount for all rooms with the same roomSize
-    updatedWings[wingIndex].wingRoomDetails.forEach((room) => {
+    updatedWings[wingIndex].roomDetails.forEach((room) => {
       if (room.roomSize === roomSize) {
         room.maintenanceHeadAmount[head] = value;
       }
@@ -31,12 +31,14 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
     setStep(prevStep => prevStep - 1);
   };
 
+  
+
   return (
     <form onSubmit={handleSubmitForm}>
     <div className="space-y-6 my-10">
       {formData.wingInformation.map((wing, wingIndex) => {
         // Get unique room sizes for the current wing
-        const uniqueRoomSizes = [...new Set(wing.wingRoomDetails.map((room) => room.roomSize))];
+        const uniqueRoomSizes = [...new Set(wing.roomDetails.map((room) => room.roomSize))];
 
         return (
           <div key={wingIndex} className="space-y-4 bg-gray-100 shadow-md rounded px-4 py-4">
@@ -54,8 +56,9 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
               <tbody>
                 {formData.maintenanceHeads.map((head, headIndex) => (
                   <tr key={head}>
-                    <td className="border p-2">{headIndex + 1}</td>
-                    <td className="border p-2">{head}</td>
+                    <td className="border p-2">{headIndex + 1}</td>  {/* Display the index for Sr No */}
+                    <td className="border p-2">{maintenanceHeads[head]}</td> 
+
                     {uniqueRoomSizes.map((size, index) => (
                       <td key={index} className="border p-2">
                         <input
@@ -63,7 +66,7 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
                           className="w-full p-1 border rounded"
                           // Display the value from the first room with this size
                           value={
-                            wing.wingRoomDetails.find((room) => room.roomSize === size)
+                            wing.roomDetails.find((room) => room.roomSize === size)
                               ?.maintenanceHeadAmount[head] || ''
                           }
                           onChange={(e) =>

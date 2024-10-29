@@ -8,6 +8,7 @@ import Form_3 from "./Form_3.js";
 import Form_4 from "./Form_4.js";
 
 import SubmittedModal from "./SubmittedModal.js";
+import ErrorModal from "./ErrorModal.js";
 
 
 import "./LoadingPopUp.css";
@@ -26,6 +27,8 @@ const SignupSociety = () => {
 
   const [isWingDetailsFilled, setIsWingDetailsFilled] = useState(false);  // Track if WingDetailsForm is filled
   const [isOtherFormFilled, setIsOtherFormFilled] = useState(false);  // For other forms
+
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   const [formData, setFormData] = useState({
@@ -48,7 +51,7 @@ const SignupSociety = () => {
         wingName: '',
         floors: '',
         roomsPerFloor: '',
-        wingRoomDetails: {
+        roomDetails: {
           roomIndex: {
             roomNumber: '',
             roomSize: '',
@@ -78,15 +81,20 @@ const SignupSociety = () => {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
-        console.log("Data Fetched");
+        
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
-        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+        setMaintenanceHeads(data.maintenanceHeads); // Ensure roomSizes is updated
+        
+
+        
         setIsError(false);
+        
 
         
       } catch (err) {
         console.error('Error fetching notices:', err);
         setIsError(true);
+        setErrorMessage("There was an Error Fetching Heads and Room Sizes");
         
 
         // sample data
@@ -147,22 +155,59 @@ const SignupSociety = () => {
         setIsLoading(false);
       }
     };
+    
 
     const handleSubmitForm = async (e) => {
       e.preventDefault();
       setIsLoading(true);
+
+          
+    const { societyDetails, wingInformation, maintenanceHeads } = formData;
+
+    // Convert wingInformation array to an object where wingNumber is the key
+    const transformedWingInformation = wingInformation.reduce((result, wing) => {
+        const { wingNumber, roomDetails, ...otherWingDetails } = wing;
+
+        // Convert roomDetails array to an object where roomIndex is the key
+        const transformedRoomDetails = roomDetails.reduce((roomResult, room) => {
+            const { roomIndex, ...otherRoomDetails } = room;
+            roomResult[roomIndex] = { ...otherRoomDetails };
+            return roomResult;
+        }, {});
+
+        result[wingNumber] = {
+            ...otherWingDetails,
+            roomDetails: transformedRoomDetails,
+        };
+
+        return result;
+    }, {});
+
+    // Prepare the final transformed data
+    const transformedData = {
+        societyDetails: { ...societyDetails },
+        wingInformation: transformedWingInformation,
+        
+    };
+
+    // return transformedData;
+
+    console.log("Final Data being Submitted:",transformedData);
+
+
+
         try {
           const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(transformedData),
           });
   
           if (!response.ok) {
             const data = await response.json();
-            console.log(data);
+            
             throw new Error('Failed to post formData') ;
           }
   
@@ -170,9 +215,10 @@ const SignupSociety = () => {
         } catch (err) {
           console.log('Error posting notice:', err);
           setIsError(true);
+          setErrorMessage("There was some Error while submitting the Form. Please Try Again.")
         } finally {
-          localStorage.setItem('formData', JSON.stringify(formData));
-          console.log("Form Submitted:", JSON.stringify(formData));
+          localStorage.setItem('formData', JSON.stringify(transformedData));
+          console.log("Form Submitted:", JSON.stringify(transformedData));
           setIsLoading(false);
           {!isError && setIsSubmitted(true);}
           // alert("Data Posted");
@@ -190,7 +236,8 @@ const SignupSociety = () => {
     setIsWingDetailsFilled(isFilled);
   };
 
-  console.log(formData);
+  // console.log(formData);
+  
 
   return (
     <div className="signup-container">
@@ -211,7 +258,7 @@ const SignupSociety = () => {
       {
         isLoading && 
         <>
-        <div className="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center"
+        <div className="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center z-12"
         style = {{background:"rgba(0, 0, 0, 0.3)"}}
         >
   <div className="bg-white border py-2 px-5 rounded-lg flex items-center flex-col">
@@ -230,14 +277,17 @@ const SignupSociety = () => {
         </>
       }
 
-      { (isSubmitted || isError) && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted} isError = {isError} setIsError={setIsError}/>}
+      { (isSubmitted) && <SubmittedModal isSubmitted = {isSubmitted} setIsSubmitted = {setIsSubmitted} />}
+      {
+        isError && <ErrorModal message = {errorMessage} isError = {isError} setIsError={setIsError}/>
+      }
       
 
       <div className="form-page">
         {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} onIsFilledChange={handleWingDetailsFilledChange}/>}
         {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} roomSizes = {roomSizes}/>}
         {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} maintenanceHeads = {maintenanceHeads}/>}
-        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm}/>}
+        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm} maintenanceHeads = {maintenanceHeads}/>}
 
         </div>
       </div>
