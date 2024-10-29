@@ -161,72 +161,74 @@ const SignupSociety = () => {
     const handleSubmitForm = async (e) => {
       e.preventDefault();
       setIsLoading(true);
-
-          
-    const { societyDetails, wingInformation, maintenanceHeads } = formData;
-
-    // Convert wingInformation array to an object where wingNumber is the key
-    const transformedWingInformation = wingInformation.reduce((result, wing) => {
+    
+      const { societyDetails, wingInformation, maintenanceHeads } = formData;
+    
+      // Convert wingInformation array to an object where wingNumber is the key
+      const transformedWingInformation = wingInformation.reduce((result, wing) => {
         const { wingNumber, roomDetails, ...otherWingDetails } = wing;
-
+    
         // Convert roomDetails array to an object where roomIndex is the key
         const transformedRoomDetails = roomDetails.reduce((roomResult, room) => {
-            const { roomIndex, ...otherRoomDetails } = room;
-            roomResult[roomIndex] = { ...otherRoomDetails };
-            return roomResult;
+          const { roomIndex, roomNumber, roomSize, maintenanceAmount, maintenanceHeadAmount, ...otherRoomDetails } = room;
+    
+          roomResult[roomIndex] = {
+            roomNumber: parseInt(roomNumber), // Convert to integer
+            roomSize: parseInt(roomSize), // Convert to integer
+            maintenanceAmount: parseInt(maintenanceAmount), // Convert to integer
+            maintenanceHeadAmount: Object.fromEntries(
+              Object.entries(maintenanceHeadAmount).map(([key, value]) => [key, parseInt(value)]) // Convert all values to integer
+            ),
+            ...otherRoomDetails,
+          };
+          return roomResult;
         }, {});
-
+    
         result[wingNumber] = {
-            ...otherWingDetails,
-            roomDetails: transformedRoomDetails,
+          ...otherWingDetails,
+          floors: parseInt(otherWingDetails.floors), // Convert to integer
+          roomsPerFloor: parseInt(otherWingDetails.roomsPerFloor), // Convert to integer
+          roomDetails: transformedRoomDetails,
         };
-
+    
         return result;
-    }, {});
-
-    // Prepare the final transformed data
-    const transformedData = {
-        societyDetails: { ...societyDetails },
+      }, {});
+    
+      // Prepare the final transformed data
+      const transformedData = {
+        societyDetails: { ...societyDetails, pincode: societyDetails.pincode }, // Keep pincode as string
         wingInformation: transformedWingInformation,
-        
+      };
+    
+      console.log("Final Data being Submitted:", transformedData);
+    
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(transformedData),
+        });
+    
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error('Failed to post formData');
+        }
+    
+        // Handle successful response if needed
+      } catch (err) {
+        console.log('Error posting notice:', err);
+        setIsError(true);
+        setErrorMessage("There was some Error while submitting the Form. Please Try Again.");
+      } finally {
+        localStorage.setItem('formData', JSON.stringify(transformedData));
+        console.log("Form Submitted:", JSON.stringify(transformedData));
+        setIsLoading(false);
+        if (!isError) setIsSubmitted(true);
+      }
     };
-
-    // return transformedData;
-
-    console.log("Final Data being Submitted:",transformedData);
-
-
-
-        try {
-          const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(transformedData),
-          });
-  
-          if (!response.ok) {
-            const data = await response.json();
-            
-            throw new Error('Failed to post formData') ;
-          }
-  
-          // window.location.reload();
-        } catch (err) {
-          console.log('Error posting notice:', err);
-          setIsError(true);
-          setErrorMessage("There was some Error while submitting the Form. Please Try Again.")
-        } finally {
-          localStorage.setItem('formData', JSON.stringify(transformedData));
-          console.log("Form Submitted:", JSON.stringify(transformedData));
-          setIsLoading(false);
-          {!isError && setIsSubmitted(true);}
-          // alert("Data Posted");
-
-
-        }      
-    };
+    
 
     useEffect(() => {
       fetchData();
