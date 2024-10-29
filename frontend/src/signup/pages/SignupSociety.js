@@ -81,7 +81,7 @@ const SignupSociety = () => {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
         setMaintenanceHeads(data.maintenanceHeads); // Ensure roomSizes is updated
@@ -238,7 +238,7 @@ const SignupSociety = () => {
   };
 
   console.log(formData);
-  console.log(roomSizes[0]);
+  
   
 
   return (
