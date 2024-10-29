@@ -34,17 +34,17 @@ const SignupSociety = () => {
   const [formData, setFormData] = useState({
 
     societyDetails: {
-      name: '',
-      phoneNumber:'',
-      dateOfEstablishment: '',
-      emailAddress: '',
-      password: '',
-      address: '',
+      name: 'om',
+      phoneNumber:'1234567890',
+      dateOfEstablishment: '2024-11-11',
+      emailAddress: 'test321@test.com',
+      password: '1234',
+      address: 'a',
       city: '',
       state: '',
-      pincode: '',
+      pincode: '123456',
       numberOfWings: '',
-      registrationNumber: '',
+      registrationNumber: '123',
     },
     wingInformation: {
       wingNumber: {
@@ -81,6 +81,7 @@ const SignupSociety = () => {
           throw new Error('Failed to fetch notices');
         }
         const data = await response.json();
+        console.log(data);
         
         setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
         setMaintenanceHeads(data.maintenanceHeads); // Ensure roomSizes is updated
@@ -236,7 +237,8 @@ const SignupSociety = () => {
     setIsWingDetailsFilled(isFilled);
   };
 
-  // console.log(formData);
+  console.log(formData);
+  console.log(roomSizes[0]);
   
 
   return (
@@ -287,7 +289,7 @@ const SignupSociety = () => {
         {step === 1 && <Form_1 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} onIsFilledChange={handleWingDetailsFilledChange}/>}
         {step === 2 && <Form_2 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} roomSizes = {roomSizes}/>}
         {step === 3 && <Form_3 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} maintenanceHeads = {maintenanceHeads}/>}
-        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm} maintenanceHeads = {maintenanceHeads}/>}
+        {step === 4 && <Form_4 step = {step} setStep = {setStep} formData = {formData} setFormData = {setFormData} handleSubmitForm = {handleSubmitForm} maintenanceHeads = {maintenanceHeads} roomSizes = {roomSizes}/>}
 
         </div>
       </div>

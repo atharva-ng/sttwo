@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handleSubmitForm }) => {
+const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handleSubmitForm,roomSizes }) => {
 
   
 
@@ -39,6 +39,7 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
       {formData.wingInformation.map((wing, wingIndex) => {
         // Get unique room sizes for the current wing
         const uniqueRoomSizes = [...new Set(wing.roomDetails.map((room) => room.roomSize))];
+        
 
         return (
           <div key={wingIndex} className="space-y-4 bg-gray-100 shadow-md rounded px-4 py-4">
@@ -48,9 +49,16 @@ const Form_4 = ({ step, formData, setStep, setFormData, maintenanceHeads, handle
                 <tr className="bg-gray-100 text-b">
                   <th className="border p-2 text-left">Sr No</th>
                   <th className="border p-2 text-left">Heads</th>
-                  {uniqueRoomSizes.map((size, index) => (
-                    <th key={index} className="border p-2 text-left">Size: {size}</th>
-                  ))}
+                  {uniqueRoomSizes.map((sizeId, index) => {
+                    // Find the room size object for the current sizeId
+                    const roomSizeObject = roomSizes.find((roomSize) => roomSize.id === Number(sizeId));
+                    // console.log(roomSizeObject,roomSizes, Number(sizeId), roomSizes[4].id);
+                    return (
+                      <th key={index} className="border p-2 text-left">
+                        Size: {roomSizeObject?.size || "Unknown"} {/* Display the size or 'Unknown' if not found */}
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
               <tbody>
