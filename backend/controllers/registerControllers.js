@@ -4,7 +4,6 @@ const { validationResult } = require("express-validator");
 const { saveWingQuery, saveRoomQuery, createRoomLinkQuery, savemaintenanceHeadQuery } = require("../dbUtils/societyRegistrationQueries")
 const { postSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
 const { getRoomSizeQuery, getMaintenanceHeadsQuery } = require("../dbUtils/authDBQueries");
-const {getSocietyId}= require("../dbUtils/getters");
 
 
 const genRooms = async (roomData, floors, roomsPerFloor) => {
@@ -82,14 +81,12 @@ const registerSociety = async (req, res, next) => {
       if (wingId === null) {
         throw new HttpError("Failed to save wing", 500);
       }
-
-      const roomSizes = await getRoomSizeQuery();
+      
       const floors = dbObj.floors;
       const roomsPerFloor = dbObj.roomsPerFloor;
 
       const roomLinkIds = {};
       for (let j = 1; j <= roomsPerFloor; j++) {
-        // const roomSizeID = sizeToId(roomSizes, dbObj.roomDetails[j].roomSize);
         const roomSizeID= Number(dbObj.roomDetails[j].roomSize);
         const id = await createRoomLinkQuery(roomSizeID, wingId);
         roomLinkIds[`${roomSizeID}-${dbObj.roomDetails[j].roomNumber}`] = id;

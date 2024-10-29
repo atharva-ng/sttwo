@@ -23,7 +23,7 @@ const getRoomSizeQuery = async () => {
 // Function to get the maintenance heads from the 'maintenance_heads' table
 const getMaintenanceHeadsQuery = async () => {
   try {
-    const result = await pool.query('SELECT heads FROM maintenance_heads;');
+    const result = await pool.query('SELECT * FROM maintenance_heads;');
     const maintenanceHeadsList = result.rows.map(row => row.heads);
     return maintenanceHeadsList;
   } catch (error) {
