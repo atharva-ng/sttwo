@@ -34,17 +34,17 @@ const SignupSociety = () => {
   const [formData, setFormData] = useState({
 
     societyDetails: {
-      name: 'om',
-      phoneNumber:'1234567890',
-      dateOfEstablishment: '2024-11-11',
-      emailAddress: 'test321@test.com',
-      password: '1234',
-      address: 'a',
+      name: '',
+      phoneNumber:'',
+      dateOfEstablishment: '',
+      emailAddress: '',
+      password: '',
+      address: '',
       city: '',
       state: '',
-      pincode: '123456',
+      pincode: '',
       numberOfWings: '',
-      registrationNumber: '123',
+      registrationNumber: '',
     },
     wingInformation: {
       wingNumber: {
@@ -212,7 +212,7 @@ const SignupSociety = () => {
             throw new Error('Failed to post formData') ;
           }
   
-          window.location.reload();
+          // window.location.reload();
         } catch (err) {
           console.log('Error posting notice:', err);
           setIsError(true);
