@@ -1,17 +1,11 @@
 const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
-const { saveWingQuery, saveRoomQuery, createRoomLinkQuery, saveMaintainanceHeadQuery } = require("../dbUtils/societyRegistrationQueries")
+const { saveWingQuery, saveRoomQuery, createRoomLinkQuery, savemaintenanceHeadQuery } = require("../dbUtils/societyRegistrationQueries")
 const { postSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
 const { getRoomSizeQuery, getMaintenanceHeadsQuery } = require("../dbUtils/authDBQueries");
 const {getSocietyId}= require("../dbUtils/getters");
 
-const jwt = require('jsonwebtoken');
-
-const sizeToId = (roomSizeArray, size) => {
-  const room = roomSizeArray.find(room => room.size === size);
-  return room ? room.id : null;
-};
 
 const genRooms = async (roomData, floors, roomsPerFloor) => {
   rooms = []
@@ -20,19 +14,19 @@ const genRooms = async (roomData, floors, roomsPerFloor) => {
 
   if (str.length > 1) {
     const rest = str.substring(1);
-    for (let k = initial; k <= floors; k++) {
+    for (let k = initial; k <= Number(floors)+Number(initial)-1; k++) {
       rooms.push({
         "roomLink": roomData.roomlink_id,
         "roomNumber": parseInt(String(k) + rest),
-        "maintainanceAmount": roomData.amount
+        "maintenanceAmount": roomData.amount
       });
     }
   } else {
     for (let k = 1; k <= floors; k++) {
       rooms.push({
         "roomLink": roomData.roomlink_id,
-        "roomNumber": roomData.room_no + (roomsPerFloor * (k - 1)),
-        "maintainanceAmount": roomData.amount
+        "roomNumber": Number(roomData.room_no) + Number(roomsPerFloor * (k - 1)),
+        "maintenanceAmount": roomData.amount
       });
     }
   }
@@ -41,7 +35,6 @@ const genRooms = async (roomData, floors, roomsPerFloor) => {
 
 const registerSociety = async (req, res, next) => {
   const errors = validationResult(req);
-  console.log(errors);
 
   if (!errors.isEmpty()) {
     const error = new HttpError("Invalid inputs passed, please check your data", 422);
@@ -78,7 +71,7 @@ const registerSociety = async (req, res, next) => {
       return next(new HttpError("Something went wrong-saving society", 500))
     }
   }
-
+  
   //Iterating over wings
   try {
     for (let i = 1; i <= numberOfWings; i++) {
@@ -96,19 +89,21 @@ const registerSociety = async (req, res, next) => {
 
       const roomLinkIds = {};
       for (let j = 1; j <= roomsPerFloor; j++) {
-        const roomSizeID = sizeToId(roomSizes, dbObj.roomDetails[j].roomSize);
+        // const roomSizeID = sizeToId(roomSizes, dbObj.roomDetails[j].roomSize);
+        const roomSizeID= Number(dbObj.roomDetails[j].roomSize);
         const id = await createRoomLinkQuery(roomSizeID, wingId);
         roomLinkIds[`${roomSizeID}-${dbObj.roomDetails[j].roomNumber}`] = id;
-        await saveMaintainanceHeadQuery(id, dbObj.roomDetails[j].maintainanceHeadAmount);
+        await savemaintenanceHeadQuery(id, dbObj.roomDetails[j].maintenanceHeadAmount);
       }
+
 
       let rooms = [];
       for (let j = 1; j <= roomsPerFloor; j++) {
         rooms.push(...await genRooms(
           {
-            "roomlink_id": roomLinkIds[`${sizeToId(roomSizes, dbObj.roomDetails[j].roomSize)}-${dbObj.roomDetails[j].roomNumber}`],
+            "roomlink_id": roomLinkIds[`${Number(dbObj.roomDetails[j].roomSize)}-${dbObj.roomDetails[j].roomNumber}`],
             "room_no": dbObj.roomDetails[j].roomNumber,
-            "amount": dbObj.roomDetails[j].maintainanceAmount
+            "amount": dbObj.roomDetails[j].maintenanceAmount
           }
           , floors, roomsPerFloor));
       }
@@ -117,7 +112,6 @@ const registerSociety = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    console.log(societyID);
     if (error instanceof HttpError) {
       throw error;
     } else {
@@ -131,12 +125,12 @@ const registerSociety = async (req, res, next) => {
 
 const getRegisterSociety = async (req, res, next) => {
   try {
-    const [roomSizes, maintainanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
+    const [roomSizes, maintenanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
     // const varm=await getSocietyId(130,3);
     // console.log(varm);
     res.status(200).json({
       "roomSizes": roomSizes,
-      "maintainanceHeads": maintainanceHeads
+      "maintenanceHeads": maintenanceHeads
     });
   } catch (err) {
     console.log(err);

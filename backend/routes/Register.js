@@ -26,8 +26,8 @@ const wingInformationValidation = [
   body('wingInformation.*.roomsPerFloor').trim().not().isEmpty().withMessage('Rooms per Floor cannot be empty').isNumeric({min:1}).withMessage("Rooms per Floor must be a number").escape(),
   body('wingInformation.*.roomDetails.*.roomNumber').isInt({ min: 1 }).trim().not().isEmpty().withMessage('Rooms Number cannot be empty').isNumeric({min:1}).withMessage("Rooms Number must be a number").escape(),
   body('wingInformation.*.roomDetails.*.roomSize').trim().not().isEmpty().withMessage('Room Size cannot be empty').isString().withMessage('Room size must be a string').escape(),
-  body('wingInformation.*.roomDetails.*.maintainanceAmount').trim().not().isEmpty().withMessage('Maintainance Amount cannot be empty').isNumeric().withMessage("Maintainance Amount must be a number").escape(),
-  body('wingInformation.*.roomDetails.*.maintainanceHeadAmount.*').trim().not().isEmpty().withMessage("Maintainance Head's Amount cannot be empty").isNumeric().withMessage("Maintainance Head's Amount must be a number").escape()
+  body('wingInformation.*.roomDetails.*.maintenanceAmount').trim().not().isEmpty().withMessage('maintenance Amount cannot be empty').isNumeric().withMessage("maintenance Amount must be a number").escape(),
+  body('wingInformation.*.roomDetails.*.maintenanceHeadAmount.*').trim().not().isEmpty().withMessage("maintenance Head's Amount cannot be empty").isNumeric().withMessage("maintenance Head's Amount must be a number").escape()
 ];
 
 

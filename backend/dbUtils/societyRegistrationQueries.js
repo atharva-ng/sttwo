@@ -39,18 +39,18 @@ const saveRoomQuery = async (roomsDB) => {
         [
           element.roomLink,
           element.roomNumber,
-          element.maintainanceAmount
+          Number(element.maintainanceAmount)
         ]
       );
     }
   } catch (err) {
     console.log(err);
-    throw new HttpError("Something went wrong", 500);
+    throw new HttpError("Something went wrong-saveRoomQuery", 500);
   }
 };
 
 
-const saveMaintainanceHeadQuery = async (roomLinkId, amountObj) => {
+const savemaintenanceHeadQuery = async (roomLinkId, amountObj) => {
   const idList = []
   try {
     for (const [key, value] of Object.entries(amountObj)) {
@@ -73,4 +73,4 @@ const saveMaintainanceHeadQuery = async (roomLinkId, amountObj) => {
 }
 
 
-module.exports = { saveWingQuery, createRoomLinkQuery, saveRoomQuery, saveMaintainanceHeadQuery };
+module.exports = { saveWingQuery, createRoomLinkQuery, saveRoomQuery, savemaintenanceHeadQuery };
