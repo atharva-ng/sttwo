@@ -249,15 +249,16 @@ const SignupSociety = () => {
       <h1 className="text-2xl font-bold text-center mb-6">Society Registration Form</h1>
       
       <div className="flex justify-between mb-6">
-  {['Basic Information', 'Wing Information', 'Maintenance Heads', 'Maintenance amount'].map((label, index) => (
+  {['Basic Information', 'Wing Information', 'Maintenance Heads', 'Maintenance Amount'].map((label, index) => (
     <div key={index} className={`flex items-center ${index + 1 === step ? 'text-blue-600 font-bold' : 'text-gray-400'}`}>
       <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${index + 1 === step ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
         {index + 1 < step ? <Check className="text-gray-600 size-4" /> : index + 1}
       </div>
-      {label}
+      <span className="hidden sm:inline">{label}</span> {/* Hide text on small screens */}
     </div>
   ))}
 </div>
+
 
       {
         isLoading && 
