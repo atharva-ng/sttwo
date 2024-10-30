@@ -11,6 +11,8 @@ import SubmittedModal from "./SubmittedModal.js";
 import ErrorModal from "./ErrorModal.js";
 
 
+
+
 import "./LoadingPopUp.css";
 
 const SignupSociety = () => {
@@ -213,19 +215,23 @@ const SignupSociety = () => {
     
         if (!response.ok) {
           const data = await response.json();
-          throw new Error('Failed to post formData');
+          
+          throw new Error(data.message || "Something Went Wrong");
+        }
+        else{
+          setIsSubmitted(true);
+          localStorage.setItem('formData', JSON.stringify(transformedData));
+          console.log("Form Submitted:", JSON.stringify(transformedData));
         }
     
         // Handle successful response if needed
       } catch (err) {
-        console.log('Error posting notice:', err);
+        console.log('Error posting notice:', err);        
         setIsError(true);
-        setErrorMessage("There was some Error while submitting the Form. Please Try Again.");
-      } finally {
-        localStorage.setItem('formData', JSON.stringify(transformedData));
-        console.log("Form Submitted:", JSON.stringify(transformedData));
+        setErrorMessage(err.message);
+      } finally {        
         setIsLoading(false);
-        if (!isError) setIsSubmitted(true);
+        // if (!isError) setIsSubmitted(true);
       }
     };
     
