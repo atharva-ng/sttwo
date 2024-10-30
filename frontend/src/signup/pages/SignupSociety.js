@@ -219,7 +219,10 @@ const SignupSociety = () => {
           throw new Error(data.message || "Something Went Wrong");
         }
         else{
-          setIsSubmitted(true);
+          localStorage.setItem('isSubmitted', true); // Store submission status in localStorage
+          window.location.reload();
+          
+          // setIsSubmitted(true);
           localStorage.setItem('formData', JSON.stringify(transformedData));
           console.log("Form Submitted:", JSON.stringify(transformedData));
         }
@@ -238,6 +241,11 @@ const SignupSociety = () => {
 
     useEffect(() => {
       fetchData();
+      const submissionStatus = localStorage.getItem('isSubmitted');
+    if (submissionStatus) {
+      setIsSubmitted(true);
+      localStorage.removeItem('isSubmitted'); // Clear the stored value
+    }
     }, []);
 
     // Callback to update `isFilled` status for WingDetailsForm
