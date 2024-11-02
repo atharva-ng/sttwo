@@ -11,6 +11,8 @@ import SubmittedModal from "./SubmittedModal.js";
 import ErrorModal from "./ErrorModal.js";
 
 
+
+
 import "./LoadingPopUp.css";
 
 const SignupSociety = () => {
@@ -213,25 +215,37 @@ const SignupSociety = () => {
     
         if (!response.ok) {
           const data = await response.json();
-          throw new Error('Failed to post formData');
+          
+          throw new Error(data.message || "Something Went Wrong");
+        }
+        else{
+          localStorage.setItem('isSubmitted', true); // Store submission status in localStorage
+          window.location.reload();
+          
+          // setIsSubmitted(true);
+          localStorage.setItem('formData', JSON.stringify(transformedData));
+          console.log("Form Submitted:", JSON.stringify(transformedData));
         }
     
         // Handle successful response if needed
       } catch (err) {
-        console.log('Error posting notice:', err);
+        console.log('Error posting notice:', err);        
         setIsError(true);
-        setErrorMessage("There was some Error while submitting the Form. Please Try Again.");
-      } finally {
-        localStorage.setItem('formData', JSON.stringify(transformedData));
-        console.log("Form Submitted:", JSON.stringify(transformedData));
+        setErrorMessage(err.message);
+      } finally {        
         setIsLoading(false);
-        if (!isError) setIsSubmitted(true);
+        // if (!isError) setIsSubmitted(true);
       }
     };
     
 
     useEffect(() => {
       fetchData();
+      const submissionStatus = localStorage.getItem('isSubmitted');
+    if (submissionStatus) {
+      setIsSubmitted(true);
+      localStorage.removeItem('isSubmitted'); // Clear the stored value
+    }
     }, []);
 
     // Callback to update `isFilled` status for WingDetailsForm
@@ -249,15 +263,16 @@ const SignupSociety = () => {
       <h1 className="text-2xl font-bold text-center mb-6">Society Registration Form</h1>
       
       <div className="flex justify-between mb-6">
-  {['Basic Information', 'Wing Information', 'Maintenance Heads', 'Maintenance amount'].map((label, index) => (
+  {['Basic Information', 'Wing Information', 'Maintenance Heads', 'Maintenance Amount'].map((label, index) => (
     <div key={index} className={`flex items-center ${index + 1 === step ? 'text-blue-600 font-bold' : 'text-gray-400'}`}>
       <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${index + 1 === step ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
         {index + 1 < step ? <Check className="text-gray-600 size-4" /> : index + 1}
       </div>
-      {label}
+      <span className="hidden sm:inline">{label}</span> {/* Hide text on small screens */}
     </div>
   ))}
 </div>
+
 
       {
         isLoading && 
