@@ -101,58 +101,58 @@ const SignupSociety = () => {
         
 
         // sample data
-    const data = {
-      "roomSizes": [
-          {
-              "id": 1,
-              "size": "1RK"
-          },
-          {
-              "id": 2,
-              "size": "1BHK"
-          },
-          {
-              "id": 3,
-              "size": "2BHK"
-          },
-          {
-              "id": 4,
-              "size": "3BHK"
-          },
-          {
-              "id": 5,
-              "size": "4BHK"
-          },
-          {
-              "id": 6,
-              "size": "5BHK"
-          },
-          {
-              "id": 7,
-              "size": "6BHK"
-          },
-          {
-              "id": 8,
-              "size": "7BHK"
-          }
-      ],
-      "maintainanceHeads": [
-          "Electric Charges",
-          "Water Charges",
-          "Service & Maintenance Charges",
-          "Sinking Fund",
-          "Repairing Fund",
-          "Non Agriculture Tax",
-          "Festival & Welfare Charges",
-          "Four Wheelers Parking Charges",
-          "Education & Training Fund"
-      ]
+  //   const data = {
+  //     "roomSizes": [
+  //         {
+  //             "id": 1,
+  //             "size": "1RK"
+  //         },
+  //         {
+  //             "id": 2,
+  //             "size": "1BHK"
+  //         },
+  //         {
+  //             "id": 3,
+  //             "size": "2BHK"
+  //         },
+  //         {
+  //             "id": 4,
+  //             "size": "3BHK"
+  //         },
+  //         {
+  //             "id": 5,
+  //             "size": "4BHK"
+  //         },
+  //         {
+  //             "id": 6,
+  //             "size": "5BHK"
+  //         },
+  //         {
+  //             "id": 7,
+  //             "size": "6BHK"
+  //         },
+  //         {
+  //             "id": 8,
+  //             "size": "7BHK"
+  //         }
+  //     ],
+  //     "maintainanceHeads": [
+  //         "Electric Charges",
+  //         "Water Charges",
+  //         "Service & Maintenance Charges",
+  //         "Sinking Fund",
+  //         "Repairing Fund",
+  //         "Non Agriculture Tax",
+  //         "Festival & Welfare Charges",
+  //         "Four Wheelers Parking Charges",
+  //         "Education & Training Fund"
+  //     ]
 
       
-  }
+  // }
 
-  setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
-        setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
+        // setRoomSizes(data.roomSizes); // Ensure roomSizes is updated
+        // setMaintenanceHeads(data.maintainanceHeads); // Ensure roomSizes is updated
 
       } finally {
         setIsLoading(false);

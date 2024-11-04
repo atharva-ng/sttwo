@@ -1,6 +1,6 @@
 const HttpError = require("../models/http-error");
 
-const {createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery, createCommentQuery } = require("../dbUtils/communityCommunicationQuery");
+const {createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery, createCommentQuery, getCommentsQuery, deleteCommentQuery } = require("../dbUtils/communityCommunicationQuery");
 
 
 const getComplaints= async(req, res, next) => {
@@ -151,12 +151,21 @@ const updateComplaint = async (req, res, next) => {
 
 const createComment=async (req, res, next) => {
   const userId=req.userData.userId;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const error = new HttpError("Invalid inputs passed, please check your data", 422);
+    error.data = errors.array();
+    return next(error);
+  }
+
   const {complaint_id, content}= req.body;
 
   try{
-    const complaintData = await createCommentQuery(complaint_id, content, userId);
+    const commentData = await createCommentQuery(complaint_id, content, userId);
 
-    return res.status(201).json({"commentId": complaintData});
+    return res.status(201).json({"commentId": commentData});
   }catch (error) {
     if (error instanceof HttpError) {
       return next(error);
@@ -167,7 +176,121 @@ const createComment=async (req, res, next) => {
   }
 } 
 
+const getComments = async (req, res, next) => {
+  const userId=req.userData.userId;
 
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const error = new HttpError("Invalid inputs passed, please check your data", 422);
+    error.data = errors.array();
+    return next(error);
+  }
+
+  const {complaint_id}= req.body;
+
+  try{
+    const commentData = await getCommentsQuery(complaint_id, userId);
+
+    return res.status(200).json({"commentId": commentData});
+  }catch (error) {
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+}
+
+const deleteComment = async (req, res, next) => {
+  const userId=req.userData.userId;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const error = new HttpError("Invalid inputs passed, please check your data", 422);
+    error.data = errors.array();
+    return next(error);
+  }
+
+  const {complaint_id, comment_id}= req.body;
+
+  if(complaint_id===NaN){
+    return next(new HttpError("Id of the comment is invalid and should be a number", 400));
+  }
+
+  try{
+    
+    const commentGetData = await getCommentsQuery(complaint_id, userId);
+    if(commentGetData.length===0){
+      return next(new HttpError("You do not have permission to delete this comment", 403));
+    }
+  }catch(error){
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong", 500));
+    }
+  }
+
+  try{
+    await deleteCommentQuery(comment_id, complaint_id, userId);
+
+    return res.status(200).json({"message":"Successfully Deleted"});
+  }catch(error){
+    if (error instanceof HttpError) {
+      return next(error);
+    } else {
+      console.log(error);
+      return next(new HttpError("Something went wrong-delete comment", 500));
+    }
+  }
+}
+
+// const updateComment = async (req, res, next) => {
+//   const userId=req.userData.userId;
+//   const {complaint_id}= req.body;
+
+//   if(complaint_id===NaN){
+//     return next(new HttpError("Id of the comment is invalid and should be a number", 400));
+//   }
+
+//   try{
+//     const commentGetData = await getCommentsQuery(complaint_id, userId);
+//     if(commentGetData.length===0){
+//       return next(new HttpError("You do not have permission to update this comment", 403));
+//     }
+//   }catch(error){
+//     if (error instanceof HttpError) {
+//       return next(error);
+//     } else {
+//       console.log(error);
+//       return next(new HttpError("Something went wrong", 500));
+//     }
+//   }
+//   try{
+//     var { content } = req.body;
+
+//     const queryParams = {
+//       userId: userId,
+//       complaintId: complaint_id,
+//       content: content
+//     };
+    
+//     const result = await updateCommentQuery(queryParams);
+
+//     return res.status(200).json(result[0]);
+//   }catch(error){
+//     if (error instanceof HttpError) {
+//       return next(error);
+//     } else {
+//       console.log(error);
+//       return next(new HttpError("Something went wrong-updateComplaint", 500));
+//     }
+//   }
+// }
 
 exports.createComplaint = createComplaint;
 exports.getComplaints = getComplaints;
@@ -175,3 +298,6 @@ exports.deleteComplaint = deleteComplaint;
 exports.updateComplaint = updateComplaint;
 
 exports.createComment = createComment;
+exports.getComments = getComments;
+exports.deleteComment = deleteComment;
+// exports.updateComment = updateComment;

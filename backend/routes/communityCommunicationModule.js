@@ -21,13 +21,27 @@ router.post('/notices',[
 router.patch('/notices/:id', communityCommControllerNotices.updateNotice);
 router.delete('/notices/:id', communityCommControllerNotices.deleteNotice);
 
+router.get('/complaints/comments',[
+  check('complaint_id').trim().not().isEmpty().withMessage('Complaint ID cannot be empty').isNumeric().withMessage('Complaint ID must be a number').escape()
+],communityCommControllerComplaints.getComments);
+router.post('/complaints/comments',[
+  check('complaint_id').trim().not().isEmpty().withMessage('Complaint ID cannot be empty').isNumeric().withMessage('Complaint ID must be a number').escape(),
+  check('content').trim().not().isEmpty().withMessage('Content cannot be empty').escape()
+], communityCommControllerComplaints.createComment);
+// router.patch('/complaints/comments', communityCommControllerComplaints.updateComment);
+router.delete('/complaints/comments',[
+  check('complaint_id').trim().not().isEmpty().withMessage('Complaint ID cannot be empty').isNumeric().withMessage('Complaint ID must be a number'). escape(),
+  check('comment_id').trim().not().isEmpty().withMessage('Comment ID cannot be empty').isNumeric().withMessage('Comment ID must be a number').escape()
+], communityCommControllerComplaints.deleteComment);
 
 router.get('/complaints', communityCommControllerComplaints.getComplaints);
 router.post('/complaints', communityCommControllerComplaints.createComplaint);
-router.patch('/complaints/:id', communityCommControllerComplaints.updateComplaint);
+router.patch('/complaints/:id', [
+  check('title').trim().not().isEmpty().withMessage('Title cannot be empty').escape(),
+  check('description').trim().not().isEmpty().withMessage('Description cannot be empty').escape(),
+  check('categoryId').trim().not().isEmpty().withMessage('Category ID cannot be empty').isNumeric().withMessage('Category ID must be a number'). escape()
+],communityCommControllerComplaints.updateComplaint);
 router.delete('/complaints/:id', communityCommControllerComplaints.deleteComplaint);
-
-router.post('/complaints/comments', communityCommControllerComplaints.createComment);
 
 
 module.exports = router;

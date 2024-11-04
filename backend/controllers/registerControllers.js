@@ -35,12 +35,12 @@ const genRooms = async (roomData, floors, roomsPerFloor) => {
 const registerSociety = async (req, res, next) => {
   const errors = validationResult(req);
 
+  
   if (!errors.isEmpty()) {
     const error = new HttpError("Invalid inputs passed, please check your data", 422);
     error.data = errors.array();
     return next(error);
   }
-
 
   const { name, dateOfEstablishment, emailAddress, password, phoneNumber, address, city, state, pincode, numberOfWings, registrationNumber } = req.body.societyDetails;
 

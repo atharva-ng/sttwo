@@ -11,7 +11,7 @@ const createNoticeQuery = async (title, content, start_date, end_date, userId, c
     return result.rows;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-createNoticeQuery", 500);
@@ -33,7 +33,7 @@ const getNoticesQuery = async (queryParams) => {
     return result.rows;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-getNoticesQuery", 500);
@@ -48,7 +48,7 @@ const getNoticeCategoriesQuery = async () => {
     return result.rows;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-getNoticeCategoriesQuery", 500);
@@ -70,7 +70,7 @@ const updateNoticeQuery = async (title, content, start_date, end_date, userId, i
     return result.rows;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-updateNoticesQuery", 500);
@@ -86,7 +86,7 @@ const deleteNoticeQuery=async (id, userId)=>{
     ]);
   }catch(error){
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       if(error.length==176){
         throw new HttpError("You do not have permission to delete this notice", 403);
@@ -114,7 +114,7 @@ const getComplaintsQuery = async (queryParams) => {
     return result.rows;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-getComplaintsQuery", 500);
@@ -133,7 +133,7 @@ const createComplaintQuery = async (soc_id, room_transaction_id,title, descripti
     return result.rows[0].insert_complaint;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-createComplaintQuery", 500);
@@ -180,15 +180,74 @@ const createCommentQuery = async (complaint_id, content, society_id) => {
     return result.rows[0].createcomment;
   } catch (error) {
     if (error instanceof HttpError) {
-      return next(error);
+      throw error;
     } else {
       console.log(error);
       throw new HttpError("Something went wrong-createCommentQuery", 500);
     }
   }
 };
+
+const getCommentsQuery=async (complaint_id, userId)=>{
+  try {
+    const result = await pool.query('SELECT * FROM getComments($1, $2);', [
+      complaint_id,
+      userId
+    ]);
+    
+    return result.rows;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      throw error;
+    } else {
+      console.log(error);
+      throw new HttpError("Something went wrong-createCommentQuery", 500);
+    }
+  }
+}
+
+// const updateCommentQuery= async(queryParams)=>{
+//   try {
+//     const result = await pool.query('SELECT * FROM updateComment($1, $2, $3);', [
+//       queryParams.complaint_id,
+//       queryParams.userId,
+//       queryParams.content
+//     ]);
+//     return result.rows;
+//   } catch (error) {
+//     if (error instanceof HttpError) {
+//       throw error;
+//     } else {
+//       console.log(error);
+//       throw new HttpError("Something went wrong-createCommentQuery", 500);
+//     }
+//   }
+// }
+
+
+const deleteCommentQuery=async (comment_id, complaint_id, userId)=>{
+  try{
+    const result = await pool.query('SELECT * FROM deleteComment($1, $2, $3);', [
+      comment_id,
+      complaint_id,
+      userId
+    ]);
+  }catch(error){
+    if (error instanceof HttpError) {
+      throw error;
+    } else {
+      console.log(error);
+      if(error.length==176){
+        throw new HttpError("You do not have permission to delete this comment", 403);
+      }else if(error.length===149){
+        throw new HttpError("Comment does not exist", 404);
+      }
+      throw new HttpError("Something went wrong-deleteCommentQuery", 500);
+    }
+  }
+}
 //Comments End====================================================================================================
 
-module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery, createCommentQuery};
+module.exports = { createNoticeQuery, getNoticesQuery, getNoticeCategoriesQuery, updateNoticeQuery, deleteNoticeQuery, createComplaintQuery, getComplaintsQuery, deleteComplaintQuery, updateComplaintQuery, createCommentQuery, getCommentsQuery, deleteCommentQuery};
 
 

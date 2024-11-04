@@ -440,48 +440,113 @@ Delete an existing complaint.
 - `403 Forbidden`: User does not have permission to delete this complaint
 - `500 Internal Server Error`: Something went wrong while deleting the complaint
 
+# Complaints Comments API Documentation
+
+## Endpoints
+
+### Get Comments
+#### GET `/api/complaints/comments`
+Retrieve comments for a specific complaint.
+
+#### Request Body
+```json
+{
+  "complaint_id": number
+}
+```
+
+#### Response
+- `200 OK`: Successfully retrieved the comments
+  ```json
+  {
+    "commentId": [
+      // Array of comment objects
+    ]
+  }
+  ```
+
+#### Error Responses
+- `422 Unprocessable Entity`: Invalid input data
+  ```json
+  {
+    "message": "Invalid inputs passed, please check your data",
+    "data": [
+      // Array of validation errors
+    ]
+  }
+  ```
+- `500 Internal Server Error`: Something went wrong while retrieving comments
+
 ### Create Comment
-#### POST `/api/complaints/comment`
-Add a comment to an existing complaint.
+#### POST `/api/complaints/comments`
+Add a new comment to a complaint.
 
 #### Request Body
 ```json
 {
   "complaint_id": number,
-  "society_id": number,
-  "room_transaction_id": number,
   "content": string
 }
 ```
 
+#### Validation Rules
+- `complaint_id`: Required, must be numeric
+- `content`: Required, non-empty string
+
 #### Response
-- `200 OK`: Successfully added the comment
+- `201 Created`: Successfully created the comment
   ```json
   {
-    "message": "Success"
+    "commentId": number
   }
   ```
 
 #### Error Responses
+- `422 Unprocessable Entity`: Invalid input data
+  ```json
+  {
+    "message": "Invalid inputs passed, please check your data",
+    "data": [
+      // Array of validation errors
+    ]
+  }
+  ```
 - `500 Internal Server Error`: Something went wrong while creating the comment
 
-## Authentication
-All endpoints require authentication. The user ID is extracted from the authentication token and available as `req.userData.userId`.
+### Delete Comment
+#### DELETE `/api/complaints/comments`
+Delete a specific comment from a complaint.
 
-## Error Handling
-The API uses a custom `HttpError` class for error handling. All endpoints wrap their logic in try-catch blocks to handle both expected errors (like validation errors) and unexpected errors (like database failures).
+#### Request Body
+```json
+{
+  "complaint_id": number,
+  "comment_id": number
+}
+```
 
-## Query Construction
-Database queries are constructed using utility functions from the `communityCommunicationQuery` module:
-- `createComplaintQuery`
-- `getComplaintsQuery`
-- `deleteComplaintQuery`
-- `updateComplaintQuery`
-- `createCommentQuery`
+#### Validation Rules
+- `complaint_id`: Required, must be numeric
+- `comment_id`: Required, must be numeric
 
-## Authorization
-The API implements authorization checks for update and delete operations:
-1. Users can only modify complaints they have access to
-2. Attempting to modify unauthorized complaints returns a 403 Forbidden error
-3. The system verifies permissions before executing update or delete operations
+#### Response
+- `200 OK`: Successfully deleted the comment
+  ```json
+  {
+    "message": "Successfully Deleted"
+  }
+  ```
 
+#### Error Responses
+- `400 Bad Request`: Invalid comment ID format
+- `403 Forbidden`: User does not have permission to delete this comment
+- `422 Unprocessable Entity`: Invalid input data
+  ```json
+  {
+    "message": "Invalid inputs passed, please check your data",
+    "data": [
+      // Array of validation errors
+    ]
+  }
+  ```
+- `500 Internal Server Error`: Something went wrong while deleting the comment
