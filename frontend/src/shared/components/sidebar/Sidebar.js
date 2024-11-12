@@ -63,6 +63,7 @@ const Sidebar = () => {
       setActiveParent(item);
       // Ensure child is defined before transforming it for the URL
       const childRoute = child ? child.toLowerCase().replace(/\s+/g, '-') : '';
+      console.log(`${route}/${childRoute}`);
       history.push(`${route}/${childRoute}`);
     } else {
       setActiveItem(item);
@@ -77,13 +78,18 @@ const Sidebar = () => {
       <NavItem
         icon={Home}
         label="Dashboard"
+        children={['Maintenance Overview', 'Helpdesk Overview', 'Fund Positions', 'Occupancy Overview']}
         isActive={activeItem === 'Dashboard'}
-        onClick={() => handleClick('Dashboard', null, '/dashboard')} // Route for Dashboard
+        activeChild={activeChild}
+        parentKey="Dashboard"
+        
+        onClick={(child) => handleClick('Dashboard', child, '/dashboard')}
       />
+      
       <NavItem
         icon={DollarSign}
         label="Finance Management"
-        children={['On-line ballots', 'On-line AGM']}
+        children={['Bank amount/assets/funds held', 'Income and Expense Management', 'General Ledger', 'Assets and Inventory']}
         isActive={activeItem === 'Finance Management'}
         activeChild={activeChild}
         parentKey="Finance Management"
@@ -92,19 +98,27 @@ const Sidebar = () => {
       <NavItem
         icon={PencilRuler}
         label="Facility Management"
+        children={['Renting', 'Scheduling Facility Usage']}
         isActive={activeItem === 'Facility Management'}
-        onClick={() => handleClick('Facility Management', null, '/facility-management')} // Route for Facility Management
+        activeChild={activeChild}
+        parentKey="Facility Management"
+        
+        onClick={(child) => handleClick('Facility Management', child, '/facility-management')} // Route for Facility Management
       />
       <NavItem
         icon={ScrollText}
         label="Admin Reports"
+        children={['Income/Expense Overview', 'Maintenance Overview', 'Helpdesk Overview', 'Fund Positions', 'Occupancy Overview']}
         isActive={activeItem === 'Admin Reports'}
-        onClick={() => handleClick('Admin Reports', null, '/admin-reports')} // Route for Admin Reports
+        activeChild={activeChild}
+        parentKey="Admin Reports"
+        
+        onClick={(child) => handleClick('Admin Reports', child, '/admin-reports')} // Route for Admin Reports
       />
       <NavItem
         icon={Megaphone}
         label="Community Communications"
-        children={['Notices', 'Help-desk', 'On-line ballots', 'On-line AGM']}
+        children={['Notices','Helpdesk', 'Complaint Mangement', 'Voting For Meetings', 'On-line AGM']}
         isActive={activeItem === 'Community Communications'}
         activeChild={activeChild}
         parentKey="Community Communications"

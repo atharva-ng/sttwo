@@ -29,7 +29,7 @@ function App() {
     routes = (
       <Switch>
         
-        <Route path='/community-communications/help-desk' exact>
+        <Route path='/community-communications/helpdesk' exact>
           <SocietyOnboarding token={token}/>
         </Route>
         <Route path='/profile' exact>
