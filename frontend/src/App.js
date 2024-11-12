@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Homepage from './homepage/pages/Homepage';
 import Navbar from './shared/components/navbar/Navbar';
+import Sidebar from './shared/components/sidebar/Sidebar';
 import Footer from './shared/components/Footer';
 import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
@@ -24,6 +25,7 @@ function App() {
       routes = (
         <>
           <Switch>
+            <Sidebar />
             <Route path='/' exact>
               {/* <FlatsInformation /> */}
             </Route>
