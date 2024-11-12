@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { ChevronUp, ChevronDown, Home, DollarSign, PencilRuler, ScrollText, Megaphone, UserRoundPen, Settings } from 'lucide-react';
 
-const NavItem = ({ icon: Icon, label, children, isActive, activeChild, parentKey, onClick }) => {
+const NavItem = ({ icon: Icon, label, to, children, isActive, activeChild, parentKey, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasChildren = children && children.length > 0;
 
@@ -12,8 +12,8 @@ const NavItem = ({ icon: Icon, label, children, isActive, activeChild, parentKey
         className={`flex items-center px-4 py-3 cursor-pointer hover:bg-gray-100 relative
           ${isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-600'}`}
         onClick={() => {
-          onClick();
-          if (hasChildren) setIsOpen(!isOpen);
+          onClick(); // This will handle navigation
+          if (hasChildren) setIsOpen(!isOpen); // Toggle open state for child items
         }}
       >
         {isActive && (
@@ -34,7 +34,7 @@ const NavItem = ({ icon: Icon, label, children, isActive, activeChild, parentKey
                 ${activeChild === child && parentKey === label ? 'bg-blue-50 text-blue-600' : 'text-gray-600'}`}
               onClick={(e) => {
                 e.stopPropagation();
-                onClick(child);
+                onClick(child); // Navigate on child click
               }}
             >
               {activeChild === child && parentKey === label && (
@@ -50,22 +50,25 @@ const NavItem = ({ icon: Icon, label, children, isActive, activeChild, parentKey
 };
 
 const Sidebar = () => {
-// 
-    // const navigate = useNavigate();
+  const history = useHistory(); // Hook for navigation
 
   const [activeItem, setActiveItem] = useState('Help-desk');
   const [activeChild, setActiveChild] = useState('Help-desk');
   const [activeParent, setActiveParent] = useState('Community Communications');
 
-  const handleClick = (item, child = null) => {
+  const handleClick = (item, child = null, route = '/') => {
     if (child) {
       setActiveItem(item);
       setActiveChild(child);
       setActiveParent(item);
+      // Ensure child is defined before transforming it for the URL
+      const childRoute = child ? child.toLowerCase().replace(/\s+/g, '-') : '';
+      history.push(`${route}/${childRoute}`);
     } else {
       setActiveItem(item);
       setActiveChild(null);
       setActiveParent(null);
+      history.push(route);
     }
   };
 
@@ -75,7 +78,7 @@ const Sidebar = () => {
         icon={Home}
         label="Dashboard"
         isActive={activeItem === 'Dashboard'}
-        onClick={<Redirect to="/dashboard" />}
+        onClick={() => handleClick('Dashboard', null, '/dashboard')} // Route for Dashboard
       />
       <NavItem
         icon={DollarSign}
@@ -84,19 +87,19 @@ const Sidebar = () => {
         isActive={activeItem === 'Finance Management'}
         activeChild={activeChild}
         parentKey="Finance Management"
-        onClick={(child) => handleClick('Finance Management', child)}
+        onClick={(child) => handleClick('Finance Management', child, '/finance-management')} // Dynamic child route
       />
       <NavItem
         icon={PencilRuler}
         label="Facility Management"
         isActive={activeItem === 'Facility Management'}
-        onClick={() => handleClick('Facility Management')}
+        onClick={() => handleClick('Facility Management', null, '/facility-management')} // Route for Facility Management
       />
       <NavItem
         icon={ScrollText}
         label="Admin Reports"
         isActive={activeItem === 'Admin Reports'}
-        onClick={() => handleClick('Admin Reports')}
+        onClick={() => handleClick('Admin Reports', null, '/admin-reports')} // Route for Admin Reports
       />
       <NavItem
         icon={Megaphone}
@@ -105,19 +108,19 @@ const Sidebar = () => {
         isActive={activeItem === 'Community Communications'}
         activeChild={activeChild}
         parentKey="Community Communications"
-        onClick={(child) => handleClick('Community Communications', child)}
+        onClick={(child) => handleClick('Community Communications', child, '/community-communications')} // Dynamic child route
       />
       <NavItem
         icon={UserRoundPen}
         label="Account Edit"
         isActive={activeItem === 'Account Edit'}
-        onClick={() => handleClick('Account Edit')}
+        onClick={() => handleClick('Account Edit', null, '/account-edit')} // Route for Account Edit
       />
       <NavItem
         icon={Settings}
         label="Settings"
         isActive={activeItem === 'Settings'}
-        onClick={() => handleClick('Settings')}
+        onClick={() => handleClick('Settings', null, '/settings')} // Route for Settings
       />
     </div>
   );

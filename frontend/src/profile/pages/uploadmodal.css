@@ -1,0 +1,14 @@
+@keyframes expandWidth {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  .loadingbar {
+    width: 0; /* Initial width */
+    animation: expandWidth 1s ease-in-out forwards infinite; /* 2s duration */
+  }
+  

@@ -1,5 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import Homepage from './homepage/pages/Homepage';
 import Navbar from './shared/components/navbar/Navbar';
 import Sidebar from './shared/components/sidebar/Sidebar';
@@ -8,12 +13,12 @@ import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
 
 import SocietyProfile from './profile/pages/SocietyProfile';
+import SocietyOnboarding from './profile/pages/SocietyOnboarding';
 import FlatsInformation from './profile/pages/FlatsInformation';
 import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
 
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
-
 
 function App() {
 
@@ -21,51 +26,43 @@ function App() {
 
   let routes;
   if (token) {
-    
-      routes = (
-        <>
-          <Switch>
-            <Sidebar />
-            <Route path='/' exact>
-              {/* <FlatsInformation /> */}
-            </Route>
-            <Route path='/profile' exact>
-              <SocietyProfile />
-            </Route>
-            <Route path='/flatsInformation' exact>
-              <FlatsInformation />
-            </Route>
-            <Route path='/dashboard' exact>
-              <SocietyProfile />
-            </Route>
-            <Route path='/notice' exact>
-              <CommunityNoticeBoardDriver />
-            </Route>
-            <Redirect to='/' />
-          </Switch>
-        </>
-      )
-    
+    routes = (
+      <Switch>
+        
+        <Route path='/community-communications/help-desk' exact>
+          <SocietyOnboarding token={token}/>
+        </Route>
+        <Route path='/profile' exact>
+          <SocietyProfile />
+        </Route>
+        <Route path='/flatsInformation' exact>
+          <FlatsInformation />
+        </Route>
+        <Route path='/dashboard' exact>
+          <SocietyProfile />
+        </Route>
+        <Route path='/notice' exact>
+          <CommunityNoticeBoardDriver />
+        </Route>
+        <Redirect to='/profile' />
+        {/* <ToastContainer /> */}
+      </Switch>
+    );
   } else {
     routes = (
-      <>
-        <Switch>
-          <Route path='/' exact>
-            <Homepage />
-          </Route>
-         
-          <Route path='/login' exact>
-            <LoginSociety />
-          </Route>
-          
-          <Route path='/signup' exact>
-            <SignupSociety />
-          </Route>
-          {/*  */}
-          <Redirect to='/' />
-        </Switch>
-      </>
-    )
+      <Switch>
+        <Route path='/' exact>
+          <Homepage />
+        </Route>
+        <Route path='/login' exact>
+          <LoginSociety />
+        </Route>
+        <Route path='/signup' exact>
+          <SignupSociety />
+        </Route>
+        <Redirect to='/' />
+      </Switch>
+    );
   }
 
   return (
@@ -77,17 +74,22 @@ function App() {
         login: login,
         logout: logout
       }}>
-
-        
-      <Navbar />
-        <main>{routes}</main>
-      <Footer />
-
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <div className="flex flex-1">
+            {/* Conditionally render the Sidebar only when user is logged in */}
+            {token && <Sidebar className="w-1/4" />}
+            
+            {/* Main content area */}
+            <main className={token ? "flex-1 bg-gray-100" : "w-full p-4"}>
+              {routes}
+            </main>
+          </div>
+          <Footer />
+        </div>
       </AuthContext.Provider>
-
     </Router>
   );
 }
-
 
 export default App;
