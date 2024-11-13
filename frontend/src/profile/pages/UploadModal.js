@@ -43,6 +43,7 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
           toast.success("File Uploaded");
           localStorage.setItem('fileUpload', selectedFile);
           console.log("Form Submitted:", selectedFile);
+          setUploadModal(false);
         }
       } catch (err) {
         console.log('Error posting notice:', err);
@@ -53,6 +54,7 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
     } else {
       toast.error("No file selected.");
       setIsUploading(false);
+      
       console.log('No file selected.');
     }
   };
