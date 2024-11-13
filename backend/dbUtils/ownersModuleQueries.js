@@ -4,7 +4,7 @@ const HttpError = require("../models/http-error");
 
 
 const saveOwnerDataQuery = async (ownerData) => {
-  console.log(ownerData);
+
   try {
     const result = await pool.query("SELECT saveOwnerDetails($1::jsonb);", [await JSON.stringify(await ownerData)]);
     console.log(result);

@@ -16,6 +16,6 @@ router.get('/', ownersModuleController.getOwnersData);
 
 router.get('/get-excel', ownersModuleController.getOwnersModuleExcel);
 
-router.post('/post-excel', upload.single('excel'), ownersModuleController.postOwnersModuleExcel);
+router.post('/post-excel', upload.single('file'), ownersModuleController.postOwnersModuleExcel);
 
 module.exports = router;
