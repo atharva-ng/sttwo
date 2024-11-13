@@ -1,9 +1,8 @@
-const pool = require('./db');
 const HttpError = require("../models/http-error");
 
-const saveWingQuery = async (societyID, name, roomsPerFloor) => {
+const saveWingQuery = async (client,societyID, name, roomsPerFloor) => {
   try {
-    const result = await pool.query('CALL savewing($1,$2,$3,$4);', [
+    const result = await client.query('CALL savewing($1,$2,$3,$4);', [
       societyID,
       name,
       roomsPerFloor,
@@ -16,9 +15,9 @@ const saveWingQuery = async (societyID, name, roomsPerFloor) => {
 };
 
 
-const createRoomLinkQuery = async (wingId, roomSizeId) => {
+const createRoomLinkQuery = async (client, wingId, roomSizeId) => {
   try {
-    const result = await pool.query('CALL createlink($1,$2,$3);', [
+    const result = await client.query('CALL createlink($1,$2,$3);', [
       roomSizeId,
       wingId,
       null
@@ -31,10 +30,10 @@ const createRoomLinkQuery = async (wingId, roomSizeId) => {
     throw new HttpError("Failed to create room link", 500);
   }
 }
-const saveRoomQuery = async (roomsDB) => {
+const saveRoomQuery = async (client, roomsDB) => {
   try {
     for (const element of roomsDB) {
-      await pool.query(
+      await client.query(
         'INSERT INTO roomdetails(id,  roomlink_id, room_no, amount) VALUES (default, $1, $2, $3);',
         [
           element.roomLink,
@@ -50,11 +49,11 @@ const saveRoomQuery = async (roomsDB) => {
 };
 
 
-const savemaintenanceHeadQuery = async (roomLinkId, amountObj) => {
+const savemaintenanceHeadQuery = async (client,roomLinkId, amountObj) => {
   const idList = []
   try {
     for (const [key, value] of Object.entries(amountObj)) {
-      idList.push(await pool.query(
+      idList.push(await client.query(
         'call insertmaintainancehead($1,$2,$3,$4)',
         [
           roomLinkId,

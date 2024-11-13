@@ -58,25 +58,28 @@ const registerSociety = async (req, res, next) => {
     "registrationNumber": registrationNumber
   }
   var societyID;
-  try {
-    societyID=await postSocietyDetailsQuery(societyDetails);
-    if(societyID===null){
-      throw new HttpError("Failed to save society details", 500);
-    }
-  } catch (error) {
-    if (error instanceof HttpError) {
-      return next(error);
-    } else {
-      return next(new HttpError("Something went wrong-saving society", 500))
-    }
+
+  var client;
+  try{
+    client = await pool.connect();
+  }catch(err){
+    console.log(err);
+    return next(new HttpError("Something went wrong", 500));
   }
+
   
   //Iterating over wings
   try {
+    await client.query('BEGIN');
+    societyID=await postSocietyDetailsQuery(client, societyDetails);
+    if(societyID===null){
+      throw new HttpError("Failed to save society details", 500);
+    }
+
     for (let i = 1; i <= numberOfWings; i++) {
       //For every wing
       const dbObj=req.body.wingInformation[i];
-      const wingId = await saveWingQuery(societyID, dbObj.name, dbObj.roomsPerFloor);
+      const wingId = await saveWingQuery(client, societyID, dbObj.name, dbObj.roomsPerFloor);
 
       if (wingId === null) {
         throw new HttpError("Failed to save wing", 500);
@@ -88,9 +91,9 @@ const registerSociety = async (req, res, next) => {
       const roomLinkIds = {};
       for (let j = 1; j <= roomsPerFloor; j++) {
         const roomSizeID= Number(dbObj.roomDetails[j].roomSize);
-        const id = await createRoomLinkQuery(roomSizeID, wingId);
+        const id = await createRoomLinkQuery(client, roomSizeID, wingId);
         roomLinkIds[`${roomSizeID}-${dbObj.roomDetails[j].roomNumber}`] = id;
-        await savemaintenanceHeadQuery(id, dbObj.roomDetails[j].maintenanceHeadAmount);
+        await savemaintenanceHeadQuery(client, id, dbObj.roomDetails[j].maintenanceHeadAmount);
       }
 
 
@@ -105,15 +108,20 @@ const registerSociety = async (req, res, next) => {
           , floors, roomsPerFloor));
       }
 
-      await saveRoomQuery(rooms);
+      await saveRoomQuery(client ,rooms);
+
+      await client.query('COMMIT');
     }
   } catch (error) {
+    await client.query('ROLLBACK');
     console.log(error);
     if (error instanceof HttpError) {
       throw error;
     } else {
       throw new HttpError("Something went wrong-controller", 500);
     }
+  }finally{
+    client.release();
   }
   return res.status(200).json({
     "message": "Success"

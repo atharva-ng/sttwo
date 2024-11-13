@@ -36,9 +36,9 @@ const getMaintenanceHeadsQuery = async () => {
 };
 
 // Function to insert society details into the database
-const postSocietyDetailsQuery = async (societyDetails) => {
+const postSocietyDetailsQuery = async (client, societyDetails) => {
   try {
-    const res = await pool.query('CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);', [societyDetails.name,
+    const res = await client.query('CALL insertsociety($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);', [societyDetails.name,
     societyDetails.emailAddress,
     societyDetails.address,
     societyDetails.city,
