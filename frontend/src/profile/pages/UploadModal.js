@@ -16,60 +16,46 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
 
   const handleUpload = async () => {
     setIsUploading(true);
-    console.log("true");
+    console.log("Uploading:", selectedFile);
+  
     if (selectedFile) {
-      console.log('Selected file:', selectedFile.name);
-      // You can handle file uploading logic here
+      const formData = new FormData();
+      formData.append("excel", selectedFile); 
       
-
+      console.log("lets see", formData, formData.key, formData.value);
       try {
         const response = await fetch(API_URL, {
           method: 'POST',
-          headers: { 
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
+          headers: {
+            'Authorization': `Bearer ${token}`, 
+            // 'Content-Type' will be automatically set to 'multipart/form-data' by FormData
           },
-          body: (selectedFile),
+          body: formData,  
         });
-    
+  
+        
         if (!response.ok) {
           const data = await response.json();
-          
-          throw new Error(data.message || "Something Went Wrong");
-        }
-        else{
-          localStorage.setItem('isUploaded', true); 
+          throw new Error(data.message || "Something went wrong");
+        } else {
+          localStorage.setItem('isUploaded', true);
           toast.success("File Uploaded");
-          // window.location.reload();
-          
-          // setIsSubmitted(true);
-          localStorage.setItem('fileUpload', (selectedFile));
-          console.log("Form Submitted:", (selectedFile));
+          localStorage.setItem('fileUpload', selectedFile);
+          console.log("Form Submitted:", selectedFile);
         }
-    
-        // Handle successful response if needed
       } catch (err) {
-        console.log('Error posting notice:', err);        
+        console.log('Error posting notice:', err);
         toast.error("Error Uploading File.");
-        
-        // setIsError(true);
-        // setErrorMessage(err.message);
-      } finally {        
-        
-        // console.log("Form Submitted:", (selectedFile));
+      } finally {
         setIsUploading(false);
-        // console.log("true");
-        // if (!isError) setIsSubmitted(true);
       }
-
-
     } else {
+      toast.error("No file selected.");
+      setIsUploading(false);
       console.log('No file selected.');
-
-
-
     }
   };
+  
 
   const handleFileChange = (event) => {
     setIsFileSelected(true);
@@ -173,7 +159,7 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
                 <button
                   onClick={() => handleUpload()}
                   type="button"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 >
                   Upload
                 </button>

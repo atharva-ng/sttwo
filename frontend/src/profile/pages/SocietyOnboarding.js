@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import DownloadModalComp from "./DownloadModal.js";
 import UploadModalComp from "./UploadModal.js";
+import { toast, ToastContainer } from 'react-toastify';
 
 const SocietyOnboarding = ({token}) => {
     const [uploadModal, setUploadModal] = useState(false);
@@ -11,7 +12,6 @@ const SocietyOnboarding = ({token}) => {
 
 
     const downloadExcel = async () => {
-      console.log("start");
     
       try {
         const response = await fetch(API_URL, {
@@ -43,7 +43,7 @@ const SocietyOnboarding = ({token}) => {
         link.href = downloadUrl;
     
         // Set the download attribute with the desired file name
-        // link.download = 'file.xlsx'; 
+        link.download = 'file.xlsx'; 
     
         // Append the link to the body
         document.body.appendChild(link);
@@ -55,9 +55,12 @@ const SocietyOnboarding = ({token}) => {
         document.body.removeChild(link);
     
         console.log("File downloaded successfully");
+        toast.success("File is Now Downloading.");
     
       } catch (err) {
+        toast.error("Error Downloading File.");
         console.log('Error downloading file:', err);
+        
       }
     };
     
@@ -72,16 +75,10 @@ const SocietyOnboarding = ({token}) => {
 {
         uploadModal && <UploadModalComp uploadModal = {uploadModal} setDownloadModal = {setUploadModal}/>
 } */}
-    <div className="flex justify-center min-h-screen">
-        
-                
+    <div className="flex justify-center min-h-screen">                
       <div className="text-center mt-10">
-
-
-
-
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Society Onboarding</h1>
-        <div className="space-y-4">
+        <h1 className="text-4xl font-bold text-gray-900 mb-10">Society Onboarding</h1>
+        <div className="space-y-8">
         {
                 downloadModal && <DownloadModalComp downloadModal = {downloadModal} setDownloadModal = {setDownloadModal} />
         }
@@ -102,6 +99,7 @@ const SocietyOnboarding = ({token}) => {
         </div>
       </div>
     </div>
+    <ToastContainer />
     </>
   );
 };
