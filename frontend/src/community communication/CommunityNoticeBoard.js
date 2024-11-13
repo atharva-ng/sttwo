@@ -4,66 +4,6 @@ import './CommunityNoticeBoard.css';
 import { AuthContext } from "./../shared/context/auth-context";
 
 const CommunityNoticeBoard = ({ isAdmin }) => {
-//   const [notices, setNotices] = useState([
-//     { id: 1, title: 'Welcome!', content: 'Welcome to our community board.', date: new Date().toISOString() },
-//   ]);
-//   const [newNotice, setNewNotice] = useState({ title: '', content: '' });
-
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setNewNotice(prev => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (newNotice.title && newNotice.content) {
-//       setNotices(prev => [
-//         { id: prev.length + 1, ...newNotice, date: new Date().toISOString() },
-//         ...prev
-//       ]);
-//       setNewNotice({ title: '', content: '' });
-//     }
-//   };
-
-//   return (
-//     <div className="notice-board">
-//       <h1>Community Notice Board</h1>
-      
-//       {isAdmin && (
-//         <form onSubmit={handleSubmit} className="notice-form">
-//           <h2>Post a New Notice</h2>
-//           <input
-//             type="text"
-//             name="title"
-//             value={newNotice.title}
-//             onChange={handleInputChange}
-//             placeholder="Notice Title"
-//             className="input-field"
-//           />
-//           <textarea
-//             name="content"
-//             value={newNotice.content}
-//             onChange={handleInputChange}
-//             placeholder="Notice Content"
-//             className="input-field"
-//           />
-//           <button type="submit" className="submit-button">Post Notice</button>
-//         </form>
-//       )}
-
-//       <div className="notices-container">
-//         {notices.map(notice => (
-//           <div key={notice.id} className="notice">
-//             <h3 className="notice-title">{notice.title}</h3>
-//             <p className="notice-content">{notice.content}</p>
-//             <div className="notice-date">
-//               Posted on: {new Date(notice.date).toLocaleString()}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
 
   const { token } = useContext(AuthContext);
   const [notices, setNotices] = useState([]);
@@ -71,7 +11,8 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
     title: '',
     content: '',
     start_date: '',
-    end_date: ''
+    end_date: '',
+    categoryId: '',
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -98,7 +39,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
         throw new Error('Failed to fetch notices');
       }
       const data = await response.json();
-      setNotices(data);
+      setNotices(data.notices);
     } catch (err) {
       setError('Failed to load notices. Please try again later.');
       console.error('Error fetching notices:', err);
@@ -116,6 +57,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
     e.preventDefault();
     if (newNotice.title && newNotice.content && newNotice.start_date && newNotice.end_date) {
       try {
+        console.log(newNotice);
         const response = await fetch(API_URL, {
           method: 'POST',
           headers: {
@@ -126,6 +68,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
         });
 
         if (!response.ok) {
+          console.log(response);
           throw new Error('Failed to post notice');
         }
         const postedNotice = await response.json();
@@ -134,6 +77,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
 
         window.location.reload();
       } catch (err) {
+        console.log(err); 
         setError('Failed to post notice. Please try again.');
         console.error('Error posting notice:', err);
       }

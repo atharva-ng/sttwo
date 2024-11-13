@@ -7,6 +7,7 @@ const HttpError = require('../models/http-error');
 const {  saveOwnerDataQuery } = require('../dbUtils/ownersModuleQueries');
 const {getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery}= require('../dbUtils/getters');
 
+
 const cleanGetData = (data) => {
   const uniqueWings = new Set();
   data.filter(item => {
@@ -147,8 +148,11 @@ async function generateGetExcelFile(dataVar) {
     selectUnlockedCells: true,
   });
 
-  const filePath = path.join(__dirname, 'SocietyDataWithBorders.xlsx');
-  await workbook.xlsx.writeFile(filePath);
+  // const filePath = path.join(__dirname, 'SocietyDataWithBorders.xlsx');
+  // await workbook.xlsx.writeFile(filePath);
+
+  const excelFileBuffer = await workbook.xlsx.writeBuffer();
+  return excelFileBuffer;
 
 }
 
@@ -230,13 +234,12 @@ const postOwnersModuleExcel = async (req, res, next) => {
 
     const result = await saveOwnerDataQuery(output.roomInfo);
 
-    // console.log(output.roomInfo);
+    return res.status(200).json({"message":"success"});
 
   } catch (error) {
     console.log('Error processing file:', error);
     throw new HttpError("Something went wrong- post owners module", 500);
   }
-  return res.status(200).json();
 }
 
 
@@ -261,3 +264,4 @@ const getOwnersData = async (req, res, next) => {
 exports.getOwnersModuleExcel = getOwnersModuleExcel;
 exports.postOwnersModuleExcel = postOwnersModuleExcel;
 exports.getOwnersData = getOwnersData;
+
