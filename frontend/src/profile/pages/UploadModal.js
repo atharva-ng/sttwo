@@ -20,7 +20,7 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
   
     if (selectedFile) {
       const formData = new FormData();
-      formData.append("excel", selectedFile); 
+      formData.append("file", selectedFile); 
       
       console.log("lets see", formData, formData.key, formData.value);
       try {
@@ -167,7 +167,7 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
                 <button
                   onClick={() => setUploadModal(false)}
                   type="button"
-                  className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 focus:ring-gray-700 "
+                  className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                 >
                   Cancel
                 </button>
