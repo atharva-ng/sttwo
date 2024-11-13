@@ -30,12 +30,13 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
             'Authorization': `Bearer ${token}`, 
             // 'Content-Type' will be automatically set to 'multipart/form-data' by FormData
           },
-          body: formData,  
+          body: (formData),  
         });
   
         
         if (!response.ok) {
-          const data = await response.json();
+          const data = await response.text();
+          console.log("bruh:",data);
           throw new Error(data.message || "Something went wrong");
         } else {
           localStorage.setItem('isUploaded', true);
