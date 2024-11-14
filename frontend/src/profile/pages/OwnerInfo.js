@@ -67,7 +67,7 @@ const OwnerInfo = ({formData, setFormData}) => {
             </thead>
             <tbody>
               {groupedRooms[wing].map((room, idx) => (
-                <tr key={room.roomno} className='bg-white border-b  hover:bg-gray-50'>
+                <tr key={room.roomno} className='odd:bg-white border-b even:bg-gray-100  hover:bg-gray-50'>
                   <td className="border px-4 py-2 font-medium text-gray-900 whitespace-nowrap">{idx + 1}</td>
                   <td className="border px-4 py-2">{room.roomno}</td>
                   <td className="border px-4 py-2">
