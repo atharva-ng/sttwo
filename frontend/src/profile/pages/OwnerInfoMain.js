@@ -6,6 +6,7 @@ import OwnerInfo from './OwnerInfo';
 const OwnerInfoMain = ({token}) => {
 
     const [formData, setFormData] = useState([]);
+    const[isError, setIsError] = useState(false);
     const [isDataFetched, setIsDataFetched] = useState(false);
 
     const API_URL = 'http://3.109.108.99:5007/api/ownersModule/';
@@ -29,6 +30,7 @@ const OwnerInfoMain = ({token}) => {
 
       if (!response.ok) {
         reject(new Error("Something went wrong while fetching the file."));
+        setIsError(true);
         return; // Exit if the request fails
       }
       const data = await response.json();
@@ -59,6 +61,7 @@ const OwnerInfoMain = ({token}) => {
     await downloadPromise;  // Await the promise to handle success/failure
     // setIsDownloading(false);
   } catch (err) {
+    setIsError(true);
     // setIsDownloading(false);
   }
     };
@@ -68,7 +71,7 @@ const OwnerInfoMain = ({token}) => {
         <ToastContainer />
     {
         isDataFetched ? 
-        (formData == []) ?
+        (formData == [] || isError) ?
         <SocietyOnboarding />
         :
         <OwnerInfo formData = {formData} setFormData={setFormData}/> 
