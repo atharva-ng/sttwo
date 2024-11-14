@@ -1,3 +1,4 @@
+const pool = require('../dbUtils/db');
 const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
@@ -130,16 +131,20 @@ const registerSociety = async (req, res, next) => {
 
 const getRegisterSociety = async (req, res, next) => {
   try {
-    const [roomSizes, maintenanceHeads] = await Promise.all([getRoomSizeQuery(), getMaintenanceHeadsQuery()]);
-    // const varm=await getSocietyId(130,3);
-    // console.log(varm);
+    const client = await pool.connect();
+    await client.query('BEGIN'); 
+    const [roomSizes, maintenanceHeads] = await Promise.all([getRoomSizeQuery(client), getMaintenanceHeadsQuery(client)]);
+    await client.query('COMMIT');
     res.status(200).json({
       "roomSizes": roomSizes,
       "maintenanceHeads": maintenanceHeads
     });
   } catch (err) {
+    await client.query('ROLLBACK');
     console.log(err);
     throw new HttpError("Something went wrong", 500);
+  }finally{
+    client.release();
   }
 }
 

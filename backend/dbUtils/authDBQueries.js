@@ -57,7 +57,7 @@ const postSocietyDetailsQuery = async (client, societyDetails) => {
       const hashedPassword = await hashPassword(societyDetails.password);
 
       try {
-        const result = await pool.query('CALL insertpassword($1, $2, 1, $3);', [
+        const result = await client.query('CALL insertpassword($1, $2, 1, $3);', [
           newId,
           hashedPassword,
           null
