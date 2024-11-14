@@ -13,8 +13,6 @@ import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
 
 import SocietyProfile from './profile/pages/SocietyProfile';
-import SocietyOnboarding from './profile/pages/SocietyOnboarding';
-import OwnderInfo from './profile/pages/OwnerInfo';
 import OwnerInfoMain from './profile/pages/OwnerInfoMain';
 import FlatsInformation from './profile/pages/FlatsInformation';
 import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
