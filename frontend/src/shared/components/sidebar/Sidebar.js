@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChevronUp, ChevronDown, Home, DollarSign, PencilRuler, ScrollText, Megaphone, UserRoundPen, Settings } from 'lucide-react';
 
+// import "./Sidebar.css";
+
 const NavItem = ({ icon: Icon, label, to, children, isActive, activeChild, parentKey, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasChildren = children && children.length > 0;
@@ -74,7 +76,12 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 h-screen bg-white border-r select-none">
+    <div className="w-64 h-screen  overflow-y-auto bg-white border-r select-none scrollbar mb-10"
+    style={{
+      scrollbarWidth:"none",
+    }}
+    
+    >
       <NavItem
         icon={Home}
         label="Dashboard"

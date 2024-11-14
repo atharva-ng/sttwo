@@ -25,6 +25,7 @@ const OwnerInfo = ({formData, setFormData}) => {
   };
 
   const groupedRooms = groupByWing(roomData);
+  console.log(groupedRooms);
 
 
   return (
