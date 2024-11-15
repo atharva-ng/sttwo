@@ -61,6 +61,7 @@ const Sidebar = () => {
       setActiveChild(child);
       setActiveParent(item);
       const childRoute = child ? child.toLowerCase().replace(/\s+/g, '-') : '';
+      console.log(childRoute);  
       history.push(`${route}/${childRoute}`);
     } else {
       setActiveItem(item);

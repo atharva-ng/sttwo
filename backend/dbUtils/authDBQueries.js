@@ -80,16 +80,16 @@ const postSocietyDetailsQuery = async (client, societyDetails) => {
 };
 
 // Function to handle user login
-const loginQuery = async (email, password, choice) => {
+const loginQuery = async (client, email, password, choice) => {
   if (choice != 1) {
     throw new HttpError("Something went wrong", 500);
   }
   try {
-    const result = await pool.query("CALL getemaillogin($1,$2, $3);", [email, choice, null]);
+    const result = await client.query("CALL getemaillogin($1,$2, $3);", [email, choice, null]);
     if (result.rows[0].idout === null) {
       throw new HttpError("Invalid credentials", 401);
     }
-    const hashedPassword = await pool.query('SELECT password FROM societypasswords WHERE id = $1;', [result.rows[0].idout]);
+    const hashedPassword = await client.query('SELECT password FROM societypasswords WHERE id = $1;', [result.rows[0].idout]);
 
     const bool = await verifyPassword(password, hashedPassword.rows[0].password);
     if (bool) {
@@ -107,9 +107,9 @@ const loginQuery = async (email, password, choice) => {
   }
 };
 
-const updateSocietyDetailsQuery = async(userId,isadmin)=>{
+const updateSocietyDetailsQuery = async(client, userId,isadmin)=>{
   try {
-    const result = await pool.query("SELECT * FROM update_societydetails($1,$2);", [userId, isadmin]);
+    const result = await client.query("SELECT * FROM update_societydetails($1,$2);", [userId, isadmin]);
    
   } catch (error) {
     if (error instanceof HttpError) {

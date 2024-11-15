@@ -1,7 +1,8 @@
+const pool = require('../dbUtils/db');
 const HttpError = require("../models/http-error");
 
-const { postSocietyDetailsQuery, loginQuery, updateSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
-const {getAdminStatus}= require("../dbUtils/getters");
+const {  loginQuery, updateSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
+// const {getAdminStatus}= require("../dbUtils/getters");
 
 const { validationResult } = require("express-validator");
 
@@ -18,8 +19,18 @@ const societyLogin = async (req, res, next) => {
 
   const { emailAddress, password } = req.body;
 
+  var client;
+
+  try{
+    client = await pool.connect();
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
   try {
-    const id = await loginQuery(emailAddress, password, 1);
+    await client.query('BEGIN');
+    const id = await loginQuery(client,emailAddress, password, 1);
     if (id == -1) {
       throw new HttpError("Invalid credentials", 401);
     }
@@ -40,14 +51,19 @@ const societyLogin = async (req, res, next) => {
     } catch (err) {
       throw new HttpError("Unable to login", 500);
     }
-    res.status(200).json({ "token": token, "isAdmin": adminStatus });
+
+    await client.query('COMMIT');
+    return res.status(200).json({ "token": token, "isAdmin": adminStatus });
   } catch (err) {
+    await client.query('ROLLBACK');
     if (err instanceof HttpError) {
       return next(err);
     } else {
       console.log(err);
       return next(new HttpError("Something went wrong", 500));
     }
+  }finally{
+    client.release();
   }
 };
 
@@ -56,16 +72,30 @@ const updateSocietyDetails= async (req, res, next) => {
 
   const {isadmin } = req.body;
 
+  var client;
+
   try{
-    const noticeData = await updateSocietyDetailsQuery(userId, isadmin);
+    client = await pool.connect();
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
+  try{
+    await client.query('BEGIN');
+    const noticeData = await updateSocietyDetailsQuery(client, userId, isadmin);
+    await client.query('COMMIT');
     return res.status(200).json({"message": "Success"});
   }catch (error) {
+    await client.query('ROLLBACK');
     if (error instanceof HttpError) {
       return next(error);
     } else {
       console.log(error);
       return next(new HttpError("Something went wrong", 500));
     }
+  }finally{
+    await client.release();
   }
 }
 

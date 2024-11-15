@@ -19,15 +19,6 @@ const Navbar = () => {
             </div>
             <ul className='nav-right'>
               <li>
-                <Link to='/flatsInformation'>Flat Info</Link>
-              </li>
-              <li>
-                <Link to='/dashboard'>Dashboard</Link>
-              </li>
-              <li>
-                <Link to='/notice'>Notice</Link>
-              </li>
-              <li>
                 <button onClick={logout}>Logout</button>
               </li>
             </ul>

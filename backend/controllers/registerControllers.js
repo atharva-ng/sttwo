@@ -64,7 +64,7 @@ const registerSociety = async (req, res, next) => {
   try{
     client = await pool.connect();
   }catch(err){
-    console.log(err);
+    // console.log(err);
     return next(new HttpError("Something went wrong", 500));
   }
 
@@ -72,9 +72,10 @@ const registerSociety = async (req, res, next) => {
   //Iterating over wings
   try {
     await client.query('BEGIN');
+
     societyID=await postSocietyDetailsQuery(client, societyDetails);
     if(societyID===null){
-      throw new HttpError("Failed to save society details", 500);
+      next( new HttpError("Failed to save society details", 500));
     }
 
     for (let i = 1; i <= numberOfWings; i++) {
@@ -83,7 +84,7 @@ const registerSociety = async (req, res, next) => {
       const wingId = await saveWingQuery(client, societyID, dbObj.name, dbObj.roomsPerFloor);
 
       if (wingId === null) {
-        throw new HttpError("Failed to save wing", 500);
+        next( new HttpError("Failed to save wing", 500));
       }
       
       const floors = dbObj.floors;
@@ -112,26 +113,33 @@ const registerSociety = async (req, res, next) => {
       await saveRoomQuery(client ,rooms);
 
       await client.query('COMMIT');
+      return res.status(200).json({
+        "message": "Success"
+      });
     }
   } catch (error) {
     await client.query('ROLLBACK');
-    console.log(error);
+    // console.log(error);
     if (error instanceof HttpError) {
-      throw error;
+      next( error);
     } else {
-      throw new HttpError("Something went wrong-controller", 500);
+      next( new HttpError("Something went wrong-controller", 500));
     }
   }finally{
     client.release();
   }
-  return res.status(200).json({
-    "message": "Success"
-  });
 }
 
 const getRegisterSociety = async (req, res, next) => {
+  var client;
+  try{
+    client = await pool.connect();
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+  
   try {
-    const client = await pool.connect();
     await client.query('BEGIN'); 
     const [roomSizes, maintenanceHeads] = await Promise.all([getRoomSizeQuery(client), getMaintenanceHeadsQuery(client)]);
     await client.query('COMMIT');
@@ -141,8 +149,8 @@ const getRegisterSociety = async (req, res, next) => {
     });
   } catch (err) {
     await client.query('ROLLBACK');
-    console.log(err);
-    throw new HttpError("Something went wrong", 500);
+    // console.log(err);
+    next( new HttpError("Something went wrong", 500));
   }finally{
     client.release();
   }

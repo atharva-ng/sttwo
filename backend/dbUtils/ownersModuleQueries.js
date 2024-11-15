@@ -1,12 +1,11 @@
-const pool = require('./db');
 const HttpError = require("../models/http-error");
 
 
 
-const saveOwnerDataQuery = async (ownerData) => {
+const saveOwnerDataQuery = async (client, ownerData) => {
 
   try {
-    const result = await pool.query("SELECT saveOwnerDetails($1::jsonb);", [await JSON.stringify(await ownerData)]);
+    const result = await client.query("SELECT saveOwnerDetails($1::jsonb);", [await JSON.stringify(await ownerData)]);
     console.log(result);
     return result;
   } catch (error) {

@@ -1,10 +1,11 @@
 const XLSX = require('xlsx');
 const ExcelJS = require('exceljs');
-const path = require('path');
+
+const pool = require('../dbUtils/db');
 
 const HttpError = require('../models/http-error');
 
-const {  saveOwnerDataQuery } = require('../dbUtils/ownersModuleQueries');
+const { saveOwnerDataQuery } = require('../dbUtils/ownersModuleQueries');
 const {getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery}= require('../dbUtils/getters');
 
 
@@ -162,24 +163,42 @@ const numberToId = (str, sortedRoomData) => {
 }
 
 const getOwnersModuleExcel = async (req, res, next) => {
-  // const userId = req.userData.userId;
-  const userId = 75;
+  const userId = req.userData.userId;
+  // const userId = 75;
   if (userId === null) {
-    throw HttpError("Authentication Failed", 401);
+    next( HttpError("Authentication Failed", 401));
   }
   var excelFileBuffer;
+
+  var client;
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN');
+  }catch(err){
+    console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
   try {
-    const wingData = await getWingRoomDataQuery(userId);
+    const wingData = await getWingRoomDataQuery(client, userId);
     const sortedWingData = cleanGetData(wingData);
 
     excelFileBuffer = await generateGetExcelFile(sortedWingData);
     res.setHeader('Content-Disposition', 'attachment; filename="data.xlsx"');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+    await client.query('COMMIT');
+
+    return res.status(200).send(excelFileBuffer);
+
   } catch (error) {
+    await client.query('ROLLBACK');
     console.log(error);
-    throw new HttpError("Something went wrong-getOwnersModule", 500);
+    next(new HttpError("Something went wrong-getOwnersModule", 500));
+  }finally {
+    client.release();
   }
-  return res.status(200).send(excelFileBuffer);
+
 }
 
 
@@ -219,8 +238,22 @@ const cleanPostData = (inputData, sortedWingData) => {
 
 const postOwnersModuleExcel = async (req, res, next) => {
 
+  const userId = req.userData.userId;
+  // const userId = 75;
+  if (userId === null) {
+    next( HttpError("Authentication Failed", 401));
+  }
+
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
+  }
+  var client;
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN');
+  }catch(err){
+    console.log(err);
+    return next(new HttpError("Something went wrong", 500));
   }
   try {
     // Read the uploaded file
@@ -229,34 +262,55 @@ const postOwnersModuleExcel = async (req, res, next) => {
     // Convert the worksheet to JSON
     const inputData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
 
-    const sortedWingData = cleanGetData(await getWingRoomDataQuery(75));
+    const sortedWingData = cleanGetData(await getWingRoomDataQuery(client, userId));
 
     var output = cleanPostData(inputData, sortedWingData);
 
-    const result = await saveOwnerDataQuery(output.roomInfo);
+    const result = await saveOwnerDataQuery(client, output.roomInfo);
+
+    await client.query('COMMIT');
 
     return res.status(200).json({"message":"success"});
 
   } catch (error) {
+    await client.query('ROLLBACK');
     console.log('Error processing file:', error);
-    throw new HttpError("Something went wrong- post owners module", 500);
+    next(new HttpError("Something went wrong- post owners module", 500));
+  }finally {
+    client.release(); 
   }
 }
 
 
 const getOwnersData = async (req, res, next) => {
-  // const userId = req.userData.userId;
-  const userId = 75;
+  const userId = req.userData.userId;
+  // const userId = 75;
   if (userId === null) {
-    throw HttpError("Authentication Failed", 401);
+    next( HttpError("Authentication Failed", 401));
   }
+
+  var client;
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN');
+  }catch(err){
+    console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
   try {
-    const ownersData = await getOwnersDataFromSocietyIDQuery(75);
+    
+    const ownersData = await getOwnersDataFromSocietyIDQuery(client, userId);
     console.log(ownersData);
+
+    await client.query('COMMIT');
     return res.status(200).json(ownersData);
   } catch (error) {
+    await client.query('ROLLBACK'); 
     console.log(error);
-    throw new HttpError("Something went wrong-getOwnersData", 500);
+    next( new HttpError("Something went wrong-getOwnersData", 500));
+  }finally {
+    client.release();
   }
 }
 

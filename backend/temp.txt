@@ -8,3 +8,21 @@ update notice-> modify an existing notice
 delete notice-> delete an existing notice
 
 
+var client;
+
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN'); 
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
+
+await client.query('COMMIT');
+
+await client.query('ROLLBACK');
+
+finally{
+  client.release();
+}

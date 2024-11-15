@@ -1,10 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
 import Homepage from './homepage/pages/Homepage';
 import Navbar from './shared/components/navbar/Navbar';
 import Sidebar from './shared/components/sidebar/Sidebar';
@@ -24,12 +21,11 @@ import OwnerInfo from './profile/pages/OwnerInfo';
 function App() {
 
   const { isAdmin, token, login, logout } = useAuth();
-
   let routes;
   if (token) {
     routes = (
       <Switch>
-        
+
         <Route path='/community-communications/helpdesk' exact>
           <OwnerInfoMain token={token}/>
         </Route>
@@ -39,8 +35,8 @@ function App() {
         <Route path='/flatsInformation' exact>
           <FlatsInformation />
         </Route>
-        <Route path='/dashboard' exact>
-          <SocietyProfile />
+        <Route path='/dashboard/occupancy-overview' exact>
+          <OwnerInfoMain token={token}/>
         </Route>
         <Route path='/notice' exact>
           <CommunityNoticeBoardDriver />
@@ -65,7 +61,6 @@ function App() {
       </Switch>
     );
   }
-
   return (
     <Router>
       <AuthContext.Provider value={{
@@ -92,5 +87,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

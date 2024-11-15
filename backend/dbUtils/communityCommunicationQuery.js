@@ -1,10 +1,9 @@
-const pool = require('./db');
 const HttpError = require("../models/http-error");
 
 //Notices Start================================================================================================
-const createNoticeQuery = async (title, content, start_date, end_date, userId, categoryId) => {
+const createNoticeQuery = async (client,title, content, start_date, end_date, userId, categoryId) => {
   try {
-    const result = await pool.query('CALL createNotice($1,$2,$3,$4,$5,$6, $7);', [
+    const result = await client.query('CALL createNotice($1,$2,$3,$4,$5,$6, $7);', [
       title, content, start_date, end_date, userId, categoryId, null
     ]);
     
@@ -19,9 +18,9 @@ const createNoticeQuery = async (title, content, start_date, end_date, userId, c
   }
 };
 
-const getNoticesQuery = async (queryParams) => {
+const getNoticesQuery = async (client, queryParams) => {
   try {
-    const result = await pool.query('SELECT * FROM getnotices($1, $2, $3, $4, $5, $6);', [
+    const result = await client.query('SELECT * FROM getnotices($1, $2, $3, $4, $5, $6);', [
       queryParams.socid,
       queryParams.id,
       queryParams.active,
@@ -41,9 +40,9 @@ const getNoticesQuery = async (queryParams) => {
   }
 };
 
-const getNoticeCategoriesQuery = async () => {
+const getNoticeCategoriesQuery = async (client) => {
   try {
-    const result = await pool.query('select * from get_notice_categories();');
+    const result = await client.query('select * from get_notice_categories();');
     
     return result.rows;
   } catch (error) {
@@ -56,9 +55,9 @@ const getNoticeCategoriesQuery = async () => {
   }
 };
 
-const updateNoticeQuery = async (title, content, start_date, end_date, userId, id, categoryId) => {
+const updateNoticeQuery = async (client, title, content, start_date, end_date, userId, id, categoryId) => {
   try {
-    const result = await pool.query('SELECT * FROM updatenotice($1, $2, $3, $4, $5, $6, $7);', [
+    const result = await client.query('SELECT * FROM updatenotice($1, $2, $3, $4, $5, $6, $7);', [
       id,
       userId,
       title,
@@ -78,9 +77,9 @@ const updateNoticeQuery = async (title, content, start_date, end_date, userId, i
   }
 };
 
-const deleteNoticeQuery=async (id, userId)=>{
+const deleteNoticeQuery=async (client, id, userId)=>{
   try{
-    const result = await pool.query('SELECT * FROM deletenotice($1, $2);', [
+    const result = await client.query('SELECT * FROM deletenotice($1, $2);', [
       id,
       userId
     ]);
@@ -101,9 +100,9 @@ const deleteNoticeQuery=async (id, userId)=>{
 //Notices End================================================================================================
 
 //Complaints Start===========================================================================================
-const getComplaintsQuery = async (queryParams) => {
+const getComplaintsQuery = async (client, queryParams) => {
   try {
-    const result = await pool.query('SELECT * FROM getcomplaints($1, $2, $3, $4, $5, $6);', [
+    const result = await client.query('SELECT * FROM getcomplaints($1, $2, $3, $4, $5, $6);', [
       queryParams.socid, 
       queryParams.complaintId,
       queryParams.active,
@@ -121,9 +120,9 @@ const getComplaintsQuery = async (queryParams) => {
     }
   }
 };
-const createComplaintQuery = async (soc_id, room_transaction_id,title, description, categoryId) => {
+const createComplaintQuery = async (client, soc_id, room_transaction_id,title, description, categoryId) => {
   try {
-    const result = await pool.query('SELECT * FROM insert_complaint($1,$2,$3,$4,$5);', [
+    const result = await client.query('SELECT * FROM insert_complaint($1,$2,$3,$4,$5);', [
       soc_id, 
       room_transaction_id,
       title, 
@@ -141,19 +140,19 @@ const createComplaintQuery = async (soc_id, room_transaction_id,title, descripti
   }
 };
 
-const deleteComplaintQuery = async (soc_id, comp_id)=>{
+const deleteComplaintQuery = async (client, soc_id, comp_id)=>{
   try {
-    const result = await pool.query('SELECT * FROM deleteComplaint($1,$2);', [soc_id,comp_id]);
+    const result = await client.query('SELECT * FROM deleteComplaint($1,$2);', [soc_id,comp_id]);
     return result;
   } catch (error) {
       throw new HttpError("Something went wrong-createComplaintQuery", 500);
   }
 }
 
-const updateComplaintQuery = async (queryParams) => {
+const updateComplaintQuery = async (client, queryParams) => {
   
   try {
-    const result = await pool.query('SELECT * FROM updateComplaints($1, $2, $3, $4, $5);', [
+    const result = await client.query('SELECT * FROM updateComplaints($1, $2, $3, $4, $5);', [
       queryParams.socid,
       queryParams.complaintId,
       queryParams.title,
@@ -170,9 +169,9 @@ const updateComplaintQuery = async (queryParams) => {
 //Complaints End================================================================================================
 
 //Comments Start================================================================================================
-const createCommentQuery = async (complaint_id, content, society_id) => {
+const createCommentQuery = async (client, complaint_id, content, society_id) => {
   try {
-    const result = await pool.query('SELECT * FROM createComment($1, $2, $3);', [
+    const result = await client.query('SELECT * FROM createComment($1, $2, $3);', [
       complaint_id,
       content,
       society_id
@@ -188,9 +187,9 @@ const createCommentQuery = async (complaint_id, content, society_id) => {
   }
 };
 
-const getCommentsQuery=async (complaint_id, userId)=>{
+const getCommentsQuery=async (client, complaint_id, userId)=>{
   try {
-    const result = await pool.query('SELECT * FROM getComments($1, $2);', [
+    const result = await client.query('SELECT * FROM getComments($1, $2);', [
       complaint_id,
       userId
     ]);
@@ -225,9 +224,9 @@ const getCommentsQuery=async (complaint_id, userId)=>{
 // }
 
 
-const deleteCommentQuery=async (comment_id, complaint_id, userId)=>{
+const deleteCommentQuery=async (client, comment_id, complaint_id, userId)=>{
   try{
-    const result = await pool.query('SELECT * FROM deleteComment($1, $2, $3);', [
+    const result = await client.query('SELECT * FROM deleteComment($1, $2, $3);', [
       comment_id,
       complaint_id,
       userId

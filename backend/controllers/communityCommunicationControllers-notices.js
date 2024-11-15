@@ -1,3 +1,4 @@
+const pool = require("../dbUtils/db");
 const HttpError = require("../models/http-error");
 
 const { validationResult } = require("express-validator");
@@ -13,9 +14,19 @@ const getNotices= async (req, res, next) => {
     return next(new HttpError("Invalid Input for active parameter", 400));
   }
 
+  var client;
+
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN'); 
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
   var categoryData;
   try{
-    categoryData= await getNoticeCategoriesQuery();
+    categoryData= await getNoticeCategoriesQuery(client);
   }catch(error){
     if (error instanceof HttpError) {
       return next(error);
@@ -35,7 +46,8 @@ const getNotices= async (req, res, next) => {
       categoryId: categoryId !== undefined ? Number(categoryId) : null
     };
 
-    const noticeData= await getNoticesQuery(queryParams);
+    const noticeData= await getNoticesQuery(client, queryParams);
+    await client.query('COMMIT');
 
     if(noticeData.length===0){
       return res.status(404).json({
@@ -50,12 +62,15 @@ const getNotices= async (req, res, next) => {
     });
 
   } catch (error) {
+    await client.query('ROLLBACK');
     if (error instanceof HttpError) {
       return next(error);
     } else {
       console.log(error);
       return next(new HttpError("Something went wrong", 500));
     }
+  }finally{
+    client.release();
   }
 };
 
@@ -71,9 +86,21 @@ const createNotice= async (req, res, next) => {
   }
 
   const {title, content, start_date, end_date, categoryId } = req.body;
+
+  var client;
+
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN'); 
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+
   try {
-    const noticeData = await createNoticeQuery(title, content, start_date, end_date, userId, categoryId);
+    const noticeData = await createNoticeQuery(client, title, content, start_date, end_date, userId, categoryId);
     console.log(noticeData);
+    await client.query('COMMIT');
     return res.status(201).json({
         "title":title, 
     "content": content, 
@@ -82,12 +109,15 @@ const createNotice= async (req, res, next) => {
     "category":categoryId
     });
   } catch (error) {
+    await client.query('ROLLBACK');
     if (error instanceof HttpError) {
       return next(error);
     } else {
       console.log(error);
       return next(new HttpError("Something went wrong", 500));
     }
+  }finally{
+    client.release();
   }
 };
 
@@ -98,6 +128,18 @@ const updateNotice=async (req, res, next)=>{
     return next(new HttpError("Id of the notice is invalid", 400));
   }
 
+  const {title, content, start_date, end_date, categoryId } = req.body;
+
+  var client;
+
+  try{
+    client = await pool.connect();
+    await client.query('BEGIN'); 
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
+  }
+  
   try{
     const queryParams = {
       socid: userId,
@@ -107,23 +149,13 @@ const updateNotice=async (req, res, next)=>{
       end_date: null,
       categoryId: null
     };
-    const noticeGetData = await getNoticesQuery(queryParams);
+    const noticeGetData = await getNoticesQuery(client, queryParams);
     if(noticeGetData.length===0){
-      return next(new HttpError("Id of the notice is invalid", 404));
+      throw new HttpError("Id of the notice is invalid", 404);
     }
-  }catch(error){
-    if (error instanceof HttpError) {
-      return next(error);
-    } else {
-      console.log(error);
-      return next(new HttpError("Something went wrong", 500));
-    }
-  }
 
-  const {title, content, start_date, end_date, categoryId } = req.body;
-  
-  try{
-    const noticeData = await updateNoticeQuery(title, content, start_date, end_date, userId, id, categoryId);
+    const noticeData = await updateNoticeQuery(client, title, content, start_date, end_date, userId, id, categoryId);
+    await client.query('COMMIT');
 
     return res.status(200).json({
       "title":noticeData[0].o_title, 
@@ -133,12 +165,15 @@ const updateNotice=async (req, res, next)=>{
       "category":noticeData[0].o_category
     });
   }catch (error) {
+    await client.query('ROLLBACK');
     if (error instanceof HttpError) {
       return next(error);
     } else {
       console.log(error);
       return next(new HttpError("Something went wrong", 500));
     }
+  }finally{
+    await client.release();
   }
 }
 
@@ -149,32 +184,40 @@ const deleteNotice=async (req, res, next)=>{
     return next(new HttpError("Id of the notice is invalid and should be a number", 400));
   }
 
+  var client;
+
   try{
-    const noticeGetData = await getNoticesQuery(userId, null, id);
-    if(noticeGetData.length===0){
-      return next(new HttpError("You do not have permission to delete this notice", 403));
-    }
-  }catch(error){
-    if (error instanceof HttpError) {
-      return next(error);
-    } else {
-      console.log(error);
-      return next(new HttpError("Something went wrong", 500));
-    }
+    client = await pool.connect();
+    await client.query('BEGIN'); 
+  }catch(err){
+    // console.log(err);
+    return next(new HttpError("Something went wrong", 500));
   }
 
   try{
-    const noticeData = await deleteNoticeQuery(id, userId);
+
+    const noticeGetData = await getNoticesQuery(client, userId, null, id);
+    if(noticeGetData.length===0){
+      throw new HttpError("You do not have permission to delete this notice", 403);
+    } 
+
+    const noticeData = await deleteNoticeQuery(client, id, userId);
+
+    await client.query('COMMIT');
+
     return res.status(200).json({
       "message":"Successfully Deleted"
     });
   }catch (error) {
+    await client.query('ROLLBACK');
     if (error instanceof HttpError) {
       return next(error);
     } else {
       console.log(error);
       return next(new HttpError("Something went wrong", 500));
     }
+  }finally{
+    await client.release();
   }
 }
 

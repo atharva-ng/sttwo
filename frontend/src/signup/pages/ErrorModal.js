@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Info } from 'lucide-react';
+import {  Info } from 'lucide-react';
 
 const ErrorModal = ({message, isError, setIsError}) => {
     return (
