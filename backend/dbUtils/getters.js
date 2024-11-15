@@ -56,5 +56,5 @@ const getSocietyId = async (id, choice) =>{
 }
 
 
-module.exports = { getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery, getSocietyId};
+module.exports = { getOwnersDataFromSocietyIDQuery, getWingRoomDataQuery, getSocietyId,getAdminStatus};
 

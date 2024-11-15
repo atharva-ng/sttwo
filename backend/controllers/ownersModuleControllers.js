@@ -30,27 +30,26 @@ const cleanGetData = (data) => {
   data.forEach(item => {
     finalObj[item.name].push({ "roomId": item.room_id, "roomNumber": item.room_no });
   });
-
+ 
   Object.keys(finalObj).forEach(id => {
     // Sort each list in ascending order
-    finalObj[id].sort((a, b) => a.room_no - b.room_no);
+    finalObj[id].sort((a, b) => {
+      return Number(a.roomNumber) - Number(b.roomNumber)
+    });
   });
 
   return finalObj;
 }
 
 async function generateGetExcelFile(dataVar) {
-
   const data = [
     ['XYZ Society'],
-  ]
+  ];
 
   var mergeCount = 1;
-
   const mergeList = [
     { s: { r: 0, c: 0 }, e: { r: 0, c: 7 } }
   ];
-
   Object.entries(dataVar).forEach(([key, values]) => {
     data.push([key]);
     mergeList.push({ s: { r: mergeCount, c: 0 }, e: { r: mergeCount, c: 7 } });
@@ -64,10 +63,11 @@ async function generateGetExcelFile(dataVar) {
     });
   });
 
+
   const workbook = new ExcelJS.Workbook();
   const worksheet = workbook.addWorksheet('Society Data');
 
-  const baseStyles={
+  const baseStyles = {
     alignment: { vertical: 'middle', horizontal: 'center' },
     border: {
       top: { style: 'thin' },
@@ -76,11 +76,16 @@ async function generateGetExcelFile(dataVar) {
       right: { style: 'thin' },
     },
     protection: { locked: true },
-  }
+  };
 
   const sectionHeaderStyle = {
     font: { bold: true, size: 14 },
     fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFE0B2' } }, // light yellow fill
+  };
+
+  // Define date format
+  const dateFormat = {
+    numFmt: 'yyyy-mm-dd'
   };
 
   let currentRow = 1;
@@ -89,19 +94,16 @@ async function generateGetExcelFile(dataVar) {
     const isSectionHeader = row.length === 1 && typeof row[0] === 'string';
     const rowRef = worksheet.addRow(row);
 
-    // Apply section header styles
     if (isSectionHeader) {
       rowRef.font = sectionHeaderStyle.font;
-      
       worksheet.mergeCells(`A${currentRow}:H${currentRow}`);
       rowRef.eachCell({ includeEmpty: true }, (cell) => {
         cell.border = baseStyles.border;
-        cell.fill=sectionHeaderStyle.fill;
+        cell.fill = sectionHeaderStyle.fill;
         cell.protection = baseStyles.protection;
       });
       rowRef.alignment = baseStyles.alignment;
     } else {
-      // Apply header style to the row if it's the table header
       if (currentRow === 2 || row[0] === 'Sr. No.') {
         rowRef.eachCell({ includeEmpty: true }, (cell) => {
           cell.font = sectionHeaderStyle.font;
@@ -110,16 +112,29 @@ async function generateGetExcelFile(dataVar) {
           cell.protection = baseStyles.protection;
         });
       } else {
-        // Apply data cell styles for normal rows
         rowRef.eachCell({ includeEmpty: true }, (cell, colNumber) => {
           cell.alignment = baseStyles.alignment;
           cell.border = baseStyles.border;
 
+          // Apply date formatting to date columns (7 and 8)
+          if (colNumber === 7 || colNumber === 8) {
+            cell.numFmt = dateFormat.numFmt;
+            if (cell.value) {
+              // Convert date string to Excel date
+              if (typeof cell.value === 'string' && cell.value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                cell.value = new Date(cell.value);
+              }
+            }
+          }
+
+          // Phone number formatting
+          if (colNumber === 6 && cell.value) {
+            cell.numFmt = '@'; // Treat as text to preserve leading zeros
+          }
+
           if (colNumber === 1 || colNumber === 2) {
-            // Lock the Sr. No. and Room Number columns
             cell.protection = { locked: true };
           } else {
-            // Other columns can remain unlocked (editable)
             cell.protection = { locked: false };
           }
         });
@@ -127,8 +142,8 @@ async function generateGetExcelFile(dataVar) {
     }
     currentRow++;
   });
-  
 
+  // Set column widths
   worksheet.columns = [
     { width: 10 },  // Sr. No.
     { width: 20 },  // Room Number
@@ -140,21 +155,13 @@ async function generateGetExcelFile(dataVar) {
     { width: 30 },  // Date of Selling
   ];
 
-  worksheet.columns = Array.from({ length: 8 }, (_, i) => ({
-    width: 15,  // You can set this dynamically based on column content
-  }));
-
   worksheet.protect('password123', {
     selectLockedCells: true,
     selectUnlockedCells: true,
   });
 
-  // const filePath = path.join(__dirname, 'SocietyDataWithBorders.xlsx');
-  // await workbook.xlsx.writeFile(filePath);
-
   const excelFileBuffer = await workbook.xlsx.writeBuffer();
   return excelFileBuffer;
-
 }
 
 const numberToId = (str, sortedRoomData) => {
@@ -182,7 +189,6 @@ const getOwnersModuleExcel = async (req, res, next) => {
   try {
     const wingData = await getWingRoomDataQuery(client, userId);
     const sortedWingData = cleanGetData(wingData);
-
     excelFileBuffer = await generateGetExcelFile(sortedWingData);
     res.setHeader('Content-Disposition', 'attachment; filename="data.xlsx"');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -201,6 +207,14 @@ const getOwnersModuleExcel = async (req, res, next) => {
 
 }
 
+function serialToDate(serial) {
+  if (typeof serial !== 'number') return serial;
+  
+  // Convert Excel serial to date (Excel starts at 1899-12-30)
+  const date = new Date(Date.UTC(1899, 11, 30) + (serial * 86400000)); // 86400000 = 24*60*60*1000
+  
+  return date.toISOString().split('T')[0];
+}
 
 const cleanPostData = (inputData, sortedWingData) => {
   const output = {
@@ -210,13 +224,10 @@ const cleanPostData = (inputData, sortedWingData) => {
 
   let currentWing = '';
 
+  output.societyName = inputData[0][0];
   inputData.forEach(item => {
     if (Array.isArray(item) && item.length === 1) {
-      if (item[0].startsWith('wing')) {
-        currentWing = item[0];
-      } else {
-        output.societyName = item[0];
-      }
+      currentWing = item[0];
     } else if (Array.isArray(item) && item.length > 1 && currentWing) {
       // Skip the header row
       if (item[0] !== 'Sr. No.') {
@@ -226,13 +237,12 @@ const cleanPostData = (inputData, sortedWingData) => {
           lastName: item[3],
           email: item[4],
           phoneNumber: item[5],
-          dateOfPurchase: item[6],
+          dateOfPurchase: serialToDate(item[6]),
           dateOfSelling: item[7]
         });
       }
     }
   });
-
   return output;
 }
 
@@ -267,10 +277,16 @@ const postOwnersModuleExcel = async (req, res, next) => {
     var output = cleanPostData(inputData, sortedWingData);
 
     const result = await saveOwnerDataQuery(client, output.roomInfo);
-
+    
     await client.query('COMMIT');
 
-    return res.status(200).json({"message":"success"});
+    if(result.idList.length>0){
+      return res.status(200).json({"message":"success"});
+    }else{
+      return res.status(400).json({"message":"No new owners were created. Please check the provided data for issues."});
+    }
+
+
 
   } catch (error) {
     await client.query('ROLLBACK');
@@ -319,4 +335,3 @@ const getOwnersData = async (req, res, next) => {
 exports.getOwnersModuleExcel = getOwnersModuleExcel;
 exports.postOwnersModuleExcel = postOwnersModuleExcel;
 exports.getOwnersData = getOwnersData;
-

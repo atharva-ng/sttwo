@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import DownloadModalComp from "./DownloadModal.js";
 import UploadModalComp from "./UploadModal.js";
 import { toast, ToastContainer } from 'react-toastify';
 
-const SocietyOnboarding = ({token}) => {
+import { AuthContext } from "./../../shared/context/auth-context";
+
+const SocietyOnboarding = () => {
+    const { token } = useContext(AuthContext);
     const [uploadModal, setUploadModal] = useState(false);
     const [downloadModal,setDownloadModal] = useState(false);
 
     const [isDownloading, setIsDownloading] = useState(false);
 
     const API_URL = 'http://3.109.108.99:5007/api/ownersModule/get-excel';
+    // const API_URL = 'http://localhost:5007/api/ownersModule/get-excel';
 
 
     
@@ -25,9 +29,11 @@ const downloadExcel = async () => {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
-          // 'Content-Type': 'application/json', 
+          'Content-Type': 'application/json', 
         },
       });
+
+      console.log(response);
 
       if (!response.ok) {
         reject(new Error("Something went wrong while fetching the file."));

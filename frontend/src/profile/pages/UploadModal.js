@@ -12,6 +12,7 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
   const [isDragging, setIsDragging] = useState(false); // To handle drag state
 
   const API_URL = 'http://3.109.108.99:5007/api/ownersModule/post-excel';
+  // const API_URL = 'http://localhost:5007/api/ownersModule/post-excel';
 
   // Function to handle file drop
   const handleDrop = (event) => {

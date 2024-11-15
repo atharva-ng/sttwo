@@ -1,22 +1,17 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import Homepage from './homepage/pages/Homepage';
 import Navbar from './shared/components/navbar/Navbar';
 import Sidebar from './shared/components/sidebar/Sidebar';
-import Footer from './shared/components/Footer';
 import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
-
-import SocietyProfile from './profile/pages/SocietyProfile';
 import OwnerInfoMain from './profile/pages/OwnerInfoMain';
-import FlatsInformation from './profile/pages/FlatsInformation';
 import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
 
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
-import OwnerInfo from './profile/pages/OwnerInfo';
 
 function App() {
 
@@ -27,16 +22,10 @@ function App() {
       <Switch>
 
         <Route path='/community-communications/helpdesk' exact>
-          <OwnerInfoMain token={token}/>
-        </Route>
-        <Route path='/profile' exact>
-          <SocietyProfile />
-        </Route>
-        <Route path='/flatsInformation' exact>
-          <FlatsInformation />
+          <OwnerInfoMain />
         </Route>
         <Route path='/dashboard/occupancy-overview' exact>
-          <OwnerInfoMain token={token}/>
+          <OwnerInfoMain />
         </Route>
         <Route path='/notice' exact>
           <CommunityNoticeBoardDriver />
@@ -81,7 +70,6 @@ function App() {
               {routes}
             </main>
           </div>
-          <Footer />
         </div>
       </AuthContext.Provider>
     </Router>
