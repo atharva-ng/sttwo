@@ -1,6 +1,5 @@
 import { React, useState } from "react";
-import "./Form-login.css";
-
+import { toast, ToastContainer } from "react-toastify";
 
 const Form = (props) => {
   // State variables to store the form data
@@ -26,7 +25,6 @@ const Form = (props) => {
     e.preventDefault();
     setIsSubmitting(true); // Set submitting to true
     setErrorMessage(""); // Reset error message
-    // setSuccessMessage(""); // Reset success message
 
     try {
       const response = await fetch(props.url, {
@@ -42,45 +40,56 @@ const Form = (props) => {
       if (!response.ok) {
         throw new Error(responseData.message || "Failed to login");
       }
-      
+
       props.login(responseData.isAdmin, responseData.token);
     } catch (error) {
       setErrorMessage(error.message || "There was a problem with the fetch operation");
+      toast.error(error.message);
     } finally {
       setIsSubmitting(false); // Reset submitting status
     }
   };
 
-  return (<form className="form-signup" onSubmit={handleNext}>
-    <div className="form-group-signup">
-      <label>Email</label>
-      <input
-        type="email"
-        name="emailAddress"
-        placeholder="Enter Email"
-        value={formData.emailAddress}
-        onChange={handleChange}
-        required
-      />
-    </div>
-    <div className="form-group-signup">
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        placeholder="Enter Password"
-        value={formData.password}
-        onChange={handleChange}
-        required
-      />
-    </div>
-
-    {errorMessage && <div className="error-message">{errorMessage}</div>}
-
-    <button className="login-button" type="submit" disabled={isSubmitting}>
-      {isSubmitting ? "Logging in..." : "Login"}
-    </button>
-  </form>);
-}
+  return (
+    <form className="max-w-[60vw] w-[45vw] mt-2 bg-white p-4" onSubmit={handleNext}>
+      <ToastContainer />
+      <div className="mb-6">
+        <label className="block mb-2 text-gray-500">Email</label>
+        <input
+          type="email"
+          name="emailAddress"
+          placeholder="Enter Email"
+          value={formData.emailAddress}
+          onChange={handleChange}
+          required
+          className="w-full p-3 border border-gray-300 rounded-md text-base transition-colors duration-300 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1  hover:border-blue-500"
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block mb-2 text-gray-500">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          className="w-full p-3 border border-gray-300 rounded-md text-base transition-colors duration-300 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1  hover:border-blue-500"
+        />
+      </div>
+      {/* {errorMessage} */}
+      <button
+        className={`w-full p-3 bg-blue-600 text-white font-bold rounded-md transition-colors duration-300 hover:bg-blue-700 focus:outline-none ${
+          isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+        }`}
+        type="submit"
+        disabled={isSubmitting}
+      >
+        
+        {isSubmitting ? "Logging in..." : "Login"}
+      </button>
+    </form>
+  );
+};
 
 export default Form;

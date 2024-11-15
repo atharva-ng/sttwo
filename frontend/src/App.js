@@ -13,12 +13,13 @@ import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
 
 import SocietyProfile from './profile/pages/SocietyProfile';
-import SocietyOnboarding from './profile/pages/SocietyOnboarding';
+import OwnerInfoMain from './profile/pages/OwnerInfoMain';
 import FlatsInformation from './profile/pages/FlatsInformation';
 import CommunityNoticeBoardDriver from './community communication/CommunityNoticeBoardDriver';
 
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
+import OwnerInfo from './profile/pages/OwnerInfo';
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
       <Switch>
         
         <Route path='/community-communications/helpdesk' exact>
-          <SocietyOnboarding token={token}/>
+          <OwnerInfoMain token={token}/>
         </Route>
         <Route path='/profile' exact>
           <SocietyProfile />
