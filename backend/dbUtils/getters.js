@@ -26,16 +26,16 @@ const getWingRoomDataQuery = async (client, soc_id) => {
   }
 };
 
-// const getAdminStatus = async (soc_id) => {
-//   try {
-//     const result = await pool.query('SELECT isadmin FROM societydetails WHERE id =($1);', [
-//       soc_id
-//     ]);
-//     return result.rows;
-//   }catch(error){
-//     throw new HttpError("Something went wrong-getAdminStatus", 500);
-//   }
-// }
+const getAdminStatus = async (client, soc_id) => {
+  try {
+    const result = await client.query('SELECT isadmin FROM societydetails WHERE id =($1);', [
+      soc_id
+    ]);
+    return result.rows;
+  }catch(error){
+    throw new HttpError("Something went wrong-getAdminStatus", 500);
+  }
+}
 
 
 // Choice :1 - id:owner id

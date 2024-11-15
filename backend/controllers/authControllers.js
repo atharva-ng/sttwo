@@ -2,7 +2,7 @@ const pool = require('../dbUtils/db');
 const HttpError = require("../models/http-error");
 
 const {  loginQuery, updateSocietyDetailsQuery } = require("../dbUtils/authDBQueries");
-// const {getAdminStatus}= require("../dbUtils/getters");
+const {getAdminStatus}= require("../dbUtils/getters");
 
 const { validationResult } = require("express-validator");
 
@@ -35,7 +35,7 @@ const societyLogin = async (req, res, next) => {
       throw new HttpError("Invalid credentials", 401);
     }
 
-    let adminStatus = await getAdminStatus(id);
+    let adminStatus = await getAdminStatus(client,id);
     adminStatus=adminStatus[0].isadmin;
 
     let token;
