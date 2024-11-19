@@ -76,7 +76,7 @@ const OwnerInfoMain = () => {
         <ToastContainer />
     {
         isDataFetched ? 
-        (formData.length===0 || isError) ?
+        (formData.length===0) ?
         <SocietyOnboarding />
         :
         <OwnerInfo formData = {formData} setFormData={setFormData}/> 
