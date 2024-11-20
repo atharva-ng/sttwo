@@ -72,25 +72,16 @@ const Sidebar = () => {
   };
 
   return (
-    <div>
-      {/* Mobile Toggle Button */}
-      <button
-        className={`sm:hidden fixed z-50 p-2  text-black rounded-xl
-          ${isSidebarOpen ? 'translate-x-64' : 'translate-x-0'}
-          `}
-        
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
-
+    <>
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-screen bg-white border-r overflow-y-auto transition-transform duration-300 transform
-           ${isSidebarOpen ? 'translate-x-0 pt-2' : '-translate-x-full'} sm:translate-x-0 sm:static sm:shadow-none z-40`}
-          style={{
-            scrollbarWidth:"none",
-          }}
+        className={` pb-20 w-64 h-screen bg-white border-r shadow overflow-y-auto
+           transition-transform duration-300 transform z-50 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'}`}
+        style={{ scrollbarWidth: "none", 
+          position:"sticky",
+          top:"0"
+        }}
+        
       >
         <NavItem
           icon={Home}
@@ -151,14 +142,14 @@ const Sidebar = () => {
         />
       </div>
 
-      {/* Overlay for mobile when sidebar is open */}
+      {/* Overlay for mobile */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 sm:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
-    </div>
+    </>
   );
 };
 
