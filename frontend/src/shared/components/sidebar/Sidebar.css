@@ -44,6 +44,7 @@
 /* Make the scrollbar scrollable */
 .scrollbar {
     /* width: 64px; */
+    position: fixed;
     height: 100vh;
     overflow-y: auto; /* Enables vertical scroll */
     scrollbar-width: thin; /* For Firefox */

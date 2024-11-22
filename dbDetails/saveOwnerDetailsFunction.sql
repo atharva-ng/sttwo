@@ -23,30 +23,36 @@ BEGIN
         END IF;
 
         BEGIN
-            -- Insert owner details
-            INSERT INTO ownerdetails(id, firstname, lastname, email, phonenumber) 
-            VALUES (default, 
-                    record->>'firstName', 
-                    record->>'lastName', 
-                    record->>'email', 
-                    record->>'phoneNumber') 
-            RETURNING id INTO ownerId;
+            SELECT id 
+            INTO ownerId
+            FROM ownerdetails 
+            WHERE phonenumber = record->>'phoneNumber';
+            
+            IF ownerId IS NULL THEN
+                -- Insert owner details
+                INSERT INTO ownerdetails(id, firstname, lastname, email, phonenumber) 
+                VALUES (default, 
+                        record->>'firstName', 
+                        record->>'lastName', 
+                        record->>'email', 
+                        record->>'phoneNumber') 
+                RETURNING id INTO ownerId;
+            END IF;
+            
+            
             
             -- Insert room transaction details
-            IF record->>'dateOfSelling' IS NOT NULL THEN
-                INSERT INTO room_transaction(id, owner_id, roomdetails_id, date_of_purchase, date_of_selling) 
-                VALUES (default, 
-                        ownerId, 
-                        (record->>'roomId')::INT, 
-                        (record->>'dateOfPurchase')::timestamp without time zone, 
-                        (record->>'dateOfSelling')::timestamp without time zone);
-            ELSE
-                INSERT INTO room_transaction(id, owner_id, roomdetails_id, date_of_purchase) 
-                VALUES (default, 
-                        ownerId, 
-                        (record->>'roomId')::INT, 
-                        (record->>'dateOfPurchase')::timestamp without time zone);
-            END IF;
+            INSERT INTO room_transaction(owner_id, roomdetails_id, date_of_purchase, date_of_selling)
+            VALUES (
+                ownerId,
+                (record->>'roomId')::INT,
+                (record->>'dateOfPurchase')::timestamp without time zone,
+                CASE 
+                    WHEN record->>'dateOfSelling' IS NOT NULL 
+                    THEN (record->>'dateOfSelling')::timestamp without time zone 
+                    ELSE NULL 
+                END
+            );
             
             -- Store successful ID
             id_list := array_append(id_list, ownerId);

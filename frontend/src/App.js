@@ -20,14 +20,10 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-
-        <Route path='/community-communications/helpdesk' exact>
-          <OwnerInfoMain />
-        </Route>
         <Route path='/dashboard/occupancy-overview' exact>
           <OwnerInfoMain />
         </Route>
-        <Route path='/notice' exact>
+        <Route path='/community-communications/notices' exact>
           <CommunityNoticeBoardDriver />
         </Route>
         <Redirect to='/profile' />

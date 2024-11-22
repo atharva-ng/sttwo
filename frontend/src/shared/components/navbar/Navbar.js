@@ -12,7 +12,7 @@ const Navbar = () => {
     
       navElement = (
         <>
-          <nav className='nav'>
+          <nav className='nav '>
             <div className='nav-left'>
               <img src='/logo.svg' alt='Logo' className='nav-logo' />
               <span className='site-title'>ST II</span>
