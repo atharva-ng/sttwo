@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./uploadmodal.css";
 
 const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
+  const history = useHistory(); // Hook for navigation
+
   const [isUploading, setIsUploading] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -64,11 +67,17 @@ const UploadModalComp = ({ uploadModal, setUploadModal, token }) => {
           
           localStorage.setItem('fileUpload', selectedFile);
           console.log("Form Submitted:", selectedFile);
+          setUploadModal(false);
+          history.push("/community-communications/helpdesk");
+          
           // setUploadModal(false);
         }
       } catch (err) {
         console.log('Error posting notice:', err);
         toast.error("Error Uploading File.");
+        // window.location.reload();
+        
+        
       } finally {
         setIsUploading(false);
       }
