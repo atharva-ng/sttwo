@@ -103,7 +103,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
       {isAdmin && (
 
 
-        <form onSubmit={handleSubmit} className="notice-form">
+        <form onSubmit={handleSubmit} className="notice-form  border rounded-lg shadow-md">
           <h2>Post a New Notice</h2>
 
           {/* <label
@@ -183,8 +183,8 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
       <div className="notices-container">
         {notices.length > 0 ? (
           notices.map(notice => (
-            <div key={notice.id} className="notice">
-              
+            <div key={notice.id} className="notice border rounded-lg shadow-md hover:shadow-lg transition duration-200">
+
               <div className='flex justify-between'>
                 <h3 className="notice-title">{notice.title}</h3>
                 <h4 className='text-gray-500'>
