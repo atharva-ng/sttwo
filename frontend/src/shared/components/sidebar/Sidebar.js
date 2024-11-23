@@ -82,7 +82,8 @@ const Sidebar = () => {
            transition-transform duration-300 transform z-50 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'}`}
         style={{ scrollbarWidth: "none", 
           position:"sticky",
-          top:"0"
+          top:"0",
+          userSelect:"none"
         }}
         
       >
