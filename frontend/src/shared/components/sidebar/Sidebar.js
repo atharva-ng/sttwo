@@ -61,7 +61,7 @@ const Sidebar = () => {
       setActiveChild(child);
       setActiveParent(item);
       const childRoute = child ? child.toLowerCase().replace(/\s+/g, '-') : '';
-      console.log(`${route}/${childRoute}`);  
+      // console.log(`${route}/${childRoute}`);  
       history.push(`${route}/${childRoute}`);
     } else {
       if (["Account Edit", "Settings"].includes(item)){ // add to array the heads which contain no children
