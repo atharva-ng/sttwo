@@ -26,8 +26,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
     fetchNotices();
   }, []);
 
-  console.log(notices);
-  console.log(categories);
+
 
   const fetchNotices = async () => {
     setIsLoading(true);
@@ -57,7 +56,6 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setNewNotice(prev => ({ ...prev, [name]: value }));
   };
 
@@ -65,7 +63,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
     e.preventDefault();
     if (newNotice.title && newNotice.content && newNotice.start_date && newNotice.end_date) {
       try {
-        console.log(newNotice);
+        
         const response = await fetch(API_URL, {
           method: 'POST',
           headers: {
