@@ -64,10 +64,13 @@ const Sidebar = () => {
       console.log(`${route}/${childRoute}`);  
       history.push(`${route}/${childRoute}`);
     } else {
-      setActiveItem(item);
-      setActiveChild(null);
-      setActiveParent(null);
-      history.push(route);
+      if (["Account Edit", "Settings"].includes(item)){ // add to array the heads which contain no children
+        setActiveItem(item);
+        setActiveChild(null);
+        setActiveParent(null);
+        history.push(route);
+      }
+      
     }
   };
 
