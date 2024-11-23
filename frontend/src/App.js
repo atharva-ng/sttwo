@@ -37,7 +37,7 @@ function App() {
             <Sidebar />
             
             }
-            <main className={token ? "flex-1 bg-gray-100 mt-10" : "w-full p-4"}>
+            <main className={token ? "flex-1 bg-gray-100 mt-16" : "w-full p-4"}>
               <Switch>
                 {token ? (
                   <>
