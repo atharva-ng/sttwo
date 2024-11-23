@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import 'react-toastify/dist/ReactToastify.css';
 import Homepage from './homepage/pages/Homepage';
 import Navbar from './shared/components/navbar/Navbar';
+import NewNavbar from './shared/components/navbar/newNavbar';
 import Sidebar from './shared/components/sidebar/Sidebar';
 import LoginSociety from './login/pages/LoginSociety';
 import SignupSociety from './signup/pages/SignupSociety';
@@ -27,11 +28,16 @@ function App() {
           logout: logout,
         }}
       >
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
+        <div className="flex flex-col min-h-screen"
+        >
+          {/* <Navbar /> */}
+          <NewNavbar />
           <div className="flex">
-            {token && <Sidebar className="" />}
-            <main className={token ? "flex-1 bg-gray-100" : "w-full p-4"}>
+            {token && 
+            <Sidebar />
+            
+            }
+            <main className={token ? "flex-1 bg-gray-100 mt-10" : "w-full p-4"}>
               <Switch>
                 {token ? (
                   <>

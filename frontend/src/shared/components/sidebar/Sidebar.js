@@ -121,10 +121,10 @@ const Sidebar = () => {
         className={`pb-20 w-64 h-screen bg-white border-r shadow overflow-y-auto 
           transition-transform duration-300 transform z-50 
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'} 
-          sm:sticky sm:top-0 absolute sm:relative pt-5 sm:pt-0`}
+          sm:sticky sm:top-14 absolute sm:relative pt-5 sm:pt-0`}
         style={{ scrollbarWidth: "none", 
           // position:"sticky",
-          top:"0",
+          
           userSelect:"none"
         }}
         
