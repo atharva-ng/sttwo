@@ -50,11 +50,11 @@ textarea.input-field {
   background-color: #45a049;
 }
 
-.notices-container {
+/* .notices-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
 .notice {
   border: 1px solid #ddd;

@@ -2,10 +2,17 @@ import React, { useContext } from 'react';
 
 import './Navbar.css';
 import { AuthContext } from '../../context/auth-context';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
+  const history = useHistory(); // Hook for navigation
+
+  const handleLogout = () => {
+    logout();
+    history.push("/login");
+    
+  }
 
   let navElement;
   if (isLoggedIn) {
@@ -19,7 +26,7 @@ const Navbar = () => {
             </div>
             <ul className='nav-right'>
               <li>
-                <button onClick={logout}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             </ul>
           </nav>

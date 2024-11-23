@@ -14,56 +14,65 @@ import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 
 function App() {
-
   const { isAdmin, token, login, logout } = useAuth();
-  let routes;
-  if (token) {
-    routes = (
-      <Switch>
-        <Route path='/dashboard/occupancy-overview' exact>
-          <OwnerInfoMain />
-        </Route>
-        <Route path='/community-communications/notices' exact>
-          <CommunityNoticeBoardDriver />
-        </Route>
-        <Redirect to='/profile' />
-        {/* <ToastContainer /> */}
-      </Switch>
-    );
-  } else {
-    routes = (
-      <Switch>
-        <Route path='/' exact>
-          <Homepage />
-        </Route>
-        <Route path='/login' exact>
-          <LoginSociety />
-        </Route>
-        <Route path='/signup' exact>
-          <SignupSociety />
-        </Route>
-        <Redirect to='/' />
-      </Switch>
-    );
-  }
+  
   return (
     <Router>
-      <AuthContext.Provider value={{
-        isLoggedIn: !!token,
-        isAdmin: isAdmin,
-        token: token,
-        login: login,
-        logout: logout
-      }}>
+      <AuthContext.Provider
+        value={{
+          isLoggedIn: !!token,
+          isAdmin: isAdmin,
+          token: token,
+          login: login,
+          logout: logout,
+        }}
+      >
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <div className="flex flex-1">
-            {/* Conditionally render the Sidebar only when user is logged in */}
-            {token && <Sidebar className="w-1/4" />}
-            
-            {/* Main content area */}
+          <div className="flex">
+            {token && <Sidebar className="" />}
             <main className={token ? "flex-1 bg-gray-100" : "w-full p-4"}>
-              {routes}
+              <Switch>
+                {token ? (
+                  <>
+                    <Route
+                      path="/dashboard/occupancy-overview"
+                      exact
+                      component={OwnerInfoMain}
+                    />
+                    <Route
+                      path="/community-communications/notices"
+                      exact
+                      component={CommunityNoticeBoardDriver}
+                    />
+                    {/* Fallback to handle undefined routes */}
+                    <Route
+                      render={() => (
+                        // <div className="text-center text-gray-500 p-6">
+                        //   <h1 className="text-xl font-bold">404 - Page Not Found</h1>
+                        //   <p>Use the sidebar to navigate to an existing page.</p>
+                        // </div>
+                        <></>
+                      )}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/" exact component={Homepage} />
+                    <Route path="/login" exact component={LoginSociety} />
+                    <Route path="/signup" exact component={SignupSociety} />
+                    <Route
+                      render={() => (
+                        // <div className="text-center text-gray-500 p-6">
+                        //   <h1 className="text-xl font-bold">404 - Page Not Found</h1>
+                        //   <p>Use the navbar to navigate to an existing page.</p>
+                        // </div>
+                        <></>
+                      )}
+                    />
+                  </>
+                )}
+              </Switch>
             </main>
           </div>
         </div>
@@ -71,4 +80,6 @@ function App() {
     </Router>
   );
 }
+
+
 export default App;

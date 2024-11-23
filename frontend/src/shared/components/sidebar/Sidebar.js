@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChevronUp, ChevronDown, Home, DollarSign, PencilRuler, ScrollText, Megaphone, UserRoundPen, Settings, Menu, X } from 'lucide-react';
 
@@ -74,14 +74,56 @@ const Sidebar = () => {
     }
   };
 
+    useEffect(() => {
+    // Function to check if the user is on mobile
+    const checkDeviceAndResize = () => {
+      // You can customize the breakpoint based on your requirement
+      const isMobile = window.innerWidth <= 640;
+
+      if (!isMobile) {
+        setIsSidebarOpen(true); // Set the sidebar open if not on mobile
+      }
+      else{
+        setIsSidebarOpen(false);
+      }
+    };
+
+    // Run on initial load
+    checkDeviceAndResize();
+
+    // Add event listener for resize
+    window.addEventListener('resize', checkDeviceAndResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', checkDeviceAndResize);
+    };
+  }, []);
+
   return (
+    
     <>
+    <button
+        className={`sm:hidden fixed z-50 p-2  text-black rounded-xl
+          ${isSidebarOpen ? 'translate-x-64' : 'translate-x-0'}
+          `}
+        
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+    {isSidebarOpen && <>
+
+      
+      
       {/* Sidebar */}
       <div
-        className={` pb-20 w-64 h-screen bg-white border-r shadow overflow-y-auto
-           transition-transform duration-300 transform z-50 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'}`}
+        className={`pb-20 w-64 h-screen bg-white border-r shadow overflow-y-auto 
+          transition-transform duration-300 transform z-50 
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'} 
+          sm:sticky sm:top-0 absolute sm:relative pt-5 sm:pt-0`}
         style={{ scrollbarWidth: "none", 
-          position:"sticky",
+          // position:"sticky",
           top:"0",
           userSelect:"none"
         }}
@@ -145,14 +187,17 @@ const Sidebar = () => {
           onClick={() => handleClick('Settings', null, '/settings')}
         />
       </div>
+    
+    </>}
+    
 
       {/* Overlay for mobile */}
-      {isSidebarOpen && (
+      {/* {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 sm:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
-      )}
+      )} */}
     </>
   );
 };

@@ -180,7 +180,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
       {isLoading && <div className="loading">Loading notices...</div>}
       {error && <div className="error">{error}</div>}
 
-      <div className="notices-container">
+      <div className="notices-container grid grid-cols-1 md:grid-cols-1 gap-5">
         {notices.length > 0 ? (
           notices.map(notice => (
             <div key={notice.id} className="notice border rounded-lg shadow-md hover:shadow-lg transition duration-200">

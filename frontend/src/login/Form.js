@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { useHistory } from 'react-router-dom';
 
 const Form = (props) => {
   // State variables to store the form data
@@ -7,6 +8,8 @@ const Form = (props) => {
     emailAddress: "",
     password: "",
   });
+
+  const history = useHistory(); // Hook for navigation
 
   const [isSubmitting, setIsSubmitting] = useState(false); // To manage loading state
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,6 +49,7 @@ const Form = (props) => {
       setErrorMessage(error.message || "There was a problem with the fetch operation");
       toast.error(error.message);
     } finally {
+      history.push("/");
       setIsSubmitting(false); // Reset submitting status
     }
   };
