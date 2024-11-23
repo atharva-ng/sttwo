@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import './Navbar.css';
+import './new.css';
 import { AuthContext } from '../../context/auth-context';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -19,7 +20,7 @@ const Navbar = () => {
     
       navElement = (
         <>
-          <div className='nav z-50 h-100'
+          {/* <div className='nav z-50 h-100'
           >
             <div className='nav-left'
             
@@ -32,7 +33,19 @@ const Navbar = () => {
                 <button onClick={handleLogout}>Logout</button>
               </li>
             </ul>
-          </div>
+          </div> */}
+          <div className="topnav shadow-md">
+            <a className="left">
+            <div className='nav-left'
+            >
+              <img src='/logo.svg' alt='Logo' className='nav-logo' />
+              <span className='site-title'>ST II</span>
+            </div>
+            </a>
+            <a className="split"
+            onClick={handleLogout}
+            >Logout</a>
+        </div>
           {/* <div className='nav-divider'></div>    */}
         </>
       );

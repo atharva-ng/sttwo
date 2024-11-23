@@ -104,7 +104,7 @@ const Sidebar = () => {
     
     <>
     <button
-        className={`sm:hidden fixed z-50 p-2  text-black rounded-xl
+        className={`sm:hidden fixed top-16 z-50 p-2  text-black rounded-xl
           ${isSidebarOpen ? 'translate-x-64' : 'translate-x-0'}
           `}
         
@@ -121,10 +121,9 @@ const Sidebar = () => {
         className={`pb-20 w-64 h-screen bg-white border-r shadow overflow-y-auto 
           transition-transform duration-300 transform z-50 
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'} 
-          sm:sticky sm:top-14 absolute sm:relative pt-5 sm:pt-0`}
+          sm:sticky mt-16 sm:top-16 bottom-20 absolute pt-5 sm:pt-0`}
         style={{ scrollbarWidth: "none", 
           // position:"sticky",
-          
           userSelect:"none"
         }}
         

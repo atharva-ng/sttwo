@@ -17,7 +17,7 @@
   
   /* Style the links inside the navigation bar */
   .topnav a {
-
+    cursor: pointer;
 
     float: left;
     text-align: center;
@@ -26,7 +26,8 @@
   }
   
   /* Change the color of links on hover */
-  .topnav a:hover {
+  .split:hover {
+    
     background-color: #ddd;
     /* color: black; */
   }

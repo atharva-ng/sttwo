@@ -31,7 +31,7 @@ function App() {
         <div className="flex flex-col min-h-screen"
         >
           {/* <Navbar /> */}
-          <NewNavbar />
+          <Navbar />
           <div className="flex">
             {token && 
             <Sidebar />
