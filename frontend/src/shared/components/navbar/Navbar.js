@@ -1,35 +1,63 @@
 import React, { useContext } from 'react';
 
 import './Navbar.css';
+import './new.css';
 import { AuthContext } from '../../context/auth-context';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
+  const history = useHistory(); // Hook for navigation
+
+  const handleLogout = () => {
+    logout();
+    history.push("/login");
+    
+  }
 
   let navElement;
   if (isLoggedIn) {
     
       navElement = (
         <>
-          <nav className='nav '>
-            <div className='nav-left'>
+          {/* <div className='nav z-50 h-100'
+          >
+            <div className='nav-left'
+            
+            >
               <img src='/logo.svg' alt='Logo' className='nav-logo' />
               <span className='site-title'>ST II</span>
             </div>
             <ul className='nav-right'>
               <li>
-                <button onClick={logout}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             </ul>
-          </nav>
-          <div className='nav-divider'></div> 
+          </div> */}
+          <div className="topnav shadow-md">
+            <a className="left">
+            <div className='nav-left'
+            >
+              <img src='/logo.svg' alt='Logo' className='nav-logo' />
+              <span className='site-title'>ST II</span>
+            </div>
+            </a>
+            <a className="split"
+            onClick={handleLogout}
+            >Logout</a>
+        </div>
+          {/* <div className='nav-divider'></div>    */}
         </>
       );
   } else {
     navElement = (
       <>
-        <nav className='nav'>
+        <nav className='nav'
+        style={{
+          position:"sticky",
+          top:"0"
+        }}
+        >
           <div className='nav-left'>
             <img src='/logo.svg' alt='Logo' className='nav-logo' />
             <span className='site-title'>ST II</span>
