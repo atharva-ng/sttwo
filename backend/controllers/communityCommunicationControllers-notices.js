@@ -50,9 +50,9 @@ const getNotices= async (req, res, next) => {
     await client.query('COMMIT');
 
     if(noticeData.length===0){
-      return res.status(404).json({
+      return res.status(204).json({
         "categories":categoryData,
-        "notices": "No Notices Found for the given filters"
+        "notices": []
       });
     }
 

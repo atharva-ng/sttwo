@@ -38,10 +38,11 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
             'Content-Type': 'application/json',  
         },
     });
-      if (!response.ok) {
-        throw new Error('Failed to fetch notices');
-      }
+      // if (!response.ok) {
+      //   throw new Error('Failed to fetch notices');
+      // }
       const data = await response.json();
+      // console.log("notices");
       // console.log(data);
 
       setCategories(data.categories);

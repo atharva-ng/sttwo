@@ -295,6 +295,7 @@ const postOwnersModuleExcel = async (req, res, next) => {
   }finally {
     client.release(); 
   }
+  return res.status(200).json();
 }
 
 

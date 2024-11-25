@@ -83,6 +83,7 @@ function App() {
           </div>
         </div>
       </AuthContext.Provider>
+
     </Router>
   );
 }
