@@ -50,7 +50,7 @@ const getNotices= async (req, res, next) => {
     await client.query('COMMIT');
 
     if(noticeData.length===0){
-      return res.status(204).json({
+      return res.status(200).json({
         "categories":categoryData,
         "notices": []
       });
@@ -99,14 +99,14 @@ const createNotice= async (req, res, next) => {
 
   try {
     const noticeData = await createNoticeQuery(client, title, content, start_date, end_date, userId, categoryId);
-    console.log(noticeData);
+
     await client.query('COMMIT');
     return res.status(201).json({
-        "title":title, 
-    "content": content, 
-    "start_date":start_date,
-    "end_date":end_date,
-    "category":categoryId
+      "title":title, 
+      "content": content, 
+      "start_date":start_date,
+      "end_date":end_date,
+      "category":categoryId
     });
   } catch (error) {
     await client.query('ROLLBACK');

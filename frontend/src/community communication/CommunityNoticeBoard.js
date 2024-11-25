@@ -19,6 +19,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
   const [error, setError] = useState(null);
 
   const API_URL = 'http://3.109.108.99:5007/api/community-communications/notices';
+  // const API_URL = 'http://localhost:5007/api/community-communications/notices';
 
 
   //***************I think you will have to memoize this
@@ -38,9 +39,10 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
             'Content-Type': 'application/json',  
         },
     });
-      // if (!response.ok) {
-      //   throw new Error('Failed to fetch notices');
-      // }
+      if (!response.ok) {
+        throw new Error('Failed to fetch notices');
+      }
+
       const data = await response.json();
       // console.log("notices");
       // console.log(data);
@@ -79,10 +81,10 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
           throw new Error('Failed to post notice');
         }
         const postedNotice = await response.json();
+        console.log(postedNotice);
         setNotices(prev => [postedNotice, ...prev]);
         setNewNotice({ title: '', content: '', start_date: '', end_date: '' });
 
-        window.location.reload();
       } catch (err) {
         console.log(err); 
         setError('Failed to post notice. Please try again.');
