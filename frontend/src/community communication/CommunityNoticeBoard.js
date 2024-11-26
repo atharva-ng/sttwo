@@ -90,8 +90,14 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
         setError('Failed to post notice. Please try again.');
         console.error('Error posting notice:', err);
       }
+      finally{
+        window.location.reload();
+      }
     }
   };
+
+  
+
 
   const findCategory = (notice) => {
     const categoryName = categories.find(cat => cat.id === notice.category)?.category || "Unknown Category";
