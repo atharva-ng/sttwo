@@ -97,6 +97,7 @@ const CommunityNoticeBoard = ({ isAdmin }) => {
     const categoryName = categories.find(cat => cat.id === notice.category)?.category || "Unknown Category";
     return categoryName;
   }
+  
   return (
     <div className="notice-board">
       <h1>Community Notice Board</h1>
